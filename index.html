@@ -3,36 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trans Euro Trail - GPS Routes Explorer</title>
+    <title>Enduro Explorers Strasswalchen - TET Routen Explorer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="icon" type="image/png" href="logo_web.png">
     <style>
         :root {
-            --primary: #E85D26;
-            --primary-dark: #C44A1A;
-            --primary-light: #FF7A45;
-            --bg-dark: #0F1419;
-            --bg-card: #1A2028;
-            --bg-card-hover: #222C36;
-            --text: #E8E8E8;
-            --text-muted: #8899AA;
+            --gold: #D4952B;
+            --gold-dark: #A87420;
+            --gold-light: #E8B44A;
+            --gold-pale: #F0C96E;
+            --bg-dark: #111111;
+            --bg-card: #1A1A1A;
+            --bg-card-hover: #222222;
+            --text: #E0DCD4;
+            --text-muted: #918A7E;
             --text-bright: #FFFFFF;
-            --accent-green: #2ECC71;
-            --accent-blue: #3498DB;
-            --border: #2A3644;
-            --shadow: rgba(0,0,0,0.4);
-            --gradient-start: #0F1419;
-            --gradient-end: #1A2535;
+            --accent-green: #6ABF5E;
+            --accent-blue: #5BA4D9;
+            --border: #2E2A24;
+            --shadow: rgba(0,0,0,0.5);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg-dark);
@@ -41,881 +35,296 @@
             overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* ── Cookie / DSGVO Banner ── */
+        .cookie-banner {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(17,17,17,0.97); backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border);
+            padding: 1.2rem 2rem; z-index: 9999;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 1.5rem; flex-wrap: wrap;
+        }
+        .cookie-banner.hidden { display: none; }
+        .cookie-text { font-size: 0.82rem; color: var(--text-muted); max-width: 800px; line-height: 1.5; }
+        .cookie-text a { color: var(--gold); text-decoration: underline; }
+        .cookie-buttons { display: flex; gap: 0.7rem; flex-shrink: 0; }
+        .cookie-btn { padding: 8px 20px; border-radius: 8px; font-size: 0.82rem; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; border: none; }
+        .cookie-accept { background: var(--gold); color: #111; }
+        .cookie-accept:hover { background: var(--gold-light); }
+        .cookie-reject { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+
+        /* ── Hero ── */
         .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            background: radial-gradient(ellipse at 50% 40%, #1E1A14 0%, #111111 70%);
             overflow: hidden;
         }
-
         .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            content: ''; position: absolute; inset: 0;
             background:
-                radial-gradient(ellipse at 20% 50%, rgba(232,93,38,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(52,152,219,0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(46,204,113,0.04) 0%, transparent 50%);
+                radial-gradient(ellipse at 30% 50%, rgba(212,149,43,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 30%, rgba(212,149,43,0.04) 0%, transparent 50%);
         }
-
-        .hero-bg-map {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpath d='M0 200 Q100 100 200 200 T400 200' fill='none' stroke='%23fff' stroke-width='1'/%3E%3Cpath d='M50 100 Q150 50 250 100 T450 100' fill='none' stroke='%23fff' stroke-width='0.5'/%3E%3Cpath d='M0 300 Q100 250 200 300 T400 300' fill='none' stroke='%23fff' stroke-width='0.5'/%3E%3C/svg%3E");
-            background-size: 400px;
-        }
-
-        .hero-particles {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            overflow: hidden;
-        }
-
+        .hero-particles { position: absolute; inset: 0; overflow: hidden; }
         .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0;
+            position: absolute; width: 3px; height: 3px;
+            background: var(--gold); border-radius: 50%; opacity: 0;
             animation: float-particle 8s infinite;
         }
-
         @keyframes float-particle {
-            0% { opacity: 0; transform: translateY(100vh) scale(0); }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+            0% { opacity:0; transform: translateY(100vh) scale(0); }
+            10% { opacity:0.5; } 90% { opacity:0.5; }
+            100% { opacity:0; transform: translateY(-10vh) scale(1); }
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 2rem;
-            max-width: 900px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 6px 18px;
-            border: 1px solid var(--primary);
-            border-radius: 50px;
-            color: var(--primary);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            background: rgba(232,93,38,0.08);
-        }
-
+        .hero-content { position: relative; z-index: 2; padding: 2rem; max-width: 900px; }
+        .hero-logo { width: 180px; height: auto; margin-bottom: 1.5rem; filter: drop-shadow(0 4px 20px rgba(212,149,43,0.3)); }
         .hero h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            color: var(--text-bright);
-            line-height: 1.05;
-            margin-bottom: 0.5rem;
-            letter-spacing: -2px;
+            font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 900;
+            color: var(--text-bright); line-height: 1.1;
+            margin-bottom: 0.3rem; letter-spacing: -1px;
         }
-
         .hero h1 span {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat-value {
+        .hero-clubname {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .hero-stat-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 36px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(232,93,38,0.3);
-            cursor: pointer;
-            border: none;
-        }
-
-        .hero-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(232,93,38,0.4);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            z-index: 2;
-        }
-
-        .scroll-indicator svg {
-            width: 30px;
-            height: 30px;
-            stroke: var(--text-muted);
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* Navigation */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .nav.scrolled {
-            background: rgba(15,20,25,0.95);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 2px 20px var(--shadow);
-            padding: 0.7rem 2rem;
-        }
-
-        .nav-logo {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 1.4rem;
-            color: var(--text-bright);
-            text-decoration: none;
-        }
-
-        .nav-logo span {
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Filter Section */
-        .filter-section {
-            padding: 2rem;
-            background: linear-gradient(180deg, var(--gradient-end), var(--bg-dark));
-            position: sticky;
-            top: 60px;
-            z-index: 50;
-            backdrop-filter: blur(10px);
-        }
-
-        .filter-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .search-box {
-            flex: 1;
-            min-width: 250px;
-            position: relative;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 12px 20px 12px 48px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text);
-            font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .search-box input:focus {
-            border-color: var(--primary);
-        }
-
-        .search-box svg {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            stroke: var(--text-muted);
-        }
-
-        .filter-chips {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .chip {
-            padding: 8px 18px;
-            border-radius: 50px;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-
-        .chip:hover, .chip.active {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: rgba(232,93,38,0.08);
-        }
-
-        .sort-select {
-            padding: 10px 16px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            cursor: pointer;
-            outline: none;
-        }
-
-        /* Route count */
-        .results-info {
-            max-width: 1400px;
-            margin: 1rem auto 0;
-            padding: 0 2rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Routes Grid */
-        .routes-section {
-            padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .routes-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-bright);
-            margin-bottom: 0.5rem;
-        }
-
-        .routes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        /* Route Card */
-        .route-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .route-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary);
-            box-shadow: 0 12px 40px rgba(232,93,38,0.15);
-            background: var(--bg-card-hover);
-        }
-
-        .route-card-image {
-            position: relative;
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .route-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .route-card:hover .route-card-image img {
-            transform: scale(1.05);
-        }
-
-        .route-card-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: linear-gradient(transparent, rgba(26,32,40,0.9));
-        }
-
-        .route-country-flag {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            font-size: 2rem;
-            z-index: 2;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-        }
-
-        .route-difficulty {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            z-index: 2;
-            backdrop-filter: blur(10px);
-        }
-
-        .difficulty-easy {
-            background: rgba(46,204,113,0.2);
-            color: #2ECC71;
-            border: 1px solid rgba(46,204,113,0.3);
-        }
-
-        .difficulty-moderate {
-            background: rgba(241,196,15,0.2);
-            color: #F1C40F;
-            border: 1px solid rgba(241,196,15,0.3);
-        }
-
-        .difficulty-hard {
-            background: rgba(231,76,60,0.2);
-            color: #E74C3C;
-            border: 1px solid rgba(231,76,60,0.3);
-        }
-
-        .route-region {
-            position: absolute;
-            bottom: 12px;
-            left: 12px;
-            z-index: 2;
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.7);
-            background: rgba(0,0,0,0.4);
-            padding: 3px 10px;
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
-        }
-
-        .route-card-body {
-            padding: 1.2rem 1.4rem;
-        }
-
-        .route-card-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-bright);
-            margin-bottom: 0.6rem;
-        }
-
-        .route-card-meta {
-            display: flex;
-            gap: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 600;
+            color: var(--gold); letter-spacing: 4px; text-transform: uppercase;
             margin-bottom: 0.8rem;
-            flex-wrap: wrap;
         }
-
-        .route-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.82rem;
-            color: var(--text-muted);
+        .hero-subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.1rem); color: var(--text-muted);
+            margin-bottom: 1rem; font-weight: 300; max-width: 550px; margin-left: auto; margin-right: auto;
         }
-
-        .route-meta-item svg {
-            width: 15px;
-            height: 15px;
-            stroke: var(--primary);
+        .hero-disclaimer {
+            font-size: 0.72rem; color: var(--text-muted); opacity: 0.6;
+            margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;
         }
-
-        .route-card-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        .hero-disclaimer a { color: var(--gold); }
+        .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .hero-stat { text-align: center; }
+        .hero-stat-value { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--gold); }
+        .hero-stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
+        .hero-cta {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 36px; background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #111; text-decoration: none; border-radius: 50px;
+            font-weight: 700; font-size: 1rem; transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(212,149,43,0.25); cursor: pointer; border: none;
         }
+        .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,149,43,0.35); background: linear-gradient(135deg, var(--gold-light), var(--gold)); }
+        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); animation: bounce 2s infinite; z-index: 2; }
+        .scroll-indicator svg { width: 30px; height: 30px; stroke: var(--text-muted); }
+        @keyframes bounce { 0%,20%,50%,80%,100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
 
-        .route-card-tags {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
+        /* ── Nav ── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 0.8rem 2rem; display: flex; justify-content: space-between;
+            align-items: center; transition: all 0.3s;
         }
+        .nav.scrolled { background: rgba(17,17,17,0.95); backdrop-filter: blur(20px); box-shadow: 0 2px 20px var(--shadow); padding: 0.6rem 2rem; border-bottom: 1px solid var(--border); }
+        .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-brand img { width: 36px; height: auto; }
+        .nav-brand-text { font-family:'Montserrat',sans-serif; font-weight:800; font-size:1rem; color:var(--gold); letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
 
-        .route-tag {
-            padding: 3px 10px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            font-size: 0.72rem;
-            color: var(--text-muted);
+        /* ── Filter ── */
+        .filter-section {
+            padding: 1.5rem 2rem; background: linear-gradient(180deg, #161412, var(--bg-dark));
+            position: sticky; top: 52px; z-index: 50; backdrop-filter: blur(10px);
         }
-
-        .route-card-actions {
-            display: flex;
-            gap: 0.7rem;
+        .filter-container { max-width: 1400px; margin: 0 auto; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+        .search-box { flex: 1; min-width: 250px; position: relative; }
+        .search-box input {
+            width: 100%; padding: 11px 18px 11px 44px; background: var(--bg-card);
+            border: 1px solid var(--border); border-radius: 10px; color: var(--text);
+            font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.3s;
         }
+        .search-box input:focus { border-color: var(--gold); }
+        .search-box input::placeholder { color: var(--text-muted); }
+        .search-box svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: var(--text-muted); }
+        .filter-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .chip {
+            padding: 7px 16px; border-radius: 50px; border: 1px solid var(--border);
+            background: transparent; color: var(--text-muted); font-size: 0.8rem;
+            font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.3s; white-space: nowrap;
+        }
+        .chip:hover, .chip.active { border-color: var(--gold); color: var(--gold); background: rgba(212,149,43,0.08); }
+        .sort-select {
+            padding: 9px 14px; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 10px; color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.8rem; cursor: pointer; outline: none;
+        }
+        .results-info { max-width: 1400px; margin: 0.8rem auto 0; padding: 0 2rem; font-size: 0.8rem; color: var(--text-muted); }
 
+        /* ── Grid ── */
+        .routes-section { padding: 1.5rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .routes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+
+        /* ── Card ── */
+        .route-card {
+            background: var(--bg-card); border-radius: 14px; overflow: hidden;
+            border: 1px solid var(--border); transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+            cursor: pointer;
+        }
+        .route-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 40px rgba(212,149,43,0.1); background: var(--bg-card-hover); }
+        .route-card-image { position: relative; height: 200px; overflow: hidden; background: #151515; }
+        .route-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+        .route-card:hover .route-card-image img { transform: scale(1.05); }
+        .route-card-image::after { content:''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(transparent, rgba(26,26,26,0.9)); }
+        .route-country-flag { position: absolute; top: 10px; left: 10px; font-size: 1.8rem; z-index: 2; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6)); }
+        .route-difficulty { position: absolute; top: 10px; right: 10px; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; z-index: 2; backdrop-filter: blur(8px); }
+        .difficulty-easy { background: rgba(106,191,94,0.2); color: #6ABF5E; border: 1px solid rgba(106,191,94,0.3); }
+        .difficulty-moderate { background: rgba(212,149,43,0.2); color: var(--gold-light); border: 1px solid rgba(212,149,43,0.3); }
+        .difficulty-hard { background: rgba(220,70,55,0.2); color: #DC4637; border: 1px solid rgba(220,70,55,0.3); }
+        .route-region { position: absolute; bottom: 10px; left: 10px; z-index: 2; font-size: 0.7rem; color: rgba(255,255,255,0.6); background: rgba(0,0,0,0.4); padding: 2px 8px; border-radius: 20px; }
+        .img-credit { position: absolute; bottom: 10px; right: 10px; z-index: 2; font-size: 0.55rem; color: rgba(255,255,255,0.3); }
+        .img-credit a { color: rgba(255,255,255,0.4); text-decoration: none; }
+        .route-card-body { padding: 1.1rem 1.3rem; }
+        .route-card-title { font-family:'Montserrat',sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text-bright); margin-bottom: 0.5rem; }
+        .route-card-meta { display: flex; gap: 1rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+        .route-meta-item { display: flex; align-items: center; gap: 4px; font-size: 0.78rem; color: var(--text-muted); }
+        .route-meta-item svg { width: 14px; height: 14px; stroke: var(--gold); }
+        .route-card-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.8rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .route-card-tags { display: flex; gap: 5px; margin-bottom: 0.8rem; flex-wrap: wrap; }
+        .route-tag { padding: 2px 9px; background: rgba(212,149,43,0.06); border: 1px solid rgba(212,149,43,0.12); border-radius: 20px; font-size: 0.68rem; color: var(--gold); }
+        .route-card-actions { display: flex; gap: 0.6rem; }
         .btn-download {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 16px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
+            flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px;
+            padding: 9px 14px; background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #111; border: none; border-radius: 8px; font-size: 0.8rem; font-weight: 700;
+            font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.3s; text-decoration: none;
         }
-
-        .btn-download:hover {
-            box-shadow: 0 4px 15px rgba(232,93,38,0.3);
-            transform: translateY(-1px);
+        .btn-download:hover { box-shadow: 0 4px 15px rgba(212,149,43,0.25); transform: translateY(-1px); }
+        .btn-download svg { width: 15px; height: 15px; }
+        .btn-map {
+            display: flex; align-items: center; justify-content: center;
+            padding: 9px 12px; background: rgba(255,255,255,0.04); color: var(--text-muted);
+            border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.3s;
         }
+        .btn-map:hover { border-color: var(--gold); color: var(--gold); }
+        .btn-map svg { width: 16px; height: 16px; }
 
-        .btn-download svg {
-            width: 16px;
-            height: 16px;
-        }
+        /* ── Modal ── */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 2rem; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: var(--bg-card); border-radius: 18px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; border: 1px solid var(--border); box-shadow: 0 24px 80px rgba(0,0,0,0.6); animation: modal-in 0.3s ease; }
+        @keyframes modal-in { from { opacity:0; transform: scale(0.95) translateY(20px); } to { opacity:1; transform: scale(1) translateY(0); } }
+        .modal-image { height: 260px; position: relative; overflow: hidden; }
+        .modal-image img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-image::after { content:''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(transparent, var(--bg-card)); }
+        .modal-close { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); border: none; border-radius: 50%; color: #fff; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; transition: background 0.3s; }
+        .modal-close:hover { background: rgba(212,149,43,0.8); }
+        .modal-body { padding: 1.3rem 1.8rem 1.8rem; }
+        .modal-body h2 { font-family:'Montserrat',sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text-bright); margin-bottom: 1rem; }
+        .modal-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-bottom: 1.2rem; }
+        .modal-stat { text-align: center; padding: 0.8rem; background: rgba(212,149,43,0.04); border-radius: 10px; border: 1px solid var(--border); }
+        .modal-stat-value { font-family:'Montserrat',sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--gold); }
+        .modal-stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .modal-desc { color: var(--text); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.2rem; }
+        .modal-terrain { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.2rem; }
+        .terrain-tag { padding: 4px 12px; background: rgba(212,149,43,0.08); border: 1px solid rgba(212,149,43,0.15); border-radius: 20px; font-size: 0.78rem; color: var(--gold-light); }
+        .modal-actions { display: flex; gap: 0.8rem; }
+        .modal-actions .btn-download { padding: 12px 22px; font-size: 0.95rem; }
+        .modal-actions .btn-map { padding: 12px 18px; font-size: 0.85rem; }
 
-        .btn-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 14px;
-            background: rgba(255,255,255,0.05);
-            color: var(--text-muted);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
+        /* ── Map ── */
+        .map-section { padding: 3rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .map-section h2 { font-family:'Montserrat',sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--text-bright); margin-bottom: 0.3rem; }
+        .map-section > p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem; }
+        .map-disclaimer { font-size: 0.7rem; color: var(--text-muted); opacity: 0.6; margin-bottom: 1rem; font-style: italic; }
+        .map-disclaimer a { color: var(--gold); }
+        .map-container { border-radius: 14px; overflow: hidden; border: 1px solid var(--border); height: 600px; }
+        .map-legend { display: flex; gap: 1.5rem; margin-top: 0.8rem; flex-wrap: wrap; font-size: 0.75rem; color: var(--text-muted); }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-line { width: 22px; height: 3px; border-radius: 2px; }
 
-        .btn-info:hover {
-            border-color: var(--accent-blue);
-            color: var(--accent-blue);
-        }
+        /* ── Footer ── */
+        footer { padding: 3rem 2rem; border-top: 1px solid var(--border); max-width: 1400px; margin: 0 auto; }
+        .footer-top { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 1.2rem; }
+        .footer-top img { width: 50px; }
+        .footer-top span { font-family:'Montserrat',sans-serif; font-weight: 700; color: var(--gold); font-size: 1rem; letter-spacing: 1px; }
+        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; font-size: 0.85rem; }
+        footer a { color: var(--gold); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .footer-legal { text-align: center; font-size: 0.74rem; color: var(--text-muted); line-height: 1.7; max-width: 780px; margin: 0 auto; }
+        .footer-legal strong { color: var(--text); }
 
-        .btn-info svg {
-            width: 18px;
-            height: 18px;
-        }
+        /* ── No results ── */
+        .no-results { text-align: center; padding: 4rem 2rem; grid-column: 1 / -1; }
+        .no-results svg { width: 60px; height: 60px; stroke: var(--text-muted); margin-bottom: 1rem; }
+        .no-results h3 { font-family:'Montserrat',sans-serif; color: var(--text-bright); margin-bottom: 0.5rem; }
+        .no-results p { color: var(--text-muted); }
 
-        /* Detail Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(8px);
-            z-index: 200;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
+        ::-webkit-scrollbar { width: 7px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+        .card-enter { opacity: 0; transform: translateY(20px); animation: card-fade-in 0.4s ease forwards; }
+        @keyframes card-fade-in { to { opacity:1; transform: translateY(0); } }
 
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal {
-            background: var(--bg-card);
-            border-radius: 20px;
-            max-width: 700px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            border: 1px solid var(--border);
-            box-shadow: 0 24px 80px rgba(0,0,0,0.5);
-            animation: modal-in 0.3s ease;
-        }
-
-        @keyframes modal-in {
-            from { opacity: 0; transform: scale(0.95) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .modal-image {
-            height: 280px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .modal-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .modal-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 40%;
-            background: linear-gradient(transparent, var(--bg-card));
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 36px;
-            height: 36px;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            transition: background 0.3s;
-        }
-
-        .modal-close:hover {
-            background: rgba(232,93,38,0.8);
-        }
-
-        .modal-body {
-            padding: 1.5rem 2rem 2rem;
-        }
-
-        .modal-body h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-bright);
-            margin-bottom: 1rem;
-        }
-
-        .modal-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-stat {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(255,255,255,0.03);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-
-        .modal-stat-value {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .modal-stat-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .modal-desc {
-            color: var(--text);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-terrain {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .terrain-tag {
-            padding: 5px 14px;
-            background: rgba(232,93,38,0.1);
-            border: 1px solid rgba(232,93,38,0.2);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--primary-light);
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .modal-actions .btn-download {
-            padding: 14px 24px;
-            font-size: 1rem;
-        }
-
-        .modal-actions .btn-info {
-            padding: 14px 24px;
-            font-size: 0.9rem;
-        }
-
-        /* Map Section */
-        .map-section {
-            padding: 4rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .map-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-bright);
-            margin-bottom: 0.5rem;
-        }
-
-        .map-section p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .map-container {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            height: 500px;
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Footer */
-        footer {
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        footer p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* No results */
-        .no-results {
-            text-align: center;
-            padding: 4rem 2rem;
-            grid-column: 1 / -1;
-        }
-
-        .no-results svg {
-            width: 64px;
-            height: 64px;
-            stroke: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
-        .no-results h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-bright);
-            margin-bottom: 0.5rem;
-        }
-
-        .no-results p {
-            color: var(--text-muted);
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .hero-stats { gap: 1.5rem; }
             .routes-grid { grid-template-columns: 1fr; }
             .filter-container { flex-direction: column; }
             .modal-stats { grid-template-columns: 1fr; }
             .modal-actions { flex-direction: column; }
-            .map-container { height: 350px; }
-        }
-
-        /* Loading animation */
-        .card-enter {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: card-fade-in 0.4s ease forwards;
-        }
-
-        @keyframes card-fade-in {
-            to { opacity: 1; transform: translateY(0); }
+            .map-container { height: 400px; }
+            .hero-logo { width: 140px; }
         }
     </style>
 </head>
 <body>
 
-<!-- Navigation -->
+<!-- DSGVO Banner -->
+<div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-text">
+        Diese Seite verwendet externe Dienste (OpenStreetMap-Kartenkacheln, Google Fonts, Unsplash-Bilder).
+        Dabei werden Daten an Drittanbieter übermittelt. Es werden keine eigenen Cookies gesetzt und keine
+        personenbezogenen Daten gespeichert.
+        <a href="https://carto.com/privacy/" target="_blank" rel="noopener">CARTO Datenschutz</a> ·
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Datenschutz</a>
+    </div>
+    <div class="cookie-buttons">
+        <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Akzeptieren</button>
+        <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Ablehnen</button>
+    </div>
+</div>
+
+<!-- Nav -->
 <nav class="nav" id="navbar">
-    <a href="#" class="nav-logo">TET<span>Explorer</span></a>
+    <a href="#" class="nav-brand">
+        <img src="logo_web.png" alt="Enduro Explorers Logo">
+        <span class="nav-brand-text">ENDURO EXPLORERS</span>
+    </a>
     <ul class="nav-links">
         <li><a href="#routes">Routen</a></li>
         <li><a href="#map">Karte</a></li>
-        <li><a href="https://transeurotrail.org/" target="_blank">Offizielle TET Seite</a></li>
+        <li><a href="https://transeurotrail.org/" target="_blank" rel="noopener">Offizielle TET-Seite</a></li>
     </ul>
 </nav>
 
 <!-- Hero -->
 <section class="hero">
-    <div class="hero-bg-map"></div>
     <div class="hero-particles" id="particles"></div>
     <div class="hero-content">
-        <div class="hero-badge">Adventure Awaits</div>
-        <h1>Trans Euro <span>Trail</span></h1>
-        <p class="hero-subtitle">Entdecke das gr&ouml;&szlig;te Offroad-Abenteuer Europas. &Uuml;ber 100.000 km durch 36 L&auml;nder &mdash; von der Arktis bis zur Stra&szlig;e von Gibraltar.</p>
+        <img src="logo_web.png" alt="Enduro Explorers Strasswalchen" class="hero-logo">
+        <div class="hero-clubname">Strasswalchen · 2026</div>
+        <h1>TET <span>Routen</span> Explorer</h1>
+        <p class="hero-subtitle">Alle Trans Euro Trail Routen auf einen Blick — zusammengestellt für unsere Enduro-Community.</p>
+        <p class="hero-disclaimer">
+            Inoffizielle, nicht-kommerzielle Übersicht. „Trans Euro Trail" ist eine eingetragene Marke
+            der Trans Euro Trail CIC. GPX-Downloads führen zur offiziellen Seite
+            <a href="https://transeurotrail.org/" target="_blank" rel="noopener">transeurotrail.org</a>.
+        </p>
         <div class="hero-stats">
-            <div class="hero-stat">
-                <div class="hero-stat-value" id="stat-km">0</div>
-                <div class="hero-stat-label">Kilometer</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-value" id="stat-countries">0</div>
-                <div class="hero-stat-label">L&auml;nder</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-value" id="stat-tracks">0</div>
-                <div class="hero-stat-label">GPS Tracks</div>
-            </div>
+            <div class="hero-stat"><div class="hero-stat-value" id="stat-km">0</div><div class="hero-stat-label">Kilometer</div></div>
+            <div class="hero-stat"><div class="hero-stat-value" id="stat-countries">0</div><div class="hero-stat-label">Länder</div></div>
         </div>
         <a href="#routes" class="hero-cta">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -927,7 +336,7 @@
     </div>
 </section>
 
-<!-- Filter Section -->
+<!-- Filter -->
 <section class="filter-section" id="routes">
     <div class="filter-container">
         <div class="search-box">
@@ -939,886 +348,272 @@
             <button class="chip" data-filter="nordic">Skandinavien</button>
             <button class="chip" data-filter="western">Westeuropa</button>
             <button class="chip" data-filter="eastern">Osteuropa</button>
-            <button class="chip" data-filter="southern">S&uuml;deuropa</button>
+            <button class="chip" data-filter="southern">Südeuropa</button>
             <button class="chip" data-filter="balkans">Balkan</button>
         </div>
         <select class="sort-select" id="sortSelect">
             <option value="name">Name A-Z</option>
-            <option value="distance-desc">Distanz &darr;</option>
-            <option value="distance-asc">Distanz &uarr;</option>
+            <option value="distance-desc">Distanz ↓</option>
+            <option value="distance-asc">Distanz ↑</option>
             <option value="difficulty">Schwierigkeit</option>
         </select>
     </div>
     <div class="results-info" id="resultsInfo"></div>
 </section>
 
-<!-- Routes Grid -->
-<section class="routes-section">
-    <div class="routes-grid" id="routesGrid"></div>
-</section>
+<!-- Grid -->
+<section class="routes-section"><div class="routes-grid" id="routesGrid"></div></section>
 
-<!-- Map Section -->
+<!-- Map -->
 <section class="map-section" id="map">
-    <h2>Interaktive TET Karte</h2>
-    <p>Die vollst&auml;ndige TET-Route in der OpenStreetMap-&Uuml;bersicht.</p>
+    <h2>Routenübersicht Europa</h2>
+    <p>Klicke auf eine Route oder nutze den Karten-Button bei den Ländern zum Hineinzoomen.</p>
+    <p class="map-disclaimer">
+        Die Linien sind schematische Annäherungen zur Orientierung — NICHT die offiziellen TET-Routen.
+        Offizielle GPS-Tracks: <a href="https://transeurotrail.org/" target="_blank" rel="noopener">transeurotrail.org</a>.
+        Kartendaten: &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>,
+        Stil: &copy; <a href="https://carto.com/" target="_blank" rel="noopener">CARTO</a>.
+    </p>
     <div class="map-container" id="leafletMap"></div>
+    <div class="map-legend">
+        <div class="legend-item"><div class="legend-line" style="background:var(--gold)"></div> Schematische Route</div>
+        <div class="legend-item"><div class="legend-line" style="background:#5BA4D9"></div> Ausgewählte Route</div>
+    </div>
 </section>
 
 <!-- Footer -->
 <footer>
-    <div class="footer-links">
-        <a href="https://transeurotrail.org/" target="_blank">Offizielle TET Seite</a>
-        <a href="https://atlas.transeurotrail.org/" target="_blank">TET Atlas</a>
+    <div class="footer-top">
+        <img src="logo_web.png" alt="Enduro Explorers">
+        <span>ENDURO EXPLORERS STRASSWALCHEN</span>
     </div>
-    <p>Dieses Projekt ist nicht offiziell mit der Trans Euro Trail Organisation verbunden.<br>
-    GPX-Daten werden von <a href="https://transeurotrail.org/" target="_blank">transeurotrail.org</a> bereitgestellt.</p>
+    <div class="footer-links">
+        <a href="https://transeurotrail.org/" target="_blank" rel="noopener">Offizielle TET-Seite</a>
+        <a href="https://transeurotrail.org/community-interest-company/" target="_blank" rel="noopener">TET Community Interest Company</a>
+        <a href="#" onclick="document.getElementById('legalModal').classList.add('active');return false;">Impressum & Datenschutz</a>
+    </div>
+    <div class="footer-legal">
+        <strong>Rechtlicher Hinweis:</strong> „Trans Euro Trail" und „TET" sind eingetragene Marken der
+        Trans Euro Trail Community Interest Company (UK, Nr. 11371199). Diese Webseite ist ein
+        <strong>inoffizielles, nicht-kommerzielles Vereinsprojekt</strong> der Enduro Explorers Strasswalchen
+        und steht in keiner Verbindung zur TET-Organisation. Es werden keine TET-GPX-Daten gehostet —
+        alle Download-Links führen zur offiziellen Webseite. Bilder:
+        <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a> (Unsplash License).
+        Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>-Mitwirkende.
+    </div>
 </footer>
 
-<!-- Detail Modal -->
+<!-- Legal Modal -->
+<div class="modal-overlay" id="legalModal">
+    <div class="modal" style="max-width:600px">
+        <div class="modal-body" style="padding:2rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+                <h2 style="font-size:1.3rem;margin:0">Impressum & Datenschutz</h2>
+                <button class="modal-close" style="position:static;width:32px;height:32px" onclick="document.getElementById('legalModal').classList.remove('active')">&times;</button>
+            </div>
+            <h3 style="color:var(--text-bright);margin-bottom:0.4rem;font-size:0.95rem">Verantwortlich</h3>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1.2rem">Enduro Explorers Strasswalchen — privates, nicht-kommerzielles Vereinsprojekt.</p>
+            <h3 style="color:var(--text-bright);margin-bottom:0.4rem;font-size:0.95rem">Datenschutz (DSGVO)</h3>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.8rem">
+                Diese Seite speichert <strong>keine personenbezogenen Daten</strong> und setzt <strong>keine Tracking-Cookies</strong>.
+                Ein funktionaler localStorage-Eintrag speichert die Cookie-Banner-Entscheidung (Art. 6 Abs. 1 lit. f DSGVO).
+            </p>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.6rem">Eingebundene externe Dienste:</p>
+            <ul style="font-size:0.78rem;color:var(--text-muted);margin-left:1.3rem;margin-bottom:1rem;line-height:2">
+                <li><strong>CARTO / OpenStreetMap</strong> — Kartenkacheln (<a href="https://carto.com/privacy/" target="_blank" rel="noopener" style="color:var(--gold)">Datenschutz</a>)</li>
+                <li><strong>Google Fonts</strong> — Schriftarten (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--gold)">Datenschutz</a>)</li>
+                <li><strong>Unsplash</strong> — Bilder (<a href="https://unsplash.com/privacy" target="_blank" rel="noopener" style="color:var(--gold)">Datenschutz</a>)</li>
+                <li><strong>unpkg CDN</strong> — Leaflet-Kartenbibliothek</li>
+            </ul>
+            <h3 style="color:var(--text-bright);margin-bottom:0.4rem;font-size:0.95rem">Markenrecht</h3>
+            <p style="font-size:0.82rem;color:var(--text-muted)">
+                „Trans Euro Trail" und „TET" sind eingetragene Marken der Trans Euro Trail CIC
+                (UK, Nr. 11371199). Die Verwendung erfolgt rein beschreibend (nominative Fair Use).
+                Es besteht keine Verbindung oder Billigung durch die TET-Organisation.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Route Detail Modal -->
 <div class="modal-overlay" id="modalOverlay">
     <div class="modal" id="modal">
-        <div class="modal-image">
-            <img id="modalImage" src="" alt="">
-            <button class="modal-close" id="modalClose">&times;</button>
-        </div>
+        <div class="modal-image"><img id="modalImage" src="" alt=""><button class="modal-close" id="modalClose">&times;</button></div>
         <div class="modal-body">
             <h2 id="modalTitle"></h2>
             <div class="modal-stats">
-                <div class="modal-stat">
-                    <div class="modal-stat-value" id="modalDistance"></div>
-                    <div class="modal-stat-label">Kilometer</div>
-                </div>
-                <div class="modal-stat">
-                    <div class="modal-stat-value" id="modalDifficulty"></div>
-                    <div class="modal-stat-label">Schwierigkeit</div>
-                </div>
-                <div class="modal-stat">
-                    <div class="modal-stat-value" id="modalBestTime"></div>
-                    <div class="modal-stat-label">Beste Reisezeit</div>
-                </div>
+                <div class="modal-stat"><div class="modal-stat-value" id="modalDistance"></div><div class="modal-stat-label">Kilometer (ca.)</div></div>
+                <div class="modal-stat"><div class="modal-stat-value" id="modalDifficulty"></div><div class="modal-stat-label">Schwierigkeit</div></div>
+                <div class="modal-stat"><div class="modal-stat-value" id="modalBestTime"></div><div class="modal-stat-label">Beste Reisezeit</div></div>
             </div>
             <p class="modal-desc" id="modalDesc"></p>
             <div class="modal-terrain" id="modalTerrain"></div>
             <div class="modal-actions">
-                <a id="modalDownload" href="#" target="_blank" class="btn-download">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    GPX herunterladen
+                <a id="modalDownload" href="#" target="_blank" rel="noopener" class="btn-download">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    GPX auf transeurotrail.org
                 </a>
-                <a id="modalTETLink" href="#" target="_blank" class="btn-info">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
+                <button id="modalMapBtn" class="btn-map" title="Auf Karte zeigen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+                </button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-// ─── Route Data ──────────────────────────────────────────────────
 const routes = [
-    {
-        id: "finland",
-        name: "Finnland",
-        flag: "🇫🇮",
-        distance: 7690,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "nordic",
-        regionLabel: "Skandinavien",
-        bestTime: "Jun - Sep",
-        description: "Die längste nordische TET-Sektion führt durch endlose Wälder, über Tundra und einsame Schotterwege. Im Norden erwarten dich Mitternachtssonne und arktische Wildnis mit wenigen Versorgungsmöglichkeiten.",
-        terrain: ["Waldwege", "Tundra", "Schotter", "Sandpisten"],
-        image: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/finland/"
-    },
-    {
-        id: "sweden",
-        name: "Schweden",
-        flag: "🇸🇪",
-        distance: 2841,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "nordic",
-        regionLabel: "Skandinavien",
-        bestTime: "Jun - Sep",
-        description: "Schwedische Waldpisten und Schotterwege durch die skandinavische Wildnis. Eine perfekte Mischung aus Abenteuer und Naturerlebnis in einem der am dünnsten besiedelten Länder Europas.",
-        terrain: ["Waldwege", "Schotter", "Wildnis"],
-        image: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/sweden/"
-    },
-    {
-        id: "norway",
-        name: "Norwegen",
-        flag: "🇳🇴",
-        distance: 1697,
-        difficulty: "hard",
-        difficultyLabel: "Schwer",
-        region: "nordic",
-        regionLabel: "Skandinavien",
-        bestTime: "Jun - Sep",
-        description: "Spektakuläre Bergpässe, Fjordlandschaften und raues Gelände machen Norwegen zu einer der anspruchsvollsten TET-Sektionen. Atemberaubende Ausblicke belohnen den Aufwand.",
-        terrain: ["Bergpässe", "Schotter", "Fjorde", "Felsen"],
-        image: "https://images.unsplash.com/photo-1520769669658-f07657f5a307?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/norway/"
-    },
-    {
-        id: "denmark",
-        name: "Dänemark",
-        flag: "🇩🇰",
-        distance: 1015,
-        difficulty: "easy",
-        difficultyLabel: "Leicht",
-        region: "nordic",
-        regionLabel: "Skandinavien",
-        bestTime: "Apr - Okt",
-        description: "Eine entspannte Tour durch flaches Gelände entlang von Feldwegen, Küstenpfaden und Schotterpisten. Perfekt für Einsteiger und als Verbindung zwischen den nordischen Routen.",
-        terrain: ["Feldwege", "Schotter", "Küstenwege"],
-        image: "https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/denmark/"
-    },
-    {
-        id: "estonia",
-        name: "Estland",
-        flag: "🇪🇪",
-        distance: 3063,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "eastern",
-        regionLabel: "Osteuropa",
-        bestTime: "Mai - Sep",
-        description: "Überraschend lang und abwechslungsreich führt die Route durch dichte Wälder, über Moorwege und Schotterpisten. Ein Geheimtipp für alle, die Abgeschiedenheit suchen.",
-        terrain: ["Waldwege", "Moorwege", "Schotter", "Sand"],
-        image: "https://images.unsplash.com/photo-1558370781-d6196949e317?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/estonia/"
-    },
-    {
-        id: "latvia",
-        name: "Lettland",
-        flag: "🇱🇻",
-        distance: 1802,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "eastern",
-        regionLabel: "Osteuropa",
-        bestTime: "Mai - Sep",
-        description: "Wald- und Feldwege durch das Herz des Baltikums. Eine angenehme Mischung aus Natur und Kultur auf gut befahrbaren Schotterwegen.",
-        terrain: ["Waldwege", "Feldwege", "Schotter"],
-        image: "https://images.unsplash.com/photo-1591203643026-e8e60e091558?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/latvia/"
-    },
-    {
-        id: "lithuania",
-        name: "Litauen",
-        flag: "🇱🇹",
-        distance: 740,
-        difficulty: "easy",
-        difficultyLabel: "Leicht",
-        region: "eastern",
-        regionLabel: "Osteuropa",
-        bestTime: "Mai - Sep",
-        description: "Die kürzeste baltische Sektion führt durch Wälder und über Feldwege in relativ flachem Gelände. Ideal als Verbindung zwischen Polen und Lettland.",
-        terrain: ["Waldwege", "Feldwege"],
-        image: "https://images.unsplash.com/photo-1571849891195-9bff9cfee5a6?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/lithuania/"
-    },
-    {
-        id: "poland",
-        name: "Polen",
-        flag: "🇵🇱",
-        distance: 1885,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "eastern",
-        regionLabel: "Osteuropa",
-        bestTime: "Mai - Okt",
-        description: "Abwechslungsreiches Terrain von Wäldern und Ackerland im Norden bis zu bergigen Abschnitten im Süden. Gute Infrastruktur entlang der Strecke.",
-        terrain: ["Wälder", "Felder", "Berge", "Schotter"],
-        image: "https://images.unsplash.com/photo-1519197924294-4ba991a11128?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/poland/"
-    },
-    {
-        id: "germany",
-        name: "Deutschland",
-        flag: "🇩🇪",
-        distance: 1240,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "western",
-        regionLabel: "Westeuropa",
-        bestTime: "Apr - Okt",
-        description: "Waldwege, Feldpfade und Schotterpisten durch die deutsche Landschaft. Von der Nordseeküste über Mittelgebirge bis zu den Alpenvorbergen — überraschend vielseitig.",
-        terrain: ["Waldwege", "Feldwege", "Schotter"],
-        image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/germany/"
-    },
-    {
-        id: "netherlands",
-        name: "Niederlande",
-        flag: "🇳🇱",
-        distance: 1028,
-        difficulty: "easy",
-        difficultyLabel: "Leicht",
-        region: "western",
-        regionLabel: "Westeuropa",
-        bestTime: "Apr - Okt",
-        description: "Flache Landschaft mit Sand-, Lehm- und Schotterwegen entlang von Deichen und Kanälen. Einsteigerfreundlich und gut für alle Könnensstufen geeignet.",
-        terrain: ["Sand", "Lehm", "Schotter", "Deichwege"],
-        image: "https://images.unsplash.com/photo-1534351590666-13e3e96b5f4d?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/netherlands/"
-    },
-    {
-        id: "belgium",
-        name: "Belgien",
-        flag: "🇧🇪",
-        distance: 450,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "western",
-        regionLabel: "Westeuropa",
-        bestTime: "Apr - Okt",
-        description: "Kurze aber abwechslungsreiche Sektion mit sandigen Feldwegen, Kopfsteinpflaster und Singletrails. Größtenteils auf befestigten Wegen mit technischen Offroad-Abschnitten.",
-        terrain: ["Sand", "Kopfsteinpflaster", "Feldwege", "Singletrails"],
-        image: "https://images.unsplash.com/photo-1559113202-c916b8e44373?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/belgium/"
-    },
-    {
-        id: "luxembourg",
-        name: "Luxemburg",
-        flag: "🇱🇺",
-        distance: 120,
-        difficulty: "easy",
-        difficultyLabel: "Leicht",
-        region: "western",
-        regionLabel: "Westeuropa",
-        bestTime: "Apr - Okt",
-        description: "Die kürzeste TET-Sektion als Verbindungsstück zwischen Belgien und Frankreich. Hügelige Landschaft mit Wald- und Feldwegen.",
-        terrain: ["Waldwege", "Feldwege"],
-        image: "https://images.unsplash.com/photo-1588519595274-98849daee988?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/luxembourg/"
-    },
-    {
-        id: "france",
-        name: "Frankreich",
-        flag: "🇫🇷",
-        distance: 5954,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "western",
-        regionLabel: "Westeuropa",
-        bestTime: "Apr - Okt",
-        description: "Die abwechslungsreichste TET-Sektion überhaupt. Von den Alpen über das Zentralmassiv bis zur Atlantikküste — Schotter, Erde, Wald- und Feldwege auf wechselndem Terrain.",
-        terrain: ["Schotter", "Erde", "Waldwege", "Feldwege", "Alpin"],
-        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/france/"
-    },
-    {
-        id: "uk",
-        name: "Großbritannien",
-        flag: "🇬🇧",
-        distance: 5307,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "western",
-        regionLabel: "Westeuropa",
-        bestTime: "Apr - Okt",
-        description: "Unbefestigte Wege, Green Lanes und Kreidestraßen durch das britische Hinterland. Strenge Zugangsregeln auf öffentlichen Byways. Moore und walisische Hügel bieten Herausforderungen.",
-        terrain: ["Green Lanes", "Kreide", "Stein", "Erde"],
-        image: "https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/united-kingdom/"
-    },
-    {
-        id: "switzerland",
-        name: "Schweiz",
-        flag: "🇨🇭",
-        distance: 562,
-        difficulty: "hard",
-        difficultyLabel: "Schwer",
-        region: "western",
-        regionLabel: "Westeuropa",
-        bestTime: "Jul - Sep",
-        description: "Alpine Trails und Bergpässe in spektakulärer Schweizer Berglandschaft. Technisch anspruchsvoll mit Schotterwegen und steilen Passagen. Kurze Saison durch Schnee.",
-        terrain: ["Alpin", "Bergpässe", "Schotter", "Felsen"],
-        image: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/switzerland/"
-    },
-    {
-        id: "austria",
-        name: "Österreich",
-        flag: "🇦🇹",
-        distance: 980,
-        difficulty: "hard",
-        difficultyLabel: "Schwer",
-        region: "western",
-        regionLabel: "Westeuropa",
-        bestTime: "Jun - Sep",
-        description: "Alpines Terrain mit Bergpässen und Forstwegen. Technisch anspruchsvolle Abschnitte kombiniert mit wunderschöner Alpenlandschaft und guter Infrastruktur.",
-        terrain: ["Alpin", "Bergpässe", "Forstwege", "Schotter"],
-        image: "https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/austria/"
-    },
-    {
-        id: "spain",
-        name: "Spanien",
-        flag: "🇪🇸",
-        distance: 7509,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "southern",
-        regionLabel: "Südeuropa",
-        bestTime: "Mär - Jun, Sep - Nov",
-        description: "Eine der längsten TET-Sektionen umrundet das ganze Land. Rund 40 Tage für die komplette Runde durch diverse Landschaften von Bergen bis zu trockenen Ebenen.",
-        terrain: ["Bergwege", "Steppe", "Schotter", "Erde", "Felsen"],
-        image: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/spain/"
-    },
-    {
-        id: "portugal",
-        name: "Portugal",
-        flag: "🇵🇹",
-        distance: 2200,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "southern",
-        regionLabel: "Südeuropa",
-        bestTime: "Okt - Mai",
-        description: "Forstwege, Felsenpisten und Feldwege im bergigen Norden bis zur Küste. Achtung: Waldbrandsperrungen Juni–September. Am besten im Herbst oder Frühling befahren.",
-        terrain: ["Forstwege", "Felsen", "Erde", "Feldwege"],
-        image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/portugal/"
-    },
-    {
-        id: "andorra",
-        name: "Andorra",
-        flag: "🇦🇩",
-        distance: 35,
-        difficulty: "hard",
-        difficultyLabel: "Schwer",
-        region: "southern",
-        regionLabel: "Südeuropa",
-        bestTime: "Jul - Sep",
-        description: "Kurze aber intensive Bergüberquerung zwischen Frankreich und Spanien. Felsige Pisten auf großer Höhe in der Pyrenäenlandschaft.",
-        terrain: ["Alpin", "Felsen", "Bergpässe"],
-        image: "https://images.unsplash.com/photo-1608922825187-4f7a0ccf2663?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/andorra/"
-    },
-    {
-        id: "italy",
-        name: "Italien",
-        flag: "🇮🇹",
-        distance: 3532,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "southern",
-        regionLabel: "Südeuropa",
-        bestTime: "Mai - Okt",
-        description: "Schotter, felsige Bergstraßen, Waldpfade und befestigte Verbindungswege. Von den Alpen über die Apenninen bis zur Küste — landschaftlich äußerst reizvoll.",
-        terrain: ["Schotter", "Felsen", "Waldwege", "Bergpässe"],
-        image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/italy/"
-    },
-    {
-        id: "slovenia",
-        name: "Slowenien",
-        flag: "🇸🇮",
-        distance: 442,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "balkans",
-        regionLabel: "Balkan",
-        bestTime: "Mai - Okt",
-        description: "Alpines und Karst-Terrain mit Waldwegen und Schotterpisten. Kompakte Route durch ein landschaftlich beeindruckendes Kleinod.",
-        terrain: ["Alpin", "Karst", "Waldwege", "Schotter"],
-        image: "https://images.unsplash.com/photo-1586185018926-47feac554ddd?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/slovenia/"
-    },
-    {
-        id: "croatia",
-        name: "Kroatien",
-        flag: "🇭🇷",
-        distance: 371,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "balkans",
-        regionLabel: "Balkan",
-        bestTime: "Apr - Okt",
-        description: "Felsige Pfade und Waldwege über Kalkstein-Terrain. Kurze aber landschaftlich reizvolle Route entlang der Küste und im Hinterland.",
-        terrain: ["Felsen", "Kalkstein", "Waldwege"],
-        image: "https://images.unsplash.com/photo-1555990793-da11153b2473?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/croatia/"
-    },
-    {
-        id: "hungary",
-        name: "Ungarn",
-        flag: "🇭🇺",
-        distance: 1048,
-        difficulty: "easy",
-        difficultyLabel: "Leicht",
-        region: "eastern",
-        regionLabel: "Osteuropa",
-        bestTime: "Apr - Okt",
-        description: "Flache Puszta, Feldwege und Forstwege mit einigen hügeligen Abschnitten. Einsteigerfreundlich mit guter Versorgung entlang der Strecke.",
-        terrain: ["Puszta", "Feldwege", "Forstwege"],
-        image: "https://images.unsplash.com/photo-1565426873118-a17ed65d74b9?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/hungary/"
-    },
-    {
-        id: "slovakia",
-        name: "Slowakei",
-        flag: "🇸🇰",
-        distance: 850,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "eastern",
-        regionLabel: "Osteuropa",
-        bestTime: "Mai - Okt",
-        description: "Bergiges Terrain in den Karpaten mit Forstwegen und Waldpisten. Landschaftlich reizvoll mit traditionellen Dörfern entlang der Route.",
-        terrain: ["Karpaten", "Forstwege", "Waldpisten"],
-        image: "https://images.unsplash.com/photo-1561722459-3a79dd3d6c50?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/slovakia/"
-    },
-    {
-        id: "romania",
-        name: "Rumänien",
-        flag: "🇷🇴",
-        distance: 2134,
-        difficulty: "hard",
-        difficultyLabel: "Schwer",
-        region: "eastern",
-        regionLabel: "Osteuropa",
-        bestTime: "Mai - Okt",
-        description: "Karpaten-Pässe, Waldpfade und ländliche Erdstraßen in einer der landschaftlich beeindruckendsten Regionen Europas. Abgelegen und abenteuerlich.",
-        terrain: ["Karpaten", "Bergpässe", "Waldwege", "Erde"],
-        image: "https://images.unsplash.com/photo-1560964645-5296b5099677?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/romania/"
-    },
-    {
-        id: "serbia",
-        name: "Serbien",
-        flag: "🇷🇸",
-        distance: 2195,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "balkans",
-        regionLabel: "Balkan",
-        bestTime: "Mai - Okt",
-        description: "Berge, Wälder und ländliche Wege durch das Herz des Balkans. Mittlere bis hohe Schwierigkeit mit gastfreundlichen Menschen und unberührter Natur.",
-        terrain: ["Berge", "Wälder", "Feldwege"],
-        image: "https://images.unsplash.com/photo-1586368024815-a739c1a1e8c5?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/serbia/"
-    },
-    {
-        id: "bosnia",
-        name: "Bosnien & Herzegowina",
-        flag: "🇧🇦",
-        distance: 610,
-        difficulty: "hard",
-        difficultyLabel: "Schwer",
-        region: "balkans",
-        regionLabel: "Balkan",
-        bestTime: "Mai - Okt",
-        description: "Felsige Pisten, Schotterwege und Waldpfade über Kalkstein-Terrain. Bergig und abgelegen mit eingeschränkter Versorgung. Ein echtes Abenteuer.",
-        terrain: ["Felsen", "Schotter", "Kalkstein", "Waldwege"],
-        image: "https://images.unsplash.com/photo-1590077428593-a55bb07c4665?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/bosnia-herzegovina/"
-    },
-    {
-        id: "montenegro",
-        name: "Montenegro",
-        flag: "🇲🇪",
-        distance: 290,
-        difficulty: "hard",
-        difficultyLabel: "Schwer",
-        region: "balkans",
-        regionLabel: "Balkan",
-        bestTime: "Mai - Okt",
-        description: "Bergpfade und Kalkstein-Terrain in abgelegener Berglandschaft. Kurz aber intensiv mit mittlerer bis hoher Schwierigkeit.",
-        terrain: ["Bergpfade", "Kalkstein", "Schotter"],
-        image: "https://images.unsplash.com/photo-1555990538-1e7c83e5e7f9?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/montenegro/"
-    },
-    {
-        id: "albania",
-        name: "Albanien",
-        flag: "🇦🇱",
-        distance: 406,
-        difficulty: "hard",
-        difficultyLabel: "Schwer",
-        region: "balkans",
-        regionLabel: "Balkan",
-        bestTime: "Apr - Okt",
-        description: "Felsige Pfade und Bergtrails in einer der abgelegensten Regionen des Balkans. Eingeschränkte Versorgung, dafür unglaubliche Gastfreundschaft und Natur.",
-        terrain: ["Felsen", "Bergtrails", "Schotter"],
-        image: "https://images.unsplash.com/photo-1585861434050-b4e2c6c7f1fe?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/albania/"
-    },
-    {
-        id: "north-macedonia",
-        name: "Nordmazedonien",
-        flag: "🇲🇰",
-        distance: 520,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "balkans",
-        regionLabel: "Balkan",
-        bestTime: "Apr - Okt",
-        description: "Berg- und Waldterrain im südlichen Balkan. Eine weniger bekannte Route durch faszinierende Landschaften zwischen Serbien und Griechenland.",
-        terrain: ["Berge", "Waldwege", "Schotter"],
-        image: "https://images.unsplash.com/photo-1580224485421-489b12db3e37?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/north-macedonia/"
-    },
-    {
-        id: "bulgaria",
-        name: "Bulgarien",
-        flag: "🇧🇬",
-        distance: 931,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "balkans",
-        regionLabel: "Balkan",
-        bestTime: "Mai - Okt",
-        description: "Bergpässe, Waldpfade und Schotterwege durch die bulgarischen Gebirge. Landschaftlich beeindruckend mit guter Versorgung in den Tälern.",
-        terrain: ["Bergpässe", "Waldpfade", "Schotter"],
-        image: "https://images.unsplash.com/photo-1601284618427-48ef012e8a90?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/bulgaria/"
-    },
-    {
-        id: "greece",
-        name: "Griechenland",
-        flag: "🇬🇷",
-        distance: 4079,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "southern",
-        regionLabel: "Südeuropa",
-        bestTime: "Mär - Jun, Sep - Nov",
-        description: "Ausgedehnte Route durch das griechische Festland mit felsigem, bergigem Terrain. Antike Stätten und Mittelmeerflair machen die Fahrt zu einem besonderen Erlebnis.",
-        terrain: ["Felsen", "Berge", "Schotter", "Erde"],
-        image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/greece/"
-    },
-    {
-        id: "turkey",
-        name: "Türkei",
-        flag: "🇹🇷",
-        distance: 3200,
-        difficulty: "moderate",
-        difficultyLabel: "Mittel",
-        region: "southern",
-        regionLabel: "Südeuropa",
-        bestTime: "Apr - Jun, Sep - Nov",
-        description: "Vielfältiges Terrain von der Küste über Berge bis zur Steppe. Die erweiterte TET-Sektion bis zum Bosporus bietet einzigartige kulturelle Erlebnisse.",
-        terrain: ["Küste", "Berge", "Steppe", "Schotter"],
-        image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/turkey/"
-    },
-    {
-        id: "georgia",
-        name: "Georgien",
-        flag: "🇬🇪",
-        distance: 4698,
-        difficulty: "hard",
-        difficultyLabel: "Schwer",
-        region: "eastern",
-        regionLabel: "Osteuropa",
-        bestTime: "Jun - Sep",
-        description: "Eine der längsten und anspruchsvollsten TET-Sektionen durch den Kaukasus. Spektakuläre Bergpässe, abgelegene Täler und raues Gelände für erfahrene Offroader.",
-        terrain: ["Kaukasus", "Bergpässe", "Schotter", "Erde", "Felsen"],
-        image: "https://images.unsplash.com/photo-1565008576549-57569a49371d?w=600&h=400&fit=crop",
-        tetUrl: "https://transeurotrail.org/georgia/"
-    }
+    {id:"finland",name:"Finnland",flag:"\u{1F1EB}\u{1F1EE}",distance:7690,difficulty:"moderate",difficultyLabel:"Mittel",region:"nordic",regionLabel:"Skandinavien",bestTime:"Jun\u2013Sep",description:"Endlose W\u00e4lder, Tundra und einsame Schotterwege. Im Norden Mitternachtssonne und arktische Wildnis.",terrain:["Waldwege","Tundra","Schotter","Sand"],image:"https://images.unsplash.com/photo-1529154166925-574a0236a4f4?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/finland/",schematic:[[70.0,27],[68.5,26],[66,26.5],[64,26],[62,25.5],[61,24],[60.5,24.5]]},
+    {id:"sweden",name:"Schweden",flag:"\u{1F1F8}\u{1F1EA}",distance:2841,difficulty:"moderate",difficultyLabel:"Mittel",region:"nordic",regionLabel:"Skandinavien",bestTime:"Jun\u2013Sep",description:"Waldpisten und Schotterwege durch skandinavische Wildnis.",terrain:["Waldwege","Schotter","Wildnis"],image:"https://images.unsplash.com/photo-1508702064459-eab578f79f05?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/sweden/",schematic:[[67,20],[65,16],[63,15],[61,15],[59.5,16],[58,14],[57,13]]},
+    {id:"norway",name:"Norwegen",flag:"\u{1F1F3}\u{1F1F4}",distance:1697,difficulty:"hard",difficultyLabel:"Schwer",region:"nordic",regionLabel:"Skandinavien",bestTime:"Jun\u2013Sep",description:"Spektakul\u00e4re Bergp\u00e4sse, Fjordlandschaften und raues Gel\u00e4nde.",terrain:["Bergp\u00e4sse","Schotter","Fjorde","Felsen"],image:"https://images.unsplash.com/photo-1504284286691-0a4bfaea3910?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/norway/",schematic:[[69,18],[67,15],[65,13],[63,10],[61,7],[60,6],[59,7]]},
+    {id:"denmark",name:"D\u00e4nemark",flag:"\u{1F1E9}\u{1F1F0}",distance:1015,difficulty:"easy",difficultyLabel:"Leicht",region:"nordic",regionLabel:"Skandinavien",bestTime:"Apr\u2013Okt",description:"Entspannte Tour durch flaches Gel\u00e4nde entlang von Feldwegen und K\u00fcstenpfaden.",terrain:["Feldwege","Schotter","K\u00fcstenwege"],image:"https://images.unsplash.com/photo-1552560433-55f483aa906e?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/denmark/",schematic:[[57.7,10],[57,9.5],[56.5,9],[56,10],[55.5,9.5],[55.3,10.5],[55,12]]},
+    {id:"estonia",name:"Estland",flag:"\u{1F1EA}\u{1F1EA}",distance:3063,difficulty:"moderate",difficultyLabel:"Mittel",region:"eastern",regionLabel:"Osteuropa",bestTime:"Mai\u2013Sep",description:"Dichte W\u00e4lder, Moorwege und Schotterpisten. Geheimtipp.",terrain:["Waldwege","Moorwege","Schotter","Sand"],image:"https://images.unsplash.com/photo-1595511535498-67dd45fe3614?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/estonia/",schematic:[[59.4,24],[59,25.5],[58.5,26],[58.2,24.5],[58.5,22.5],[59,22]]},
+    {id:"latvia",name:"Lettland",flag:"\u{1F1F1}\u{1F1FB}",distance:1802,difficulty:"moderate",difficultyLabel:"Mittel",region:"eastern",regionLabel:"Osteuropa",bestTime:"Mai\u2013Sep",description:"Wald- und Feldwege durch das Herz des Baltikums.",terrain:["Waldwege","Feldwege","Schotter"],image:"https://images.unsplash.com/photo-1599832860181-20f610e0eebb?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/latvia/",schematic:[[57.8,22],[57.2,24],[57,25.5],[56.8,24],[56.5,22],[57,21.5]]},
+    {id:"lithuania",name:"Litauen",flag:"\u{1F1F1}\u{1F1F9}",distance:740,difficulty:"easy",difficultyLabel:"Leicht",region:"eastern",regionLabel:"Osteuropa",bestTime:"Mai\u2013Sep",description:"W\u00e4lder und Feldwege in flachem Gel\u00e4nde.",terrain:["Waldwege","Feldwege"],image:"https://images.unsplash.com/photo-1572367521903-88cb36fbe3d4?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/lithuania/",schematic:[[56.2,22],[55.8,23.5],[55.3,24.5],[55,24],[54.8,24],[54.5,25]]},
+    {id:"poland",name:"Polen",flag:"\u{1F1F5}\u{1F1F1}",distance:1885,difficulty:"moderate",difficultyLabel:"Mittel",region:"eastern",regionLabel:"Osteuropa",bestTime:"Mai\u2013Okt",description:"Abwechslungsreich von W\u00e4ldern im Norden bis zu Bergen im S\u00fcden.",terrain:["W\u00e4lder","Felder","Berge","Schotter"],image:"https://images.unsplash.com/photo-1562950484-a26b1eba2ed8?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/poland/",schematic:[[54.3,18.5],[53.5,19.5],[52.5,20],[51.5,20.5],[50.5,20],[50,19],[49.5,20]]},
+    {id:"germany",name:"Deutschland",flag:"\u{1F1E9}\u{1F1EA}",distance:1240,difficulty:"moderate",difficultyLabel:"Mittel",region:"western",regionLabel:"Westeuropa",bestTime:"Apr\u2013Okt",description:"Waldwege und Schotterpisten von der Nordsee bis zu den Alpenvorbergen.",terrain:["Waldwege","Feldwege","Schotter"],image:"https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/germany/",schematic:[[54,10],[53,10.5],[52,11],[51,10],[50.5,10.5],[50,11],[49.5,11.5],[48.5,11],[48,12]]},
+    {id:"netherlands",name:"Niederlande",flag:"\u{1F1F3}\u{1F1F1}",distance:1028,difficulty:"easy",difficultyLabel:"Leicht",region:"western",regionLabel:"Westeuropa",bestTime:"Apr\u2013Okt",description:"Flache Landschaft mit Sand- und Schotterwegen entlang von Deichen.",terrain:["Sand","Lehm","Schotter","Deichwege"],image:"https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/netherlands/",schematic:[[53.2,5.5],[52.8,5.8],[52.3,5.2],[52,5.5],[51.8,5],[51.5,4.5]]},
+    {id:"belgium",name:"Belgien",flag:"\u{1F1E7}\u{1F1EA}",distance:450,difficulty:"moderate",difficultyLabel:"Mittel",region:"western",regionLabel:"Westeuropa",bestTime:"Apr\u2013Okt",description:"Sandige Feldwege, Kopfsteinpflaster und Singletrails.",terrain:["Sand","Kopfsteinpflaster","Feldwege"],image:"https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/belgium/",schematic:[[51.2,3.5],[50.8,4],[50.5,4.5],[50.2,5],[50,5.5],[49.8,5.8]]},
+    {id:"luxembourg",name:"Luxemburg",flag:"\u{1F1F1}\u{1F1FA}",distance:120,difficulty:"easy",difficultyLabel:"Leicht",region:"western",regionLabel:"Westeuropa",bestTime:"Apr\u2013Okt",description:"Kurze Verbindung zwischen Belgien und Frankreich.",terrain:["Waldwege","Feldwege"],image:"https://images.unsplash.com/photo-1598971457999-ca4ef48a9a71?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/luxembourg/",schematic:[[49.9,6],[49.75,6.15],[49.6,6.3]]},
+    {id:"france",name:"Frankreich",flag:"\u{1F1EB}\u{1F1F7}",distance:5954,difficulty:"moderate",difficultyLabel:"Mittel",region:"western",regionLabel:"Westeuropa",bestTime:"Apr\u2013Okt",description:"Alpen, Zentralmassiv, Atlantikk\u00fcste \u2014 die vielf\u00e4ltigste Sektion.",terrain:["Schotter","Erde","Waldwege","Alpin"],image:"https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/france/",schematic:[[49,2],[48,1],[47,0.5],[46,1],[45.5,2.5],[45,3],[44,2],[43.5,1.5],[43,2.5],[43.5,4],[44,5],[43.5,6.5],[43,3]]},
+    {id:"uk",name:"Gro\u00dfbritannien",flag:"\u{1F1EC}\u{1F1E7}",distance:5307,difficulty:"moderate",difficultyLabel:"Mittel",region:"western",regionLabel:"Westeuropa",bestTime:"Apr\u2013Okt",description:"Green Lanes und Kreidestr. durch das britische Hinterland.",terrain:["Green Lanes","Kreide","Stein","Erde"],image:"https://images.unsplash.com/photo-1500380804539-4e1e8c1e7118?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/united-kingdom/",schematic:[[57,-5],[56,-4],[55,-3],[54,-2.5],[53,-2],[52,-1.5],[51.5,-2],[51,-1],[50.5,-3]]},
+    {id:"switzerland",name:"Schweiz",flag:"\u{1F1E8}\u{1F1ED}",distance:562,difficulty:"hard",difficultyLabel:"Schwer",region:"western",regionLabel:"Westeuropa",bestTime:"Jul\u2013Sep",description:"Alpine Trails und Bergp\u00e4sse in spektakul\u00e4rer Berglandschaft.",terrain:["Alpin","Bergp\u00e4sse","Schotter","Felsen"],image:"https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/switzerland/",schematic:[[47.5,7],[47.2,7.5],[47,8],[46.8,8.5],[46.6,9],[46.5,9.5],[46.8,10]]},
+    {id:"austria",name:"\u00d6sterreich",flag:"\u{1F1E6}\u{1F1F9}",distance:980,difficulty:"hard",difficultyLabel:"Schwer",region:"western",regionLabel:"Westeuropa",bestTime:"Jun\u2013Sep",description:"Alpines Terrain mit Bergp\u00e4ssen und Forstwegen.",terrain:["Alpin","Bergp\u00e4sse","Forstwege","Schotter"],image:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/austria/",schematic:[[47.5,10],[47.3,11],[47.2,12],[47,13],[47.2,14],[47.3,15],[47.5,16]]},
+    {id:"spain",name:"Spanien",flag:"\u{1F1EA}\u{1F1F8}",distance:7509,difficulty:"moderate",difficultyLabel:"Mittel",region:"southern",regionLabel:"S\u00fcdeuropa",bestTime:"M\u00e4r\u2013Jun, Sep\u2013Nov",description:"Eine der l\u00e4ngsten Sektionen umrundet das ganze Land.",terrain:["Bergwege","Steppe","Schotter","Felsen"],image:"https://images.unsplash.com/photo-1509840841025-9088ba78a826?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/spain/",schematic:[[43,-2],[42.5,-4],[42,-6],[41,-6.5],[40,-5],[39,-3],[38,-2],[37,-4],[36.5,-5],[37,-6],[38,-7],[39.5,-7],[41,-5],[42,-3],[43,-1]]},
+    {id:"portugal",name:"Portugal",flag:"\u{1F1F5}\u{1F1F9}",distance:2200,difficulty:"moderate",difficultyLabel:"Mittel",region:"southern",regionLabel:"S\u00fcdeuropa",bestTime:"Okt\u2013Mai",description:"Forstwege und Felsenpisten im bergigen Norden bis zur K\u00fcste.",terrain:["Forstwege","Felsen","Erde"],image:"https://images.unsplash.com/photo-1513735492246-483525079686?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/portugal/",schematic:[[42,-8.2],[41,-8],[40,-8.2],[39.5,-8.5],[39,-8],[38.5,-8.5],[37.5,-8],[37,-8.5]]},
+    {id:"andorra",name:"Andorra",flag:"\u{1F1E6}\u{1F1E9}",distance:35,difficulty:"hard",difficultyLabel:"Schwer",region:"southern",regionLabel:"S\u00fcdeuropa",bestTime:"Jul\u2013Sep",description:"Kurze Berg\u00fcberquerung zwischen Frankreich und Spanien.",terrain:["Alpin","Felsen","Bergp\u00e4sse"],image:"https://images.unsplash.com/photo-1614094082869-cd4e4b2f65b6?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/andorra/",schematic:[[42.65,1.4],[42.55,1.55],[42.45,1.7]]},
+    {id:"italy",name:"Italien",flag:"\u{1F1EE}\u{1F1F9}",distance:3532,difficulty:"moderate",difficultyLabel:"Mittel",region:"southern",regionLabel:"S\u00fcdeuropa",bestTime:"Mai\u2013Okt",description:"Von den Alpen \u00fcber die Apenninen bis zur K\u00fcste.",terrain:["Schotter","Felsen","Waldwege","Bergp\u00e4sse"],image:"https://images.unsplash.com/photo-1534445867742-43195f401b6c?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/italy/",schematic:[[46,11],[45.5,10.5],[45,10],[44.5,10.5],[44,11],[43.5,11.5],[43,12],[42.5,12.5],[42,13],[41.5,14],[41,15],[40.5,15.5],[40,16]]},
+    {id:"slovenia",name:"Slowenien",flag:"\u{1F1F8}\u{1F1EE}",distance:442,difficulty:"moderate",difficultyLabel:"Mittel",region:"balkans",regionLabel:"Balkan",bestTime:"Mai\u2013Okt",description:"Alpines und Karst-Terrain mit Waldwegen.",terrain:["Alpin","Karst","Waldwege"],image:"https://images.unsplash.com/photo-1570804485046-1d927f5e1b6e?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/slovenia/",schematic:[[46.4,13.8],[46.2,14.3],[46.1,14.8],[46,15.2],[45.8,15.5]]},
+    {id:"croatia",name:"Kroatien",flag:"\u{1F1ED}\u{1F1F7}",distance:371,difficulty:"moderate",difficultyLabel:"Mittel",region:"balkans",regionLabel:"Balkan",bestTime:"Apr\u2013Okt",description:"Felsige Pfade und Waldwege \u00fcber Kalkstein-Terrain.",terrain:["Felsen","Kalkstein","Waldwege"],image:"https://images.unsplash.com/photo-1563782127735-00de40e2b66e?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/croatia/",schematic:[[45.5,15.5],[45,16],[44.5,15.5],[44,16],[43.5,16.5],[43,17]]},
+    {id:"hungary",name:"Ungarn",flag:"\u{1F1ED}\u{1F1FA}",distance:1048,difficulty:"easy",difficultyLabel:"Leicht",region:"eastern",regionLabel:"Osteuropa",bestTime:"Apr\u2013Okt",description:"Flache Puszta, Feldwege und Forstwege.",terrain:["Puszta","Feldwege","Forstwege"],image:"https://images.unsplash.com/photo-1551867633-194f125bddfa?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/hungary/",schematic:[[47.8,17],[47.5,18.5],[47.2,19],[47,19.5],[46.5,19],[46.2,19.5],[46,18.5]]},
+    {id:"slovakia",name:"Slowakei",flag:"\u{1F1F8}\u{1F1F0}",distance:850,difficulty:"moderate",difficultyLabel:"Mittel",region:"eastern",regionLabel:"Osteuropa",bestTime:"Mai\u2013Okt",description:"Bergiges Terrain in den Karpaten mit Forstwegen.",terrain:["Karpaten","Forstwege","Waldpisten"],image:"https://images.unsplash.com/photo-1567606404249-46bf89f840c7?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/slovakia/",schematic:[[49.2,18.5],[49,19],[48.8,19.5],[48.5,20],[48.8,20.5],[48.5,21],[48.2,21.5]]},
+    {id:"romania",name:"Rum\u00e4nien",flag:"\u{1F1F7}\u{1F1F4}",distance:2134,difficulty:"hard",difficultyLabel:"Schwer",region:"eastern",regionLabel:"Osteuropa",bestTime:"Mai\u2013Okt",description:"Karpaten-P\u00e4sse, Waldpfade und l\u00e4ndliche Erdstra\u00dfen.",terrain:["Karpaten","Bergp\u00e4sse","Waldwege","Erde"],image:"https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/romania/",schematic:[[47.5,24],[47,25],[46.5,25.5],[46,25],[45.5,24.5],[45,25],[44.5,25.5],[44,26],[44.5,27],[45,27.5]]},
+    {id:"serbia",name:"Serbien",flag:"\u{1F1F7}\u{1F1F8}",distance:2195,difficulty:"moderate",difficultyLabel:"Mittel",region:"balkans",regionLabel:"Balkan",bestTime:"Mai\u2013Okt",description:"Berge, W\u00e4lder und l\u00e4ndliche Wege.",terrain:["Berge","W\u00e4lder","Feldwege"],image:"https://images.unsplash.com/photo-1601893211617-4f0c2c8c9e01?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/serbia/",schematic:[[45,20],[44.5,20.5],[44,21],[43.5,21.5],[43,20.5],[42.5,21],[42.2,21.5]]},
+    {id:"bosnia",name:"Bosnien & Herzeg.",flag:"\u{1F1E7}\u{1F1E6}",distance:610,difficulty:"hard",difficultyLabel:"Schwer",region:"balkans",regionLabel:"Balkan",bestTime:"Mai\u2013Okt",description:"Felsige Pisten und Schotterwege. Abgelegen und abenteuerlich.",terrain:["Felsen","Schotter","Kalkstein"],image:"https://images.unsplash.com/photo-1592425535498-81e5362e66d6?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/bosnia-herzegovina/",schematic:[[45,16.5],[44.5,17],[44,17.5],[43.8,18],[43.5,18.2],[43.2,17.8]]},
+    {id:"montenegro",name:"Montenegro",flag:"\u{1F1F2}\u{1F1EA}",distance:290,difficulty:"hard",difficultyLabel:"Schwer",region:"balkans",regionLabel:"Balkan",bestTime:"Mai\u2013Okt",description:"Bergpfade und Kalkstein in abgelegener Berglandschaft.",terrain:["Bergpfade","Kalkstein","Schotter"],image:"https://images.unsplash.com/photo-1606758890968-5ade8a8a3b73?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/montenegro/",schematic:[[43.1,19],[42.8,19.3],[42.5,19.2],[42.3,19],[42.1,18.8]]},
+    {id:"albania",name:"Albanien",flag:"\u{1F1E6}\u{1F1F1}",distance:406,difficulty:"hard",difficultyLabel:"Schwer",region:"balkans",regionLabel:"Balkan",bestTime:"Apr\u2013Okt",description:"Felsige Pfade und Bergtrails in abgelegener Natur.",terrain:["Felsen","Bergtrails","Schotter"],image:"https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/albania/",schematic:[[42,20],[41.5,20],[41,20.2],[40.5,20],[40,20.3],[39.8,20]]},
+    {id:"north-macedonia",name:"Nordmazedonien",flag:"\u{1F1F2}\u{1F1F0}",distance:520,difficulty:"moderate",difficultyLabel:"Mittel",region:"balkans",regionLabel:"Balkan",bestTime:"Apr\u2013Okt",description:"Berg- und Waldterrain im s\u00fcdlichen Balkan.",terrain:["Berge","Waldwege","Schotter"],image:"https://images.unsplash.com/photo-1596005554384-d293674c91d7?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/north-macedonia/",schematic:[[42,20.8],[41.5,21],[41.2,21.5],[41,21],[41.3,20.8]]},
+    {id:"bulgaria",name:"Bulgarien",flag:"\u{1F1E7}\u{1F1EC}",distance:931,difficulty:"moderate",difficultyLabel:"Mittel",region:"balkans",regionLabel:"Balkan",bestTime:"Mai\u2013Okt",description:"Bergp\u00e4sse und Waldpfade durch bulgarische Gebirge.",terrain:["Bergp\u00e4sse","Waldpfade","Schotter"],image:"https://images.unsplash.com/photo-1558271736-cd326d146bb1?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/bulgaria/",schematic:[[43.8,23],[43.2,24],[42.7,25],[42.3,25.5],[42,26],[41.8,25.5],[42,24]]},
+    {id:"greece",name:"Griechenland",flag:"\u{1F1EC}\u{1F1F7}",distance:4079,difficulty:"moderate",difficultyLabel:"Mittel",region:"southern",regionLabel:"S\u00fcdeuropa",bestTime:"M\u00e4r\u2013Jun, Sep\u2013Nov",description:"Ausgedehnte Route durch das griechische Festland.",terrain:["Felsen","Berge","Schotter","Erde"],image:"https://images.unsplash.com/photo-1503152394-c571994fd383?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/greece/",schematic:[[41,24],[40.5,22.5],[40,22],[39.5,21.5],[39,22],[38.5,22.5],[38,23],[37.5,22]]},
+    {id:"turkey",name:"T\u00fcrkei",flag:"\u{1F1F9}\u{1F1F7}",distance:3200,difficulty:"moderate",difficultyLabel:"Mittel",region:"southern",regionLabel:"S\u00fcdeuropa",bestTime:"Apr\u2013Jun, Sep\u2013Nov",description:"Vielf\u00e4ltiges Terrain von der K\u00fcste \u00fcber Berge bis zur Steppe.",terrain:["K\u00fcste","Berge","Steppe","Schotter"],image:"https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/turkey/",schematic:[[41,29],[40.5,30.5],[40,32],[39.5,33],[39,35],[38.5,36],[38,37],[37.5,36],[37,35]]},
+    {id:"georgia",name:"Georgien",flag:"\u{1F1EC}\u{1F1EA}",distance:4698,difficulty:"hard",difficultyLabel:"Schwer",region:"eastern",regionLabel:"Osteuropa",bestTime:"Jun\u2013Sep",description:"Spektakul\u00e4re Kaukasus-P\u00e4sse und abgelegene T\u00e4ler.",terrain:["Kaukasus","Bergp\u00e4sse","Schotter","Felsen"],image:"https://images.unsplash.com/photo-1565008576549-57569a49371d?w=600&h=400&fit=crop",tetUrl:"https://transeurotrail.org/georgia/",schematic:[[42.5,41.5],[42.2,42.5],[42,43.5],[41.8,44],[41.7,44.5],[41.5,44],[41.7,43]]}
 ];
 
-// ─── Render Functions ────────────────────────────────────────────
-function createRouteCard(route, index) {
-    const difficultyClass = {
-        easy: 'difficulty-easy',
-        moderate: 'difficulty-moderate',
-        hard: 'difficulty-hard'
-    }[route.difficulty];
+// Cookie consent
+function acceptCookies(){ localStorage.setItem('ee-consent','accepted'); document.getElementById('cookieBanner').classList.add('hidden'); }
+function rejectCookies(){ localStorage.setItem('ee-consent','rejected'); document.getElementById('cookieBanner').classList.add('hidden'); }
+if(localStorage.getItem('ee-consent')) document.getElementById('cookieBanner').classList.add('hidden');
 
-    return `
-        <div class="route-card card-enter" style="animation-delay: ${index * 0.05}s" data-id="${route.id}" onclick="openModal('${route.id}')">
-            <div class="route-card-image">
-                <img src="${route.image}" alt="TET ${route.name}" loading="lazy">
-                <div class="route-country-flag">${route.flag}</div>
-                <div class="route-difficulty ${difficultyClass}">${route.difficultyLabel}</div>
-                <div class="route-region">${route.regionLabel}</div>
-            </div>
-            <div class="route-card-body">
-                <div class="route-card-title">${route.flag} ${route.name}</div>
-                <div class="route-card-meta">
-                    <div class="route-meta-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 6L6 18"/><path d="M8 6h10v10"/></svg>
-                        ${route.distance.toLocaleString('de-DE')} km
-                    </div>
-                    <div class="route-meta-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                        ${route.bestTime}
-                    </div>
-                </div>
-                <div class="route-card-desc">${route.description}</div>
-                <div class="route-card-tags">
-                    ${route.terrain.slice(0, 3).map(t => `<span class="route-tag">${t}</span>`).join('')}
-                </div>
-                <div class="route-card-actions">
-                    <a href="${route.tetUrl}" target="_blank" class="btn-download" onclick="event.stopPropagation()">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        GPX Download
-                    </a>
-                    <button class="btn-info" onclick="event.stopPropagation(); openModal('${route.id}')" title="Details anzeigen">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                    </button>
-                </div>
-            </div>
+// Cards
+function createRouteCard(r,i){
+    const dc={easy:'difficulty-easy',moderate:'difficulty-moderate',hard:'difficulty-hard'}[r.difficulty];
+    return `<div class="route-card card-enter" style="animation-delay:${i*0.04}s" onclick="openModal('${r.id}')">
+        <div class="route-card-image">
+            <img src="${r.image}" alt="Landschaft ${r.name}" loading="lazy" onerror="this.style.display='none'">
+            <div class="route-country-flag">${r.flag}</div>
+            <div class="route-difficulty ${dc}">${r.difficultyLabel}</div>
+            <div class="route-region">${r.regionLabel}</div>
+            <div class="img-credit"><a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></div>
         </div>
-    `;
-}
-
-function renderRoutes(filteredRoutes) {
-    const grid = document.getElementById('routesGrid');
-    if (filteredRoutes.length === 0) {
-        grid.innerHTML = `
-            <div class="no-results">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M8 11h6"/></svg>
-                <h3>Keine Routen gefunden</h3>
-                <p>Versuche einen anderen Suchbegriff oder Filter.</p>
+        <div class="route-card-body">
+            <div class="route-card-title">${r.flag} ${r.name}</div>
+            <div class="route-card-meta">
+                <div class="route-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 6L6 18"/><path d="M8 6h10v10"/></svg>ca. ${r.distance.toLocaleString('de-DE')} km</div>
+                <div class="route-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>${r.bestTime}</div>
             </div>
-        `;
-    } else {
-        grid.innerHTML = filteredRoutes.map((r, i) => createRouteCard(r, i)).join('');
-    }
-    const totalKm = filteredRoutes.reduce((sum, r) => sum + r.distance, 0);
-    document.getElementById('resultsInfo').textContent =
-        `${filteredRoutes.length} Routen · ${totalKm.toLocaleString('de-DE')} km gesamt`;
-}
-
-// ─── Modal ───────────────────────────────────────────────────────
-function openModal(id) {
-    const route = routes.find(r => r.id === id);
-    if (!route) return;
-
-    document.getElementById('modalImage').src = route.image;
-    document.getElementById('modalImage').alt = `TET ${route.name}`;
-    document.getElementById('modalTitle').textContent = `${route.flag} TET ${route.name}`;
-    document.getElementById('modalDistance').textContent = route.distance.toLocaleString('de-DE') + ' km';
-    document.getElementById('modalDifficulty').textContent = route.difficultyLabel;
-    document.getElementById('modalBestTime').textContent = route.bestTime;
-    document.getElementById('modalDesc').textContent = route.description;
-    document.getElementById('modalTerrain').innerHTML = route.terrain.map(t => `<span class="terrain-tag">${t}</span>`).join('');
-    document.getElementById('modalDownload').href = route.tetUrl;
-    document.getElementById('modalTETLink').href = route.tetUrl;
-    document.getElementById('modalOverlay').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-document.getElementById('modalClose').addEventListener('click', closeModal);
-document.getElementById('modalOverlay').addEventListener('click', e => {
-    if (e.target === e.currentTarget) closeModal();
-});
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-// ─── Filtering & Sorting ────────────────────────────────────────
-let currentFilter = 'all';
-let currentSearch = '';
-let currentSort = 'name';
-
-function getFilteredRoutes() {
-    let filtered = routes;
-
-    if (currentFilter !== 'all') {
-        filtered = filtered.filter(r => r.region === currentFilter);
-    }
-
-    if (currentSearch) {
-        const q = currentSearch.toLowerCase();
-        filtered = filtered.filter(r =>
-            r.name.toLowerCase().includes(q) ||
-            r.regionLabel.toLowerCase().includes(q) ||
-            r.description.toLowerCase().includes(q) ||
-            r.terrain.some(t => t.toLowerCase().includes(q))
-        );
-    }
-
-    switch (currentSort) {
-        case 'distance-desc': filtered.sort((a, b) => b.distance - a.distance); break;
-        case 'distance-asc': filtered.sort((a, b) => a.distance - b.distance); break;
-        case 'difficulty':
-            const order = { easy: 0, moderate: 1, hard: 2 };
-            filtered.sort((a, b) => order[a.difficulty] - order[b.difficulty]);
-            break;
-        default: filtered.sort((a, b) => a.name.localeCompare(b.name, 'de'));
-    }
-
-    return filtered;
-}
-
-function updateView() {
-    renderRoutes(getFilteredRoutes());
-}
-
-// Search
-document.getElementById('searchInput').addEventListener('input', e => {
-    currentSearch = e.target.value;
-    updateView();
-});
-
-// Filter chips
-document.querySelectorAll('.chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        currentFilter = chip.dataset.filter;
-        updateView();
-    });
-});
-
-// Sort
-document.getElementById('sortSelect').addEventListener('change', e => {
-    currentSort = e.target.value;
-    updateView();
-});
-
-// ─── Navbar scroll effect ────────────────────────────────────────
-window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-});
-
-// ─── Hero Counter Animation ─────────────────────────────────────
-function animateCounter(id, target, suffix = '') {
-    const el = document.getElementById(id);
-    const duration = 2000;
-    const start = performance.now();
-
-    function update(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = Math.round(eased * target);
-        el.textContent = value.toLocaleString('de-DE') + suffix;
-        if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-}
-
-// ─── Particles ──────────────────────────────────────────────────
-function createParticles() {
-    const container = document.getElementById('particles');
-    for (let i = 0; i < 30; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        p.style.left = Math.random() * 100 + '%';
-        p.style.animationDelay = Math.random() * 8 + 's';
-        p.style.animationDuration = (6 + Math.random() * 6) + 's';
-        p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
-        container.appendChild(p);
-    }
-}
-
-// ─── Leaflet Map ─────────────────────────────────────────────────
-function initMap() {
-    const map = L.map('leafletMap', {
-        zoomControl: true,
-        scrollWheelZoom: true
-    }).setView([48.5, 15], 4);
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
-    }).addTo(map);
-
-    const markerCoords = {
-        "finland": [64.5, 26.0],
-        "sweden": [62.0, 15.5],
-        "norway": [62.0, 8.0],
-        "denmark": [56.0, 9.5],
-        "estonia": [58.8, 25.5],
-        "latvia": [57.0, 24.5],
-        "lithuania": [55.3, 24.0],
-        "poland": [52.0, 19.5],
-        "germany": [51.0, 10.0],
-        "netherlands": [52.2, 5.3],
-        "belgium": [50.6, 4.4],
-        "luxembourg": [49.75, 6.15],
-        "france": [46.5, 2.5],
-        "uk": [53.5, -2.0],
-        "switzerland": [46.9, 8.2],
-        "austria": [47.3, 13.3],
-        "spain": [40.0, -3.5],
-        "portugal": [39.5, -8.0],
-        "andorra": [42.55, 1.55],
-        "italy": [42.5, 12.5],
-        "slovenia": [46.1, 14.8],
-        "croatia": [44.5, 15.5],
-        "hungary": [47.2, 19.5],
-        "slovakia": [48.7, 19.5],
-        "romania": [45.8, 25.0],
-        "serbia": [44.0, 20.8],
-        "bosnia": [43.9, 17.7],
-        "montenegro": [42.7, 19.4],
-        "albania": [41.0, 20.0],
-        "north-macedonia": [41.5, 21.7],
-        "bulgaria": [42.7, 25.5],
-        "greece": [39.0, 22.0],
-        "turkey": [39.5, 32.5],
-        "georgia": [42.3, 43.5]
-    };
-
-    const tetIcon = L.divIcon({
-        className: '',
-        html: '<div style="width:14px;height:14px;background:#E85D26;border:2px solid #fff;border-radius:50%;box-shadow:0 0 8px rgba(232,93,38,0.6);"></div>',
-        iconSize: [14, 14],
-        iconAnchor: [7, 7]
-    });
-
-    routes.forEach(route => {
-        const coords = markerCoords[route.id];
-        if (!coords) return;
-
-        const marker = L.marker(coords, { icon: tetIcon }).addTo(map);
-        marker.bindPopup(`
-            <div style="font-family:Inter,sans-serif;min-width:200px;">
-                <div style="font-size:1.1rem;font-weight:700;margin-bottom:4px;">${route.flag} ${route.name}</div>
-                <div style="font-size:0.85rem;color:#666;margin-bottom:6px;">${route.distance.toLocaleString('de-DE')} km · ${route.difficultyLabel}</div>
-                <div style="font-size:0.8rem;color:#888;margin-bottom:8px;">Beste Zeit: ${route.bestTime}</div>
-                <a href="${route.tetUrl}" target="_blank" style="display:inline-block;padding:6px 14px;background:#E85D26;color:#fff;border-radius:6px;text-decoration:none;font-size:0.8rem;font-weight:600;">GPX Download</a>
-                <button onclick="closeMapPopup();openModal('${route.id}')" style="display:inline-block;padding:6px 14px;background:#333;color:#fff;border:none;border-radius:6px;font-size:0.8rem;cursor:pointer;margin-left:4px;">Details</button>
+            <div class="route-card-desc">${r.description}</div>
+            <div class="route-card-tags">${r.terrain.slice(0,3).map(t=>`<span class="route-tag">${t}</span>`).join('')}</div>
+            <div class="route-card-actions">
+                <a href="${r.tetUrl}" target="_blank" rel="noopener" class="btn-download" onclick="event.stopPropagation()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>GPX (offiziell)</a>
+                <button class="btn-map" onclick="event.stopPropagation();zoomToRoute('${r.id}')" title="Auf Karte zeigen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></button>
             </div>
-        `, { maxWidth: 280 });
+        </div></div>`;
+}
+function renderRoutes(list){
+    const g=document.getElementById('routesGrid');
+    if(!list.length){g.innerHTML='<div class="no-results"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><h3>Keine Routen gefunden</h3><p>Anderen Suchbegriff probieren.</p></div>';}
+    else{g.innerHTML=list.map((r,i)=>createRouteCard(r,i)).join('');}
+    document.getElementById('resultsInfo').textContent=`${list.length} Routen \u00B7 ca. ${list.reduce((s,r)=>s+r.distance,0).toLocaleString('de-DE')} km`;
+}
+
+// Modal
+let currentModalId=null;
+function openModal(id){
+    const r=routes.find(x=>x.id===id);if(!r)return;currentModalId=id;
+    document.getElementById('modalImage').src=r.image;document.getElementById('modalImage').alt='Landschaft '+r.name;
+    document.getElementById('modalTitle').textContent=r.flag+' '+r.name;
+    document.getElementById('modalDistance').textContent='ca. '+r.distance.toLocaleString('de-DE');
+    document.getElementById('modalDifficulty').textContent=r.difficultyLabel;
+    document.getElementById('modalBestTime').textContent=r.bestTime;
+    document.getElementById('modalDesc').textContent=r.description;
+    document.getElementById('modalTerrain').innerHTML=r.terrain.map(t=>`<span class="terrain-tag">${t}</span>`).join('');
+    document.getElementById('modalDownload').href=r.tetUrl;
+    document.getElementById('modalOverlay').classList.add('active');document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('active');document.body.style.overflow='';currentModalId=null;}
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+document.getElementById('modalMapBtn').addEventListener('click',()=>{if(currentModalId){closeModal();zoomToRoute(currentModalId);}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();document.getElementById('legalModal').classList.remove('active');}});
+
+// Filter
+let currentFilter='all',currentSearch='',currentSort='name';
+function getFiltered(){
+    let f=routes;
+    if(currentFilter!=='all')f=f.filter(r=>r.region===currentFilter);
+    if(currentSearch){const q=currentSearch.toLowerCase();f=f.filter(r=>r.name.toLowerCase().includes(q)||r.regionLabel.toLowerCase().includes(q)||r.description.toLowerCase().includes(q)||r.terrain.some(t=>t.toLowerCase().includes(q)));}
+    switch(currentSort){case'distance-desc':f.sort((a,b)=>b.distance-a.distance);break;case'distance-asc':f.sort((a,b)=>a.distance-b.distance);break;case'difficulty':{const o={easy:0,moderate:1,hard:2};f.sort((a,b)=>o[a.difficulty]-o[b.difficulty]);break;}default:f.sort((a,b)=>a.name.localeCompare(b.name,'de'));}
+    return f;
+}
+function updateView(){renderRoutes(getFiltered());}
+document.getElementById('searchInput').addEventListener('input',e=>{currentSearch=e.target.value;updateView();});
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');currentFilter=c.dataset.filter;updateView();}));
+document.getElementById('sortSelect').addEventListener('change',e=>{currentSort=e.target.value;updateView();});
+
+// Nav
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50));
+
+// Counter
+function animateCounter(id,target,suffix=''){const el=document.getElementById(id),dur=2000,start=performance.now();function u(now){const p=Math.min((now-start)/dur,1),v=Math.round((1-Math.pow(1-p,3))*target);el.textContent=v.toLocaleString('de-DE')+suffix;if(p<1)requestAnimationFrame(u);}requestAnimationFrame(u);}
+
+// Particles
+function createParticles(){const c=document.getElementById('particles');for(let i=0;i<20;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.animationDelay=Math.random()*8+'s';p.style.animationDuration=(6+Math.random()*6)+'s';p.style.width=p.style.height=(2+Math.random()*3)+'px';c.appendChild(p);}}
+
+// Map
+let leafletMap,routeLayers={},highlightedLayer=null;
+function initMap(){
+    leafletMap=L.map('leafletMap',{zoomControl:true,scrollWheelZoom:true}).setView([48,15],4);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+        attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+        subdomains:'abcd',maxZoom:18
+    }).addTo(leafletMap);
+    routes.forEach(r=>{
+        if(!r.schematic||r.schematic.length<2)return;
+        const ll=r.schematic.map(c=>[c[0],c[1]]);
+        const poly=L.polyline(ll,{color:'#D4952B',weight:3,opacity:0.65,dashArray:'8 6',lineCap:'round'}).addTo(leafletMap);
+        const mid=ll[Math.floor(ll.length/2)];
+        const lbl=L.marker(mid,{icon:L.divIcon({className:'',html:`<div style="background:rgba(17,17,17,0.88);color:#D4952B;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600;font-family:Inter,sans-serif;white-space:nowrap;border:1px solid rgba(212,149,43,0.25)">${r.flag} ${r.name}</div>`,iconAnchor:[0,0]})}).addTo(leafletMap);
+        poly.bindPopup(`<div style="font-family:Inter,sans-serif;min-width:170px"><div style="font-size:1rem;font-weight:700;margin-bottom:3px">${r.flag} ${r.name}</div><div style="font-size:0.78rem;color:#666;margin-bottom:3px">ca. ${r.distance.toLocaleString('de-DE')} km \u00B7 ${r.difficultyLabel}</div><div style="font-size:0.72rem;color:#888;margin-bottom:7px">Beste Zeit: ${r.bestTime}</div><a href="${r.tetUrl}" target="_blank" rel="noopener" style="display:inline-block;padding:4px 11px;background:#D4952B;color:#111;border-radius:5px;text-decoration:none;font-size:0.75rem;font-weight:700">GPX auf transeurotrail.org</a></div>`,{maxWidth:250});
+        routeLayers[r.id]={polyline:poly,label:lbl,latlngs:ll};
     });
-
-    window._leafletMap = map;
+}
+function zoomToRoute(id){
+    const l=routeLayers[id];if(!l||!leafletMap)return;
+    if(highlightedLayer)highlightedLayer.polyline.setStyle({color:'#D4952B',weight:3,opacity:0.65,dashArray:'8 6'});
+    l.polyline.setStyle({color:'#5BA4D9',weight:5,opacity:1,dashArray:null});highlightedLayer=l;
+    leafletMap.flyToBounds(L.latLngBounds(l.latlngs).pad(0.3),{duration:1.2});
+    document.getElementById('map').scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(()=>l.polyline.openPopup(),1300);
 }
 
-function closeMapPopup() {
-    if (window._leafletMap) window._leafletMap.closePopup();
-}
-
-// ─── Init ────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-    createParticles();
-    updateView();
-    initMap();
-
-    // IntersectionObserver for hero stats
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const totalKm = routes.reduce((s, r) => s + r.distance, 0);
-                animateCounter('stat-km', totalKm, '+');
-                animateCounter('stat-countries', routes.length);
-                animateCounter('stat-tracks', routes.length);
-                observer.disconnect();
-            }
-        });
-    }, { threshold: 0.5 });
-    observer.observe(document.querySelector('.hero-stats'));
+// Init
+document.addEventListener('DOMContentLoaded',()=>{
+    createParticles();updateView();initMap();
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animateCounter('stat-km',routes.reduce((s,r)=>s+r.distance,0),'+');animateCounter('stat-countries',routes.length);obs.disconnect();}});},{threshold:0.5});
+    obs.observe(document.querySelector('.hero-stats'));
 });
 </script>
-
 </body>
 </html>
