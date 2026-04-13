@@ -715,7 +715,7 @@
         <div class="hero-club">Enduro Explorers Strasswalchen</div>
         <h1>Stra&szlig;walchen <span>Barcelona</span></h1>
         <div class="hero-date">6. &ndash; 20. Juli 2026</div>
-        <p class="hero-subtitle">10 Fahrtage durch die Alpen, &uuml;ber die Schweiz und S&uuml;dfrankreich ans Mittelmeer. 4 L&auml;nder, 8 P&auml;sse, 1 Abenteuer.</p>
+        <p class="hero-subtitle">10 Fahrtage durch die Alpen, &uuml;ber die Schweiz, S&uuml;dfrankreich und die Pyren&auml;en ans Mittelmeer. 5 L&auml;nder, 9 P&auml;sse, 1 Abenteuer.</p>
         <div class="countdown-wrap">
             <div class="countdown" id="countdown"></div>
         </div>
@@ -989,22 +989,22 @@ const etappen = [
     },
     {
         id: 10, date: "Do, 17. Juli",
-        title: "Pyren\u00e4en & Barcelona!",
+        title: "Pyren\u00e4en-Offroad & Barcelona!",
         from: "Perpignan", to: "Barcelona",
-        distance: 340, duration: "6\u20137h", elevation: "3.200",
+        distance: 450, duration: "8\u201310h", elevation: "4.100",
         flags: "\u{1F1EB}\u{1F1F7}\u{1F1E6}\u{1F1E9}\u{1F1EA}\u{1F1F8}", difficulty: "hard",
-        description: "Das gro\u00dfe Finale! Von Perpignan \u00fcber die Pyren\u00e4en nach Andorra. \u00dcber den Port d\u2019Envalira (2.408m, h\u00f6chster asphaltierter Pass der Pyren\u00e4en) vorbei am Pic Negre d\u2019Envalira (2.827m). Offroad-Pisten durch die Bergwelt, dann hinunter nach Katalonien und Barcelona. Sagrada Fam\u00edlia, Ramblas, Barceloneta \u2014 geschafft!",
-        highlights: ["Pyren\u00e4en-Offroad","Port d\u2019Envalira (2.408m)","Pic Negre d\u2019Envalira (2.827m)","Andorra la Vella","Sagrada Fam\u00edlia","Las Ramblas","Barceloneta"],
+        description: "Das gro\u00dfe Finale! Von Perpignan \u00fcber den Col de Puymorens und Pas de la Casa nach Andorra. Port d\u2019Envalira (2.408m, h\u00f6chster asphaltierter Pass der Pyren\u00e4en), dann \u00fcber Andorra la Vella nach Sant Juli\u00e0 de L\u00f2ria. Ab Naturlandia beginnt der Offroad-Track: \u00fcber Schotter und Felsen zum Pic Negre (2.643m) \u2014 mit dem legend\u00e4ren verlassenen VW T1 Bus am Gipfel! Abstieg auf der spanischen Seite nach Bescaran, weiter \u00fcber La Seu d\u2019Urgell und die Vorpyren\u00e4en nach Barcelona. Sagrada Fam\u00edlia, Ramblas \u2014 geschafft!",
+        highlights: ["Port d\u2019Envalira (2.408m)","Pic Negre Offroad (2.643m)","VW T1 Bus am Gipfel","Naturlandia \u2192 Bescaran Offroad","Andorra la Vella (Duty Free)","La Seu d\u2019Urgell","Sagrada Fam\u00edlia","Las Ramblas"],
         tags: ["Pyren\u00e4en","Andorra","Offroad","Hochalpin"],
         offroad: true,
         image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&h=400&fit=crop",
-        googleMaps: "https://www.google.com/maps/dir/Perpignan/Pas+de+la+Casa,+Andorra/Andorra+la+Vella/Barcelona",
-        routeCoords: [[42.69,2.90],[42.58,2.50],[42.54,1.98],[42.57,1.73],[42.54,1.60],[42.51,1.52],[42.20,1.53],[41.80,1.70],[41.39,2.17]]
+        googleMaps: "https://www.google.com/maps/dir/Perpignan/Pas+de+la+Casa,+Andorra/Andorra+la+Vella/Sant+Julia+de+Loria/La+Seu+d'Urgell/Barcelona",
+        routeCoords: [[42.69,2.90],[42.58,2.50],[42.54,1.98],[42.57,1.73],[42.54,1.60],[42.51,1.52],[42.46,1.49],[42.45,1.57],[42.36,1.45],[42.35,1.46],[42.20,1.53],[41.80,1.70],[41.39,2.17]]
     }
 ];
 
 const routeData = {
-    totalKm: 2125, totalDays: 10, countries: 5, passes: 9,
+    totalKm: 2265, totalDays: 10, countries: 5, passes: 9,
     stops: [
         { name:"Stra\u00dfwalchen", flag:"\u{1F1E6}\u{1F1F9}", lat:47.87, lng:13.26, date:"6.7." },
         { name:"Villach", flag:"\u{1F1E6}\u{1F1F9}", lat:46.61, lng:13.86, date:"6.7." },
@@ -1153,7 +1153,7 @@ document.addEventListener('keydown', ev => { if(ev.key==='Escape') closeModal();
 
 function renderElevation() {
     const svg = document.getElementById('elevationSvg');
-    const pts = [[0,510],[4,900],[7,1100],[11,500],[15,900],[19,1800],[22,2121],[25,500],[29,1370],[32,580],[36,1000],[39,1793],[42,400],[46,540],[50,540],[54,580],[57,372],[60,300],[63,175],[67,350],[71,450],[75,50],[79,30],[83,40],[87,180],[91,800],[94,2408],[96,1200],[100,12]];
+    const pts = [[0,510],[4,900],[7,1100],[11,500],[15,900],[19,1800],[22,2121],[25,500],[29,1370],[32,580],[36,1000],[39,1793],[42,400],[46,540],[50,540],[54,580],[57,372],[60,300],[63,175],[67,350],[71,450],[75,50],[79,30],[83,40],[87,180],[89,800],[91,2408],[93,1800],[95,2643],[97,800],[100,12]];
     const W=1000,H=250,mE=2800,pt=20,pb=40;
     const sx=p=>p/100*W, sy=e=>pt+(1-e/mE)*(H-pt-pb);
     let d=`M ${sx(pts[0][0])} ${sy(pts[0][1])}`;
@@ -1163,7 +1163,7 @@ function renderElevation() {
     <path d="${d}" fill="none" stroke="#D4A41C" stroke-width="3" stroke-linecap="round"/>`;
     [0,500,1000,1500,2000,2500].forEach(e=>{const y=sy(e);s+=`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4"/><text x="8" y="${y-5}" fill="#666" font-size="10" font-family="Oswald">${e}m</text>`;});
     [[0,'Start'],[11,'Villach'],[25,'Bozen'],[32,'IBK'],[42,'Bregenz'],[50,'Bern'],[57,'Genf'],[63,'Lyon'],[75,'Montpellier'],[83,'Perpignan'],[94,'Andorra'],[100,'Barcelona']].forEach(([p,n])=>{const x=sx(p),e=pts.reduce((b,pt)=>Math.abs(pt[0]-p)<Math.abs(b[0]-p)?pt:b)[1];s+=`<circle cx="${x}" cy="${sy(e)}" r="4" fill="#D4A41C" stroke="#0A0A0A" stroke-width="2"/><text x="${x}" y="${H-10}" fill="#666" font-size="9" font-family="Oswald" text-anchor="middle" letter-spacing="1">${n}</text>`;});
-    [[22,2121,'GR\u00d6DNER JOCH'],[39,1793,'ARLBERG'],[29,1370,'BRENNER'],[7,1100,'TAUERN'],[94,2408,'PORT D\u2019ENVALIRA']].forEach(([p,e,n])=>{s+=`<text x="${sx(p)}" y="${sy(e)-12}" fill="#E8BE3C" font-size="8" font-family="Oswald" text-anchor="middle" font-weight="600" letter-spacing="1">${n}</text>`;});
+    [[22,2121,'GR\u00d6DNER JOCH'],[39,1793,'ARLBERG'],[29,1370,'BRENNER'],[7,1100,'TAUERN'],[91,2408,'ENVALIRA'],[95,2643,'PIC NEGRE']].forEach(([p,e,n])=>{s+=`<text x="${sx(p)}" y="${sy(e)-12}" fill="#E8BE3C" font-size="8" font-family="Oswald" text-anchor="middle" font-weight="600" letter-spacing="1">${n}</text>`;});
     svg.innerHTML=s;
 }
 
