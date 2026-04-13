@@ -155,6 +155,21 @@
             font-size: 0.75rem; color: var(--text-muted);
             text-transform: uppercase; letter-spacing: 3px;
         }
+        /* Countdown */
+        .countdown-wrap { margin-bottom: 2.5rem; }
+        .countdown { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+        .cd-block { text-align: center; min-width: 70px; }
+        .cd-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem; color: var(--gold); line-height: 1;
+            text-shadow: 0 0 20px rgba(212,164,28,0.3);
+        }
+        .cd-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.65rem; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 3px;
+        }
+        .cd-past { font-family: 'Oswald', sans-serif; font-size: 1.2rem; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; }
         .hero-cta {
             display: inline-flex; align-items: center; gap: 10px;
             padding: 16px 40px;
@@ -686,8 +701,7 @@
         <li><a href="#overview">Route</a></li>
         <li><a href="#map">Karte</a></li>
         <li><a href="#etappen">Etappen</a></li>
-        <li><a href="#info">Infos</a></li>
-        <li><a href="#checklist">Packliste</a></li>
+        <li><a href="#gpx">GPX</a></li>
     </ul>
 </nav>
 
@@ -702,6 +716,9 @@
         <h1>Stra&szlig;walchen <span>Barcelona</span></h1>
         <div class="hero-date">6. &ndash; 20. Juli 2026</div>
         <p class="hero-subtitle">10 Fahrtage durch die Alpen, &uuml;ber die Schweiz und S&uuml;dfrankreich ans Mittelmeer. 4 L&auml;nder, 8 P&auml;sse, 1 Abenteuer.</p>
+        <div class="countdown-wrap">
+            <div class="countdown" id="countdown"></div>
+        </div>
         <div class="hero-stats">
             <div class="hero-stat">
                 <div class="hero-stat-value" id="stat-km">0</div>
@@ -771,20 +788,22 @@
     </div>
 </section>
 
-<section class="section-wrap fade-in" id="info">
+<section class="section-wrap fade-in gpx-section" id="gpx">
     <div class="section-header">
-        <h2>Praktische <span>Infos</span></h2>
-        <p>Alles Wichtige f&uuml;r die Reiseplanung.</p>
+        <h2>GPX <span>Downloads</span></h2>
+        <p>Lade die GPS-Tracks f&uuml;r jede Etappe herunter &mdash; auch Offroad-Varianten wo verf&uuml;gbar.</p>
     </div>
-    <div class="info-grid" id="infoGrid"></div>
-</section>
-
-<section class="section-wrap fade-in" id="checklist">
-    <div class="section-header">
-        <h2>Pack<span>liste</span></h2>
-        <p>Interaktive Checkliste &mdash; wird im Browser gespeichert.</p>
+    <div class="gpx-grid" id="gpxGrid"></div>
+    <div class="gpx-full-download">
+        <div class="gpx-full-info">
+            <h3>Komplette Route</h3>
+            <p>Alle 10 Etappen als eine GPX-Datei &mdash; Stra&szlig;walchen bis Barcelona inkl. Pyren&auml;en-Offroad.</p>
+        </div>
+        <a href="#" onclick="downloadGPX('full');return false;" class="gpx-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            GPX Herunterladen
+        </a>
     </div>
-    <div class="checklist-grid" id="checklistGrid"></div>
 </section>
 
 <footer>
@@ -970,21 +989,22 @@ const etappen = [
     },
     {
         id: 10, date: "Do, 17. Juli",
-        title: "Endstation Barcelona!",
+        title: "Pyren\u00e4en & Barcelona!",
         from: "Perpignan", to: "Barcelona",
-        distance: 190, duration: "2h", elevation: "400",
-        flags: "\u{1F1EB}\u{1F1F7}\u{1F1EA}\u{1F1F8}", difficulty: "easy",
-        description: "Die Zielgerade! \u00dcber die Grenze nach Katalonien, durch die Pyren\u00e4en-Ausl\u00e4ufer und die Costa Brava. Girona, dann Barcelona \u2014 Sagrada Fam\u00edlia, Ramblas, Barceloneta. Geschafft!",
-        highlights: ["Pyren\u00e4en-Grenze","Costa Brava","Girona","Sagrada Fam\u00edlia","Las Ramblas","Barceloneta"],
-        tags: ["Spanien","Katalonien","Strand"],
-        image: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&h=400&fit=crop",
-        googleMaps: "https://www.google.com/maps/dir/Perpignan/Barcelona",
-        routeCoords: [[42.69,2.90],[42.31,3.02],[41.98,2.82],[41.39,2.17]]
+        distance: 340, duration: "6\u20137h", elevation: "3.200",
+        flags: "\u{1F1EB}\u{1F1F7}\u{1F1E6}\u{1F1E9}\u{1F1EA}\u{1F1F8}", difficulty: "hard",
+        description: "Das gro\u00dfe Finale! Von Perpignan \u00fcber die Pyren\u00e4en nach Andorra. \u00dcber den Port d\u2019Envalira (2.408m, h\u00f6chster asphaltierter Pass der Pyren\u00e4en) vorbei am Pic Negre d\u2019Envalira (2.827m). Offroad-Pisten durch die Bergwelt, dann hinunter nach Katalonien und Barcelona. Sagrada Fam\u00edlia, Ramblas, Barceloneta \u2014 geschafft!",
+        highlights: ["Pyren\u00e4en-Offroad","Port d\u2019Envalira (2.408m)","Pic Negre d\u2019Envalira (2.827m)","Andorra la Vella","Sagrada Fam\u00edlia","Las Ramblas","Barceloneta"],
+        tags: ["Pyren\u00e4en","Andorra","Offroad","Hochalpin"],
+        offroad: true,
+        image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&h=400&fit=crop",
+        googleMaps: "https://www.google.com/maps/dir/Perpignan/Pas+de+la+Casa,+Andorra/Andorra+la+Vella/Barcelona",
+        routeCoords: [[42.69,2.90],[42.58,2.50],[42.54,1.98],[42.57,1.73],[42.54,1.60],[42.51,1.52],[42.20,1.53],[41.80,1.70],[41.39,2.17]]
     }
 ];
 
 const routeData = {
-    totalKm: 1975, totalDays: 10, countries: 4, passes: 8,
+    totalKm: 2125, totalDays: 10, countries: 5, passes: 9,
     stops: [
         { name:"Stra\u00dfwalchen", flag:"\u{1F1E6}\u{1F1F9}", lat:47.87, lng:13.26, date:"6.7." },
         { name:"Villach", flag:"\u{1F1E6}\u{1F1F9}", lat:46.61, lng:13.86, date:"6.7." },
@@ -996,31 +1016,11 @@ const routeData = {
         { name:"Lyon", flag:"\u{1F1EB}\u{1F1F7}", lat:45.76, lng:4.84, date:"13.7." },
         { name:"Montpellier", flag:"\u{1F1EB}\u{1F1F7}", lat:43.61, lng:3.88, date:"15.7." },
         { name:"Perpignan", flag:"\u{1F1EB}\u{1F1F7}", lat:42.69, lng:2.90, date:"16.7." },
+        { name:"Andorra", flag:"\u{1F1E6}\u{1F1E9}", lat:42.51, lng:1.52, date:"17.7." },
         { name:"Barcelona", flag:"\u{1F1EA}\u{1F1F8}", lat:41.39, lng:2.17, date:"17.7." }
     ]
 };
 
-const infoCards = [
-    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>',
-      title:"Mautkosten", desc:"\u00d6sterreich: Vignette 10-Tage (11,50\u00a0\u20ac). Schweiz: Vignette (40\u00a0CHF/Jahr). Frankreich: Autobahnmaut ~50-70\u00a0\u20ac. Spanien: Wenige Mautstrecken." },
-    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
-      title:"Reisezeit", desc:"6.\u201320. Juli 2026. Alpenp\u00e4sse schneefrei, Mittelmeer 25\u201330\u00b0C. Hochsaison \u2014 Unterk\u00fcnfte vorbuchen! Ruhetage: Bern (11.7.), Lyon (14.7.)." },
-    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>',
-      title:"Tanken", desc:"Tankstellen \u00fcberall. E-Ladestationen gut ausgebaut (AT/CH/FR). In Spanien etwas d\u00fcnner. Preise: AT < ES < FR < CH." },
-    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
-      title:"Unterk\u00fcnfte", desc:"Hotels, Airbnb oder Camping. Hochsaison = vorbuchen! Budget: 70\u2013130\u00a0\u20ac/Nacht DZ. Barcelona: 3 N\u00e4chte 17.\u201320. Juli." },
-    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>',
-      title:"Dokumente", desc:"EU-Personalausweis, F\u00fchrerschein, Gr\u00fcne Versicherungskarte. Schweiz: CHF-Bargeld. Spanien: \u00fcberall Kartenzahlung." },
-    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.4 2.05.94 3.45.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.93.4 1.84.7 2.81.7A2 2 0 0122 16.92z"/></svg>',
-      title:"Notruf & Pannenhilfe", desc:"Euronotruf: 112. \u00d6AMTC: 120 (AT). TCS: 140 (CH). Warnweste Pflicht in AT/FR/ES!" }
-];
-
-const checklistData = [
-    { title:"\u{1F3CD}\u{FE0F} Fahrzeug", items:["Verbandskasten","Warndreieck","Warnweste (je Insasse!)","Reserverad / Pannenset","Vignette AT (10 Tage)","Vignette CH (Jahres)","12V-Ladekabel","Sonnenblende"] },
-    { title:"\u{1F4C4} Dokumente", items:["Personalausweis / Reisepass","F\u00fchrerschein","Fahrzeugschein","Gr\u00fcne Versicherungskarte","\u00d6AMTC Mitgliedskarte","Europ. Unfallbericht","Reiseversicherung","Hotel-Best\u00e4tigungen","Bargeld CHF + EUR"] },
-    { title:"\u{1F392} Gep\u00e4ck", items:["Sonnencreme LSF 50","Badehose / Bikini","Wanderschuhe","Regenjacke","Sonnenbrille","Reiseapotheke","Tagesrucksack","Strandtuch","Flip-Flops"] },
-    { title:"\u{1F50C} Technik", items:["USB-C Ladekabel","Powerbank 20.000mAh","Handyhalterung","Bluetooth FM / AUX","Kamera + SD + Akku","Reiseadapter CH (Typ J)","Offline-Karten laden","Spotify offline laden"] }
-];
 
 // ═══ FUNCTIONS ═══════════════════════════════════════════════════
 
@@ -1153,43 +1153,113 @@ document.addEventListener('keydown', ev => { if(ev.key==='Escape') closeModal();
 
 function renderElevation() {
     const svg = document.getElementById('elevationSvg');
-    const pts = [[0,510],[4,900],[7,1100],[11,500],[15,900],[19,1800],[22,2121],[25,500],[29,1370],[32,580],[36,1000],[39,1793],[42,400],[46,540],[50,540],[54,580],[57,372],[60,300],[63,175],[67,350],[71,450],[75,50],[79,30],[83,40],[87,180],[92,60],[96,20],[100,12]];
-    const W=1000,H=250,mE=2400,pt=20,pb=40;
+    const pts = [[0,510],[4,900],[7,1100],[11,500],[15,900],[19,1800],[22,2121],[25,500],[29,1370],[32,580],[36,1000],[39,1793],[42,400],[46,540],[50,540],[54,580],[57,372],[60,300],[63,175],[67,350],[71,450],[75,50],[79,30],[83,40],[87,180],[91,800],[94,2408],[96,1200],[100,12]];
+    const W=1000,H=250,mE=2800,pt=20,pb=40;
     const sx=p=>p/100*W, sy=e=>pt+(1-e/mE)*(H-pt-pb);
     let d=`M ${sx(pts[0][0])} ${sy(pts[0][1])}`;
     for(let i=1;i<pts.length;i++){const[x0,y0]=[sx(pts[i-1][0]),sy(pts[i-1][1])],[x1,y1]=[sx(pts[i][0]),sy(pts[i][1])],cx=(x0+x1)/2;d+=` C ${cx} ${y0}, ${cx} ${y1}, ${x1} ${y1}`;}
     let s=`<defs><linearGradient id="eg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4A41C" stop-opacity="0.35"/><stop offset="100%" stop-color="#D4A41C" stop-opacity="0.02"/></linearGradient></defs>
     <path d="${d} L ${sx(100)} ${H-pb} L ${sx(0)} ${H-pb} Z" fill="url(#eg)"/>
     <path d="${d}" fill="none" stroke="#D4A41C" stroke-width="3" stroke-linecap="round"/>`;
-    [0,500,1000,1500,2000].forEach(e=>{const y=sy(e);s+=`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4"/><text x="8" y="${y-5}" fill="#666" font-size="10" font-family="Oswald">${e}m</text>`;});
-    [[0,'Start'],[11,'Villach'],[25,'Bozen'],[32,'IBK'],[42,'Bregenz'],[50,'Bern'],[57,'Genf'],[63,'Lyon'],[75,'Montpellier'],[83,'Perpignan'],[100,'Barcelona']].forEach(([p,n])=>{const x=sx(p),e=pts.reduce((b,pt)=>Math.abs(pt[0]-p)<Math.abs(b[0]-p)?pt:b)[1];s+=`<circle cx="${x}" cy="${sy(e)}" r="4" fill="#D4A41C" stroke="#0A0A0A" stroke-width="2"/><text x="${x}" y="${H-10}" fill="#666" font-size="9" font-family="Oswald" text-anchor="middle" letter-spacing="1">${n}</text>`;});
-    [[22,2121,'GR\u00d6DNER JOCH'],[39,1793,'ARLBERG'],[29,1370,'BRENNER'],[7,1100,'TAUERN']].forEach(([p,e,n])=>{s+=`<text x="${sx(p)}" y="${sy(e)-12}" fill="#E8BE3C" font-size="8" font-family="Oswald" text-anchor="middle" font-weight="600" letter-spacing="1">${n}</text>`;});
+    [0,500,1000,1500,2000,2500].forEach(e=>{const y=sy(e);s+=`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4"/><text x="8" y="${y-5}" fill="#666" font-size="10" font-family="Oswald">${e}m</text>`;});
+    [[0,'Start'],[11,'Villach'],[25,'Bozen'],[32,'IBK'],[42,'Bregenz'],[50,'Bern'],[57,'Genf'],[63,'Lyon'],[75,'Montpellier'],[83,'Perpignan'],[94,'Andorra'],[100,'Barcelona']].forEach(([p,n])=>{const x=sx(p),e=pts.reduce((b,pt)=>Math.abs(pt[0]-p)<Math.abs(b[0]-p)?pt:b)[1];s+=`<circle cx="${x}" cy="${sy(e)}" r="4" fill="#D4A41C" stroke="#0A0A0A" stroke-width="2"/><text x="${x}" y="${H-10}" fill="#666" font-size="9" font-family="Oswald" text-anchor="middle" letter-spacing="1">${n}</text>`;});
+    [[22,2121,'GR\u00d6DNER JOCH'],[39,1793,'ARLBERG'],[29,1370,'BRENNER'],[7,1100,'TAUERN'],[94,2408,'PORT D\u2019ENVALIRA']].forEach(([p,e,n])=>{s+=`<text x="${sx(p)}" y="${sy(e)-12}" fill="#E8BE3C" font-size="8" font-family="Oswald" text-anchor="middle" font-weight="600" letter-spacing="1">${n}</text>`;});
     svg.innerHTML=s;
 }
 
-function renderInfoCards() {
-    document.getElementById('infoGrid').innerHTML = infoCards.map(c=>`
-        <div class="info-card">
-            <div class="info-card-icon">${c.icon}</div>
-            <h3>${c.title}</h3><p>${c.desc}</p>
-        </div>`).join('');
+// GPX Generator
+function generateGPX(etappe) {
+    const pts = etappe.routeCoords;
+    let wpts = pts.map((p,i)=>`    <trkpt lat="${p[0]}" lon="${p[1]}"><ele>0</ele></trkpt>`).join('\n');
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Enduro Explorers Strasswalchen"
+  xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Tag ${etappe.id}: ${etappe.from} - ${etappe.to}</name></metadata>
+  <trk>
+    <name>Tag ${etappe.id}: ${etappe.from} \u2192 ${etappe.to}</name>
+    <desc>${etappe.title} - ${etappe.distance} km</desc>
+    <trkseg>
+${wpts}
+    </trkseg>
+  </trk>
+</gpx>`;
 }
 
-function renderChecklist() {
-    const saved = JSON.parse(localStorage.getItem('ee-bcn-checklist')||'{}');
-    document.getElementById('checklistGrid').innerHTML = checklistData.map((cat,ci)=>`
-        <div class="checklist-card"><h3>${cat.title}</h3>
-        ${cat.items.map((item,ii)=>{const k=`${ci}-${ii}`;return`<label class="checklist-item"><input type="checkbox" ${saved[k]?'checked':''} onchange="toggleCheck('${k}',this.checked)"><span>${item}</span></label>`;}).join('')}
-        </div>`).join('');
+function downloadGPX(id) {
+    let gpxContent, filename;
+    if (id === 'full') {
+        let allPts = [];
+        etappen.forEach(e => { allPts = allPts.concat(e.routeCoords); });
+        const wpts = allPts.map(p=>`    <trkpt lat="${p[0]}" lon="${p[1]}"><ele>0</ele></trkpt>`).join('\n');
+        gpxContent = `<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Enduro Explorers Strasswalchen"
+  xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Stra\u00dfwalchen - Barcelona Komplett</name></metadata>
+  <trk>
+    <name>Stra\u00dfwalchen \u2192 Barcelona (via Andorra)</name>
+    <desc>Enduro Explorers Barcelona Tour 2026 - ${routeData.totalKm} km, ${routeData.totalDays} Tage, ${routeData.countries} L\u00e4nder</desc>
+    <trkseg>
+${wpts}
+    </trkseg>
+  </trk>
+</gpx>`;
+        filename = 'EE_Strasswalchen_Barcelona_Komplett.gpx';
+    } else {
+        const e = etappen[id];
+        gpxContent = generateGPX(e);
+        filename = `EE_Tag${e.id}_${e.from.replace(/\s/g,'')}_${e.to.replace(/\s/g,'')}.gpx`;
+    }
+    const blob = new Blob([gpxContent], {type:'application/gpx+xml'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 }
-function toggleCheck(k,v){const s=JSON.parse(localStorage.getItem('ee-bcn-checklist')||'{}');if(v)s[k]=true;else delete s[k];localStorage.setItem('ee-bcn-checklist',JSON.stringify(s));}
+
+function renderGPXGrid() {
+    document.getElementById('gpxGrid').innerHTML = etappen.map((e,i) => {
+        const offroad = e.offroad ? '<span style="color:var(--red);font-size:0.65rem;font-family:Oswald;text-transform:uppercase;letter-spacing:1px;margin-left:6px;">OFFROAD</span>' : '';
+        return `<div class="gpx-card" onclick="downloadGPX(${i})">
+            <div class="gpx-card-info">
+                <div class="gpx-card-title">Tag ${e.id}: ${e.from} \u2192 ${e.to}${offroad}</div>
+                <div class="gpx-card-sub">${e.distance} km \u00b7 ${e.duration} \u00b7 ${e.elevation} Hm</div>
+            </div>
+            <div class="gpx-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                GPX
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// Countdown
+function updateCountdown() {
+    const target = new Date('2026-07-06T06:00:00+02:00');
+    const now = new Date();
+    const diff = target - now;
+    const el = document.getElementById('countdown');
+    if (diff <= 0) {
+        el.innerHTML = '<div class="cd-past">Die Tour hat begonnen!</div>';
+        return;
+    }
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    el.innerHTML = `
+        <div class="cd-block"><div class="cd-value">${days}</div><div class="cd-label">Tage</div></div>
+        <div class="cd-block"><div class="cd-value">${String(hours).padStart(2,'0')}</div><div class="cd-label">Stunden</div></div>
+        <div class="cd-block"><div class="cd-value">${String(mins).padStart(2,'0')}</div><div class="cd-label">Minuten</div></div>
+        <div class="cd-block"><div class="cd-value">${String(secs).padStart(2,'0')}</div><div class="cd-label">Sekunden</div></div>`;
+}
+setInterval(updateCountdown, 1000);
 
 window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);});
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 
 document.addEventListener('DOMContentLoaded',()=>{
-    createParticles(); renderProgress(); renderDayCards(); renderElevation(); renderInfoCards(); renderChecklist();
+    createParticles(); renderProgress(); renderDayCards(); renderElevation(); renderGPXGrid(); updateCountdown();
     setTimeout(initMap,100);
     setTimeout(()=>{animateCounter('stat-km',routeData.totalKm);animateCounter('stat-days',routeData.totalDays);animateCounter('stat-countries',routeData.countries);animateCounter('stat-passes',routeData.passes);},500);
 });
