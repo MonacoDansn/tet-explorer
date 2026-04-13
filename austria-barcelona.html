@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadtrip 2026 - Stra&szlig;walchen nach Barcelona</title>
-    <!-- Allow embedding in Google Sites iframe -->
+    <title>Enduro Explorers Strasswalchen - Barcelona Tour 2026</title>
     <meta name="robots" content="noindex">
     <base target="_blank">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #E85D26;
-            --primary-dark: #C44A1A;
-            --primary-light: #FF7A45;
-            --bg-dark: #0F1419;
-            --bg-card: #1A2028;
-            --bg-card-hover: #222C36;
-            --text: #E8E8E8;
-            --text-muted: #8899AA;
+            --gold: #D4A41C;
+            --gold-light: #E8BE3C;
+            --gold-dark: #B8890F;
+            --gold-glow: rgba(212,164,28,0.3);
+            --black: #0A0A0A;
+            --black-card: #141414;
+            --black-card-hover: #1C1C1C;
+            --black-lighter: #1E1E1E;
+            --text: #D4D4D4;
+            --text-muted: #888888;
             --text-bright: #FFFFFF;
-            --accent-green: #2ECC71;
-            --accent-blue: #3498DB;
-            --accent-yellow: #F1C40F;
-            --border: #2A3644;
-            --shadow: rgba(0,0,0,0.4);
-            --gradient-start: #0F1419;
-            --gradient-end: #1A2535;
+            --border: #2A2A2A;
+            --red: #CC3333;
+            --green: #44AA44;
+            --blue: #4488CC;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg-dark);
+            background: var(--black);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Hero */
+        /* ═══ HERO ═══ */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -45,7 +43,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            background: radial-gradient(ellipse at center, #1a1a0a 0%, var(--black) 70%);
             overflow: hidden;
         }
         .hero::before {
@@ -53,10 +51,22 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background:
-                radial-gradient(ellipse at 20% 50%, rgba(232,93,38,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(52,152,219,0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(46,204,113,0.04) 0%, transparent 50%);
+                radial-gradient(ellipse at 30% 40%, rgba(212,164,28,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(212,164,28,0.04) 0%, transparent 50%);
         }
+        /* Gear pattern background */
+        .hero-gear-bg {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px; height: 800px;
+            opacity: 0.03;
+            border: 40px solid var(--gold);
+            border-radius: 50%;
+            animation: gear-rotate 120s linear infinite;
+        }
+        @keyframes gear-rotate { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
         .hero-particles {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -64,87 +74,118 @@
         }
         .particle {
             position: absolute;
-            width: 3px; height: 3px;
-            background: var(--primary);
+            width: 2px; height: 2px;
+            background: var(--gold);
             border-radius: 50%;
             opacity: 0;
-            animation: float-particle 8s infinite;
+            animation: dust 6s infinite;
         }
-        @keyframes float-particle {
+        @keyframes dust {
             0% { opacity: 0; transform: translateY(100vh) scale(0); }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+            15% { opacity: 0.5; }
+            85% { opacity: 0.5; }
+            100% { opacity: 0; transform: translateY(-10vh) scale(1.5); }
         }
+
         .hero-content {
             position: relative; z-index: 2;
             padding: 2rem; max-width: 900px;
         }
-        .hero-badge {
-            display: inline-block;
-            padding: 6px 18px;
-            border: 1px solid var(--primary);
-            border-radius: 50px;
-            color: var(--primary);
-            font-size: 0.8rem; font-weight: 600;
-            letter-spacing: 3px; text-transform: uppercase;
-            margin-bottom: 2rem;
-            background: rgba(232,93,38,0.08);
+        .hero-logo {
+            width: 180px; height: 180px;
+            margin: 0 auto 1.5rem;
+            filter: drop-shadow(0 0 30px rgba(212,164,28,0.3));
+            animation: logo-pulse 3s ease-in-out infinite;
+        }
+        @keyframes logo-pulse {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(212,164,28,0.2)); }
+            50% { filter: drop-shadow(0 0 40px rgba(212,164,28,0.4)); }
+        }
+        .hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+        .hero-club {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--gold);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
         .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            font-weight: 900; color: var(--text-bright);
-            line-height: 1.05; margin-bottom: 0.5rem;
-            letter-spacing: -2px;
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 700;
+            color: var(--text-bright);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
         }
         .hero h1 span {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--gold);
+            text-shadow: 0 0 40px rgba(212,164,28,0.3);
+        }
+        .hero-date {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            letter-spacing: 4px;
+            margin-bottom: 2rem;
         }
         .hero-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: var(--text-muted); margin-bottom: 2.5rem;
-            font-weight: 300; max-width: 650px;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 600px;
             margin-left: auto; margin-right: auto;
         }
         .hero-stats {
             display: flex; justify-content: center;
-            gap: 3rem; margin-bottom: 3rem; flex-wrap: wrap;
+            gap: 2.5rem; margin-bottom: 3rem; flex-wrap: wrap;
         }
         .hero-stat { text-align: center; }
         .hero-stat-value {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem; font-weight: 700; color: var(--primary);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem; color: var(--gold);
+            line-height: 1;
         }
         .hero-stat-label {
-            font-size: 0.8rem; color: var(--text-muted);
-            text-transform: uppercase; letter-spacing: 2px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 3px;
         }
         .hero-cta {
             display: inline-flex; align-items: center; gap: 10px;
-            padding: 16px 36px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white; text-decoration: none;
-            border-radius: 50px; font-weight: 600; font-size: 1rem;
+            padding: 16px 40px;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 4px;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600; font-size: 1.1rem;
+            text-transform: uppercase; letter-spacing: 2px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(232,93,38,0.3);
+            box-shadow: 0 4px 20px var(--gold-glow);
             cursor: pointer; border: none;
         }
-        .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,93,38,0.4); }
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212,164,28,0.5);
+            background: var(--gold-light);
+        }
         .scroll-indicator {
             position: absolute; bottom: 2rem; left: 50%;
             transform: translateX(-50%); animation: bounce 2s infinite; z-index: 2;
         }
-        .scroll-indicator svg { width: 30px; height: 30px; stroke: var(--text-muted); }
+        .scroll-indicator svg { width: 30px; height: 30px; stroke: var(--gold); opacity: 0.5; }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
             40% { transform: translateX(-50%) translateY(-10px); }
             60% { transform: translateX(-50%) translateY(-5px); }
         }
 
-        /* Nav */
+        /* ═══ NAV ═══ */
         .nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             padding: 1rem 2rem; display: flex;
@@ -152,349 +193,399 @@
             transition: all 0.3s ease;
         }
         .nav.scrolled {
-            background: rgba(15,20,25,0.95);
+            background: rgba(10,10,10,0.95);
             backdrop-filter: blur(20px);
-            box-shadow: 0 2px 20px var(--shadow);
+            border-bottom: 1px solid var(--border);
             padding: 0.7rem 2rem;
         }
-        .nav-logo {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900; font-size: 1.4rem;
-            color: var(--text-bright); text-decoration: none;
+        .nav-logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem; color: var(--gold);
+            text-decoration: none; letter-spacing: 3px;
         }
-        .nav-logo span { color: var(--primary); }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a {
             color: var(--text-muted); text-decoration: none;
-            font-size: 0.9rem; font-weight: 500; transition: color 0.3s;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem; font-weight: 400;
+            text-transform: uppercase; letter-spacing: 2px;
+            transition: color 0.3s;
         }
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover { color: var(--gold); }
 
-        /* Sections */
+        /* ═══ SECTIONS ═══ */
         .section-wrap {
             padding: 4rem 2rem; max-width: 1400px; margin: 0 auto;
         }
         .section-header { margin-bottom: 2rem; }
         .section-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem; font-weight: 700;
-            color: var(--text-bright); margin-bottom: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem; font-weight: 600;
+            color: var(--text-bright); margin-bottom: 0.3rem;
+            text-transform: uppercase; letter-spacing: 2px;
         }
-        .section-header p { color: var(--text-muted); max-width: 700px; }
+        .section-header h2 span { color: var(--gold); }
+        .section-header p { color: var(--text-muted); max-width: 700px; font-size: 0.9rem; }
+        /* Gold accent line under headings */
+        .section-header::after {
+            content: '';
+            display: block;
+            width: 60px; height: 3px;
+            background: var(--gold);
+            margin-top: 0.8rem;
+        }
 
-        /* Progress Bar */
+        /* ═══ PROGRESS ═══ */
         .route-progress {
             display: flex; align-items: center; gap: 0;
-            margin: 3rem 0; position: relative; padding: 0 1rem;
+            margin: 3rem 0 4rem; position: relative; padding: 0 0.5rem;
             overflow-x: auto;
         }
         .progress-stop {
             display: flex; flex-direction: column; align-items: center;
-            position: relative; z-index: 2; cursor: pointer; flex-shrink: 0;
+            position: relative; z-index: 2; flex-shrink: 0;
         }
         .progress-dot {
-            width: 18px; height: 18px; border-radius: 50%;
-            background: var(--bg-card); border: 3px solid var(--primary);
-            transition: all 0.3s; position: relative;
+            width: 16px; height: 16px; border-radius: 50%;
+            background: var(--black-card); border: 3px solid var(--gold);
+            transition: all 0.3s;
         }
-        .progress-stop:hover .progress-dot { background: var(--primary); box-shadow: 0 0 15px rgba(232,93,38,0.5); transform: scale(1.2); }
-        .progress-dot.start, .progress-dot.end { width: 24px; height: 24px; background: var(--primary); }
-        .progress-flag { font-size: 1.2rem; margin-bottom: 4px; }
+        .progress-stop:hover .progress-dot {
+            background: var(--gold); box-shadow: 0 0 12px var(--gold-glow);
+        }
+        .progress-dot.start, .progress-dot.end {
+            width: 22px; height: 22px; background: var(--gold);
+        }
+        .progress-flag { font-size: 1.1rem; margin-bottom: 3px; }
         .progress-label {
-            position: absolute; top: 28px; white-space: nowrap;
-            font-size: 0.65rem; color: var(--text-muted); font-weight: 500;
-        }
-        .progress-line { flex: 1; height: 3px; background: var(--border); min-width: 15px; position: relative; }
-        .progress-line::after {
-            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 2px;
+            position: absolute; top: 25px; white-space: nowrap;
+            font-size: 0.6rem; color: var(--text-muted);
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase; letter-spacing: 1px;
         }
         .progress-date {
             position: absolute; bottom: -18px; white-space: nowrap;
-            font-size: 0.6rem; color: var(--primary-light); font-weight: 600;
+            font-size: 0.55rem; color: var(--gold); font-weight: 600;
         }
+        .progress-line { flex: 1; height: 2px; background: var(--border); min-width: 12px; }
+        .progress-line::after {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 100%;
+            background: var(--gold); border-radius: 1px;
+        }
+        .progress-line { position: relative; }
 
-        /* Map */
+        /* ═══ MAP ═══ */
         .map-container {
-            border-radius: 16px; overflow: hidden;
-            border: 1px solid var(--border); height: 550px; position: relative;
+            border-radius: 4px; overflow: hidden;
+            border: 2px solid var(--border); height: 550px; position: relative;
         }
-        #leafletMap { width: 100%; height: 100%; background: #1a1a2e; }
+        #leafletMap { width: 100%; height: 100%; background: #111; }
         .map-error {
             display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--bg-card); color: var(--text-muted);
+            background: var(--black-card); color: var(--text-muted);
             justify-content: center; align-items: center; flex-direction: column; gap: 1rem;
             font-size: 0.9rem; text-align: center; padding: 2rem;
         }
-        .map-error a { color: var(--primary); }
+        .map-error a { color: var(--gold); }
 
-        /* Day Cards */
+        /* ═══ DAY CARDS ═══ */
         .days-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
             gap: 1.5rem; margin-top: 1.5rem;
         }
         .day-card {
-            background: var(--bg-card); border-radius: 16px; overflow: hidden;
+            background: var(--black-card); border-radius: 4px; overflow: hidden;
             border: 1px solid var(--border);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
         }
         .day-card:hover {
-            transform: translateY(-4px); border-color: var(--primary);
-            box-shadow: 0 12px 40px rgba(232,93,38,0.15);
-            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: 0 8px 30px rgba(212,164,28,0.1);
+            background: var(--black-card-hover);
         }
         .day-card-image { position: relative; height: 200px; overflow: hidden; }
         .day-card-image img {
             width: 100%; height: 100%; object-fit: cover;
             transition: transform 0.6s ease;
+            filter: saturate(0.8);
         }
-        .day-card:hover .day-card-image img { transform: scale(1.05); }
+        .day-card:hover .day-card-image img { transform: scale(1.05); filter: saturate(1); }
         .day-card-image::after {
-            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
-            background: linear-gradient(transparent, rgba(26,32,40,0.9));
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
+            background: linear-gradient(transparent, rgba(10,10,10,0.95));
         }
         .day-number {
             position: absolute; top: 12px; left: 12px;
-            padding: 6px 14px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; z-index: 2;
+            padding: 6px 16px;
+            background: var(--gold); color: var(--black);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem; letter-spacing: 2px;
+            z-index: 2;
         }
         .day-date {
-            position: absolute; top: 12px; left: auto; right: auto;
-            top: 46px; left: 12px;
+            position: absolute; top: 44px; left: 12px;
             padding: 4px 10px;
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
-            border-radius: 20px; font-size: 0.7rem; font-weight: 600;
-            color: var(--accent-yellow); z-index: 2;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+            font-size: 0.7rem; font-weight: 600;
+            color: var(--gold-light); z-index: 2;
+            font-family: 'Oswald', sans-serif; letter-spacing: 1px;
         }
         .day-country-flags {
             position: absolute; top: 12px; right: 12px;
-            font-size: 1.6rem; z-index: 2;
+            font-size: 1.5rem; z-index: 2;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
         }
         .day-route-label {
             position: absolute; bottom: 12px; left: 12px; z-index: 2;
-            font-size: 0.75rem; color: rgba(255,255,255,0.7);
-            background: rgba(0,0,0,0.4); padding: 3px 10px;
-            border-radius: 20px; backdrop-filter: blur(5px);
+            font-size: 0.7rem; color: rgba(255,255,255,0.6);
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase; letter-spacing: 1px;
         }
         .day-card-body { padding: 1.2rem 1.4rem; }
         .day-card-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.15rem; font-weight: 700;
-            color: var(--text-bright); margin-bottom: 0.4rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem; font-weight: 600;
+            color: var(--text-bright); margin-bottom: 0.3rem;
+            text-transform: uppercase; letter-spacing: 1px;
         }
         .day-card-route {
-            font-size: 0.85rem; color: var(--primary-light);
+            font-size: 0.8rem; color: var(--gold);
             margin-bottom: 0.6rem; font-weight: 500;
+            font-family: 'Oswald', sans-serif;
         }
         .day-card-meta { display: flex; gap: 1rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
         .day-meta-item {
             display: flex; align-items: center; gap: 5px;
-            font-size: 0.82rem; color: var(--text-muted);
+            font-size: 0.8rem; color: var(--text-muted);
         }
-        .day-meta-item svg { width: 15px; height: 15px; stroke: var(--primary); flex-shrink: 0; }
+        .day-meta-item svg { width: 14px; height: 14px; stroke: var(--gold); flex-shrink: 0; }
         .day-card-desc {
-            font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;
+            font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;
             display: -webkit-box; -webkit-line-clamp: 3;
             -webkit-box-orient: vertical; overflow: hidden;
         }
         .day-card-tags { display: flex; gap: 6px; margin-top: 0.8rem; flex-wrap: wrap; }
         .day-tag {
-            padding: 3px 10px; background: rgba(255,255,255,0.05);
-            border-radius: 20px; font-size: 0.72rem; color: var(--text-muted);
+            padding: 3px 10px;
+            background: rgba(212,164,28,0.08);
+            border: 1px solid rgba(212,164,28,0.15);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.68rem; color: var(--gold);
+            text-transform: uppercase; letter-spacing: 1px;
         }
-        .difficulty-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
-        .diff-easy { background: rgba(46,204,113,0.15); color: #2ECC71; border: 1px solid rgba(46,204,113,0.3); }
-        .diff-moderate { background: rgba(241,196,15,0.15); color: #F1C40F; border: 1px solid rgba(241,196,15,0.3); }
-        .diff-hard { background: rgba(231,76,60,0.15); color: #E74C3C; border: 1px solid rgba(231,76,60,0.3); }
+        .difficulty-badge {
+            padding: 4px 12px; font-size: 0.68rem; font-weight: 600;
+            font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .diff-easy { background: rgba(68,170,68,0.12); color: var(--green); border: 1px solid rgba(68,170,68,0.25); }
+        .diff-moderate { background: rgba(212,164,28,0.12); color: var(--gold); border: 1px solid rgba(212,164,28,0.25); }
+        .diff-hard { background: rgba(204,51,51,0.12); color: var(--red); border: 1px solid rgba(204,51,51,0.25); }
 
-        /* Rest Day indicator */
         .rest-day-badge {
-            display: inline-block; padding: 3px 10px;
-            background: rgba(52,152,219,0.15); color: var(--accent-blue);
-            border: 1px solid rgba(52,152,219,0.3);
-            border-radius: 20px; font-size: 0.72rem; font-weight: 600;
+            display: inline-block; padding: 3px 10px; margin-bottom: 6px;
+            background: rgba(68,136,204,0.12); color: var(--blue);
+            border: 1px solid rgba(68,136,204,0.25);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px;
         }
 
-        /* Elevation */
+        /* ═══ ELEVATION ═══ */
         .elevation-chart {
-            background: var(--bg-card); border-radius: 16px;
+            background: var(--black-card); border-radius: 4px;
             border: 1px solid var(--border); padding: 2rem;
             height: 300px; overflow: hidden;
         }
         .elevation-svg { width: 100%; height: 100%; }
 
-        /* Info Cards */
+        /* ═══ INFO CARDS ═══ */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem; margin-top: 1.5rem;
         }
         .info-card {
-            background: var(--bg-card); border-radius: 16px; padding: 1.5rem;
+            background: var(--black-card); border-radius: 4px; padding: 1.5rem;
             border: 1px solid var(--border); transition: all 0.3s;
         }
-        .info-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .info-card:hover { border-color: var(--gold); transform: translateY(-2px); }
         .info-card-icon {
-            width: 48px; height: 48px; border-radius: 12px;
+            width: 48px; height: 48px; border-radius: 4px;
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1rem; background: rgba(212,164,28,0.1);
         }
-        .info-card-icon svg { width: 24px; height: 24px; }
+        .info-card-icon svg { width: 24px; height: 24px; stroke: var(--gold); }
         .info-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem; font-weight: 700;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem; font-weight: 600;
             color: var(--text-bright); margin-bottom: 0.5rem;
+            text-transform: uppercase; letter-spacing: 1px;
         }
-        .info-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+        .info-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
 
-        /* Checklist */
+        /* ═══ CHECKLIST ═══ */
         .checklist-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem; margin-top: 1.5rem;
         }
         .checklist-card {
-            background: var(--bg-card); border-radius: 16px; padding: 1.5rem;
+            background: var(--black-card); border-radius: 4px; padding: 1.5rem;
             border: 1px solid var(--border);
         }
         .checklist-card h3 {
-            font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700;
+            font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 600;
             color: var(--text-bright); margin-bottom: 1rem;
-            display: flex; align-items: center; gap: 8px;
+            text-transform: uppercase; letter-spacing: 1px;
         }
         .checklist-item {
             display: flex; align-items: center; gap: 10px;
-            padding: 6px 0; font-size: 0.85rem; color: var(--text-muted);
+            padding: 6px 0; font-size: 0.82rem; color: var(--text-muted);
             cursor: pointer; transition: color 0.2s;
         }
         .checklist-item:hover { color: var(--text); }
         .checklist-item input[type="checkbox"] {
             appearance: none; width: 18px; height: 18px;
-            border: 2px solid var(--border); border-radius: 4px;
+            border: 2px solid var(--border); border-radius: 2px;
             cursor: pointer; flex-shrink: 0; position: relative; transition: all 0.2s;
         }
-        .checklist-item input[type="checkbox"]:checked { background: var(--primary); border-color: var(--primary); }
+        .checklist-item input[type="checkbox"]:checked { background: var(--gold); border-color: var(--gold); }
         .checklist-item input[type="checkbox"]:checked::after {
             content: '\2713'; position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%); color: white; font-size: 12px; font-weight: bold;
+            transform: translate(-50%, -50%); color: var(--black); font-size: 12px; font-weight: bold;
         }
         .checklist-item input[type="checkbox"]:checked + span {
-            text-decoration: line-through; color: var(--text-muted); opacity: 0.6;
+            text-decoration: line-through; opacity: 0.4;
         }
 
-        /* Modal */
+        /* ═══ MODAL ═══ */
         .modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
             z-index: 200; display: none;
             align-items: center; justify-content: center; padding: 2rem;
         }
         .modal-overlay.active { display: flex; }
         .modal {
-            background: var(--bg-card); border-radius: 20px;
+            background: var(--black-card); border-radius: 4px;
             max-width: 750px; width: 100%; max-height: 90vh; overflow-y: auto;
-            border: 1px solid var(--border);
-            box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+            border: 1px solid var(--gold);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.6);
             animation: modal-in 0.3s ease;
         }
         @keyframes modal-in {
             from { opacity: 0; transform: scale(0.95) translateY(20px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
-        .modal-image { height: 280px; position: relative; overflow: hidden; }
+        .modal-image { height: 260px; position: relative; overflow: hidden; }
         .modal-image img { width: 100%; height: 100%; object-fit: cover; }
         .modal-image::after {
-            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
-            background: linear-gradient(transparent, var(--bg-card));
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(transparent, var(--black-card));
         }
         .modal-close {
             position: absolute; top: 16px; right: 16px;
             width: 36px; height: 36px;
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(10px);
-            border: none; border-radius: 50%; color: white; font-size: 1.2rem;
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-            z-index: 2; transition: background 0.3s;
+            background: rgba(0,0,0,0.6); border: 1px solid var(--border);
+            color: white; font-size: 1.2rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; z-index: 2;
+            transition: all 0.3s;
         }
-        .modal-close:hover { background: rgba(232,93,38,0.8); }
+        .modal-close:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
         .modal-body { padding: 1.5rem 2rem 2rem; }
         .modal-body h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem; font-weight: 700;
-            color: var(--text-bright); margin-bottom: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.6rem; font-weight: 600;
+            color: var(--text-bright); margin-bottom: 0.3rem;
+            text-transform: uppercase; letter-spacing: 1px;
         }
-        .modal-route-info { color: var(--primary-light); font-weight: 500; margin-bottom: 1rem; }
+        .modal-route-info {
+            color: var(--gold); font-weight: 500; margin-bottom: 1rem;
+            font-family: 'Oswald', sans-serif; letter-spacing: 1px;
+        }
         .modal-stats {
             display: grid; grid-template-columns: repeat(3, 1fr);
             gap: 1rem; margin-bottom: 1.5rem;
         }
         .modal-stat {
             text-align: center; padding: 1rem;
-            background: rgba(255,255,255,0.03); border-radius: 12px;
-            border: 1px solid var(--border);
+            background: rgba(212,164,28,0.04); border: 1px solid var(--border);
         }
         .modal-stat-value {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem; font-weight: 700; color: var(--primary);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem; color: var(--gold);
         }
         .modal-stat-label {
-            font-size: 0.75rem; color: var(--text-muted);
-            text-transform: uppercase; letter-spacing: 1px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 2px;
         }
-        .modal-desc { color: var(--text); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+        .modal-desc { color: var(--text); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; }
         .modal-highlights { margin-bottom: 1.5rem; }
         .modal-highlights h4 {
-            font-family: 'Montserrat', sans-serif; color: var(--text-bright);
-            font-size: 0.9rem; margin-bottom: 0.5rem;
+            font-family: 'Oswald', sans-serif; color: var(--text-bright);
+            font-size: 0.85rem; margin-bottom: 0.5rem;
+            text-transform: uppercase; letter-spacing: 1px;
         }
         .highlight-list { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
         .highlight-list li {
-            padding: 5px 14px; background: rgba(232,93,38,0.1);
-            border: 1px solid rgba(232,93,38,0.2); border-radius: 20px;
-            font-size: 0.8rem; color: var(--primary-light);
+            padding: 4px 12px; background: rgba(212,164,28,0.08);
+            border: 1px solid rgba(212,164,28,0.2);
+            font-size: 0.75rem; color: var(--gold-light);
+            font-family: 'Oswald', sans-serif; letter-spacing: 1px;
         }
         .modal-actions { display: flex; gap: 1rem; }
         .btn-primary {
             flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 12px 20px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white; border: none; border-radius: 10px;
-            font-size: 0.85rem; font-weight: 600; font-family: 'Inter', sans-serif;
+            padding: 14px 20px;
+            background: var(--gold); color: var(--black);
+            border: none;
+            font-family: 'Oswald', sans-serif; font-size: 0.9rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 2px;
             cursor: pointer; transition: all 0.3s; text-decoration: none;
         }
-        .btn-primary:hover { box-shadow: 0 4px 15px rgba(232,93,38,0.3); transform: translateY(-1px); }
+        .btn-primary:hover { background: var(--gold-light); box-shadow: 0 4px 15px var(--gold-glow); }
         .btn-secondary {
             display: flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 12px 20px; background: rgba(255,255,255,0.05);
-            color: var(--text-muted); border: 1px solid var(--border); border-radius: 10px;
-            font-size: 0.85rem; cursor: pointer; transition: all 0.3s;
-            text-decoration: none; font-family: 'Inter', sans-serif;
+            padding: 14px 20px; background: transparent;
+            color: var(--gold); border: 1px solid var(--gold);
+            font-family: 'Oswald', sans-serif; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; transition: all 0.3s; text-decoration: none;
         }
-        .btn-secondary:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+        .btn-secondary:hover { background: rgba(212,164,28,0.1); }
 
-        /* Footer */
+        /* ═══ FOOTER ═══ */
         footer {
             padding: 3rem 2rem; border-top: 1px solid var(--border);
             text-align: center; max-width: 1400px; margin: 0 auto;
         }
-        footer p { color: var(--text-muted); font-size: 0.85rem; }
-        footer a { color: var(--primary); text-decoration: none; }
+        .footer-logo { width: 60px; margin-bottom: 1rem; opacity: 0.5; }
+        footer p { color: var(--text-muted); font-size: 0.8rem; }
+        footer a { color: var(--gold); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
-        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .footer-links {
+            display: flex; justify-content: center; gap: 2rem;
+            margin-bottom: 1rem; flex-wrap: wrap;
+        }
+        .footer-links a {
+            font-family: 'Oswald', sans-serif; text-transform: uppercase;
+            letter-spacing: 2px; font-size: 0.8rem;
+        }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        /* ═══ SCROLLBAR ═══ */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--black); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-        /* Responsive */
+        /* ═══ RESPONSIVE ═══ */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero-stats { gap: 1.5rem; }
+            .hero-logo { width: 140px; height: 140px; }
             .days-grid { grid-template-columns: 1fr; }
             .info-grid { grid-template-columns: 1fr; }
             .checklist-grid { grid-template-columns: 1fr; }
@@ -505,28 +596,25 @@
             .elevation-chart { height: 200px; }
         }
 
-        /* Animations */
+        /* ═══ ANIMATIONS ═══ */
         .card-enter { opacity: 0; transform: translateY(20px); animation: card-fade-in 0.4s ease forwards; }
         @keyframes card-fade-in { to { opacity: 1; transform: translateY(0); } }
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* Leaflet overrides for dark theme */
-        .leaflet-container { background: #1a1a2e; }
-        .leaflet-control-attribution { background: rgba(15,20,25,0.8) !important; color: #8899AA !important; font-size: 10px !important; }
-        .leaflet-control-attribution a { color: var(--primary) !important; }
-        .leaflet-control-zoom a {
-            background: var(--bg-card) !important; color: var(--text) !important;
-            border-color: var(--border) !important;
-        }
-        .leaflet-popup-content-wrapper { background: var(--bg-card); color: var(--text); border-radius: 12px; }
-        .leaflet-popup-tip { background: var(--bg-card); }
+        /* Leaflet dark overrides */
+        .leaflet-container { background: #111; }
+        .leaflet-control-attribution { background: rgba(10,10,10,0.8) !important; color: #666 !important; font-size: 9px !important; }
+        .leaflet-control-attribution a { color: var(--gold) !important; }
+        .leaflet-control-zoom a { background: var(--black-card) !important; color: var(--gold) !important; border-color: var(--border) !important; }
+        .leaflet-popup-content-wrapper { background: var(--black-card); color: var(--text); border-radius: 4px; border: 1px solid var(--gold); }
+        .leaflet-popup-tip { background: var(--black-card); }
     </style>
 </head>
 <body>
 
 <nav class="nav" id="navbar">
-    <a href="#" class="nav-logo">AT<span>BCN</span> 2026</a>
+    <a href="#" class="nav-logo-text">ENDURO EXPLORERS</a>
     <ul class="nav-links">
         <li><a href="#overview">Route</a></li>
         <li><a href="#map">Karte</a></li>
@@ -537,11 +625,16 @@
 </nav>
 
 <section class="hero">
+    <div class="hero-gear-bg"></div>
     <div class="hero-particles" id="particles"></div>
     <div class="hero-content">
-        <div class="hero-badge">6. &ndash; 20. Juli 2026</div>
+        <div class="hero-logo">
+            <img id="clubLogo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Ccircle cx='90' cy='90' r='85' fill='none' stroke='%23D4A41C' stroke-width='4'/%3E%3Ctext x='90' y='50' text-anchor='middle' fill='%23D4A41C' font-family='sans-serif' font-size='11' font-weight='bold'%3EENDURO EXPLORERS%3C/text%3E%3Ctext x='90' y='140' text-anchor='middle' fill='%23D4A41C' font-family='sans-serif' font-size='11' font-weight='bold'%3ESTRASSWALCHEN%3C/text%3E%3Ctext x='90' y='95' text-anchor='middle' fill='%23D4A41C' font-family='sans-serif' font-size='40'%3E%F0%9F%A6%8A%3C/text%3E%3C/svg%3E" alt="Enduro Explorers Logo">
+        </div>
+        <div class="hero-club">Enduro Explorers Strasswalchen</div>
         <h1>Stra&szlig;walchen <span>Barcelona</span></h1>
-        <p class="hero-subtitle">Von Salzburg quer durch die Alpen, &uuml;ber die Schweiz und S&uuml;dfrankreich ans Mittelmeer &mdash; 10 Fahrtage, 4 L&auml;nder, 1 Abenteuer.</p>
+        <div class="hero-date">6. &ndash; 20. Juli 2026</div>
+        <p class="hero-subtitle">10 Fahrtage durch die Alpen, &uuml;ber die Schweiz und S&uuml;dfrankreich ans Mittelmeer. 4 L&auml;nder, 8 P&auml;sse, 1 Abenteuer.</p>
         <div class="hero-stats">
             <div class="hero-stat">
                 <div class="hero-stat-value" id="stat-km">0</div>
@@ -562,7 +655,7 @@
         </div>
         <a href="#overview" class="hero-cta">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Route entdecken
+            Route Entdecken
         </a>
     </div>
     <div class="scroll-indicator">
@@ -572,39 +665,39 @@
 
 <section class="section-wrap fade-in" id="overview">
     <div class="section-header">
-        <h2>Route &Uuml;bersicht</h2>
-        <p>Von Stra&szlig;walchen bei Salzburg durch die Alpen, die Schweiz und S&uuml;dfrankreich bis Barcelona. ~2.000 km in 10 Fahrtagen mit Ruhetagen unterwegs.</p>
+        <h2>Route <span>&Uuml;bersicht</span></h2>
+        <p>Von Stra&szlig;walchen bei Salzburg durch die Alpen, die Schweiz und S&uuml;dfrankreich bis Barcelona. ~2.000 km in 10 Fahrtagen mit Ruhetagen.</p>
     </div>
     <div class="route-progress" id="routeProgress"></div>
 </section>
 
 <section class="section-wrap fade-in" id="map" style="padding-top:2rem;">
     <div class="section-header">
-        <h2>Interaktive Karte</h2>
-        <p>Die komplette Route mit allen Etappen. Klicke auf die Strecken f&uuml;r Details.</p>
+        <h2>Interaktive <span>Karte</span></h2>
+        <p>Alle 10 Etappen auf einen Blick. Klicke auf die Strecken f&uuml;r Details.</p>
     </div>
     <div class="map-container">
         <div id="leafletMap"></div>
         <div class="map-error" id="mapError">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#8899AA" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
             <p>Karte konnte nicht geladen werden.<br>
-            <a href="https://www.google.com/maps/dir/Stra%C3%9Fwalchen/Villach/Bozen/Innsbruck/Bregenz/Bern/Genf/Lyon/Avignon/Montpellier/Perpignan/Barcelona" target="_blank">Route in Google Maps &ouml;ffnen</a></p>
+            <a href="https://www.google.com/maps/dir/Stra%C3%9Fwalchen/Villach/Bozen/Innsbruck/Bregenz/Bern/Genf/Lyon/Avignon/Montpellier/Perpignan/Barcelona" target="_blank">Route in Google Maps</a></p>
         </div>
     </div>
 </section>
 
 <section class="section-wrap fade-in" id="etappen">
     <div class="section-header">
-        <h2>Die 10 Etappen</h2>
-        <p>Jeder Fahrtag im Detail &mdash; mit Datum, Entfernung und Highlights. Klicke f&uuml;r mehr Infos.</p>
+        <h2>Die 10 <span>Etappen</span></h2>
+        <p>Jeder Fahrtag im Detail. Klicke f&uuml;r mehr Infos.</p>
     </div>
     <div class="days-grid" id="daysGrid"></div>
 </section>
 
 <section class="section-wrap fade-in" id="elevation">
     <div class="section-header">
-        <h2>H&ouml;henprofil</h2>
-        <p>Von den Alpen ans Mittelmeer &mdash; die Alpen&uuml;berquerung im &Uuml;berblick.</p>
+        <h2>H&ouml;hen<span>profil</span></h2>
+        <p>Von den Alpen ans Mittelmeer &mdash; das H&ouml;henprofil der gesamten Tour.</p>
     </div>
     <div class="elevation-chart">
         <svg class="elevation-svg" id="elevationSvg" viewBox="0 0 1000 250" preserveAspectRatio="none"></svg>
@@ -613,26 +706,26 @@
 
 <section class="section-wrap fade-in" id="info">
     <div class="section-header">
-        <h2>Praktische Infos</h2>
-        <p>Alles Wichtige f&uuml;r die Reiseplanung auf einen Blick.</p>
+        <h2>Praktische <span>Infos</span></h2>
+        <p>Alles Wichtige f&uuml;r die Reiseplanung.</p>
     </div>
     <div class="info-grid" id="infoGrid"></div>
 </section>
 
 <section class="section-wrap fade-in" id="checklist">
     <div class="section-header">
-        <h2>Packliste</h2>
-        <p>Interaktive Checkliste &mdash; hake ab, was du schon eingepackt hast. Wird im Browser gespeichert.</p>
+        <h2>Pack<span>liste</span></h2>
+        <p>Interaktive Checkliste &mdash; wird im Browser gespeichert.</p>
     </div>
     <div class="checklist-grid" id="checklistGrid"></div>
 </section>
 
 <footer>
     <div class="footer-links">
-        <a href="https://earth.google.com/web/@44.17368096,4.62604574,266.71989339a,2106502.12692976d,35y,0h,0t,0r/data=CgRCAggBMikKJwolCiExODlzUUR5bnU1bHREM0VtOVlNT2VVWUpFVkhfaWg0OEMgAToDCgEwQgIIAEoICK2OxPwBEAE" target="_blank">Route in Google Earth</a>
+        <a href="https://earth.google.com/web/@44.17368096,4.62604574,266.71989339a,2106502.12692976d,35y,0h,0t,0r/data=CgRCAggBMikKJwolCiExODlzUUR5bnU1bHREM0VtOVlNT2VVWUpFVkhfaWg0OEMgAToDCgEwQgIIAEoICK2OxPwBEAE" target="_blank">Google Earth</a>
         <a href="index.html">TET Explorer</a>
     </div>
-    <p>Roadtrip Sommer 2026 &mdash; Stra&szlig;walchen &rarr; Barcelona &mdash; 6.&ndash;20. Juli</p>
+    <p>Enduro Explorers Strasswalchen &mdash; Barcelona Tour 2026<br>6.&ndash;20. Juli &mdash; Ride the Adventure</p>
 </footer>
 
 <!-- Modal -->
@@ -660,7 +753,7 @@
                 </div>
             </div>
             <p class="modal-desc" id="modalDesc"></p>
-            <div class="modal-highlights" id="modalHighlights">
+            <div class="modal-highlights">
                 <h4>Highlights</h4>
                 <ul class="highlight-list" id="modalHighlightList"></ul>
             </div>
@@ -669,7 +762,7 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                     Google Maps
                 </a>
-                <a id="modalGoogleEarth" href="https://earth.google.com/web/@44.17368096,4.62604574,266.71989339a,2106502.12692976d,35y,0h,0t,0r/data=CgRCAggBMikKJwolCiExODlzUUR5bnU1bHREM0VtOVlNT2VVWUpFVkhfaWg0OEMgAToDCgEwQgIIAEoICK2OxPwBEAE" target="_blank" class="btn-secondary">
+                <a href="https://earth.google.com/web/@44.17368096,4.62604574,266.71989339a,2106502.12692976d,35y,0h,0t,0r/data=CgRCAggBMikKJwolCiExODlzUUR5bnU1bHREM0VtOVlNT2VVWUpFVkhfaWg0OEMgAToDCgEwQgIIAEoICK2OxPwBEAE" target="_blank" class="btn-secondary">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
                     Google Earth
                 </a>
@@ -678,259 +771,204 @@
     </div>
 </div>
 
-<!-- Leaflet loaded BEFORE closing body, with integrity check -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
 <script>
-// ─── DATA ────────────────────────────────────────────────────────
-// 6. Juli = Tag 1, 20. Juli = Ankunft
-// 10 Fahrtage + Ruhetage dazwischen
+// ═══ DATA ═══════════════════════════════════════════════════════
 const etappen = [
     {
         id: 1, date: "So, 6. Juli",
         title: "Aufbruch in den S\u00fcden",
         from: "Stra\u00dfwalchen", to: "Villach",
         distance: 210, duration: "2,5h", elevation: "1.100",
-        flags: "\u{1F1E6}\u{1F1F9}",
-        difficulty: "moderate",
-        description: "Start in Stra\u00dfwalchen bei Salzburg. \u00dcber die Tauernautobahn und durch die Gurktaler Alpen nach K\u00e4rnten. Erster Halt am t\u00fcrkisblauen W\u00f6rthersee, dann weiter nach Villach. Ein gem\u00fctlicher Einstieg zum Warmfahren.",
-        highlights: ["Tauernautobahn", "W\u00f6rthersee", "Villach Altstadt", "K\u00e4rntner K\u00fcche"],
-        tags: ["Autobahn", "K\u00e4rnten", "Seen"],
+        flags: "\u{1F1E6}\u{1F1F9}", difficulty: "moderate",
+        description: "Start in Stra\u00dfwalchen bei Salzburg. \u00dcber die Tauernautobahn und durch die Gurktaler Alpen nach K\u00e4rnten. Erster Halt am t\u00fcrkisblauen W\u00f6rthersee, dann weiter nach Villach. Gem\u00fctlicher Einstieg zum Warmfahren.",
+        highlights: ["Tauernautobahn","W\u00f6rthersee","Villach Altstadt","K\u00e4rntner K\u00fcche"],
+        tags: ["Autobahn","K\u00e4rnten","Seen"],
         image: "https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=600&h=400&fit=crop",
         googleMaps: "https://www.google.com/maps/dir/Stra%C3%9Fwalchen/Villach",
-        routeCoords: [[47.87, 13.26], [47.40, 13.62], [47.07, 13.90], [46.75, 14.00], [46.61, 13.86]]
+        routeCoords: [[47.87,13.26],[47.40,13.62],[47.07,13.90],[46.75,14.00],[46.61,13.86]]
     },
     {
         id: 2, date: "Mo, 7. Juli",
         title: "Dolomiten-Traum",
         from: "Villach", to: "Bozen",
         distance: 210, duration: "3,5h", elevation: "2.800",
-        flags: "\u{1F1E6}\u{1F1F9}\u{1F1EE}\u{1F1F9}",
-        difficulty: "hard",
-        description: "Von K\u00e4rnten \u00fcber das Pustertal in die Dolomiten-Welt S\u00fcdtirols. Drei Zinnen, Gr\u00f6dner Joch und spektakul\u00e4re Felst\u00fcrme. Ziel ist Bozen \u2014 \u00f6sterreichisch-italienische Kultur, Wein und die Lauben-Altstadt.",
-        highlights: ["Pustertal", "Drei Zinnen", "Gr\u00f6dner Joch (2.121m)", "Bozen Lauben", "S\u00fcdtiroler Wein"],
-        tags: ["Hochalpin", "Dolomiten", "S\u00fcdtirol"],
+        flags: "\u{1F1E6}\u{1F1F9}\u{1F1EE}\u{1F1F9}", difficulty: "hard",
+        description: "Von K\u00e4rnten \u00fcber das Pustertal in die Dolomiten-Welt S\u00fcdtirols. Drei Zinnen, Gr\u00f6dner Joch und spektakul\u00e4re Felst\u00fcrme. Ziel ist Bozen \u2014 \u00f6sterreichisch-italienische Kultur und Wein.",
+        highlights: ["Pustertal","Drei Zinnen","Gr\u00f6dner Joch (2.121m)","Bozen Lauben","S\u00fcdtiroler Wein"],
+        tags: ["Hochalpin","Dolomiten","S\u00fcdtirol"],
         image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&h=400&fit=crop",
         googleMaps: "https://www.google.com/maps/dir/Villach/Bozen",
-        routeCoords: [[46.61, 13.86], [46.73, 12.77], [46.62, 11.80], [46.50, 11.35]]
+        routeCoords: [[46.61,13.86],[46.73,12.77],[46.62,11.80],[46.50,11.35]]
     },
     {
         id: 3, date: "Di, 8. Juli",
         title: "\u00dcber den Brenner",
         from: "Bozen", to: "Innsbruck",
         distance: 125, duration: "1,5h", elevation: "1.400",
-        flags: "\u{1F1EE}\u{1F1F9}\u{1F1E6}\u{1F1F9}",
-        difficulty: "moderate",
-        description: "Kurze Etappe \u00fcber den historischen Brennerpass. Entlang der Europabr\u00fccke durch das Wipptal nach Innsbruck. Die Alpenhauptstadt mit Goldenem Dachl, Bergisel-Schanze und Nordkette lohnt einen Nachmittag Stadtbummel.",
-        highlights: ["Brennerpass (1.370m)", "Europabr\u00fccke", "Goldenes Dachl", "Bergisel-Schanze", "Nordkette"],
-        tags: ["Brenner", "Tirol", "Kultur"],
+        flags: "\u{1F1EE}\u{1F1F9}\u{1F1E6}\u{1F1F9}", difficulty: "moderate",
+        description: "Kurze Etappe \u00fcber den historischen Brennerpass. Entlang der Europabr\u00fccke durch das Wipptal nach Innsbruck. Die Alpenhauptstadt mit Goldenem Dachl und Nordkette lohnt einen Nachmittag.",
+        highlights: ["Brennerpass (1.370m)","Europabr\u00fccke","Goldenes Dachl","Bergisel","Nordkette"],
+        tags: ["Brenner","Tirol","Kultur"],
         image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=600&h=400&fit=crop",
         googleMaps: "https://www.google.com/maps/dir/Bozen/Innsbruck",
-        routeCoords: [[46.50, 11.35], [46.73, 11.46], [47.00, 11.45], [47.27, 11.40]]
+        routeCoords: [[46.50,11.35],[46.73,11.46],[47.00,11.45],[47.27,11.40]]
     },
     {
         id: 4, date: "Mi, 9. Juli",
         title: "Arlberg & Bodensee",
         from: "Innsbruck", to: "Bregenz",
         distance: 200, duration: "2,5h", elevation: "1.500",
-        flags: "\u{1F1E6}\u{1F1F9}",
-        difficulty: "moderate",
-        description: "Durchs Inntal und \u00fcber den Arlbergpass \u2014 die Wetterscheide Tirols. Von St. Anton nach Vorarlberg und hinunter ans Bodenseeufer nach Bregenz. Perfekt f\u00fcr Festspiele oder einfach Abend am See.",
-        highlights: ["Inntal", "Arlbergpass (1.793m)", "St. Anton", "Bodensee", "Bregenz Festspiele"],
-        tags: ["Arlberg", "Inntal", "Bodensee"],
+        flags: "\u{1F1E6}\u{1F1F9}", difficulty: "moderate",
+        description: "Durchs Inntal und \u00fcber den legend\u00e4ren Arlbergpass nach Vorarlberg. Von St. Anton hinunter ans Bodenseeufer nach Bregenz. Abend am See oder bei den Festspielen.",
+        highlights: ["Inntal","Arlbergpass (1.793m)","St. Anton","Bodensee","Bregenz"],
+        tags: ["Arlberg","Inntal","Bodensee"],
         image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
         googleMaps: "https://www.google.com/maps/dir/Innsbruck/Bregenz",
-        routeCoords: [[47.27, 11.40], [47.13, 10.26], [47.19, 10.15], [47.50, 9.75]]
+        routeCoords: [[47.27,11.40],[47.13,10.26],[47.19,10.15],[47.50,9.75]]
     },
     {
         id: 5, date: "Do, 10. Juli",
         title: "Schweizer Mittelland",
         from: "Bregenz", to: "Bern",
         distance: 250, duration: "3h", elevation: "600",
-        flags: "\u{1F1E6}\u{1F1F9}\u{1F1E8}\u{1F1ED}",
-        difficulty: "easy",
-        description: "Vom Bodensee quer durch die Schweiz. Vorbei an Z\u00fcrich und dem Z\u00fcrichsee ins h\u00fcgelige Emmental zur Bundesstadt Bern. Die UNESCO-Altstadt auf der Aarehalbinsel ist ein Muss!",
-        highlights: ["Z\u00fcrich", "Z\u00fcrichsee", "Emmental", "Bern Altstadt (UNESCO)", "Bundeshaus"],
-        tags: ["Schweiz", "St\u00e4dte", "UNESCO"],
+        flags: "\u{1F1E6}\u{1F1F9}\u{1F1E8}\u{1F1ED}", difficulty: "easy",
+        description: "Vom Bodensee quer durch die Schweiz. Vorbei an Z\u00fcrich ins Emmental zur Bundesstadt Bern. Die UNESCO-Altstadt auf der Aarehalbinsel ist ein Muss!",
+        highlights: ["Z\u00fcrich","Z\u00fcrichsee","Emmental","Bern Altstadt (UNESCO)","Bundeshaus"],
+        tags: ["Schweiz","St\u00e4dte","UNESCO"],
         image: "https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?w=600&h=400&fit=crop",
         googleMaps: "https://www.google.com/maps/dir/Bregenz/Bern",
-        routeCoords: [[47.50, 9.75], [47.38, 8.54], [47.17, 7.95], [46.95, 7.45]]
+        routeCoords: [[47.50,9.75],[47.38,8.54],[47.17,7.95],[46.95,7.45]]
     },
     {
-        id: 6, date: "Sa, 12. Juli", restBefore: "Fr, 11. Juli: Ruhetag in Bern",
+        id: 6, date: "Sa, 12. Juli", restBefore: "Fr 11.7. Ruhetag Bern",
         title: "Genfer See",
         from: "Bern", to: "Genf",
         distance: 160, duration: "2h", elevation: "400",
-        flags: "\u{1F1E8}\u{1F1ED}",
-        difficulty: "easy",
-        description: "Nach dem Ruhetag durch die Lavaux-Weinberge (UNESCO) zum Genfer See. Lausanne, Montreux mit Schloss Chillon und das kosmopolitische Genf mit dem Jet d'Eau. Weinprobe inklusive!",
-        highlights: ["Lavaux Weinberge (UNESCO)", "Lausanne", "Montreux", "Schloss Chillon", "Genf Jet d'Eau"],
-        tags: ["Genfer See", "Weinberge", "UNESCO"],
+        flags: "\u{1F1E8}\u{1F1ED}", difficulty: "easy",
+        description: "Nach dem Ruhetag durch die Lavaux-Weinberge (UNESCO) zum Genfer See. Lausanne, Montreux mit Schloss Chillon und das kosmopolitische Genf.",
+        highlights: ["Lavaux (UNESCO)","Lausanne","Montreux","Schloss Chillon","Genf Jet d'Eau"],
+        tags: ["Genfer See","Weinberge","UNESCO"],
         image: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=600&h=400&fit=crop",
         googleMaps: "https://www.google.com/maps/dir/Bern/Genf",
-        routeCoords: [[46.95, 7.45], [46.52, 6.63], [46.20, 6.14]]
+        routeCoords: [[46.95,7.45],[46.52,6.63],[46.20,6.14]]
     },
     {
         id: 7, date: "So, 13. Juli",
         title: "Rh\u00f4netal nach Lyon",
         from: "Genf", to: "Lyon",
         distance: 155, duration: "2h", elevation: "300",
-        flags: "\u{1F1E8}\u{1F1ED}\u{1F1EB}\u{1F1F7}",
-        difficulty: "easy",
-        description: "Von der Schweiz nach Frankreich, durchs Rh\u00f4netal nach Lyon. Die kulinarische Hauptstadt mit Bouchons, Traboules und UNESCO-Altstadt. Mindestens einen halben Tag f\u00fcr die Stadt einplanen!",
-        highlights: ["Rh\u00f4netal", "Lyon Altstadt (UNESCO)", "Traboules", "Presqu'\u00eele", "Bouchon Lyonnais"],
-        tags: ["Frankreich", "Gastronomie", "Kultur"],
+        flags: "\u{1F1E8}\u{1F1ED}\u{1F1EB}\u{1F1F7}", difficulty: "easy",
+        description: "Von Genf durchs Rh\u00f4netal nach Lyon. Die kulinarische Hauptstadt Frankreichs mit Bouchons, Traboules und UNESCO-Altstadt. Mindestens einen halben Tag einplanen!",
+        highlights: ["Rh\u00f4netal","Lyon Altstadt (UNESCO)","Traboules","Presqu'\u00eele","Bouchon Lyonnais"],
+        tags: ["Frankreich","Gastronomie","Kultur"],
         image: "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=600&h=400&fit=crop",
         googleMaps: "https://www.google.com/maps/dir/Genf/Lyon",
-        routeCoords: [[46.20, 6.14], [46.04, 5.59], [45.88, 5.08], [45.76, 4.84]]
+        routeCoords: [[46.20,6.14],[46.04,5.59],[45.88,5.08],[45.76,4.84]]
     },
     {
-        id: 8, date: "Di, 15. Juli", restBefore: "Mo, 14. Juli: Ruhetag in Lyon",
+        id: 8, date: "Di, 15. Juli", restBefore: "Mo 14.7. Ruhetag Lyon",
         title: "Provence & Pont du Gard",
         from: "Lyon", to: "Montpellier",
         distance: 305, duration: "3h", elevation: "500",
-        flags: "\u{1F1EB}\u{1F1F7}",
-        difficulty: "easy",
-        description: "Nach dem Ruhetag in Lyon Richtung S\u00fcden durch die Provence. Lavendelfelder, das r\u00f6mische Pont du Gard, die Papststadt Avignon und schlie\u00dflich Montpellier am Mittelmeer. Hier beginnt der Strand!",
-        highlights: ["Ard\u00e8che", "Pont du Gard (UNESCO)", "Avignon Papstpalast", "Montpellier", "Mittelmeer"],
-        tags: ["Provence", "UNESCO", "Mittelmeer"],
+        flags: "\u{1F1EB}\u{1F1F7}", difficulty: "easy",
+        description: "Durch die Provence Richtung Mittelmeer. Lavendelfelder, das r\u00f6mische Pont du Gard, die Papststadt Avignon und Montpellier am Meer. Ab hier wird gebadet!",
+        highlights: ["Ard\u00e8che","Pont du Gard (UNESCO)","Avignon","Montpellier","Mittelmeer"],
+        tags: ["Provence","UNESCO","Mittelmeer"],
         image: "https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=600&h=400&fit=crop",
         googleMaps: "https://www.google.com/maps/dir/Lyon/Avignon/Montpellier",
-        routeCoords: [[45.76, 4.84], [45.14, 4.72], [44.38, 4.36], [43.95, 4.81], [43.61, 3.88]]
+        routeCoords: [[45.76,4.84],[45.14,4.72],[44.38,4.36],[43.95,4.81],[43.61,3.88]]
     },
     {
         id: 9, date: "Mi, 16. Juli",
         title: "Mittelmeer-K\u00fcste",
         from: "Montpellier", to: "Perpignan",
         distance: 170, duration: "2h", elevation: "200",
-        flags: "\u{1F1EB}\u{1F1F7}",
-        difficulty: "easy",
-        description: "Entlang der Lagune von S\u00e8te und \u00fcber Narbonne (Canal du Midi) nach Perpignan. Katalanisches Flair schon vor der Grenze. Str\u00e4nde, Flamingos und Weinberge am Weg.",
-        highlights: ["S\u00e8te", "Narbonne", "Canal du Midi", "Perpignan", "Flamingos in den Lagunen"],
-        tags: ["K\u00fcste", "Languedoc", "Natur"],
+        flags: "\u{1F1EB}\u{1F1F7}", difficulty: "easy",
+        description: "Entlang der K\u00fcste \u00fcber S\u00e8te und Narbonne nach Perpignan. Canal du Midi, Flamingos in den Lagunen und katalanisches Flair schon vor der Grenze.",
+        highlights: ["S\u00e8te","Narbonne","Canal du Midi","Perpignan","Lagunen"],
+        tags: ["K\u00fcste","Languedoc","Natur"],
         image: "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=600&h=400&fit=crop",
         googleMaps: "https://www.google.com/maps/dir/Montpellier/Perpignan",
-        routeCoords: [[43.61, 3.88], [43.41, 3.42], [43.18, 3.00], [42.69, 2.90]]
+        routeCoords: [[43.61,3.88],[43.41,3.42],[43.18,3.00],[42.69,2.90]]
     },
     {
         id: 10, date: "Do, 17. Juli",
         title: "Endstation Barcelona!",
         from: "Perpignan", to: "Barcelona",
         distance: 190, duration: "2h", elevation: "400",
-        flags: "\u{1F1EB}\u{1F1F7}\u{1F1EA}\u{1F1F8}",
-        difficulty: "easy",
-        description: "Die Zielgerade! \u00dcber die Grenze nach Katalonien, durch die Pyren\u00e4en-Ausl\u00e4ufer und entlang der Costa Brava. Girona, dann Barcelona \u2014 Sagrada Fam\u00edlia, Ramblas, Barceloneta Beach. Geschafft! \u{1F37B}",
-        highlights: ["Pyren\u00e4en-Grenze", "Costa Brava", "Girona", "Sagrada Fam\u00edlia", "Las Ramblas", "Barceloneta Beach"],
-        tags: ["Spanien", "Katalonien", "Strand"],
+        flags: "\u{1F1EB}\u{1F1F7}\u{1F1EA}\u{1F1F8}", difficulty: "easy",
+        description: "Die Zielgerade! \u00dcber die Grenze nach Katalonien, durch die Pyren\u00e4en-Ausl\u00e4ufer und die Costa Brava. Girona, dann Barcelona \u2014 Sagrada Fam\u00edlia, Ramblas, Barceloneta. Geschafft!",
+        highlights: ["Pyren\u00e4en-Grenze","Costa Brava","Girona","Sagrada Fam\u00edlia","Las Ramblas","Barceloneta"],
+        tags: ["Spanien","Katalonien","Strand"],
         image: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&h=400&fit=crop",
         googleMaps: "https://www.google.com/maps/dir/Perpignan/Barcelona",
-        routeCoords: [[42.69, 2.90], [42.31, 3.02], [41.98, 2.82], [41.39, 2.17]]
+        routeCoords: [[42.69,2.90],[42.31,3.02],[41.98,2.82],[41.39,2.17]]
     }
 ];
 
-// Note: 17.–20. Juli = 3 Tage Barcelona genießen!
-
 const routeData = {
-    totalKm: 1975,
-    totalDays: 10,
-    countries: 4,
-    passes: 8,
+    totalKm: 1975, totalDays: 10, countries: 4, passes: 8,
     stops: [
-        { name: "Stra\u00dfwalchen", flag: "\u{1F1E6}\u{1F1F9}", lat: 47.87, lng: 13.26, date: "6.7." },
-        { name: "Villach", flag: "\u{1F1E6}\u{1F1F9}", lat: 46.61, lng: 13.86, date: "6.7." },
-        { name: "Bozen", flag: "\u{1F1EE}\u{1F1F9}", lat: 46.50, lng: 11.35, date: "7.7." },
-        { name: "Innsbruck", flag: "\u{1F1E6}\u{1F1F9}", lat: 47.27, lng: 11.40, date: "8.7." },
-        { name: "Bregenz", flag: "\u{1F1E6}\u{1F1F9}", lat: 47.50, lng: 9.75, date: "9.7." },
-        { name: "Bern", flag: "\u{1F1E8}\u{1F1ED}", lat: 46.95, lng: 7.45, date: "10.7." },
-        { name: "Genf", flag: "\u{1F1E8}\u{1F1ED}", lat: 46.20, lng: 6.14, date: "12.7." },
-        { name: "Lyon", flag: "\u{1F1EB}\u{1F1F7}", lat: 45.76, lng: 4.84, date: "13.7." },
-        { name: "Montpellier", flag: "\u{1F1EB}\u{1F1F7}", lat: 43.61, lng: 3.88, date: "15.7." },
-        { name: "Perpignan", flag: "\u{1F1EB}\u{1F1F7}", lat: 42.69, lng: 2.90, date: "16.7." },
-        { name: "Barcelona", flag: "\u{1F1EA}\u{1F1F8}", lat: 41.39, lng: 2.17, date: "17.7." }
+        { name:"Stra\u00dfwalchen", flag:"\u{1F1E6}\u{1F1F9}", lat:47.87, lng:13.26, date:"6.7." },
+        { name:"Villach", flag:"\u{1F1E6}\u{1F1F9}", lat:46.61, lng:13.86, date:"6.7." },
+        { name:"Bozen", flag:"\u{1F1EE}\u{1F1F9}", lat:46.50, lng:11.35, date:"7.7." },
+        { name:"Innsbruck", flag:"\u{1F1E6}\u{1F1F9}", lat:47.27, lng:11.40, date:"8.7." },
+        { name:"Bregenz", flag:"\u{1F1E6}\u{1F1F9}", lat:47.50, lng:9.75, date:"9.7." },
+        { name:"Bern", flag:"\u{1F1E8}\u{1F1ED}", lat:46.95, lng:7.45, date:"10.7." },
+        { name:"Genf", flag:"\u{1F1E8}\u{1F1ED}", lat:46.20, lng:6.14, date:"12.7." },
+        { name:"Lyon", flag:"\u{1F1EB}\u{1F1F7}", lat:45.76, lng:4.84, date:"13.7." },
+        { name:"Montpellier", flag:"\u{1F1EB}\u{1F1F7}", lat:43.61, lng:3.88, date:"15.7." },
+        { name:"Perpignan", flag:"\u{1F1EB}\u{1F1F7}", lat:42.69, lng:2.90, date:"16.7." },
+        { name:"Barcelona", flag:"\u{1F1EA}\u{1F1F8}", lat:41.39, lng:2.17, date:"17.7." }
     ]
 };
 
 const infoCards = [
-    {
-        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>',
-        iconBg: "rgba(46,204,113,0.15)", iconColor: "#2ECC71",
-        title: "Mautkosten",
-        desc: "\u00d6sterreich: Vignette 10-Tage (11,50\u00a0\u20ac). Schweiz: Vignette (40\u00a0CHF/Jahr). Frankreich: Autobahnmaut ~50-70\u00a0\u20ac (Lyon\u2013Barcelona). Spanien: Wenige Mautstrecken in Katalonien."
-    },
-    {
-        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
-        iconBg: "rgba(52,152,219,0.15)", iconColor: "#3498DB",
-        title: "Reisezeit",
-        desc: "6.\u201320. Juli 2026. Alpenp\u00e4sse schneefrei, Mittelmeer warm (25\u201330\u00b0C). Hochsaison \u2014 Unterk\u00fcnfte rechtzeitig buchen! Ruhetage in Bern (11.7.) und Lyon (14.7.)."
-    },
-    {
-        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>',
-        iconBg: "rgba(232,93,38,0.15)", iconColor: "#E85D26",
-        title: "Tanken",
-        desc: "Tankstellen \u00fcberall vorhanden. E-Ladestationen gut ausgebaut (AT/CH/FR). In Spanien etwas d\u00fcnner. Preise: AT &lt; ES &lt; FR &lt; CH."
-    },
-    {
-        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
-        iconBg: "rgba(241,196,15,0.15)", iconColor: "#F1C40F",
-        title: "Unterk\u00fcnfte",
-        desc: "Hotels, Airbnb oder Camping. Hochsaison = vorbuchen! Budget: 70\u2013130\u00a0\u20ac/Nacht DZ. Camping: 20\u201340\u00a0\u20ac. Barcelona: 3 N\u00e4chte 17.\u201320. Juli einplanen."
-    },
-    {
-        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>',
-        iconBg: "rgba(155,89,182,0.15)", iconColor: "#9B59B6",
-        title: "Dokumente",
-        desc: "EU-Personalausweis oder Reisepass. Gr\u00fcne Versicherungskarte. F\u00fchrerschein. Schweiz: CHF-Bargeld oder Karte. Spanien: \u00fcberall Kartenzahlung."
-    },
-    {
-        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>',
-        iconBg: "rgba(231,76,60,0.15)", iconColor: "#E74C3C",
-        title: "Notruf & Pannenhilfe",
-        desc: "Euronotruf: 112. \u00d6AMTC Nothilfe: 120 (AT). TCS Pannenhilfe: 140 (CH). Warnweste Pflicht in AT/FR/ES!"
-    }
+    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>',
+      title:"Mautkosten", desc:"\u00d6sterreich: Vignette 10-Tage (11,50\u00a0\u20ac). Schweiz: Vignette (40\u00a0CHF/Jahr). Frankreich: Autobahnmaut ~50-70\u00a0\u20ac. Spanien: Wenige Mautstrecken." },
+    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+      title:"Reisezeit", desc:"6.\u201320. Juli 2026. Alpenp\u00e4sse schneefrei, Mittelmeer 25\u201330\u00b0C. Hochsaison \u2014 Unterk\u00fcnfte vorbuchen! Ruhetage: Bern (11.7.), Lyon (14.7.)." },
+    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>',
+      title:"Tanken", desc:"Tankstellen \u00fcberall. E-Ladestationen gut ausgebaut (AT/CH/FR). In Spanien etwas d\u00fcnner. Preise: AT < ES < FR < CH." },
+    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+      title:"Unterk\u00fcnfte", desc:"Hotels, Airbnb oder Camping. Hochsaison = vorbuchen! Budget: 70\u2013130\u00a0\u20ac/Nacht DZ. Barcelona: 3 N\u00e4chte 17.\u201320. Juli." },
+    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>',
+      title:"Dokumente", desc:"EU-Personalausweis, F\u00fchrerschein, Gr\u00fcne Versicherungskarte. Schweiz: CHF-Bargeld. Spanien: \u00fcberall Kartenzahlung." },
+    { icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.4 2.05.94 3.45.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.93.4 1.84.7 2.81.7A2 2 0 0122 16.92z"/></svg>',
+      title:"Notruf & Pannenhilfe", desc:"Euronotruf: 112. \u00d6AMTC: 120 (AT). TCS: 140 (CH). Warnweste Pflicht in AT/FR/ES!" }
 ];
 
 const checklistData = [
-    {
-        title: "\u{1F697} Auto",
-        items: ["Verbandskasten", "Warndreieck", "Warnweste (je Insasse!)", "Reserverad / Pannenset", "Vignette AT (10 Tage)", "Vignette CH (Jahres)", "Ladekabel / 12V-Adapter", "Sonnenblende Windschutzscheibe"]
-    },
-    {
-        title: "\u{1F4C4} Dokumente",
-        items: ["Personalausweis / Reisepass", "F\u00fchrerschein", "Fahrzeugschein (Zulassung)", "Gr\u00fcne Versicherungskarte", "\u00d6AMTC / ADAC Mitgliedskarte", "Europ. Unfallbericht", "Reiseversicherung", "Hotel-Buchungsbest\u00e4tigungen", "Bargeld CHF + EUR"]
-    },
-    {
-        title: "\u{1F392} Gep\u00e4ck",
-        items: ["Sonnencreme LSF 50", "Badehose / Bikini", "Wanderschuhe", "Regenjacke", "Sonnenbrille", "Reiseapotheke", "Tagesrucksack", "Strandtuch", "Flip-Flops"]
-    },
-    {
-        title: "\u{1F50C} Technik",
-        items: ["Handyladekabel USB-C", "Powerbank (20.000 mAh)", "Navi / Handyhalterung", "AUX-Kabel / Bluetooth FM", "Kamera + SD-Karten + Akku", "Reiseadapter (CH: Typ J)", "Offline-Karten herunterladen", "Spotify Playlists herunterladen"]
-    }
+    { title:"\u{1F3CD}\u{FE0F} Fahrzeug", items:["Verbandskasten","Warndreieck","Warnweste (je Insasse!)","Reserverad / Pannenset","Vignette AT (10 Tage)","Vignette CH (Jahres)","12V-Ladekabel","Sonnenblende"] },
+    { title:"\u{1F4C4} Dokumente", items:["Personalausweis / Reisepass","F\u00fchrerschein","Fahrzeugschein","Gr\u00fcne Versicherungskarte","\u00d6AMTC Mitgliedskarte","Europ. Unfallbericht","Reiseversicherung","Hotel-Best\u00e4tigungen","Bargeld CHF + EUR"] },
+    { title:"\u{1F392} Gep\u00e4ck", items:["Sonnencreme LSF 50","Badehose / Bikini","Wanderschuhe","Regenjacke","Sonnenbrille","Reiseapotheke","Tagesrucksack","Strandtuch","Flip-Flops"] },
+    { title:"\u{1F50C} Technik", items:["USB-C Ladekabel","Powerbank 20.000mAh","Handyhalterung","Bluetooth FM / AUX","Kamera + SD + Akku","Reiseadapter CH (Typ J)","Offline-Karten laden","Spotify offline laden"] }
 ];
 
-// ─── FUNCTIONS ───────────────────────────────────────────────────
+// ═══ FUNCTIONS ═══════════════════════════════════════════════════
 
 function animateCounter(id, target) {
     const el = document.getElementById(id);
-    const duration = 2000, steps = 60;
-    const increment = target / steps;
-    let current = 0;
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) { current = target; clearInterval(timer); }
-        el.textContent = Math.round(current).toLocaleString('de-DE');
-    }, duration / steps);
+    const dur = 2000, steps = 60, inc = target / steps;
+    let cur = 0;
+    const t = setInterval(() => {
+        cur += inc;
+        if (cur >= target) { cur = target; clearInterval(t); }
+        el.textContent = Math.round(cur).toLocaleString('de-DE');
+    }, dur / steps);
 }
 
 function createParticles() {
     const c = document.getElementById('particles');
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 20; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
-        p.style.left = Math.random() * 100 + '%';
-        p.style.animationDelay = Math.random() * 8 + 's';
-        p.style.animationDuration = (6 + Math.random() * 4) + 's';
+        p.style.left = Math.random()*100+'%';
+        p.style.animationDelay = Math.random()*6+'s';
+        p.style.animationDuration = (5+Math.random()*3)+'s';
         c.appendChild(p);
     }
 }
@@ -938,279 +976,149 @@ function createParticles() {
 function renderProgress() {
     const c = document.getElementById('routeProgress');
     const stops = routeData.stops;
-    let html = '';
-    stops.forEach((stop, i) => {
-        const dotClass = i === 0 ? 'start' : (i === stops.length - 1 ? 'end' : '');
-        html += `
-        <div class="progress-stop">
-            <div class="progress-flag">${stop.flag}</div>
-            <div class="progress-dot ${dotClass}"></div>
-            <div class="progress-label">${stop.name}</div>
-            <div class="progress-date">${stop.date}</div>
+    c.innerHTML = stops.map((s, i) => {
+        const dot = i===0?'start':(i===stops.length-1?'end':'');
+        const stop = `<div class="progress-stop">
+            <div class="progress-flag">${s.flag}</div>
+            <div class="progress-dot ${dot}"></div>
+            <div class="progress-label">${s.name}</div>
+            <div class="progress-date">${s.date}</div>
         </div>`;
-        if (i < stops.length - 1) html += '<div class="progress-line"></div>';
-    });
-    c.innerHTML = html;
+        return i < stops.length-1 ? stop+'<div class="progress-line"></div>' : stop;
+    }).join('');
 }
 
 function initMap() {
     try {
         if (typeof L === 'undefined') throw new Error('Leaflet not loaded');
+        const map = L.map('leafletMap', {scrollWheelZoom:false}).setView([44.5,8.0],6);
 
-        const map = L.map('leafletMap', { scrollWheelZoom: false }).setView([44.5, 8.0], 6);
-
-        // Try multiple tile providers as fallback
-        const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '\u00a9 <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             maxZoom: 19
-        });
+        }).addTo(map);
 
-        tileLayer.on('tileerror', function() {
-            console.warn('OSM tile error, trying fallback...');
-        });
-
-        tileLayer.addTo(map);
-
-        const colors = ['#E85D26','#FF7A45','#F1C40F','#2ECC71','#3498DB','#9B59B6','#E74C3C','#1ABC9C','#E67E22','#2980B9'];
-
-        etappen.forEach((e, i) => {
-            const poly = L.polyline(e.routeCoords, {
-                color: colors[i % colors.length], weight: 4, opacity: 0.85, smoothFactor: 1.5
-            }).addTo(map);
-            poly.bindPopup(`<div style="font-family:Inter,sans-serif;padding:4px;">
-                <strong>Tag ${e.id}: ${e.title}</strong><br>
+        const colors = ['#D4A41C','#E8BE3C','#CC3333','#44AA44','#4488CC','#9B59B6','#D4A41C','#E8BE3C','#CC3333','#44AA44'];
+        etappen.forEach((e,i) => {
+            L.polyline(e.routeCoords, {color:colors[i%colors.length], weight:4, opacity:0.85, smoothFactor:1.5}).addTo(map)
+            .bindPopup(`<div style="font-family:Oswald,sans-serif;padding:4px;letter-spacing:1px;">
+                <strong style="text-transform:uppercase;">Tag ${e.id}: ${e.title}</strong><br>
                 ${e.from} \u2192 ${e.to}<br>
-                <span style="color:#E85D26;">${e.distance} km</span> \u00b7 ${e.duration} \u00b7 ${e.date}
+                <span style="color:#D4A41C;">${e.distance} km</span> \u00b7 ${e.duration} \u00b7 ${e.date}
             </div>`);
         });
 
-        routeData.stops.forEach((stop, i) => {
-            const isEnd = i === 0 || i === routeData.stops.length - 1;
-            const sz = isEnd ? 12 : 8;
-            const col = isEnd ? '#E85D26' : '#3498DB';
-            const icon = L.divIcon({
-                className: '',
-                html: `<div style="width:${sz*2}px;height:${sz*2}px;background:${col};border:3px solid white;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.4);"></div>`,
-                iconSize: [sz*2, sz*2], iconAnchor: [sz, sz]
-            });
-            L.marker([stop.lat, stop.lng], { icon })
-                .addTo(map)
-                .bindPopup(`<strong>${stop.flag} ${stop.name}</strong><br>${stop.date}`);
+        routeData.stops.forEach((s,i) => {
+            const isEnd = i===0 || i===routeData.stops.length-1;
+            const sz = isEnd?12:7, col = isEnd?'#D4A41C':'#888';
+            L.marker([s.lat,s.lng], {icon: L.divIcon({
+                className:'',
+                html:`<div style="width:${sz*2}px;height:${sz*2}px;background:${col};border:2px solid ${isEnd?'white':'#ccc'};border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.5);"></div>`,
+                iconSize:[sz*2,sz*2], iconAnchor:[sz,sz]
+            })}).addTo(map).bindPopup(`<strong>${s.flag} ${s.name}</strong><br>${s.date}`);
         });
 
-        const allCoords = etappen.flatMap(e => e.routeCoords);
-        map.fitBounds(allCoords, { padding: [40, 40] });
-
-        // Force a resize after a short delay (fixes rendering in iframes/Google Sites)
-        setTimeout(() => map.invalidateSize(), 500);
-        setTimeout(() => map.invalidateSize(), 2000);
-
-    } catch (err) {
-        console.error('Map init failed:', err);
-        document.getElementById('mapError').style.display = 'flex';
+        map.fitBounds(etappen.flatMap(e=>e.routeCoords), {padding:[40,40]});
+        setTimeout(()=>map.invalidateSize(),500);
+        setTimeout(()=>map.invalidateSize(),2000);
+    } catch(err) {
+        console.error('Map error:',err);
+        document.getElementById('mapError').style.display='flex';
     }
 }
 
 function renderDayCards() {
-    const grid = document.getElementById('daysGrid');
-    grid.innerHTML = etappen.map((e, i) => {
-        const dc = e.difficulty === 'easy' ? 'diff-easy' : (e.difficulty === 'hard' ? 'diff-hard' : 'diff-moderate');
-        const dl = e.difficulty === 'easy' ? 'Leicht' : (e.difficulty === 'hard' ? 'Anspruchsvoll' : 'Mittel');
-        const restHtml = e.restBefore ? `<span class="rest-day-badge">\u{1F3D6}\u{FE0F} ${e.restBefore}</span>` : '';
+    document.getElementById('daysGrid').innerHTML = etappen.map((e,i) => {
+        const dc = e.difficulty==='easy'?'diff-easy':(e.difficulty==='hard'?'diff-hard':'diff-moderate');
+        const dl = e.difficulty==='easy'?'Leicht':(e.difficulty==='hard'?'Anspruchsvoll':'Mittel');
+        const rest = e.restBefore?`<span class="rest-day-badge">\u{1F3D6}\u{FE0F} ${e.restBefore}</span>`:'';
         return `
         <div class="day-card card-enter" style="animation-delay:${i*0.08}s" onclick="openModal(${i})">
             <div class="day-card-image">
                 <img src="${e.image}" alt="${e.title}" loading="lazy">
-                <div class="day-number">Tag ${e.id}</div>
+                <div class="day-number">TAG ${e.id}</div>
                 <div class="day-date">${e.date}</div>
                 <div class="day-country-flags">${e.flags}</div>
                 <div class="day-route-label">${e.from} \u2192 ${e.to}</div>
             </div>
             <div class="day-card-body">
-                ${restHtml}
+                ${rest}
                 <div class="day-card-title">${e.title}</div>
                 <div class="day-card-route">${e.from} \u2192 ${e.to}</div>
                 <div class="day-card-meta">
-                    <div class="day-meta-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        ${e.distance} km
-                    </div>
-                    <div class="day-meta-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        ${e.duration}
-                    </div>
-                    <div class="day-meta-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
-                        ${e.elevation} Hm
-                    </div>
+                    <div class="day-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>${e.distance} km</div>
+                    <div class="day-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${e.duration}</div>
+                    <div class="day-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>${e.elevation} Hm</div>
                     <span class="difficulty-badge ${dc}">${dl}</span>
                 </div>
                 <div class="day-card-desc">${e.description}</div>
-                <div class="day-card-tags">
-                    ${e.tags.map(t => `<span class="day-tag">${t}</span>`).join('')}
-                </div>
+                <div class="day-card-tags">${e.tags.map(t=>`<span class="day-tag">${t}</span>`).join('')}</div>
             </div>
         </div>`;
     }).join('');
 }
 
-function openModal(index) {
-    const e = etappen[index];
+function openModal(i) {
+    const e = etappen[i];
     document.getElementById('modalImage').src = e.image;
     document.getElementById('modalTitle').textContent = `Tag ${e.id}: ${e.title}`;
     document.getElementById('modalRouteInfo').textContent = `${e.date} \u2014 ${e.from} \u2192 ${e.to}`;
-    document.getElementById('modalDistance').textContent = e.distance + ' km';
+    document.getElementById('modalDistance').textContent = e.distance+' km';
     document.getElementById('modalDuration').textContent = e.duration;
-    document.getElementById('modalElevation').textContent = e.elevation + ' Hm';
+    document.getElementById('modalElevation').textContent = e.elevation+' Hm';
     document.getElementById('modalDesc').textContent = e.description;
     document.getElementById('modalGoogleMaps').href = e.googleMaps;
-    document.getElementById('modalHighlightList').innerHTML = e.highlights.map(h => `<li>${h}</li>`).join('');
+    document.getElementById('modalHighlightList').innerHTML = e.highlights.map(h=>`<li>${h}</li>`).join('');
     document.getElementById('modalOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
 }
-
-function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('active');
-    document.body.style.overflow = '';
-}
+function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); document.body.style.overflow=''; }
 document.getElementById('modalClose').addEventListener('click', closeModal);
-document.getElementById('modalOverlay').addEventListener('click', (ev) => {
-    if (ev.target === document.getElementById('modalOverlay')) closeModal();
-});
-document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') closeModal(); });
+document.getElementById('modalOverlay').addEventListener('click', ev => { if(ev.target===document.getElementById('modalOverlay')) closeModal(); });
+document.addEventListener('keydown', ev => { if(ev.key==='Escape') closeModal(); });
 
 function renderElevation() {
     const svg = document.getElementById('elevationSvg');
-    const points = [
-        [0, 510],     // Straßwalchen
-        [4, 900],
-        [7, 1100],    // Tauern
-        [11, 500],    // Villach
-        [15, 900],
-        [19, 1800],
-        [22, 2121],   // Grödner Joch
-        [25, 500],    // Bozen
-        [29, 1370],   // Brenner
-        [32, 580],    // Innsbruck
-        [36, 1000],
-        [39, 1793],   // Arlberg
-        [42, 400],    // Bregenz
-        [46, 540],    // Zürich area
-        [50, 540],    // Bern
-        [54, 580],
-        [57, 372],    // Genf
-        [60, 300],
-        [63, 175],    // Lyon
-        [67, 350],
-        [71, 450],
-        [75, 50],     // Montpellier
-        [79, 30],     // coast
-        [83, 40],     // Perpignan
-        [87, 180],    // Pyrenäen Ausläufer
-        [92, 60],
-        [96, 20],
-        [100, 12]     // Barcelona
-    ];
-    const W = 1000, H = 250, maxE = 2400;
-    const pad = { t: 20, b: 40, l: 0, r: 0 };
-    const sx = p => pad.l + (p / 100) * (W - pad.l - pad.r);
-    const sy = e => pad.t + (1 - e / maxE) * (H - pad.t - pad.b);
-
-    let pathD = `M ${sx(points[0][0])} ${sy(points[0][1])}`;
-    for (let i = 1; i < points.length; i++) {
-        const [x0, y0] = [sx(points[i-1][0]), sy(points[i-1][1])];
-        const [x1, y1] = [sx(points[i][0]), sy(points[i][1])];
-        const cpx = (x0 + x1) / 2;
-        pathD += ` C ${cpx} ${y0}, ${cpx} ${y1}, ${x1} ${y1}`;
-    }
-    const fillD = pathD + ` L ${sx(100)} ${H - pad.b} L ${sx(0)} ${H - pad.b} Z`;
-
-    let s = `
-        <defs><linearGradient id="eg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#E85D26" stop-opacity="0.4"/>
-            <stop offset="100%" stop-color="#E85D26" stop-opacity="0.02"/>
-        </linearGradient></defs>
-        <path d="${fillD}" fill="url(#eg)"/>
-        <path d="${pathD}" fill="none" stroke="#E85D26" stroke-width="3" stroke-linecap="round"/>`;
-
-    [0,500,1000,1500,2000].forEach(e => {
-        const y = sy(e);
-        s += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#2A3644" stroke-width="1" stroke-dasharray="4"/>
-              <text x="8" y="${y-5}" fill="#8899AA" font-size="11" font-family="Inter">${e}m</text>`;
-    });
-
-    const cities = [[0,'Stra\u00dfwalchen'],[11,'Villach'],[25,'Bozen'],[32,'IBK'],[42,'Bregenz'],[50,'Bern'],[57,'Genf'],[63,'Lyon'],[75,'Montpellier'],[83,'Perpignan'],[100,'Barcelona']];
-    cities.forEach(([p, n]) => {
-        const x = sx(p);
-        const elev = points.reduce((b, pt) => Math.abs(pt[0]-p) < Math.abs(b[0]-p) ? pt : b)[1];
-        s += `<circle cx="${x}" cy="${sy(elev)}" r="4" fill="#E85D26" stroke="#0F1419" stroke-width="2"/>
-              <text x="${x}" y="${H-10}" fill="#8899AA" font-size="9" font-family="Inter" text-anchor="middle">${n}</text>`;
-    });
-
-    [[22,2121,'Gr\u00f6dner Joch'],[39,1793,'Arlberg'],[29,1370,'Brenner'],[7,1100,'Tauern']].forEach(([p,e,n]) => {
-        s += `<text x="${sx(p)}" y="${sy(e)-12}" fill="#FF7A45" font-size="9" font-family="Inter" text-anchor="middle" font-weight="600">${n}</text>`;
-    });
-
-    svg.innerHTML = s;
+    const pts = [[0,510],[4,900],[7,1100],[11,500],[15,900],[19,1800],[22,2121],[25,500],[29,1370],[32,580],[36,1000],[39,1793],[42,400],[46,540],[50,540],[54,580],[57,372],[60,300],[63,175],[67,350],[71,450],[75,50],[79,30],[83,40],[87,180],[92,60],[96,20],[100,12]];
+    const W=1000,H=250,mE=2400,pt=20,pb=40;
+    const sx=p=>p/100*W, sy=e=>pt+(1-e/mE)*(H-pt-pb);
+    let d=`M ${sx(pts[0][0])} ${sy(pts[0][1])}`;
+    for(let i=1;i<pts.length;i++){const[x0,y0]=[sx(pts[i-1][0]),sy(pts[i-1][1])],[x1,y1]=[sx(pts[i][0]),sy(pts[i][1])],cx=(x0+x1)/2;d+=` C ${cx} ${y0}, ${cx} ${y1}, ${x1} ${y1}`;}
+    let s=`<defs><linearGradient id="eg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4A41C" stop-opacity="0.35"/><stop offset="100%" stop-color="#D4A41C" stop-opacity="0.02"/></linearGradient></defs>
+    <path d="${d} L ${sx(100)} ${H-pb} L ${sx(0)} ${H-pb} Z" fill="url(#eg)"/>
+    <path d="${d}" fill="none" stroke="#D4A41C" stroke-width="3" stroke-linecap="round"/>`;
+    [0,500,1000,1500,2000].forEach(e=>{const y=sy(e);s+=`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="4"/><text x="8" y="${y-5}" fill="#666" font-size="10" font-family="Oswald">${e}m</text>`;});
+    [[0,'Start'],[11,'Villach'],[25,'Bozen'],[32,'IBK'],[42,'Bregenz'],[50,'Bern'],[57,'Genf'],[63,'Lyon'],[75,'Montpellier'],[83,'Perpignan'],[100,'Barcelona']].forEach(([p,n])=>{const x=sx(p),e=pts.reduce((b,pt)=>Math.abs(pt[0]-p)<Math.abs(b[0]-p)?pt:b)[1];s+=`<circle cx="${x}" cy="${sy(e)}" r="4" fill="#D4A41C" stroke="#0A0A0A" stroke-width="2"/><text x="${x}" y="${H-10}" fill="#666" font-size="9" font-family="Oswald" text-anchor="middle" letter-spacing="1">${n}</text>`;});
+    [[22,2121,'GR\u00d6DNER JOCH'],[39,1793,'ARLBERG'],[29,1370,'BRENNER'],[7,1100,'TAUERN']].forEach(([p,e,n])=>{s+=`<text x="${sx(p)}" y="${sy(e)-12}" fill="#E8BE3C" font-size="8" font-family="Oswald" text-anchor="middle" font-weight="600" letter-spacing="1">${n}</text>`;});
+    svg.innerHTML=s;
 }
 
 function renderInfoCards() {
-    document.getElementById('infoGrid').innerHTML = infoCards.map(c => `
+    document.getElementById('infoGrid').innerHTML = infoCards.map(c=>`
         <div class="info-card">
-            <div class="info-card-icon" style="background:${c.iconBg};color:${c.iconColor}">${c.icon}</div>
+            <div class="info-card-icon">${c.icon}</div>
             <h3>${c.title}</h3><p>${c.desc}</p>
         </div>`).join('');
 }
 
 function renderChecklist() {
-    const saved = JSON.parse(localStorage.getItem('at-bcn-checklist') || '{}');
-    document.getElementById('checklistGrid').innerHTML = checklistData.map((cat, ci) => `
-        <div class="checklist-card">
-            <h3>${cat.title}</h3>
-            ${cat.items.map((item, ii) => {
-                const k = `${ci}-${ii}`;
-                return `<label class="checklist-item">
-                    <input type="checkbox" ${saved[k]?'checked':''} onchange="toggleCheck('${k}',this.checked)">
-                    <span>${item}</span></label>`;
-            }).join('')}
+    const saved = JSON.parse(localStorage.getItem('ee-bcn-checklist')||'{}');
+    document.getElementById('checklistGrid').innerHTML = checklistData.map((cat,ci)=>`
+        <div class="checklist-card"><h3>${cat.title}</h3>
+        ${cat.items.map((item,ii)=>{const k=`${ci}-${ii}`;return`<label class="checklist-item"><input type="checkbox" ${saved[k]?'checked':''} onchange="toggleCheck('${k}',this.checked)"><span>${item}</span></label>`;}).join('')}
         </div>`).join('');
 }
+function toggleCheck(k,v){const s=JSON.parse(localStorage.getItem('ee-bcn-checklist')||'{}');if(v)s[k]=true;else delete s[k];localStorage.setItem('ee-bcn-checklist',JSON.stringify(s));}
 
-function toggleCheck(key, checked) {
-    const s = JSON.parse(localStorage.getItem('at-bcn-checklist') || '{}');
-    if (checked) s[key] = true; else delete s[key];
-    localStorage.setItem('at-bcn-checklist', JSON.stringify(s));
-}
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 
-// Nav scroll
-window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-});
-
-// Scroll animations
-const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-
-// Init
-document.addEventListener('DOMContentLoaded', () => {
-    createParticles();
-    renderProgress();
-    renderDayCards();
-    renderElevation();
-    renderInfoCards();
-    renderChecklist();
-    // Small delay for map to ensure container is rendered
-    setTimeout(initMap, 100);
-    setTimeout(() => {
-        animateCounter('stat-km', routeData.totalKm);
-        animateCounter('stat-days', routeData.totalDays);
-        animateCounter('stat-countries', routeData.countries);
-        animateCounter('stat-passes', routeData.passes);
-    }, 500);
+document.addEventListener('DOMContentLoaded',()=>{
+    createParticles(); renderProgress(); renderDayCards(); renderElevation(); renderInfoCards(); renderChecklist();
+    setTimeout(initMap,100);
+    setTimeout(()=>{animateCounter('stat-km',routeData.totalKm);animateCounter('stat-days',routeData.totalDays);animateCounter('stat-countries',routeData.countries);animateCounter('stat-passes',routeData.passes);},500);
 });
 </script>
-
 </body>
 </html>
