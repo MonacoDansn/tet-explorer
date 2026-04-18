@@ -758,7 +758,7 @@
 <section class="section-wrap fade-in" id="map" style="padding-top:2rem;">
     <div class="section-header">
         <h2>Interaktive <span>Karte</span></h2>
-        <p>Alle 10 Etappen auf einen Blick. Klicke auf die Strecken f&uuml;r Details.</p>
+        <p>Alle 10 Etappen auf einen Blick. Klicke auf die Strecken f&uuml;r Details. <strong style="color:#D4A41C;">Neu:</strong> OSM-Layer &quot;Unbefestigt&quot; zeigt live alle Track/Gravel-Strecken im Kartenausschnitt.</p>
     </div>
     <div class="map-container">
         <div id="leafletMap"></div>
@@ -766,6 +766,20 @@
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
             <p>Karte konnte nicht geladen werden.<br>
             <a href="https://www.google.com/maps/dir/Stra%C3%9Fwalchen/Villach/Bozen/Innsbruck/Bregenz/Bern/Genf/Lyon/Avignon/Montpellier/Perpignan/Barcelona" target="_blank">Route in Google Maps</a></p>
+        </div>
+    </div>
+    <!-- Karten-Legende: Unbefestigt-Layer -->
+    <div style="margin-top:14px;padding:14px 18px;background:#0A0A0A;border:1px solid #2A2A2A;border-left:3px solid #8B3A0E;font-family:Inter,sans-serif;font-size:0.8rem;color:#AAA;line-height:1.55;">
+        <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;">
+            <span style="color:#D4A41C;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;">Unbefestigt-Legende:</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:3px;background:#E8BE3C;"></span>Grade&nbsp;1 (feinschotter)</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:3px;background:#D4A41C;"></span>Grade&nbsp;2 (schotter)</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:3px;background:#B85C1C;"></span>Grade&nbsp;3 (grob)</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:3px;background:#8B3A0E;"></span>Grade&nbsp;4 (rau)</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:3px;background:#5C2A0A;"></span>Grade&nbsp;5 (sehr rau)</span>
+        </div>
+        <div style="margin-top:10px;font-size:0.75rem;color:#777;">
+            Daten werden live via <a href="https://wiki.openstreetmap.org/wiki/Overpass_API" target="_blank" style="color:#D4A41C;">Overpass API</a> aus OpenStreetMap geladen (ab Zoom 10). Keine Speicherung. Attribution: &copy; OpenStreetMap contributors &middot; <a href="https://opendatacommons.org/licenses/odbl/" target="_blank" style="color:#D4A41C;">ODbL</a>.
         </div>
     </div>
 </section>
@@ -793,16 +807,57 @@
         <h2>GPX <span>Downloads</span></h2>
         <p>Lade die GPS-Tracks f&uuml;r jede Etappe herunter &mdash; auch Offroad-Varianten wo verf&uuml;gbar.</p>
     </div>
+
+    <!-- OSMand Offroad-Planning Info-Panel -->
+    <div style="background:linear-gradient(135deg,#1A1A1A,#0A0A0A);border:1px solid #8B3A0E;border-left:4px solid #D4A41C;padding:24px 28px;margin-bottom:28px;font-family:Inter,sans-serif;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#D4A41C" stroke-width="2" style="width:28px;height:28px;"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6z"/><line x1="9" y1="4" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="20"/></svg>
+            <h3 style="font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:2px;color:#D4A41C;margin:0;font-size:1.1rem;">Offroad-Planung mit OSMand</h3>
+        </div>
+        <p style="color:#CCC;font-size:0.92rem;line-height:1.6;margin:0 0 14px 0;">
+            Unsere Route ist auf maximalen <strong style="color:#D4A41C;">Unbefestigt-Anteil</strong> ausgelegt &mdash; besonders in den Pyren&auml;en (Pic Negre). OSMand nutzt die gleichen OpenStreetMap-Daten, die wir auf der Karte live als <em>&quot;Unbefestigt-Layer&quot;</em> anzeigen, und rechnet daraus echte Track-Routen.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:18px;">
+            <div style="background:#0A0A0A;padding:14px 16px;border:1px solid #2A2A2A;">
+                <div style="color:#D4A41C;font-family:Oswald,sans-serif;font-weight:600;letter-spacing:1px;font-size:0.78rem;text-transform:uppercase;margin-bottom:6px;">1. GPX laden</div>
+                <div style="color:#AAA;font-size:0.82rem;line-height:1.5;">OSMand-Button neben jeder Etappe klicken &mdash; l&auml;dt die GPX-Datei.</div>
+            </div>
+            <div style="background:#0A0A0A;padding:14px 16px;border:1px solid #2A2A2A;">
+                <div style="color:#D4A41C;font-family:Oswald,sans-serif;font-weight:600;letter-spacing:1px;font-size:0.78rem;text-transform:uppercase;margin-bottom:6px;">2. In OSMand importieren</div>
+                <div style="color:#AAA;font-size:0.82rem;line-height:1.5;">OSMand &rarr; Men&uuml; &rarr; <strong style="color:#D4A41C;">GPX</strong> &rarr; Importieren &rarr; GPX-Datei w&auml;hlen.</div>
+            </div>
+            <div style="background:#0A0A0A;padding:14px 16px;border:1px solid #2A2A2A;">
+                <div style="color:#D4A41C;font-family:Oswald,sans-serif;font-weight:600;letter-spacing:1px;font-size:0.78rem;text-transform:uppercase;margin-bottom:6px;">3. Offroad-Profil aktivieren</div>
+                <div style="color:#AAA;font-size:0.82rem;line-height:1.5;">Navigations-Profil: <strong style="color:#D4A41C;">Motorrad</strong> oder <strong style="color:#D4A41C;">Enduro</strong> &mdash; in den Einstellungen: &quot;Unbefestigte Stra&szlig;en bevorzugen&quot;.</div>
+            </div>
+            <div style="background:#0A0A0A;padding:14px 16px;border:1px solid #2A2A2A;">
+                <div style="color:#D4A41C;font-family:Oswald,sans-serif;font-weight:600;letter-spacing:1px;font-size:0.78rem;text-transform:uppercase;margin-bottom:6px;">4. Route neu berechnen</div>
+                <div style="color:#AAA;font-size:0.82rem;line-height:1.5;">GPX als <strong style="color:#D4A41C;">Route folgen</strong> &mdash; OSMand rechnet automatisch maximalen Offroad-Anteil.</div>
+            </div>
+        </div>
+        <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+            <a href="https://osmand.net/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#8B3A0E;color:#fff;padding:8px 14px;text-decoration:none;font-family:Oswald,sans-serif;letter-spacing:1px;font-size:0.78rem;text-transform:uppercase;border-radius:2px;">OSMand holen &rarr;</a>
+            <a href="https://osmand.net/docs/user/navigation/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;border:1px solid #444;color:#CCC;padding:8px 14px;text-decoration:none;font-family:Oswald,sans-serif;letter-spacing:1px;font-size:0.78rem;text-transform:uppercase;border-radius:2px;">Offroad-Doku</a>
+            <span style="color:#666;font-size:0.72rem;margin-left:auto;">OSM-Daten &copy; OpenStreetMap contributors &middot; ODbL</span>
+        </div>
+    </div>
+
     <div class="gpx-grid" id="gpxGrid"></div>
     <div class="gpx-full-download">
         <div class="gpx-full-info">
             <h3>Komplette Route</h3>
             <p>Alle 10 Etappen als eine GPX-Datei &mdash; Stra&szlig;walchen bis Barcelona inkl. Pyren&auml;en-Offroad.</p>
         </div>
-        <a href="#" onclick="downloadGPX('full');return false;" class="gpx-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            GPX Herunterladen
-        </a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <a href="#" onclick="downloadGPX('full');return false;" class="gpx-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                GPX Herunterladen
+            </a>
+            <a href="#" onclick="downloadGPX('full');setTimeout(()=>{const t=document.createElement('div');t.style.cssText='position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#0A0A0A;color:#D4A41C;padding:16px 24px;border:2px solid #D4A41C;font-family:Oswald,sans-serif;font-size:0.85rem;letter-spacing:1px;z-index:9999;max-width:92vw;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.8);';t.innerHTML='GPX heruntergeladen &mdash; in OSMand: Men&uuml; &rarr; <strong>GPX</strong> &rarr; Importieren &rarr; Profil <strong>Offroad/Motorrad</strong>';document.body.appendChild(t);setTimeout(()=>{t.style.transition='opacity 0.6s';t.style.opacity='0';setTimeout(()=>t.remove(),600);},5500);},300);return false;" class="gpx-btn" style="background:#8B3A0E;color:#fff;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6z"/><line x1="9" y1="4" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="20"/></svg>
+                F&uuml;r OSMand
+            </a>
+        </div>
     </div>
 </section>
 
@@ -1135,6 +1190,9 @@ function initMap() {
         const routeLayer = L.layerGroup().addTo(map);
         const tetLayer = L.layerGroup();
         const poiLayer = L.layerGroup().addTo(map);
+        const offroadLayer = L.layerGroup();
+        offroadLayer._loadedBounds = [];
+        offroadLayer._loading = false;
 
         // ── Tour Routes ──
         const colors = ['#D4A41C','#E8BE3C','#CC3333','#44AA44','#4488CC','#9B59B6','#D4A41C','#E8BE3C','#CC3333','#44AA44'];
@@ -1184,11 +1242,72 @@ function initMap() {
             marker.addTo(poiLayer);
         });
 
+        // ── Live OSM Offroad Fetcher (OSMand-Stil, Unbefestigt via Overpass API) ──
+        // Lädt Unbefestigte Wege (highway=track + surface=unpaved/gravel/dirt, tracktype grade2-5) aus OSM on-the-fly.
+        // Daten: © OpenStreetMap contributors, ODbL-lizenziert - KEINE Speicherung, nur Live-Abfrage im Browser.
+        const OVERPASS_MIRRORS = [
+            'https://overpass-api.de/api/interpreter',
+            'https://overpass.kumi.systems/api/interpreter',
+            'https://overpass.private.coffee/api/interpreter'
+        ];
+        async function overpassFetch(query) {
+            for (const url of OVERPASS_MIRRORS) {
+                try {
+                    const r = await fetch(url, {method:'POST', body:'data='+encodeURIComponent(query)});
+                    if (r.ok) { const j = await r.json(); if (j && j.elements) return j; }
+                } catch(e) { console.warn('mirror failed',url,e); }
+            }
+            throw new Error('Alle Overpass-Mirrors nicht erreichbar - bitte später erneut versuchen');
+        }
+        function boundsOverlap(a,b){return !(a[2]<b[0]||a[0]>b[2]||a[3]<b[1]||a[1]>b[3]);}
+        async function loadOffroadInBounds() {
+            if (offroadLayer._loading) return;
+            const b = map.getBounds();
+            const bb = [b.getSouth(), b.getWest(), b.getNorth(), b.getEast()];
+            // Vermeide Dopplungen
+            if (offroadLayer._loadedBounds.some(lb => boundsOverlap(lb,bb) && lb[0]<=bb[0]&&lb[1]<=bb[1]&&lb[2]>=bb[2]&&lb[3]>=bb[3])) return;
+            // Sicherheit: nur bei Zoom >= 10 laden (Datenmenge)
+            if (map.getZoom() < 10) {
+                if (!offroadLayer._warned) {
+                    offroadLayer._warned = true;
+                    L.popup().setLatLng(map.getCenter()).setContent('<div style="font-family:Oswald,sans-serif;padding:6px;"><strong style="color:#D4A41C;">Näher reinzoomen</strong><br><span style="font-size:0.82rem;">OSM-Unbefestigt-Daten werden ab Zoom 10 geladen (Datenschonung).</span></div>').openOn(map);
+                }
+                return;
+            }
+            offroadLayer._loading = true;
+            const statusDiv = document.getElementById('offroadStatus');
+            if (statusDiv) statusDiv.textContent = '⟳ Lade Unbefestigt-Daten von OSM…';
+            const q = `[out:json][timeout:45];(way["highway"="track"]["tracktype"~"grade[2-5]"](${bb.join(',')});way["highway"="track"]["surface"~"unpaved|gravel|dirt|ground|compacted|fine_gravel|pebblestone"](${bb.join(',')});way["highway"="path"]["motor_vehicle"!="no"]["bicycle"!="no"](${bb.join(',')}););out geom 400;`;
+            try {
+                const data = await overpassFetch(q);
+                let count = 0;
+                (data.elements||[]).forEach(w => {
+                    if (!w.geometry) return;
+                    const coords = w.geometry.map(g => [g.lat, g.lon]);
+                    const tt = (w.tags && w.tags.tracktype) || '';
+                    const surf = (w.tags && w.tags.surface) || 'unbefestigt';
+                    // Farbe nach Track-Grade (grade1=fest, grade5=sehr rau)
+                    const col = tt==='grade5' ? '#5C2A0A' : tt==='grade4' ? '#8B3A0E' : tt==='grade3' ? '#B85C1C' : tt==='grade2' ? '#D4A41C' : '#E8BE3C';
+                    L.polyline(coords, {color:col, weight:2.5, opacity:0.85, lineCap:'round'}).addTo(offroadLayer)
+                      .bindPopup(`<div style="font-family:Oswald,sans-serif;padding:4px;"><strong style="color:#8B3A0E;">Unbefestigter Weg</strong><br><span style="font-size:0.8rem;">${tt?('Grade: '+tt+' · '):''}Oberfläche: ${surf}</span><br><span style="font-size:0.7rem;color:#888;">© OSM contributors (ODbL)</span></div>`);
+                    count++;
+                });
+                offroadLayer._loadedBounds.push(bb);
+                if (statusDiv) statusDiv.textContent = `✓ ${count} Offroad-Segmente geladen (OSM)`;
+            } catch(e) {
+                console.error(e);
+                if (statusDiv) statusDiv.textContent = '✗ OSM-Daten nicht erreichbar';
+            } finally { offroadLayer._loading = false; }
+        }
+        map.on('overlayadd', (ev) => { if (ev.layer === offroadLayer) loadOffroadInBounds(); });
+        map.on('moveend', () => { if (map.hasLayer(offroadLayer)) loadOffroadInBounds(); });
+
         // ── Layer Control ──
         const overlays = {
             "<span style='color:#D4A41C;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:0.78rem;'>Tour-Route</span>": routeLayer,
             "<span style='color:#C39824;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:0.78rem;'>TET-Routen (schematisch)</span>": tetLayer,
-            "<span style='color:#CC3333;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:0.78rem;'>POIs / Highlights</span>": poiLayer
+            "<span style='color:#CC3333;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:0.78rem;'>POIs / Highlights</span>": poiLayer,
+            "<span style='color:#8B3A0E;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:0.78rem;'>Unbefestigt (OSM live)</span><br><span id='offroadStatus' style='font-size:0.68rem;color:#888;padding-left:22px;'>ab Zoom 10 aktiv</span>": offroadLayer
         };
         L.control.layers(null, overlays, {position:'topright', collapsed:false}).addTo(map);
 
@@ -1316,17 +1435,52 @@ ${wpts}
     URL.revokeObjectURL(url);
 }
 
+// OSMand-Integration: Deep-Link zu Start- und Zielpunkt der Etappe
+// Nutzt geo:-URI (öffnet OSMand wenn installiert, sonst Fallback auf Standard-Karten-App)
+// und osmand.api für Navigation mit Offroad-Profil
+function openInOSMand(i, mode) {
+    const e = etappen[i];
+    const sc = e.routeCoords[0];
+    const ec = e.routeCoords[e.routeCoords.length-1];
+    if (mode === 'navigate') {
+        // OSMand Navigation URI - Offroad-Modus
+        const url = `https://osmand.net/map?pin=${ec[0]},${ec[1]}&start=${sc[0]},${sc[1]}&end=${ec[0]},${ec[1]}&profile=car`;
+        window.open(url, '_blank');
+    } else {
+        // geo: URI - öffnet OSMand (oder Google Maps als Fallback) am Startpunkt
+        const geoUri = `geo:${sc[0]},${sc[1]}?z=11&q=${sc[0]},${sc[1]}(Tag ${e.id} Start: ${e.from})`;
+        window.location.href = geoUri;
+    }
+}
+
+// OSMand Desktop: GPX-Datei herunterladen + Anleitung einblenden
+function openGPXInOSMand(i) {
+    downloadGPX(i); // GPX herunterladen
+    // Kurzer Toast mit OSMand-Import-Anleitung
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#0A0A0A;color:#D4A41C;padding:16px 24px;border:2px solid #D4A41C;font-family:Oswald,sans-serif;font-size:0.85rem;letter-spacing:1px;z-index:9999;max-width:92vw;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.8);';
+    toast.innerHTML = 'GPX heruntergeladen &mdash; in OSMand: Menü → <strong>GPX</strong> → Importieren → Route → Profil <strong>Offroad/Motorrad</strong>';
+    document.body.appendChild(toast);
+    setTimeout(()=>{toast.style.transition='opacity 0.6s';toast.style.opacity='0';setTimeout(()=>toast.remove(),600);},5500);
+}
+
 function renderGPXGrid() {
     document.getElementById('gpxGrid').innerHTML = etappen.map((e,i) => {
         const offroad = e.offroad ? '<span style="color:var(--red);font-size:0.65rem;font-family:Oswald;text-transform:uppercase;letter-spacing:1px;margin-left:6px;">OFFROAD</span>' : '';
-        return `<div class="gpx-card" onclick="downloadGPX(${i})">
-            <div class="gpx-card-info">
+        return `<div class="gpx-card">
+            <div class="gpx-card-info" onclick="downloadGPX(${i})" style="cursor:pointer;flex:1;">
                 <div class="gpx-card-title">Tag ${e.id}: ${e.from} \u2192 ${e.to}${offroad}</div>
                 <div class="gpx-card-sub">${e.distance} km \u00b7 ${e.duration} \u00b7 ${e.elevation} Hm</div>
             </div>
-            <div class="gpx-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                GPX
+            <div style="display:flex;gap:6px;flex-shrink:0;">
+                <div class="gpx-btn" onclick="downloadGPX(${i})" title="GPX-Datei herunterladen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    GPX
+                </div>
+                <div class="gpx-btn osmand-btn" onclick="openGPXInOSMand(${i})" title="GPX laden + in OSMand öffnen (für Offroad-Navigation)" style="background:#8B3A0E;color:#fff;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6z"/><line x1="9" y1="4" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="20"/></svg>
+                    OSMand
+                </div>
             </div>
         </div>`;
     }).join('');
