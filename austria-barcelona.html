@@ -1062,6 +1062,65 @@ function renderProgress() {
     }).join('');
 }
 
+// Schematic TET routes for countries crossed by Barcelona tour (NOT official TET GPX - schematic approximations)
+const tetRoutes = {
+    austria: {name:"Österreich TET", color:"#C39824", coords:[[47.5,10],[47.3,11],[47.2,12],[47,13],[47.2,14],[47.3,15],[47.5,16]]},
+    italy: {name:"Italien TET", color:"#C39824", coords:[[46,11],[45.5,10.5],[45,10],[44.5,10.5],[44,11],[43.5,11.5],[43,12]]},
+    switzerland: {name:"Schweiz TET", color:"#C39824", coords:[[47.5,7],[47.2,7.5],[47,8],[46.8,8.5],[46.6,9],[46.5,9.5],[46.8,10]]},
+    france: {name:"Frankreich TET", color:"#C39824", coords:[[49,2],[48,1],[47,0.5],[46,1],[45.5,2.5],[45,3],[44,2],[43.5,1.5],[43,2.5],[43.5,4],[44,5],[43.5,6.5]]},
+    andorra: {name:"Andorra TET", color:"#C39824", coords:[[42.65,1.4],[42.55,1.55],[42.45,1.7]]},
+    spain: {name:"Spanien TET", color:"#C39824", coords:[[42,3],[42.2,2.5],[41.8,2],[41.5,1.5],[41,1],[40.5,0.5],[40,-1],[39.5,-2],[39,-3]]}
+};
+
+// POIs entlang der Route - kuriose, spannende & sehenswerte Orte
+const pois = [
+    // AUSTRIA
+    {lat:47.5622, lng:13.6493, cat:"kurios", name:"Hallstatt", desc:"UNESCO-Dorf am See, ältestes Salzbergwerk der Welt (7000 Jahre). Legendär: wurde in China komplett nachgebaut!"},
+    {lat:47.5030, lng:13.1906, cat:"kurios", name:"Eisriesenwelt Werfen", desc:"Größte Eishöhle der Welt - 42 km lang, gigantische Eisskulpturen"},
+    {lat:47.0755, lng:12.8298, cat:"natur", name:"Großglockner Hochalpenstr.", desc:"Höchste Passstraße Österreichs (2504m) - Panoramastraße mit 36 Kehren"},
+    {lat:47.2144, lng:12.1730, cat:"natur", name:"Krimmler Wasserfälle", desc:"Höchster Wasserfall Europas (380m)"},
+    {lat:47.2973, lng:11.5966, cat:"kurios", name:"Swarovski Kristallwelten", desc:"Surreale Kristall-Kunstwelt bei Wattens - Riesenkopf spuckt Wasser!"},
+    {lat:47.2480, lng:11.4000, cat:"sport", name:"Bergisel Skisprungschanze", desc:"Innsbrucks Wahrzeichen - Zaha Hadid Architektur, geile Aussicht"},
+    // SOUTH TIROL / ITALY
+    {lat:46.4983, lng:11.3566, cat:"kurios", name:"Ötzi Museum Bozen", desc:"5300 Jahre alte Gletschermumie - Europas berühmteste Leiche!"},
+    {lat:46.6933, lng:12.0850, cat:"natur", name:"Pragser Wildsee", desc:"Türkisblauer Bergsee zwischen den Dolomiten - Instagram-Klassiker"},
+    {lat:46.6167, lng:12.3072, cat:"natur", name:"Drei Zinnen", desc:"Ikonische 3 Felstürme der Dolomiten (2999m) - UNESCO Welterbe"},
+    {lat:46.5469, lng:11.7155, cat:"natur", name:"Seiser Alm", desc:"Größte Hochalm Europas - sanfte Wiesen vor Dolomiten-Kulisse"},
+    // SWITZERLAND
+    {lat:46.2582, lng:8.9744, cat:"kurios", name:"Verzasca-Staumauer", desc:"James Bond GoldenEye Bungee-Jump (220m!) - Oberhalb Locarno, kleiner Umweg"},
+    {lat:46.2238, lng:6.1406, cat:"sehen", name:"UN-Hauptquartier Genf", desc:"Palais des Nations - Broken Chair Monument davor (12m Protest-Skulptur)"},
+    {lat:46.2074, lng:6.1561, cat:"sehen", name:"Jet d'Eau Genf", desc:"140m hohe Wasserfontäne im Genfer See - Wahrzeichen"},
+    // FRANCE
+    {lat:45.7662, lng:4.8286, cat:"kurios", name:"Lyon Traboules", desc:"Geheime Durchgangshäuser aus dem Mittelalter - 400 versteckte Passagen"},
+    {lat:43.9472, lng:4.5350, cat:"sehen", name:"Pont du Gard", desc:"Römisches Aquädukt (2000 Jahre!) - UNESCO, 49m hoch, begehbar"},
+    {lat:43.9498, lng:4.8055, cat:"sehen", name:"Papstpalast Avignon", desc:"Größter gotischer Palast Europas - 1309-1378 Sitz der Päpste"},
+    {lat:43.9020, lng:5.2920, cat:"kurios", name:"Ockerfelsen Roussillon", desc:"Mars-ähnliche rote Klippen in der Provence - surreal bunt"},
+    {lat:43.7433, lng:4.7906, cat:"kurios", name:"Carrières de Lumières", desc:"Bei Les Baux: Lichtshow in ehemaligem Steinbruch - riesige Projektionen"},
+    {lat:43.4072, lng:3.6970, cat:"sehen", name:"Sète - Klein-Venedig", desc:"Kanäle, Fischmarkt, Austern - 'Venedig des Languedoc'"},
+    // PYRENEES / ANDORRA
+    {lat:42.5406, lng:1.7078, cat:"sport", name:"Port d'Envalira", desc:"Höchster asphaltierter Pass der Pyrenäen (2408m)"},
+    {lat:42.4500, lng:1.5670, cat:"kurios", name:"VW T1 Bus am Pic Negre", desc:"Verlassener VW Bulli am 2643m-Gipfel - legendärer Foto-Spot!"},
+    {lat:42.5792, lng:1.7239, cat:"sehen", name:"Pas de la Casa", desc:"Andorra Duty-Free Grenzort - Tanken & shoppen vor dem Pass"},
+    {lat:42.5500, lng:1.6041, cat:"sehen", name:"Heiligtum Meritxell", desc:"Ricardo-Bofill-Bau 1976 - moderne Nationalheilige Andorras"},
+    // SPAIN / CATALONIA
+    {lat:42.2686, lng:2.9614, cat:"kurios", name:"Dalí-Theater-Museum Figueres", desc:"Surrealer Museumsbau mit Riesen-Eiern am Dach - Dalís eigenes Werk!"},
+    {lat:42.2881, lng:3.2778, cat:"kurios", name:"Cadaqués & Cap de Creus", desc:"Dalís Sommerhaus - skurrile Felslandschaft direkt aus seinen Bildern"},
+    {lat:41.9840, lng:2.8244, cat:"sehen", name:"Girona Altstadt", desc:"Game of Thrones Drehort (Königsmund) - bunte Häuser am Fluss Onyar"},
+    {lat:41.5917, lng:1.8375, cat:"kurios", name:"Montserrat", desc:"Surreal geformter 'gesägter' Berg - Kloster mit schwarzer Madonna"},
+    {lat:41.4036, lng:2.1744, cat:"sehen", name:"Sagrada Família", desc:"Gaudís unvollendete Kathedrale - seit 1882 im Bau (fertig ~2026!)"},
+    {lat:41.4145, lng:2.1527, cat:"sehen", name:"Park Güell", desc:"Gaudís bunte Mosaik-Fantasiewelt - Wahrzeichen Barcelonas"},
+    {lat:41.3833, lng:2.1833, cat:"sehen", name:"Casa Batlló / Pedrera", desc:"Gaudís schuppige Fassaden am Passeig de Gràcia"},
+    {lat:41.3758, lng:2.1895, cat:"sehen", name:"Barceloneta Strand", desc:"Stadtstrand mit Bars - endlich Mittelmeer nach 2265 km!"}
+];
+
+const poiCatStyle = {
+    kurios:   {color:"#CC3333", icon:"★"},
+    natur:    {color:"#44AA44", icon:"▲"},
+    sehen:    {color:"#4488CC", icon:"●"},
+    sport:    {color:"#9B59B6", icon:"♦"}
+};
+const poiCatLabel = {kurios:"Kurios/Besonders", natur:"Natur", sehen:"Sehenswürdigkeit", sport:"Sport/Action"};
+
 function initMap() {
     try {
         if (typeof L === 'undefined') throw new Error('Leaflet not loaded');
@@ -1072,9 +1131,15 @@ function initMap() {
             maxZoom: 19
         }).addTo(map);
 
+        // ── Layer Groups ──
+        const routeLayer = L.layerGroup().addTo(map);
+        const tetLayer = L.layerGroup();
+        const poiLayer = L.layerGroup().addTo(map);
+
+        // ── Tour Routes ──
         const colors = ['#D4A41C','#E8BE3C','#CC3333','#44AA44','#4488CC','#9B59B6','#D4A41C','#E8BE3C','#CC3333','#44AA44'];
         etappen.forEach((e,i) => {
-            L.polyline(e.routeCoords, {color:colors[i%colors.length], weight:4, opacity:0.85, smoothFactor:1.5}).addTo(map)
+            L.polyline(e.routeCoords, {color:colors[i%colors.length], weight:4, opacity:0.85, smoothFactor:1.5}).addTo(routeLayer)
             .bindPopup(`<div style="font-family:Oswald,sans-serif;padding:4px;letter-spacing:1px;">
                 <strong style="text-transform:uppercase;">Tag ${e.id}: ${e.title}</strong><br>
                 ${e.from} \u2192 ${e.to}<br>
@@ -1089,8 +1154,43 @@ function initMap() {
                 className:'',
                 html:`<div style="width:${sz*2}px;height:${sz*2}px;background:${col};border:2px solid ${isEnd?'white':'#ccc'};border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.5);"></div>`,
                 iconSize:[sz*2,sz*2], iconAnchor:[sz,sz]
-            })}).addTo(map).bindPopup(`<strong>${s.flag} ${s.name}</strong><br>${s.date}`);
+            })}).addTo(routeLayer).bindPopup(`<strong>${s.flag} ${s.name}</strong><br>${s.date}`);
         });
+
+        // ── TET Schematic Routes (NICHT die offiziellen TET-GPX-Daten - nur schematische Annäherung!) ──
+        Object.values(tetRoutes).forEach(r => {
+            L.polyline(r.coords, {color:r.color, weight:3, opacity:0.75, dashArray:"8 6"}).addTo(tetLayer)
+            .bindPopup(`<div style="font-family:Oswald,sans-serif;padding:4px;">
+                <strong style="color:#C39824;">${r.name}</strong><br>
+                <span style="font-size:0.78rem;color:#666;">Schematische Ann\u00e4herung</span><br>
+                <a href="https://transeurotrail.org/" target="_blank" style="color:#D4A41C;font-weight:600;">Offizielle GPX laden \u2192</a>
+            </div>`);
+        });
+
+        // ── POIs ──
+        pois.forEach(p => {
+            const s = poiCatStyle[p.cat];
+            const marker = L.marker([p.lat, p.lng], {icon: L.divIcon({
+                className:'',
+                html:`<div style="width:26px;height:26px;background:${s.color};border:2px solid white;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:bold;">${s.icon}</div>`,
+                iconSize:[26,26], iconAnchor:[13,13]
+            })});
+            marker.bindPopup(`<div style="font-family:Inter,sans-serif;max-width:240px;">
+                <div style="font-family:Oswald,sans-serif;font-size:0.72rem;color:${s.color};text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:4px;">${poiCatLabel[p.cat]}</div>
+                <div style="font-family:Oswald,sans-serif;font-size:1.05rem;font-weight:600;color:#111;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">${p.name}</div>
+                <div style="font-size:0.82rem;color:#333;line-height:1.5;">${p.desc}</div>
+                <a href="https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}" target="_blank" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#D4A41C;color:#111;text-decoration:none;font-size:0.72rem;font-family:Oswald,sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase;border-radius:3px;">In Maps \u00f6ffnen</a>
+            </div>`);
+            marker.addTo(poiLayer);
+        });
+
+        // ── Layer Control ──
+        const overlays = {
+            "<span style='color:#D4A41C;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:0.78rem;'>Tour-Route</span>": routeLayer,
+            "<span style='color:#C39824;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:0.78rem;'>TET-Routen (schematisch)</span>": tetLayer,
+            "<span style='color:#CC3333;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:0.78rem;'>POIs / Highlights</span>": poiLayer
+        };
+        L.control.layers(null, overlays, {position:'topright', collapsed:false}).addTo(map);
 
         map.fitBounds(etappen.flatMap(e=>e.routeCoords), {padding:[40,40]});
         setTimeout(()=>map.invalidateSize(),500);
