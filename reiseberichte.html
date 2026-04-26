@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reiseberichte — Enduro Explorers Strasswalchen</title>
+    <meta name="description" content="Tunesien 2025, Balkan 2024, Marokko 2023 — alle Touren, alle Berichte, alle Geschichten.">
+    <meta name="robots" content="index,follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.6rem;
+            margin-top: 2rem;
+        }
+        /* Big featured report */
+        .report-feature {
+            grid-column: 1 / -1;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--black-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            min-height: 420px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 2.5rem 3rem;
+            transition: all 0.4s;
+        }
+        .report-feature::before {
+            content:''; position:absolute; inset:0;
+            background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.85) 100%);
+        }
+        .report-feature > * { position: relative; z-index: 2; }
+        .report-feature:hover { border-color: var(--gold); box-shadow: 0 12px 40px rgba(212,164,28,0.15); }
+        .report-feature-badge {
+            display: inline-block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.95rem; letter-spacing: 3px;
+            background: var(--gold); color: var(--black);
+            padding: 6px 14px;
+            margin-bottom: 1rem;
+            align-self: flex-start;
+        }
+        .report-feature-year {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.78rem; color: var(--gold); letter-spacing: 3px;
+            text-transform: uppercase; margin-bottom: 0.4rem;
+        }
+        .report-feature-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.6rem);
+            font-weight: 700;
+            color: var(--text-bright);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            line-height: 1; margin-bottom: 0.8rem;
+        }
+        .report-feature-title span { color: var(--gold); }
+        .report-feature-desc {
+            font-size: 1rem; color: var(--text);
+            max-width: 720px; line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .report-feature-stats {
+            display: flex; gap: 1.6rem; flex-wrap: wrap;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem; color: var(--gold-light);
+            text-transform: uppercase; letter-spacing: 2px;
+        }
+        .report-feature-stats span { display: inline-flex; align-items: center; gap: 6px; }
+        .report-feature-stats svg { width: 16px; height: 16px; stroke: var(--gold); }
+        .report-feature-cta {
+            margin-top: 1.4rem;
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem; letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold); font-weight: 600;
+        }
+
+        /* Background images via inline gradient placeholder when no real image */
+        .bg-tunesien {
+            background-image:
+                linear-gradient(135deg, rgba(212,164,28,0.4), rgba(139,58,14,0.4)),
+                radial-gradient(ellipse at 30% 20%, #d4a41c33, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, #8b3a0e33, transparent 50%),
+                linear-gradient(180deg, #2a1a0a, #1a0a05);
+        }
+        .bg-balkan {
+            background-image:
+                linear-gradient(135deg, rgba(68,170,68,0.3), rgba(68,136,204,0.3)),
+                radial-gradient(ellipse at 30% 20%, #44aa4433, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, #4488cc33, transparent 50%),
+                linear-gradient(180deg, #0a1a0a, #0a1018);
+        }
+        .bg-marokko {
+            background-image:
+                linear-gradient(135deg, rgba(204,51,51,0.3), rgba(212,164,28,0.4)),
+                radial-gradient(ellipse at 30% 20%, #cc333333, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, #d4a41c33, transparent 50%),
+                linear-gradient(180deg, #2a0a0a, #1a0805);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav" id="navbar">
+    <a href="index.html" class="nav-logo-text">ENDURO EXPLORERS</a>
+    <button class="nav-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <ul class="nav-links">
+        <li><a href="was-wir-machen.html">Was wir machen</a></li>
+        <li><a href="explore-2026.html">Explore 2026</a></li>
+        <li><a href="reiseberichte.html">Reiseberichte</a></li>
+        <li><a href="austria-barcelona.html">Barcelona Tour</a></li>
+        <li><a href="index.html">TET Explorer</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+</nav>
+
+<header class="page-hero">
+    <div class="page-hero-club">Archiv</div>
+    <h1>Reise<span>berichte</span></h1>
+    <p class="page-hero-subtitle">Drei Kontinente, drei Jahre, drei Geschichten. Was wir erlebt haben — ungefiltert.</p>
+    <div class="page-hero-meta">
+        <span class="page-hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18" stroke-width="2"/></svg>
+            3 Touren
+        </span>
+        <span class="page-hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-width="2"/></svg>
+            12.300 km
+        </span>
+        <span class="page-hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke-width="2"/></svg>
+            seit 2023
+        </span>
+    </div>
+</header>
+
+<section class="section-wrap fade-in">
+    <div class="section-header">
+        <h2>Alle <span>Touren</span></h2>
+        <p>Klick rein. Lies, was uns wirklich passiert ist.</p>
+    </div>
+
+    <div class="report-grid">
+
+        <!-- Featured: Tunesien 2025 (most recent) -->
+        <a href="reiseberichte/tunesien-2025.html" class="report-feature bg-tunesien fade-in">
+            <span class="report-feature-badge">Neuester Bericht</span>
+            <div class="report-feature-year">Saison 2025 · April</div>
+            <h2 class="report-feature-title">Tunesien <span>2025</span></h2>
+            <p class="report-feature-desc">14 Tage durch die Wüste — Sahara, Chott el Djerid, Erg Oriental. Sand bis zum Horizont, ein verlorener Reifen, eine Tee-Einladung, die uns 6 Stunden gekostet hat. Und am Ende: Sterne wie nirgendwo sonst.</p>
+            <div class="report-feature-stats">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>4.100 km</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>14 Tage</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>42 °C max</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 8l4 4-4 4M7 8l-4 4 4 4M14 4l-4 16"/></svg>70% Schotter/Sand</span>
+            </div>
+            <span class="report-feature-cta">Vollständigen Bericht lesen →</span>
+        </a>
+
+        <!-- Balkan 2024 -->
+        <a href="reiseberichte/balkan-2024.html" class="photo-card fade-in">
+            <div class="photo-card-img bg-balkan">
+                <span class="photo-card-badge">2024</span>
+                <span class="photo-card-flag">🇧🇦 🇲🇪 🇦🇱</span>
+            </div>
+            <div class="photo-card-body">
+                <div class="photo-card-meta">Saison 2024 · Mai</div>
+                <h3 class="photo-card-title">Balkan <span style="color:var(--gold);">Loop</span></h3>
+                <p class="photo-card-desc">Slowenien, Bosnien, Montenegro, Albanien, Mazedonien. 18 Tage durch die unverbrauchten Berge des Balkans — mit Tara-Canyon, Theth-Pass und einer Hochzeit, in die wir aus Versehen gefahren sind.</p>
+                <div class="photo-card-stats">
+                    <span class="photo-card-stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>4.800 km</span>
+                    <span class="photo-card-stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>18 Tage</span>
+                    <span class="photo-card-stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 3l4 8 5-5 5 15H2L8 3z"/></svg>5 Länder</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Marokko 2023 -->
+        <a href="reiseberichte/marokko-2023.html" class="photo-card fade-in">
+            <div class="photo-card-img bg-marokko">
+                <span class="photo-card-badge">2023</span>
+                <span class="photo-card-flag">🇲🇦</span>
+            </div>
+            <div class="photo-card-body">
+                <div class="photo-card-meta">Saison 2023 · September</div>
+                <h3 class="photo-card-title">Marokko <span style="color:var(--gold);">Atlas</span></h3>
+                <p class="photo-card-desc">Die Tour, die alles ins Rollen brachte. 16 Tage Hoher Atlas, Tizi n'Tichka, Erg Chebbi-Dünen, Casablanca. Der Bericht über den Tag, an dem wir vier Reifen in 24 Stunden verloren haben.</p>
+                <div class="photo-card-stats">
+                    <span class="photo-card-stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>3.400 km</span>
+                    <span class="photo-card-stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>16 Tage</span>
+                    <span class="photo-card-stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 3l4 8 5-5 5 15H2L8 3z"/></svg>2.260 m max</span>
+                </div>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<!-- ═══ KOMMT BALD ═══ -->
+<section class="section-wrap fade-in">
+    <div class="section-header">
+        <h2>Demnächst <span>im Archiv</span></h2>
+        <p>Was wir 2026 bringen.</p>
+    </div>
+    <div style="background:var(--black-card);border:1px solid var(--border);border-left:4px solid var(--gold);padding:2rem 2.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;">
+        <div>
+            <div style="font-family:'Oswald',sans-serif;font-size:0.78rem;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:0.4rem;">In Vorbereitung</div>
+            <h3 style="font-family:'Oswald',sans-serif;font-size:1.6rem;color:var(--text-bright);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.6rem;">Barcelona <span style="color:var(--gold);">2026</span></h3>
+            <p style="color:var(--text-muted);max-width:580px;">Live-Tracking während der Tour, Bericht nach dem Heimkommen. Bis dahin: schau dir die Route an.</p>
+        </div>
+        <a href="austria-barcelona.html" class="btn">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Tour-Vorschau
+        </a>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-col">
+            <div class="footer-club-text">Enduro Explorers</div>
+            <p style="color:var(--text-muted);font-size:0.82rem;line-height:1.6;">Strasswalchen · Salzburg · Österreich. Schotter, Pässe, Crew.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Club</h4>
+            <a href="was-wir-machen.html">Was wir machen</a>
+            <a href="explore-2026.html">Explore 2026</a>
+            <a href="kontakt.html">Kontakt</a>
+        </div>
+        <div class="footer-col">
+            <h4>Reiseberichte</h4>
+            <a href="reiseberichte.html">Übersicht</a>
+            <a href="reiseberichte/tunesien-2025.html">Tunesien 2025</a>
+            <a href="reiseberichte/balkan-2024.html">Balkan 2024</a>
+            <a href="reiseberichte/marokko-2023.html">Marokko 2023</a>
+        </div>
+        <div class="footer-col">
+            <h4>Touren</h4>
+            <a href="austria-barcelona.html">Barcelona Tour 2026</a>
+            <a href="index.html">TET Explorer</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Enduro Explorers Strasswalchen</span>
+        <span><a href="kontakt.html#impressum">Impressum</a> · <a href="kontakt.html#datenschutz">Datenschutz</a></span>
+    </div>
+</footer>
+
+<div class="cookie-banner" id="cookieBanner" style="display:none;">
+    <p>Wir nutzen ausschließlich technisch notwendige Cookies (kein Tracking). Mehr in der <a href="kontakt.html#datenschutz">Datenschutzerklärung</a>.</p>
+    <button id="cookieAccept">Verstanden</button>
+</div>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

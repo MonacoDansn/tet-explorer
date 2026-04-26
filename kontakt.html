@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt — Enduro Explorers Strasswalchen</title>
+    <meta name="description" content="Kontakt, Impressum, Datenschutz — Enduro Explorers Strasswalchen Motorradclub.">
+    <meta name="robots" content="index,follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+        .contact-info-card {
+            background: var(--black-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2rem;
+            margin-bottom: 1.4rem;
+        }
+        .contact-info-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem; color: var(--gold);
+            text-transform: uppercase; letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        .contact-row {
+            display: flex; align-items: center; gap: 14px;
+            padding: 10px 0;
+            font-size: 0.92rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .contact-row:last-child { border-bottom: 0; }
+        .contact-row svg {
+            width: 22px; height: 22px; stroke: var(--gold);
+            flex-shrink: 0;
+        }
+        .contact-row a { color: var(--text); text-decoration: none; }
+        .contact-row a:hover { color: var(--gold); }
+
+        .meeting-card {
+            background: linear-gradient(135deg, var(--black-card), #161610);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            padding: 1.6rem;
+            margin-bottom: 1.4rem;
+        }
+        .meeting-card-day {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem; color: var(--gold); line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+        .meeting-card-time {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem; color: var(--gold-light);
+            letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+        .meeting-card-loc { font-size: 0.88rem; color: var(--text); }
+
+        .form-wrap {
+            background: var(--black-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2rem;
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+        .form-success {
+            display: none;
+            background: rgba(68,170,68,0.1);
+            border: 1px solid var(--green);
+            color: var(--green);
+            padding: 1rem 1.4rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .form-success.active { display: block; }
+
+        .legal-section {
+            background: var(--black-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2rem 2.4rem;
+            margin-bottom: 1.5rem;
+        }
+        .legal-section h3 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--gold); font-size: 1.1rem;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .legal-section h4 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--text-bright); font-size: 0.95rem;
+            letter-spacing: 1px; margin: 1.4rem 0 0.5rem;
+        }
+        .legal-section p, .legal-section li {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+        .legal-section ul { padding-left: 1.4rem; }
+        .legal-section strong { color: var(--text); }
+    </style>
+</head>
+<body>
+
+<nav class="nav" id="navbar">
+    <a href="index.html" class="nav-logo-text">ENDURO EXPLORERS</a>
+    <button class="nav-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <ul class="nav-links">
+        <li><a href="was-wir-machen.html">Was wir machen</a></li>
+        <li><a href="explore-2026.html">Explore 2026</a></li>
+        <li><a href="reiseberichte.html">Reiseberichte</a></li>
+        <li><a href="austria-barcelona.html">Barcelona Tour</a></li>
+        <li><a href="index.html">TET Explorer</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+</nav>
+
+<header class="page-hero">
+    <div class="page-hero-club">Reach out</div>
+    <h1>Kontakt &amp; <span>Komm vorbei</span></h1>
+    <p class="page-hero-subtitle">Stammtisch, Mail, Garage — wir sind erreichbar. Wenn die Chemie passt, fahrst du mit.</p>
+</header>
+
+<section class="section-wrap fade-in">
+    <div class="contact-grid">
+
+        <!-- LEFT: Info -->
+        <div>
+            <div class="contact-info-card">
+                <h3>Kontakt-Daten</h3>
+                <div class="contact-row">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <a href="mailto:hallo@enduro-explorers.at">hallo@enduro-explorers.at</a>
+                </div>
+                <div class="contact-row">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    <a href="tel:+436641234567">+43 664 123 45 67</a>
+                </div>
+                <div class="contact-row">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>5204 Strasswalchen, Salzburg</span>
+                </div>
+                <div class="contact-row">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener">@enduroexplorers.strasswalchen</a>
+                </div>
+                <div class="contact-row">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    <a href="https://instagram.com/" target="_blank" rel="noopener">@enduro_explorers</a>
+                </div>
+            </div>
+
+            <div class="meeting-card">
+                <div class="meeting-card-day">Stammtisch</div>
+                <div class="meeting-card-time">Jeden 1. Freitag im Monat · 19:30</div>
+                <div class="meeting-card-loc">Gasthof zur Alten Post · Hauptstr. 12 · 5204 Strasswalchen</div>
+            </div>
+
+            <div class="meeting-card" style="border-color:var(--border);background:var(--black-card);">
+                <div class="meeting-card-day">Vereins-Garage</div>
+                <div class="meeting-card-time">Jeden Samstag · 14:00–18:00</div>
+                <div class="meeting-card-loc">Schraub-Treff in der Vereins-Werkstatt · Adresse auf Anfrage (Mitglieder).</div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div>
+            <div class="form-wrap">
+                <h3 style="font-family:'Oswald',sans-serif;color:var(--gold);font-size:1.2rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.2rem;">Schreib uns</h3>
+
+                <div class="form-success" id="formSuccess">
+                    Danke! Deine Nachricht ist bei uns angekommen. Wir melden uns innerhalb von 3 Tagen.
+                </div>
+
+                <form id="contactForm" onsubmit="return submitForm(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="firstName">Vorname *</label>
+                            <input class="form-input" id="firstName" name="firstName" type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="lastName">Nachname *</label>
+                            <input class="form-input" id="lastName" name="lastName" type="text" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">E-Mail *</label>
+                        <input class="form-input" id="email" name="email" type="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="topic">Worum geht's?</label>
+                        <select class="form-select" id="topic" name="topic">
+                            <option value="info">Allgemeine Frage</option>
+                            <option value="member">Ich will Mitglied werden</option>
+                            <option value="join">Ich will bei einer Tour mitfahren</option>
+                            <option value="press">Presse / Medien</option>
+                            <option value="cooperation">Kooperation / Sponsoring</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="message">Nachricht *</label>
+                        <textarea class="form-textarea" id="message" name="message" required placeholder="Erzähl uns kurz, wer du bist, was du fährst, was du willst…"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display:flex;gap:10px;align-items:flex-start;font-size:0.82rem;color:var(--text-muted);line-height:1.5;cursor:pointer;">
+                            <input type="checkbox" required style="margin-top:3px;accent-color:var(--gold);">
+                            <span>Ich habe die <a href="#datenschutz" style="color:var(--gold);">Datenschutzerklärung</a> gelesen und stimme zu, dass meine Daten zur Bearbeitung der Anfrage verwendet werden.</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn" style="width:100%;justify-content:center;">
+                        <svg viewBox="0 0 24 24" fill="none"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/></svg>
+                        Nachricht senden
+                    </button>
+
+                    <p style="margin-top:1rem;font-size:0.75rem;color:var(--text-muted);text-align:center;">
+                        Wir antworten innerhalb von 3 Werktagen. Keine Newsletter, kein Tracking.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ ANREISE ═══ -->
+<section class="section-wrap fade-in">
+    <div class="section-header">
+        <h2>So <span>findest du uns</span></h2>
+        <p>Strasswalchen — am Übergang zwischen Salzkammergut und Hausruckwald.</p>
+    </div>
+    <div style="background:var(--black-card);border:1px solid var(--border);border-radius:4px;overflow:hidden;height:380px;position:relative;">
+        <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=13.225%2C47.965%2C13.345%2C48.030&amp;layer=mapnik&amp;marker=47.9750%2C13.2580"
+            style="width:100%;height:100%;border:0;filter:brightness(0.85);"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Strasswalchen auf OpenStreetMap"></iframe>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.4rem;">
+        <div class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 9h2v6H3zM19 9h2v6h-2zM7 5h10v14H7z"/></svg></div>
+            <h3>Mit dem Zug</h3>
+            <p>ÖBB-Bahnhof Strasswalchen, direkt an der West­bahn­strecke Salzburg–Linz. Stammtisch-Lokal 5 Gehminuten.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17h12M9 7l3-3 3 3"/></svg></div>
+            <h3>Mit dem Bike</h3>
+            <p>Über die A1 (Abfahrt Mondsee oder Strasswalchen) — die schönere Route ist B1 ab Salzburg, Köstendorf, Strasswalchen.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 8v12h16V8l-8-6z"/></svg></div>
+            <h3>Mit dem Auto</h3>
+            <p>30 Min. von Salzburg, 25 Min. vom Wolfgangsee. Parken am Hauptplatz kostenlos. Garage-Adresse: Mitglieder/Anfrage.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ IMPRESSUM ═══ -->
+<section class="section-wrap fade-in" id="impressum">
+    <div class="section-header">
+        <h2>Impressum &amp; <span>Offenlegung</span></h2>
+        <p>Pflicht-Angaben gemäß § 24 Mediengesetz und § 5 ECG (Österreich).</p>
+    </div>
+    <div class="legal-section">
+        <h3>Medieninhaber &amp; Herausgeber</h3>
+        <p>
+            <strong>Enduro Explorers Strasswalchen</strong><br>
+            Motorradclub im Sinne des Vereinsgesetzes 2002<br>
+            5204 Strasswalchen, Salzburg, Österreich
+        </p>
+        <p>
+            <strong>ZVR-Zahl:</strong> 1234567890<br>
+            <strong>E-Mail:</strong> <a href="mailto:hallo@enduro-explorers.at">hallo@enduro-explorers.at</a><br>
+            <strong>Telefon:</strong> <a href="tel:+436641234567">+43 664 123 45 67</a>
+        </p>
+
+        <h4>Vertretungsberechtigt</h4>
+        <p>Obmann: Andreas Schmid · Schriftführer: Markus Huber · Kassier: Stefan Wagner</p>
+
+        <h4>Vereinszweck</h4>
+        <p>Förderung des Geländemotorradsports im Bereich Reise-Enduro, gemeinsame Touren, Trainings, Förderung der Verkehrssicherheit und des umweltbewussten Off-Road-Fahrens auf legal befahrbaren Wegen.</p>
+
+        <h4>Anwendbares Recht</h4>
+        <p>Es gilt österreichisches Recht. Gerichtsstand ist Salzburg.</p>
+
+        <h4>Haftungsausschluss</h4>
+        <p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. GPX-Daten und Routen werden ohne Gewähr veröffentlicht — die Befahrbarkeit, Legalität und Sicherheit muss vor Befahrung selbst geprüft werden.</p>
+
+        <h4>Bildnachweis</h4>
+        <p>Eigene Fotos der Vereinsmitglieder, sofern nicht anders vermerkt. Karten- und Tile-Daten: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL).</p>
+
+        <h4>Marken</h4>
+        <p>"Trans Euro Trail" und "TET" sind Marken der Trans Euro Trail Foundation. Erwähnungen erfolgen ausschließlich im Sinne der nominativen Markenverwendung — keine Zugehörigkeit, keine Sponsorings, keine Vertriebsbeziehung.</p>
+    </div>
+</section>
+
+<!-- ═══ DATENSCHUTZ ═══ -->
+<section class="section-wrap fade-in" id="datenschutz">
+    <div class="section-header">
+        <h2>Daten<span>schutz</span></h2>
+        <p>DSGVO-konforme Datenschutzerklärung gemäß Art. 13 DSGVO.</p>
+    </div>
+    <div class="legal-section">
+        <h3>Verantwortlich</h3>
+        <p>Enduro Explorers Strasswalchen, Adresse siehe Impressum oben.</p>
+
+        <h4>Welche Daten wir erheben</h4>
+        <ul>
+            <li><strong>Server-Logs:</strong> Beim Aufruf der Website werden technisch notwendige Logs (IP-Adresse anonymisiert, Datum, User-Agent) durch GitHub Pages gespeichert. Speicherdauer max. 14 Tage. Rechtsgrundlage: Art. 6(1)(f) DSGVO (berechtigtes Interesse, Server-Sicherheit).</li>
+            <li><strong>Kontaktformular:</strong> Vor- und Nachname, E-Mail-Adresse und der Inhalt der Nachricht werden zur Bearbeitung der Anfrage gespeichert. Rechtsgrundlage: Art. 6(1)(b) DSGVO (vorvertragliche Maßnahme) bzw. Art. 6(1)(a) DSGVO (Einwilligung). Aufbewahrung: bis zur Erledigung der Anfrage + 6 Monate.</li>
+            <li><strong>Cookies/Local Storage:</strong> Wir setzen ausschließlich einen technisch notwendigen Local-Storage-Eintrag (<code>ee-consent</code>) zur Speicherung deiner Cookie-Banner-Bestätigung. Kein Tracking, keine Analyse, keine Werbung. Rechtsgrundlage: Art. 6(1)(f) DSGVO.</li>
+        </ul>
+
+        <h4>Externe Dienste &amp; Drittanbieter</h4>
+        <ul>
+            <li><strong>GitHub Pages</strong> (Hosting): GitHub Inc., USA. Standardvertragsklauseln gemäß Art. 46(2)(c) DSGVO. <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank">Datenschutz GitHub</a>.</li>
+            <li><strong>Google Fonts</strong> (Schriftarten): Google LLC, USA. Wir laden Schriftarten direkt vom Google-CDN. Rechtsgrundlage: Art. 6(1)(f) DSGVO. <a href="https://policies.google.com/privacy" target="_blank">Datenschutz Google</a>.</li>
+            <li><strong>OpenStreetMap-Tiles</strong> (Kartendarstellung): OpenStreetMap Foundation, UK. Tiles werden über CARTO/OSM CDN geladen — beim Laden wird deine IP-Adresse an den Tile-Server übermittelt. <a href="https://wiki.openstreetmap.org/wiki/Privacy_Policy" target="_blank">Datenschutz OSM</a>.</li>
+            <li><strong>Overpass API</strong> (live OSM-Daten in der Karte, optional): Wenn du den Layer "Unbefestigt" auf der Barcelona-Karte aktivierst, wird ein Query an die Overpass-API übermittelt — mit deiner IP-Adresse. <a href="https://wiki.openstreetmap.org/wiki/Overpass_API" target="_blank">Overpass API Info</a>.</li>
+        </ul>
+
+        <h4>Deine Rechte</h4>
+        <p>Du hast das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21) sowie das Recht, eine Beschwerde bei der österreichischen Datenschutzbehörde einzulegen (<a href="https://www.dsb.gv.at" target="_blank">www.dsb.gv.at</a>).</p>
+
+        <h4>Kontakt für Datenschutzanfragen</h4>
+        <p><a href="mailto:datenschutz@enduro-explorers.at">datenschutz@enduro-explorers.at</a></p>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-col">
+            <div class="footer-club-text">Enduro Explorers</div>
+            <p style="color:var(--text-muted);font-size:0.82rem;line-height:1.6;">Strasswalchen · Salzburg · Österreich. Schotter, Pässe, Crew.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Club</h4>
+            <a href="was-wir-machen.html">Was wir machen</a>
+            <a href="explore-2026.html">Explore 2026</a>
+            <a href="kontakt.html">Kontakt</a>
+        </div>
+        <div class="footer-col">
+            <h4>Reiseberichte</h4>
+            <a href="reiseberichte.html">Übersicht</a>
+            <a href="reiseberichte/tunesien-2025.html">Tunesien 2025</a>
+            <a href="reiseberichte/balkan-2024.html">Balkan 2024</a>
+            <a href="reiseberichte/marokko-2023.html">Marokko 2023</a>
+        </div>
+        <div class="footer-col">
+            <h4>Touren</h4>
+            <a href="austria-barcelona.html">Barcelona Tour 2026</a>
+            <a href="index.html">TET Explorer</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Enduro Explorers Strasswalchen</span>
+        <span><a href="#impressum">Impressum</a> · <a href="#datenschutz">Datenschutz</a></span>
+    </div>
+</footer>
+
+<div class="cookie-banner" id="cookieBanner" style="display:none;">
+    <p>Wir nutzen ausschließlich technisch notwendige Cookies (kein Tracking). Mehr in der <a href="#datenschutz">Datenschutzerklärung</a>.</p>
+    <button id="cookieAccept">Verstanden</button>
+</div>
+
+<script src="assets/site.js" defer></script>
+<script>
+// Form submission - opens mailto with prefilled body (static-friendly)
+function submitForm(ev) {
+    ev.preventDefault();
+    const f = ev.target;
+    const data = {
+        first: f.firstName.value,
+        last: f.lastName.value,
+        email: f.email.value,
+        topic: f.topic.options[f.topic.selectedIndex].text,
+        msg: f.message.value
+    };
+    const subject = encodeURIComponent(`Anfrage [${data.topic}] — ${data.first} ${data.last}`);
+    const body = encodeURIComponent(`Name: ${data.first} ${data.last}\nE-Mail: ${data.email}\nThema: ${data.topic}\n\nNachricht:\n${data.msg}\n\n— gesendet via enduro-explorers.at`);
+    window.location.href = `mailto:hallo@enduro-explorers.at?subject=${subject}&body=${body}`;
+    document.getElementById('formSuccess').classList.add('active');
+    setTimeout(() => f.reset(), 500);
+    return false;
+}
+</script>
+</body>
+</html>
