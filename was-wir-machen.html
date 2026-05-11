@@ -4,94 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Was wir machen — Enduro Explorers Strasswalchen</title>
-    <meta name="description" content="Wer wir sind, wie wir fahren, was uns antreibt — der Enduro Explorers Strasswalchen Motorradclub.">
-    <meta name="robots" content="index,follow">
+    <meta name="description" content="Enduro Explorers Strasswalchen e.V. — gemeinnütziger Motorrad-Verein im Salzburger Land.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        /* Page-specific */
-        .ethos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.4rem;
-            margin-top: 2rem;
-        }
-        .ethos-block {
-            background: var(--black-card);
-            border: 1px solid var(--border);
-            border-top: 3px solid var(--gold);
-            padding: 1.6rem 1.4rem;
-        }
-        .ethos-block-num {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.4rem; color: var(--gold-dark);
-            line-height: 1; margin-bottom: 0.4rem;
-        }
-        .ethos-block h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.05rem; color: var(--text-bright);
-            text-transform: uppercase; letter-spacing: 1.5px;
-            margin-bottom: 0.6rem; font-weight: 600;
-        }
-        .ethos-block p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
-
-        .skill-bar {
-            display: flex; align-items: center; gap: 1rem;
-            padding: 1rem 0; border-bottom: 1px solid var(--border);
-        }
-        .skill-bar:last-child { border-bottom: 0; }
-        .skill-bar-label {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.85rem; color: var(--text-bright);
-            text-transform: uppercase; letter-spacing: 1.5px;
-            min-width: 180px;
-        }
-        .skill-bar-track {
-            flex: 1; height: 8px;
-            background: var(--border); border-radius: 4px; overflow: hidden;
-        }
-        .skill-bar-fill {
-            height: 100%; background: linear-gradient(90deg, var(--gold-dark), var(--gold));
-            border-radius: 4px;
-        }
-        .skill-bar-pct {
-            font-family: 'Bebas Neue', sans-serif;
-            color: var(--gold); font-size: 1.1rem; min-width: 40px; text-align: right;
-        }
-
-        .quote-block {
-            background: var(--black-card);
-            border-left: 4px solid var(--gold);
-            padding: 2rem 2.5rem;
-            margin: 2rem 0;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.4rem;
-            color: var(--text-bright);
-            line-height: 1.4;
-            font-style: italic;
-            position: relative;
-        }
-        .quote-block::before {
-            content: '"';
-            position: absolute; top: -20px; left: 14px;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 6rem; color: var(--gold); opacity: 0.4;
-            line-height: 1;
-        }
-        .quote-block-author {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.78rem; color: var(--gold);
-            letter-spacing: 2px; text-transform: uppercase;
-            margin-top: 1rem; font-style: normal;
-            display: block;
-        }
+        .content-block { max-width: 780px; margin: 0 auto; }
+        .content-block p { font-size: 1rem; line-height: 1.85; color: var(--text); margin-bottom: 1.4rem; }
+        .content-block p.lead { font-size: 1.1rem; color: var(--text-bright); }
+        .content-block p.outro { font-family: 'Oswald', sans-serif; font-style: italic; color: var(--gold); text-align: center; font-size: 1.15rem; margin-top: 2.5rem; }
+        .logo-figure { text-align: center; margin: 2rem auto 3rem; }
+        .logo-figure img { max-width: 220px; width: 100%; height: auto; }
+        .logo-figure figcaption { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.8rem; line-height: 1.5; max-width: 460px; margin-left: auto; margin-right: auto; }
     </style>
 <script>(function(){try{if(new URLSearchParams(location.search).get("embed")==="1"||window.self!==window.top)document.documentElement.classList.add("embed-mode");}catch(e){}})();</script>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
 <nav class="nav" id="navbar">
     <a href="index.html" class="nav-logo-text">ENDURO EXPLORERS</a>
     <button class="nav-toggle" aria-label="Menu">
@@ -99,241 +28,61 @@
     </button>
     <ul class="nav-links">
         <li><a href="was-wir-machen.html">Was wir machen</a></li>
-        <li><a href="explore-2026.html">Explore 2026</a></li>
-        <li><a href="reiseberichte.html">Reiseberichte</a></li>
-        <li><a href="austria-barcelona.html">Barcelona Tour</a></li>
-        <li><a href="index.html">TET Explorer</a></li>
+        <li><a href="index.html">TET Routen Explorer</a></li>
+        <li><a href="explore-2026.html">Explore our 2026</a></li>
+        <li><a href="reiseberichte.html">Enduro Reiseberichte</a></li>
         <li><a href="kontakt.html">Kontakt</a></li>
     </ul>
 </nav>
 
-<!-- ═══ HERO ═══ -->
 <header class="page-hero">
     <div class="page-hero-club">Enduro Explorers Strasswalchen</div>
     <h1>Was wir <span>machen</span></h1>
-    <p class="page-hero-subtitle">Schotter unter den Reifen. Pässe vor uns. Eine Crew, die fährt — nicht redet.</p>
-    <div class="page-hero-meta">
-        <span class="page-hero-meta-item">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke-width="2"/></svg>
-            seit 2021
-        </span>
-        <span class="page-hero-meta-item">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" stroke-width="2"/></svg>
-            Strasswalchen, Salzburg
-        </span>
-        <span class="page-hero-meta-item">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke-width="2"/></svg>
-            10+ aktive Rider
-        </span>
-    </div>
 </header>
 
-<!-- ═══ INTRO ═══ -->
 <section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Wir sind <span>Enduro</span></h2>
-        <p>Ein Salzburger Motorrad-Club mit einer einzigen Mission: dort fahren, wo die Karte aufhört.</p>
-    </div>
-    <p style="font-size:1rem;color:var(--text);line-height:1.8;max-width:820px;">
-        Wir sind keine Rennfahrer. Keine Showtruppe. Wir sind Mechaniker, Handwerker, Techniker, Lehrer — Leute aus dem Flachgau, die ihre Wochenenden lieber im Staub verbringen als im Wohnzimmer.
-        <br><br>
-        Was 2021 mit drei Bikes auf einem Forstweg in der Osterhorngruppe begann, ist heute eine Crew, die jährlich zwei bis drei größere Touren fährt — meist mit hohem Offroad-Anteil, immer mit eigenem Werkzeug, Zelt und genug Zeit, um sich zu verfahren.
-    </p>
+    <figure class="logo-figure">
+        <img src="logo_ee_v2.png" alt="Rundes Logo der Enduro Explorers Strasswalchen mit Fennek und Enduro-Brille, umrahmt von einem schwarzen Motorradreifen">
+        <figcaption>Rundes Logo der „Enduro Explorers Straßwalchen" aus dem Jahr 2026 mit dem Kopf eines Wüstenfuchses (Fennek), der eine Enduro-Brille trägt, umrahmt von einem schwarzen Motorradreifen.</figcaption>
+    </figure>
 
-    <div class="quote-block fade-in">
-        Wir fahren nicht, um anzukommen. Wir fahren, um den Weg zu finden, den noch keiner gefahren ist.
-        <span class="quote-block-author">— Vereinscredo</span>
+    <div class="content-block">
+        <p class="lead">Die Enduro Explorers Strasswalchen mit Sitz im Salzburger Land sind ein eingetragener, gemeinnütziger Verein. Wir verfolgen keine Gewinnabsichten, sondern fördern Reisen, Abenteuer und die gemeinsame Leidenschaft fürs Endurofahren.</p>
+
+        <p>Für uns bedeutet Enduro mehr als nur Motorradfahren. Es steht für die Freiheit, neue Wege zu entdecken, unbekanntes Terrain zu erkunden und unvergessliche Momente gemeinsam zu erleben.</p>
+
+        <p>Ob Wochenendtour vor der Haustür oder mehrtägige Reisen in neue Regionen – wir sind unterwegs, um Abenteuer zu suchen und als Gemeinschaft zu wachsen. Dabei geht es nicht um Wettbewerb oder Leistung, sondern um Zusammenhalt, Spaß und das gemeinsame Erlebnis – vom ersten Kilometer bis zum Lagerfeuer am Abend.</p>
+
+        <p>Als Verein organisieren wir gemeinsame Ausfahrten und Reisen, unterstützen uns gegenseitig, teilen Erfahrungen und geben Wissen weiter. Jede Tour erzählt ihre eigene Geschichte: staubige Trails, technische Passagen, spektakuläre Ausblicke und echte Kameradschaft.</p>
+
+        <p>Die Enduro Explorers sind eine offene Gemeinschaft für alle, die Lust haben zu reisen, Neues zu entdecken und Endurofahren als gemeinsames Abenteuer zu leben.</p>
+
+        <p class="outro">Abenteuer beginnt dort, wo Komfort endet – und genau dort fühlen wir uns zuhause.</p>
     </div>
 </section>
 
-<!-- ═══ ETHOS ═══ -->
-<section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Unser <span>Code</span></h2>
-        <p>Vier Prinzipien, die jede Tour bestimmen.</p>
-    </div>
-    <div class="ethos-grid">
-        <div class="ethos-block fade-in">
-            <div class="ethos-block-num">01</div>
-            <h3>Schotter zuerst</h3>
-            <p>Wenn ein Trail neben der Straße läuft — wir nehmen den Trail. Asphalt ist Verbindungsstrecke, nicht Ziel. Bei jeder Tour planen wir 60–80% Unbefestigt.</p>
-        </div>
-        <div class="ethos-block fade-in">
-            <div class="ethos-block-num">02</div>
-            <h3>Eigenversorgung</h3>
-            <p>Eigenes Werkzeug, eigene Reifen, eigene Diagnose. Keine Begleitfahrzeuge, kein Service-Truck. Wer seinen Reifen nicht flickt, fährt nicht heim.</p>
-        </div>
-        <div class="ethos-block fade-in">
-            <div class="ethos-block-num">03</div>
-            <h3>Respekt vor dem Gelände</h3>
-            <p>Wir fahren nur, wo wir dürfen. Forstwege mit Erlaubnis, ausgewiesene Trails, internationale Routen wie TET. Keine Wiesen, keine Wanderwege, keine Lärmrekorde.</p>
-        </div>
-        <div class="ethos-block fade-in">
-            <div class="ethos-block-num">04</div>
-            <h3>Crew über Ego</h3>
-            <p>Niemand wird zurückgelassen. Der Schwächste bestimmt das Tempo. Wer stürzt, hat einen Helfer; wer abhängt, hat einen Wartenden.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ WAS WIR FAHREN ═══ -->
-<section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Was wir <span>fahren</span></h2>
-        <p>Bikes, Disziplinen, Fokus.</p>
-    </div>
-    <div class="card-grid">
-        <div class="card fade-in">
-            <div class="card-icon">
-                <svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17h12M9 7l3-3 3 3M12 4v13"/></svg>
-            </div>
-            <h3>Reise-Enduros</h3>
-            <p>KTM 690/890 Adventure, Honda CRF300L Rally, Yamaha Tenere 700, BMW G310GS. Maschinen, die 4.000 km Asphalt und 800 km Schotter am Stück durchhalten.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2L4 8v12h16V8l-8-6zM9 22V12h6v10"/></svg>
-            </div>
-            <h3>Mehrtages-Touren</h3>
-            <p>5 bis 14 Tage, Zelt am Bike, eine warme Mahlzeit am Lagerfeuer. Von Hochalmen bis Hammada. Eigener Sprit, eigene Wasserquelle.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6zM9 4v14M15 6v14"/></svg>
-            </div>
-            <h3>Trans Euro Trail</h3>
-            <p>Wir fahren Sektionen der TET in Österreich, Italien, Slowenien, Kroatien — und kommen mit fixen Routen zurück, die wir dokumentieren und teilen.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-            </div>
-            <h3>Trainings-Sessions</h3>
-            <p>Quartalsweise Offroad-Training in der Trabrennbahn Strasswalchen — Stehfahren, Slow-Speed-Balance, Hangstart, Sturz-Drills. Fortschritt vor Eindruck.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
-            </div>
-            <h3>Auslands-Expeditionen</h3>
-            <p>Marokko 2023, Balkan 2024, Tunesien 2025, Barcelona 2026. Jährlich eine größere Reise, oft 3.000+ km, immer mit eigenem Bike auf eigener Achse.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M14.7 6.3l3 3M5 19l-2 2v-4l11-11 4 4-11 11H5z"/></svg>
-            </div>
-            <h3>Eigen-Schrauben</h3>
-            <p>Vereinsgarage in Strasswalchen mit Hebebühne, Werkzeug, Lift. Reifenmontage, Kettenwechsel, Federbein-Setup — alles in der eigenen Bude.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ KÖNNEN / SKILLS ═══ -->
-<section class="section-wrap fade-in" style="background:linear-gradient(180deg,transparent,rgba(212,164,28,0.03));">
-    <div class="section-header">
-        <h2>Unser <span>Können</span></h2>
-        <p>Was die Crew nach 4 Jahren gemeinsamem Fahren auf den Tacho gebracht hat.</p>
-    </div>
-    <div style="background:var(--black-card);border:1px solid var(--border);border-radius:4px;padding:1.5rem 2rem;">
-        <div class="skill-bar">
-            <div class="skill-bar-label">Mehrtages-Bikepacking</div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%;"></div></div>
-            <div class="skill-bar-pct">95</div>
-        </div>
-        <div class="skill-bar">
-            <div class="skill-bar-label">Offroad-Navigation (GPX)</div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%;"></div></div>
-            <div class="skill-bar-pct">90</div>
-        </div>
-        <div class="skill-bar">
-            <div class="skill-bar-label">Pannen-Selbsthilfe</div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;"></div></div>
-            <div class="skill-bar-pct">85</div>
-        </div>
-        <div class="skill-bar">
-            <div class="skill-bar-label">Hochalpine Schotter-Pässe</div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%;"></div></div>
-            <div class="skill-bar-pct">80</div>
-        </div>
-        <div class="skill-bar">
-            <div class="skill-bar-label">Wüsten-/Sand-Fahren</div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%;"></div></div>
-            <div class="skill-bar-pct">70</div>
-        </div>
-        <div class="skill-bar">
-            <div class="skill-bar-label">Kalt-Klima-Touring</div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%;"></div></div>
-            <div class="skill-bar-pct">75</div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ ZAHLEN ═══ -->
-<section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>In <span>Zahlen</span></h2>
-        <p>Vier Jahre, drei Kontinente, ein Klubgeist.</p>
-    </div>
-    <div class="stats-row">
-        <div class="stat-item"><div class="stat-value">25.400</div><div class="stat-label">Km gemeinsam</div></div>
-        <div class="stat-item"><div class="stat-value">14</div><div class="stat-label">Länder</div></div>
-        <div class="stat-item"><div class="stat-value">68</div><div class="stat-label">Pässe</div></div>
-        <div class="stat-item"><div class="stat-value">3</div><div class="stat-label">Kontinente</div></div>
-        <div class="stat-item"><div class="stat-value">12</div><div class="stat-label">Aktive Mitglieder</div></div>
-        <div class="stat-item"><div class="stat-value">0</div><div class="stat-label">Hubschrauber-Bergungen</div></div>
-    </div>
-</section>
-
-<!-- ═══ MITMACHEN ═══ -->
-<section class="section-wrap fade-in" style="text-align:center;padding-bottom:6rem;">
-    <div class="section-header" style="display:inline-block;text-align:left;">
-        <h2>Mit<span>fahren?</span></h2>
-        <p>Wir nehmen neue Member auf — wenn die Chemie passt.</p>
-    </div>
-    <p style="max-width:680px;margin:1.5rem auto 2rem;color:var(--text-muted);font-size:0.95rem;line-height:1.7;">
-        Voraussetzung: Führerschein A, eigenes Enduro/Reise-Enduro, Bock auf Schotter und auf Crew. Kein Renn-Ambitions-Problem. Keine "Ich fahr nur, wenns trocken ist"-Mentalität. Komm beim Stammtisch vorbei oder schreib uns.
-    </p>
-    <a href="kontakt.html" class="btn">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-        Kontakt aufnehmen
-    </a>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
 <footer>
     <div class="footer-inner">
         <div class="footer-col">
-            <div class="footer-club-text">Enduro Explorers</div>
-            <p style="color:var(--text-muted);font-size:0.82rem;line-height:1.6;">Strasswalchen · Salzburg · Österreich. Schotter, Pässe, Crew.</p>
+            <div class="footer-club-text">Enduro Explorers Strasswalchen e.V.</div>
+            <p style="color:var(--text-muted);font-size:0.82rem;line-height:1.6;">Strasswalchen · Salzburg · Österreich</p>
         </div>
         <div class="footer-col">
-            <h4>Club</h4>
+            <h4>Verein</h4>
             <a href="was-wir-machen.html">Was wir machen</a>
-            <a href="explore-2026.html">Explore 2026</a>
+            <a href="explore-2026.html">Explore our 2026</a>
+            <a href="reiseberichte.html">Reiseberichte</a>
             <a href="kontakt.html">Kontakt</a>
-        </div>
-        <div class="footer-col">
-            <h4>Reiseberichte</h4>
-            <a href="reiseberichte.html">Übersicht</a>
-            <a href="reiseberichte/tunesien-2025.html">Tunesien 2025</a>
-            <a href="reiseberichte/balkan-2024.html">Balkan 2024</a>
-            <a href="reiseberichte/marokko-2023.html">Marokko 2023</a>
-        </div>
-        <div class="footer-col">
-            <h4>Touren</h4>
-            <a href="austria-barcelona.html">Barcelona Tour 2026</a>
-            <a href="index.html">TET Explorer</a>
         </div>
     </div>
     <div class="footer-bottom">
-        <span>&copy; 2026 Enduro Explorers Strasswalchen</span>
+        <span>&copy; 2026 Enduro Explorers Strasswalchen e.V.</span>
         <span><a href="kontakt.html#impressum">Impressum</a> · <a href="kontakt.html#datenschutz">Datenschutz</a></span>
     </div>
 </footer>
 
-<!-- ═══ COOKIE BANNER ═══ -->
 <div class="cookie-banner" id="cookieBanner" style="display:none;">
-    <p>Wir nutzen ausschließlich technisch notwendige Cookies (kein Tracking). Mehr in der <a href="kontakt.html#datenschutz">Datenschutzerklärung</a>.</p>
+    <p>Wir nutzen ausschließlich technisch notwendige Cookies. Mehr in der <a href="kontakt.html#datenschutz">Datenschutzerklärung</a>.</p>
     <button id="cookieAccept">Verstanden</button>
 </div>
 
