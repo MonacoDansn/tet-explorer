@@ -253,15 +253,17 @@
         /* ═══ PROGRESS ═══ */
         .route-progress {
             display: flex; align-items: center; gap: 0;
-            margin: 3rem 0 4rem; position: relative; padding: 0 0.5rem;
+            margin: 3rem 0 2rem; position: relative;
+            padding: 3.5rem 0.5rem 2.5rem;
             overflow-x: auto;
         }
         .progress-stop {
             display: flex; flex-direction: column; align-items: center;
             position: relative; z-index: 2; flex-shrink: 0;
+            min-width: 70px;
         }
         .progress-dot {
-            width: 16px; height: 16px; border-radius: 50%;
+            width: 14px; height: 14px; border-radius: 50%;
             background: var(--black-card); border: 3px solid var(--gold);
             transition: all 0.3s;
         }
@@ -269,25 +271,29 @@
             background: var(--gold); box-shadow: 0 0 12px var(--gold-glow);
         }
         .progress-dot.start, .progress-dot.end {
-            width: 22px; height: 22px; background: var(--gold);
+            width: 20px; height: 20px; background: var(--gold);
         }
-        .progress-flag { font-size: 1.1rem; margin-bottom: 3px; }
+        .progress-country {
+            position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+            font-family: 'Oswald', sans-serif; font-size: 0.62rem; font-weight: 700;
+            letter-spacing: 1.5px; color: var(--gold);
+            background: rgba(212,164,28,0.1); border: 1px solid rgba(212,164,28,0.3);
+            padding: 2px 6px; border-radius: 2px;
+            white-space: nowrap;
+        }
         .progress-label {
-            position: absolute; top: 25px; white-space: nowrap;
-            font-size: 0.6rem; color: var(--text-muted);
+            position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.72rem; color: var(--text-bright);
             font-family: 'Oswald', sans-serif;
-            text-transform: uppercase; letter-spacing: 1px;
+            text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
         }
         .progress-date {
-            position: absolute; bottom: -18px; white-space: nowrap;
-            font-size: 0.55rem; color: var(--gold); font-weight: 600;
+            position: absolute; top: calc(100% + 28px); left: 50%; transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.62rem; color: var(--text-muted); font-weight: 500;
         }
-        .progress-line { flex: 1; height: 2px; background: var(--border); min-width: 12px; }
-        .progress-line::after {
-            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 100%;
-            background: var(--gold); border-radius: 1px;
-        }
-        .progress-line { position: relative; }
+        .progress-line { flex: 1; height: 2px; background: var(--gold); min-width: 20px; opacity: 0.4; }
 
         /* ═══ MAP ═══ */
         .map-container {
@@ -1114,10 +1120,18 @@ function createParticles() {
 function renderProgress() {
     const c = document.getElementById('routeProgress');
     const stops = routeData.stops;
+    // flag emoji → country code fallback (Windows zeigt Emoji-Flaggen oft als 2-Buchstaben-Codes)
+    const flagToCode = f => {
+        if (!f) return '';
+        const A = 0x1F1E6;
+        const codes = [...f].filter(c => c.codePointAt(0) >= A && c.codePointAt(0) <= A + 25);
+        return codes.map(c => String.fromCharCode(65 + c.codePointAt(0) - A)).join('');
+    };
     c.innerHTML = stops.map((s, i) => {
         const dot = i===0?'start':(i===stops.length-1?'end':'');
+        const code = flagToCode(s.flag);
         const stop = `<div class="progress-stop">
-            <div class="progress-flag">${s.flag}</div>
+            <div class="progress-country">${code}</div>
             <div class="progress-dot ${dot}"></div>
             <div class="progress-label">${s.name}</div>
             <div class="progress-date">${s.date}</div>
