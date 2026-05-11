@@ -539,3 +539,26 @@ footer {
     .nav.scrolled { padding: 0.6rem 1.2rem; }
     .stat-value { font-size: 2rem; }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   EMBED MODE — aktiviert via ?embed=1
+   Versteckt Nav/Footer/Cookie für Google-Sites-Einbettung
+   ════════════════════════════════════════════════════════════════ */
+.embed-mode .nav,
+.embed-mode nav,
+.embed-mode #navbar,
+.embed-mode footer,
+.embed-mode .cookie-banner,
+.embed-mode .modal-overlay {
+    display: none !important;
+}
+.embed-mode body { padding-top: 0 !important; }
+.embed-mode .page-hero { padding-top: 3rem !important; min-height: 40vh !important; }
+.embed-mode .hero { padding-top: 3rem !important; }
+/* Interne Cross-Page-Links optisch entschärfen */
+.embed-mode a.cross-page-disabled {
+    pointer-events: none !important;
+    opacity: 0.55 !important;
+    text-decoration: none !important;
+    cursor: default !important;
+}

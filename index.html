@@ -278,6 +278,13 @@
             .hero-logo { width: 140px; }
         }
     </style>
+<script>(function(){try{var e=new URLSearchParams(location.search).get("embed")==="1"||window.self!==window.top;if(!e)return;document.documentElement.classList.add("embed-mode");function n(){document.querySelectorAll("a[href]").forEach(function(a){var h=a.getAttribute("href")||"";if(!h||h[0]==="#"||h.indexOf("mailto:")===0||h.indexOf("tel:")===0||h.indexOf("http")===0)return;if(h.indexOf(".html")>-1||h.slice(-1)==="/"){a.classList.add("cross-page-disabled");a.addEventListener("click",function(e){e.preventDefault()})}})}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",n);else n()}catch(e){}})();</script>
+<style>
+.embed-mode .nav,.embed-mode nav,.embed-mode #navbar,.embed-mode footer,.embed-mode .cookie-banner{display:none!important}
+.embed-mode body{padding-top:0!important}
+.embed-mode .hero,.embed-mode .page-hero{padding-top:3rem!important;min-height:40vh!important}
+.embed-mode a.cross-page-disabled{pointer-events:none!important;opacity:.55!important;cursor:default!important;text-decoration:none!important}
+</style>
 </head>
 <body>
 

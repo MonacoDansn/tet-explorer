@@ -2,6 +2,29 @@
    ENDURO EXPLORERS — Shared site JS (nav, fade-in, cookie banner)
    ════════════════════════════════════════════════════════════════ */
 (function () {
+    // ── EMBED MODE detection (Google Sites iframe) ──
+    const embedMode = new URLSearchParams(location.search).get('embed') === '1'
+        || window.self !== window.top;
+    if (embedMode) {
+        document.documentElement.classList.add('embed-mode');
+        // Cross-page Links entschärfen — User navigiert via Google Sites
+        const neutralize = () => {
+            document.querySelectorAll('a[href]').forEach(a => {
+                const h = a.getAttribute('href') || '';
+                if (!h || h.startsWith('#') || h.startsWith('mailto:') ||
+                    h.startsWith('tel:') || h.startsWith('http')) return;
+                if (h.endsWith('.html') || h.includes('.html#') ||
+                    h.endsWith('/') || h === 'index.html') {
+                    a.classList.add('cross-page-disabled');
+                    a.addEventListener('click', e => e.preventDefault());
+                }
+            });
+        };
+        if (document.readyState === 'loading')
+            document.addEventListener('DOMContentLoaded', neutralize);
+        else neutralize();
+    }
+
     // ── NAV scroll effect & active link & mobile toggle ──
     const nav = document.getElementById('navbar');
     if (nav) {
