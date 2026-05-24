@@ -90,12 +90,36 @@
             <p>Strandpause in Albanien, danach Weiterfahrt nach Griechenland (Igoumenitsa), Fährüberfahrt nach Venedig, Rückfahrt nach Hause.</p>
         </div>
 
-        <div style="background:var(--black-card);border:1px dashed var(--gold);border-radius:4px;padding:2rem 1.6rem;margin:2rem 0;text-align:center;color:var(--text-muted);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" style="width:48px;height:48px;margin:0 auto 1rem;display:block;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <p style="margin:0;font-family:'Oswald',sans-serif;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);">Foto-Galerie folgt</p>
-            <p style="margin-top:0.5rem;font-size:0.85rem;line-height:1.6;">Die Originalbilder werden bald hier eingebunden.</p>
-        </div>
+    </div>
 
+    <figure class="feature-map">
+        <a data-lightbox="../assets/photos/balkan-2024/01.png"><img src="../assets/photos/balkan-2024/01.png" alt="Balkan 2024 — Tour-Karte" loading="lazy"></a>
+        <figcaption>Balkan 2024 — Routenübersicht</figcaption>
+    </figure>
+
+    <figure class="feature-map">
+        <a data-lightbox="../assets/photos/balkan-2024/02.png"><img src="../assets/photos/balkan-2024/02.png" alt="Balkan 2024 — Tour-Detail" loading="lazy"></a>
+    </figure>
+
+    <div class="photo-gallery">
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/03.jpg"><img src="../assets/photos/balkan-2024/03.jpg" loading="lazy" alt="Balkan 2024 — 1" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/04.jpg"><img src="../assets/photos/balkan-2024/04.jpg" loading="lazy" alt="Balkan 2024 — 2" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/05.jpg"><img src="../assets/photos/balkan-2024/05.jpg" loading="lazy" alt="Balkan 2024 — 3" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/06.jpg"><img src="../assets/photos/balkan-2024/06.jpg" loading="lazy" alt="Balkan 2024 — 4" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/07.jpg"><img src="../assets/photos/balkan-2024/07.jpg" loading="lazy" alt="Balkan 2024 — 5" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/08.jpg"><img src="../assets/photos/balkan-2024/08.jpg" loading="lazy" alt="Balkan 2024 — 6" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/09.jpg"><img src="../assets/photos/balkan-2024/09.jpg" loading="lazy" alt="Balkan 2024 — 7" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/10.jpg"><img src="../assets/photos/balkan-2024/10.jpg" loading="lazy" alt="Balkan 2024 — 8" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/11.jpg"><img src="../assets/photos/balkan-2024/11.jpg" loading="lazy" alt="Balkan 2024 — 9" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/12.jpg"><img src="../assets/photos/balkan-2024/12.jpg" loading="lazy" alt="Balkan 2024 — 10" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/13.jpg"><img src="../assets/photos/balkan-2024/13.jpg" loading="lazy" alt="Balkan 2024 — 11" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/14.jpg"><img src="../assets/photos/balkan-2024/14.jpg" loading="lazy" alt="Balkan 2024 — 12" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/15.jpg"><img src="../assets/photos/balkan-2024/15.jpg" loading="lazy" alt="Balkan 2024 — 13" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/16.jpg"><img src="../assets/photos/balkan-2024/16.jpg" loading="lazy" alt="Balkan 2024 — 14" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/17.jpg"><img src="../assets/photos/balkan-2024/17.jpg" loading="lazy" alt="Balkan 2024 — 15" onload="this.classList.add('loaded')"></a>
+    </div>
+
+    <div class="content-block">
         <p class="outro">„Staubige Trails, spektakuläre Landschaften, ehrliche Begegnungen und das Gefühl von Freiheit — TET 2024 war mehr als nur eine Route. Es war ein echtes Abenteuer."</p>
     </div>
 </section>
@@ -123,6 +147,10 @@
 <div class="cookie-banner" id="cookieBanner" style="display:none;">
     <p>Wir nutzen ausschließlich technisch notwendige Cookies. Mehr in der <a href="../kontakt.html#datenschutz">Datenschutzerklärung</a>.</p>
     <button id="cookieAccept">Verstanden</button>
+</div>
+
+<div class="modal-overlay" id="lightbox" style="background:rgba(0,0,0,0.95);align-items:center;justify-content:center;cursor:zoom-out;">
+    <img src="" alt="" style="max-width:95vw;max-height:95vh;object-fit:contain;border:1px solid var(--gold);">
 </div>
 
 <script src="../assets/site.js" defer></script>
