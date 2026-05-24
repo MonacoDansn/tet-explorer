@@ -6,16 +6,167 @@
     <title>Was wir machen — Enduro Explorers Strasswalchen</title>
     <meta name="description" content="Enduro Explorers Strasswalchen e.V. — gemeinnütziger Motorrad-Verein im Salzburger Land.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        .content-block { max-width: 780px; margin: 0 auto; }
-        .content-block p { font-size: 1rem; line-height: 1.85; color: var(--text); margin-bottom: 1.4rem; }
-        .content-block p.lead { font-size: 1.1rem; color: var(--text-bright); }
-        .content-block p.outro { font-family: 'Oswald', sans-serif; font-style: italic; color: var(--gold); text-align: center; font-size: 1.15rem; margin-top: 2.5rem; }
-        .logo-figure { text-align: center; margin: 2rem auto 3rem; }
-        .logo-figure img { max-width: 220px; width: 100%; height: auto; }
-        .logo-figure figcaption { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.8rem; line-height: 1.5; max-width: 460px; margin-left: auto; margin-right: auto; }
+        /* ═══ HERO im Stil der Startseite ═══ */
+        .hero {
+            position: relative;
+            min-height: 92vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            background: radial-gradient(ellipse at top, #1a1a0a 0%, #0a0a0a 60%);
+            overflow: hidden;
+            padding: 6rem 2rem 4rem;
+        }
+        .hero-gear-bg {
+            position: absolute; inset: 0; opacity: 0.06;
+            background-image: radial-gradient(circle at 20% 30%, var(--gold) 0%, transparent 40%),
+                              radial-gradient(circle at 80% 70%, var(--gold) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 920px; }
+        .hero-logo {
+            width: 320px; max-width: 60vw; height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 6px 30px rgba(212,164,28,0.45));
+        }
+        .hero-clubname {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 600;
+            color: var(--gold); letter-spacing: 4px; text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 900;
+            color: var(--text-bright); line-height: 1.05;
+            margin-bottom: 1.2rem; letter-spacing: -1px;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            color: var(--text); line-height: 1.7;
+            max-width: 640px; margin: 0 auto 2.5rem;
+            font-weight: 300;
+        }
+        .hero-stats {
+            display: flex; justify-content: center;
+            gap: 3rem; flex-wrap: wrap; margin-bottom: 2rem;
+        }
+        .hero-stat { text-align: center; min-width: 100px; }
+        .hero-stat-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.6rem; color: var(--gold); line-height: 1;
+            text-shadow: 0 0 20px rgba(212,164,28,0.3);
+        }
+        .hero-stat-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 3px;
+            margin-top: 0.5rem;
+        }
+        .scroll-indicator {
+            position: absolute; bottom: 2rem; left: 50%;
+            transform: translateX(-50%); z-index: 2;
+            animation: bounce 2s infinite;
+        }
+        .scroll-indicator svg { width: 28px; height: 28px; stroke: var(--gold); opacity: 0.6; }
+        @keyframes bounce { 0%,100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -10px); } }
+
+        /* ═══ INTRO-ZITAT BLOCK ═══ */
+        .intro-quote {
+            max-width: 880px; margin: -4rem auto 4rem; padding: 0 2rem;
+            position: relative; z-index: 3;
+        }
+        .intro-quote-inner {
+            background: linear-gradient(135deg, var(--black-card), #161610);
+            border: 1px solid var(--gold);
+            border-radius: 6px;
+            padding: 2.4rem 2.8rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+        .intro-quote-inner p {
+            font-size: 1.1rem; line-height: 1.75;
+            color: var(--text-bright);
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ═══ INHALT-KARTEN ═══ */
+        .content-cards {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem 4rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .content-card {
+            background: var(--black-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1.8rem 2rem;
+            transition: all 0.3s ease;
+            display: flex; flex-direction: column;
+            gap: 1rem;
+        }
+        .content-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(212,164,28,0.08);
+        }
+        .content-card-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .content-card-icon svg {
+            width: 26px; height: 26px;
+            stroke: var(--black); stroke-width: 2; fill: none;
+        }
+        .content-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem; color: var(--text-bright);
+            text-transform: uppercase; letter-spacing: 2px;
+            font-weight: 600;
+        }
+        .content-card p {
+            font-size: 0.92rem; line-height: 1.7;
+            color: var(--text); margin: 0;
+        }
+
+        /* ═══ FINAL-CLAIM ═══ */
+        .final-claim {
+            max-width: 900px; margin: 2rem auto 5rem; padding: 3rem 2rem;
+            text-align: center;
+        }
+        .final-claim p {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            line-height: 1.2; letter-spacing: 1px;
+            color: var(--text-bright);
+        }
+        .final-claim p span {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .final-claim::after {
+            content: ''; display: block; margin: 2rem auto 0;
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        @media (max-width: 600px) {
+            .intro-quote { margin-top: -2rem; padding: 0 1rem; }
+            .intro-quote-inner { padding: 1.6rem 1.4rem; }
+            .content-cards { padding: 0 1rem 2rem; }
+            .hero { min-height: auto; padding: 5rem 1.2rem 3rem; }
+            .hero-stats { gap: 1.5rem; }
+            .hero-stat-value { font-size: 2rem; }
+        }
     </style>
 <script>(function(){try{if(!(new URLSearchParams(location.search).get("embed")==="1"||window.self!==window.top))return;document.documentElement.classList.add("embed-mode");function n(){document.querySelectorAll("nav,#navbar,footer,.cookie-banner").forEach(function(el){el.remove()});document.querySelectorAll("a[href]").forEach(function(a){var h=a.getAttribute("href")||"";if(!h)return;if(h[0]==="#"||h.indexOf("mailto:")===0||h.indexOf("tel:")===0)return;if(h.indexOf("http")===0){if(h.indexOf("github.io")>=0||h.indexOf("github.com")>=0){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}return}if(h.indexOf(".html")>=0||h.slice(-1)==="/"){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}});document.querySelectorAll("link[rel=\"canonical\"],meta[property=\"og:url\"]").forEach(function(el){el.remove()})}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",n);else n()}catch(e){}})();</script>
 </head>
@@ -35,30 +186,75 @@
     </ul>
 </nav>
 
-<header class="page-hero">
-    <div class="page-hero-club">Enduro Explorers Strasswalchen</div>
-    <h1>Was wir <span>machen</span></h1>
-</header>
-
-<section class="section-wrap fade-in">
-    <figure class="logo-figure">
-        <img src="logo_ee_v2.png" alt="Logo Enduro Explorers Strasswalchen">
-    </figure>
-
-    <div class="content-block">
-        <p class="lead">Die Enduro Explorers Strasswalchen mit Sitz im Salzburger Land sind ein eingetragener, gemeinnütziger Verein. Wir verfolgen keine Gewinnabsichten, sondern fördern Reisen, Abenteuer und die gemeinsame Leidenschaft fürs Endurofahren.</p>
-
-        <p>Für uns bedeutet Enduro mehr als nur Motorradfahren. Es steht für die Freiheit, neue Wege zu entdecken, unbekanntes Terrain zu erkunden und unvergessliche Momente gemeinsam zu erleben.</p>
-
-        <p>Ob Wochenendtour vor der Haustür oder mehrtägige Reisen in neue Regionen – wir sind unterwegs, um Abenteuer zu suchen und als Gemeinschaft zu wachsen. Dabei geht es nicht um Wettbewerb oder Leistung, sondern um Zusammenhalt, Spaß und das gemeinsame Erlebnis – vom ersten Kilometer bis zum Lagerfeuer am Abend.</p>
-
-        <p>Als Verein organisieren wir gemeinsame Ausfahrten und Reisen, unterstützen uns gegenseitig, teilen Erfahrungen und geben Wissen weiter. Jede Tour erzählt ihre eigene Geschichte: staubige Trails, technische Passagen, spektakuläre Ausblicke und echte Kameradschaft.</p>
-
-        <p>Die Enduro Explorers sind eine offene Gemeinschaft für alle, die Lust haben zu reisen, Neues zu entdecken und Endurofahren als gemeinsames Abenteuer zu leben.</p>
-
-        <p class="outro">Abenteuer beginnt dort, wo Komfort endet – und genau dort fühlen wir uns zuhause.</p>
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-gear-bg"></div>
+    <div class="hero-content">
+        <img src="logo_ee_v2.png" alt="Enduro Explorers Strasswalchen Logo" class="hero-logo">
+        <div class="hero-clubname">Enduro Explorers Strasswalchen</div>
+        <h1>Was wir <span>machen</span></h1>
+        <p class="hero-subtitle">Ein eingetragener, gemeinnütziger Verein im Salzburger Land. Keine Gewinnabsichten — sondern Reisen, Abenteuer und die gemeinsame Leidenschaft fürs Endurofahren.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value">3</div>
+                <div class="hero-stat-label">große Touren</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">3</div>
+                <div class="hero-stat-label">Kontinente</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">∞</div>
+                <div class="hero-stat-label">Lagerfeuer</div>
+            </div>
+        </div>
     </div>
+    <div class="scroll-indicator"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg></div>
 </section>
+
+<!-- INTRO-ZITAT -->
+<div class="intro-quote">
+    <div class="intro-quote-inner">
+        <p>Für uns bedeutet <strong style="color:var(--gold);">Enduro</strong> mehr als nur Motorradfahren. Es steht für die Freiheit, neue Wege zu entdecken, unbekanntes Terrain zu erkunden und unvergessliche Momente gemeinsam zu erleben.</p>
+    </div>
+</div>
+
+<!-- INHALT-KARTEN -->
+<div class="content-cards">
+    <div class="content-card">
+        <div class="content-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg>
+        </div>
+        <h3>Auf zwei Rädern unterwegs</h3>
+        <p>Ob Wochenendtour vor der Haustür oder mehrtägige Reisen in neue Regionen — wir sind unterwegs, um Abenteuer zu suchen und als Gemeinschaft zu wachsen. Vom ersten Kilometer bis zum Lagerfeuer am Abend.</p>
+    </div>
+    <div class="content-card">
+        <div class="content-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Gemeinschaft, kein Wettbewerb</h3>
+        <p>Es geht nicht um Rennen oder Leistung — sondern um Zusammenhalt, Spaß und das gemeinsame Erlebnis. Wir unterstützen uns gegenseitig, teilen Erfahrungen und geben Wissen weiter.</p>
+    </div>
+    <div class="content-card">
+        <div class="content-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6zM9 4v14M15 6v14"/></svg>
+        </div>
+        <h3>Jede Tour eine Geschichte</h3>
+        <p>Staubige Trails, technische Passagen, spektakuläre Ausblicke und echte Kameradschaft. Wir organisieren gemeinsame Ausfahrten und mehrtägige Reisen — und jede Tour erzählt ihre eigene Geschichte.</p>
+    </div>
+    <div class="content-card">
+        <div class="content-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15 15 0 010 20M2 12h20M12 2a15 15 0 000 20"/></svg>
+        </div>
+        <h3>Offene Gemeinschaft</h3>
+        <p>Die Enduro Explorers sind eine offene Gemeinschaft für alle, die Lust haben zu reisen, Neues zu entdecken und Endurofahren als gemeinsames Abenteuer zu leben.</p>
+    </div>
+</div>
+
+<!-- FINAL CLAIM -->
+<div class="final-claim">
+    <p>Abenteuer beginnt dort, wo Komfort endet —<br><span>und genau dort fühlen wir uns zuhause.</span></p>
+</div>
 
 <footer>
     <div class="footer-inner">
