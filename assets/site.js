@@ -7,22 +7,45 @@
         || window.self !== window.top;
     if (embedMode) {
         document.documentElement.classList.add('embed-mode');
-        // Cross-page Links entschärfen — User navigiert via Google Sites
-        const neutralize = () => {
+        // Komplett aus DOM entfernen — nicht nur ausblenden — damit Rechtsklick / Inspector
+        // keine Links zu github.io enthüllen kann.
+        const cleanup = () => {
+            // 1. Nav, Footer, Cookie-Banner restlos entfernen
+            document.querySelectorAll('nav, #navbar, footer, .cookie-banner')
+                .forEach(el => el.remove());
+
+            // 2. Alle internen Cross-Page-Links: href entfernen, in <span> umwandeln
+            //    → Rechtsklick → "Adresse kopieren" / "In neuem Tab öffnen" zeigt nichts mehr
             document.querySelectorAll('a[href]').forEach(a => {
                 const h = a.getAttribute('href') || '';
-                if (!h || h.startsWith('#') || h.startsWith('mailto:') ||
-                    h.startsWith('tel:') || h.startsWith('http')) return;
-                if (h.endsWith('.html') || h.includes('.html#') ||
+                if (!h) return;
+                // In-Page-Anchors, mailto, tel bleiben
+                if (h.startsWith('#') || h.startsWith('mailto:') || h.startsWith('tel:')) return;
+                // Externe Links (http/https) erlauben — außer github.io
+                if (h.startsWith('http')) {
+                    if (h.indexOf('github.io') >= 0 || h.indexOf('github.com') >= 0) {
+                        a.removeAttribute('href');
+                        a.removeAttribute('target');
+                        a.classList.add('cross-page-disabled');
+                    }
+                    return;
+                }
+                // Relative interne Links (.html, /) → komplett entschärfen
+                if (h.endsWith('.html') || h.indexOf('.html#') >= 0 ||
                     h.endsWith('/') || h === 'index.html') {
+                    a.removeAttribute('href');
+                    a.removeAttribute('target');
                     a.classList.add('cross-page-disabled');
-                    a.addEventListener('click', e => e.preventDefault());
                 }
             });
+
+            // 3. Meta-Tags entfernen, die auf github.io verweisen könnten
+            document.querySelectorAll('link[rel="canonical"], meta[property="og:url"], meta[name="twitter:url"]')
+                .forEach(el => el.remove());
         };
         if (document.readyState === 'loading')
-            document.addEventListener('DOMContentLoaded', neutralize);
-        else neutralize();
+            document.addEventListener('DOMContentLoaded', cleanup);
+        else cleanup();
     }
 
     // ── NAV scroll effect & active link & mobile toggle ──
