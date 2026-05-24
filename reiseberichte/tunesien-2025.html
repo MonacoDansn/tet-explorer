@@ -87,13 +87,29 @@
         </div>
 
         <p>Die Salzsee-Überquerung war surreal, die Dünenfahrten richtig hart. Pannen mitten in der Wüste und improvisierte Reparaturen auf der Straße gehörten dazu — Werkstatt-Glück gab es nicht überall.</p>
+    </div>
 
-        <div style="background:var(--black-card);border:1px dashed var(--gold);border-radius:4px;padding:2rem 1.6rem;margin:2rem 0;text-align:center;color:var(--text-muted);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" style="width:48px;height:48px;margin:0 auto 1rem;display:block;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <p style="margin:0;font-family:'Oswald',sans-serif;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);">Foto-Galerie folgt</p>
-            <p style="margin-top:0.5rem;font-size:0.85rem;line-height:1.6;">Die Originalbilder werden bald hier eingebunden.</p>
-        </div>
+    <figure class="feature-map">
+        <a data-lightbox="../assets/photos/tunesien-2025/01.png"><img src="../assets/photos/tunesien-2025/01.png" alt="Illustrierte Landkarte einer Motorrad-Rundreise durch Tunesien" loading="lazy"></a>
+        <figcaption>Illustrierte Landkarte unserer Motorrad-Rundreise durch Tunesien</figcaption>
+    </figure>
 
+    <div class="photo-gallery">
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/02.jpg"><img src="../assets/photos/tunesien-2025/02.jpg" loading="lazy" alt="Tunesien 2025 — 1" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/03.jpg"><img src="../assets/photos/tunesien-2025/03.jpg" loading="lazy" alt="Tunesien 2025 — 2" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/04.jpg"><img src="../assets/photos/tunesien-2025/04.jpg" loading="lazy" alt="Tunesien 2025 — 3" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/05.jpg"><img src="../assets/photos/tunesien-2025/05.jpg" loading="lazy" alt="Tunesien 2025 — 4" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/06.jpg"><img src="../assets/photos/tunesien-2025/06.jpg" loading="lazy" alt="Tunesien 2025 — 5" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/07.jpg"><img src="../assets/photos/tunesien-2025/07.jpg" loading="lazy" alt="Tunesien 2025 — 6" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/08.jpg"><img src="../assets/photos/tunesien-2025/08.jpg" loading="lazy" alt="Tunesien 2025 — 7" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/09.jpg"><img src="../assets/photos/tunesien-2025/09.jpg" loading="lazy" alt="Tunesien 2025 — 8" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/10.jpg"><img src="../assets/photos/tunesien-2025/10.jpg" loading="lazy" alt="Tunesien 2025 — 9" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/11.jpg"><img src="../assets/photos/tunesien-2025/11.jpg" loading="lazy" alt="Tunesien 2025 — 10" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/12.jpg"><img src="../assets/photos/tunesien-2025/12.jpg" loading="lazy" alt="Tunesien 2025 — 11" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item" data-lightbox="../assets/photos/tunesien-2025/13.jpg"><img src="../assets/photos/tunesien-2025/13.jpg" loading="lazy" alt="Tunesien 2025 — 12" onload="this.classList.add('loaded')"></a>
+    </div>
+
+    <div class="content-block">
         <p class="outro">„Tunesien hat uns alles abverlangt — Sand, Sonne, Pannen — aber genau das macht so eine Tour unvergesslich."</p>
     </div>
 </section>
@@ -121,6 +137,10 @@
 <div class="cookie-banner" id="cookieBanner" style="display:none;">
     <p>Wir nutzen ausschließlich technisch notwendige Cookies. Mehr in der <a href="../kontakt.html#datenschutz">Datenschutzerklärung</a>.</p>
     <button id="cookieAccept">Verstanden</button>
+</div>
+
+<div class="modal-overlay" id="lightbox" style="background:rgba(0,0,0,0.95);align-items:center;justify-content:center;cursor:zoom-out;">
+    <img src="" alt="" style="max-width:95vw;max-height:95vh;object-fit:contain;border:1px solid var(--gold);">
 </div>
 
 <script src="../assets/site.js" defer></script>
