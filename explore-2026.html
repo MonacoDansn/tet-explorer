@@ -3,157 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore 2026 — Enduro Explorers Strasswalchen</title>
-    <meta name="description" content="Der Tour-Kalender 2026 — Trainings, Wochenend-Touren und die große Barcelona-Expedition.">
-    <meta name="robots" content="index,follow">
+    <title>Explore our 2026 — Enduro Explorers Strasswalchen</title>
+    <meta name="description" content="Unsere große Sommer-Tour 2026: Gardasee → Italien → Frankreich → Andorra → Spanien → Barcelona. Live-GPX-Karte.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        /* Page-specific */
-        .countdown-2026 {
-            display: flex; gap: 1.4rem; flex-wrap: wrap; justify-content: center;
-            margin: 2rem 0 0;
-        }
-        .cd-block {
-            text-align: center; min-width: 70px;
-            background: rgba(212,164,28,0.05);
-            border: 1px solid var(--border);
-            padding: 0.8rem 1.2rem;
-        }
-        .cd-value {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.4rem; color: var(--gold); line-height: 1;
-            text-shadow: 0 0 20px rgba(212,164,28,0.3);
-        }
-        .cd-label {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.65rem; color: var(--text-muted);
-            text-transform: uppercase; letter-spacing: 3px;
-            margin-top: 0.4rem;
-        }
+        .countdown-2026 { display: flex; gap: 1.4rem; flex-wrap: wrap; justify-content: center; margin: 2rem 0 0; }
+        .cd-block { text-align: center; min-width: 70px; background: rgba(212,164,28,0.05); border: 1px solid var(--border); padding: 0.8rem 1.2rem; }
+        .cd-value { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: var(--gold); line-height: 1; text-shadow: 0 0 20px rgba(212,164,28,0.3); }
+        .cd-label { font-family: 'Oswald', sans-serif; font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; margin-top: 0.4rem; }
 
-        .event-card {
-            background: var(--black-card);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-            display: grid;
-            grid-template-columns: 130px 1fr auto;
-            gap: 0;
-            align-items: center;
-        }
-        .event-card:hover {
-            border-color: var(--gold);
-            box-shadow: 0 8px 30px rgba(212,164,28,0.1);
-            background: var(--black-card-hover);
-        }
-        .event-date {
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            color: var(--black);
-            padding: 1.4rem 1rem;
-            text-align: center;
-            align-self: stretch;
-            display: flex; flex-direction: column; justify-content: center;
-        }
-        .event-date-day {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.4rem; line-height: 1;
-        }
-        .event-date-month {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.78rem; letter-spacing: 3px;
-            text-transform: uppercase; font-weight: 600;
-            margin-top: 0.2rem;
-        }
-        .event-date-year {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.65rem; letter-spacing: 2px;
-            opacity: 0.7;
-        }
-        .event-body { padding: 1.4rem 1.6rem; }
-        .event-tag {
-            display: inline-block;
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.66rem; letter-spacing: 2px;
-            color: var(--gold); text-transform: uppercase;
-            padding: 3px 10px; background: rgba(212,164,28,0.1);
-            border: 1px solid rgba(212,164,28,0.3);
-            margin-bottom: 0.6rem;
-        }
-        .event-tag.highlight { background: var(--gold); color: var(--black); }
-        .event-tag.training { background: rgba(68,170,68,0.12); color: var(--green); border-color: rgba(68,170,68,0.3); }
-        .event-tag.weekend { background: rgba(68,136,204,0.12); color: var(--blue); border-color: rgba(68,136,204,0.3); }
-        .event-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.2rem; font-weight: 600;
-            color: var(--text-bright);
-            text-transform: uppercase; letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-        }
-        .event-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
-        .event-meta {
-            display: flex; gap: 1rem; margin-top: 0.8rem;
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.72rem; color: var(--gold-light);
-            letter-spacing: 1px; text-transform: uppercase;
-            flex-wrap: wrap;
-        }
-        .event-meta span { display: inline-flex; align-items: center; gap: 5px; }
-        .event-meta svg { width: 12px; height: 12px; stroke: var(--gold); }
-        .event-action {
-            padding: 0 1.6rem;
-            display: flex; align-items: center;
-        }
-        .event-action a {
-            display: inline-flex; align-items: center; gap: 6px;
-            color: var(--gold); text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.78rem; letter-spacing: 1.5px;
-            text-transform: uppercase; font-weight: 600;
-            padding: 8px 14px; border: 1px solid var(--gold);
-            border-radius: 3px;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-        .event-action a:hover { background: var(--gold); color: var(--black); }
+        .route-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2.5rem 0; }
+        .route-stat { background: var(--black-card); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1.2rem 1.4rem; }
+        .route-stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: var(--gold); line-height: 1; }
+        .route-stat-label { font-family: 'Oswald', sans-serif; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 0.3rem; }
 
-        .event-list { display: flex; flex-direction: column; gap: 1rem; }
+        .stage-list { display: grid; gap: 0.8rem; margin: 2rem 0; }
+        .stage-row { display: grid; grid-template-columns: 60px 1fr; gap: 1.2rem; padding: 1rem 1.2rem; background: var(--black-card); border: 1px solid var(--border); border-left: 3px solid var(--gold); align-items: start; }
+        .stage-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--gold); line-height: 1; }
+        .stage-content h4 { font-family: 'Oswald', sans-serif; color: var(--text-bright); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
+        .stage-content p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; margin: 0; }
 
-        @media (max-width: 700px) {
-            .event-card { grid-template-columns: 1fr; }
-            .event-date { flex-direction: row; gap: 12px; padding: 0.8rem 1.2rem; align-items: baseline; }
-            .event-date-day { font-size: 1.8rem; }
-            .event-action { padding: 0 1.6rem 1.2rem; }
-            .event-action a { width: 100%; justify-content: center; }
-        }
-
-        .feature-card {
-            background: linear-gradient(135deg, var(--black-card), #161610);
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--gold);
-            padding: 2rem 2.4rem;
-            margin: 2rem 0;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 2rem;
-            align-items: center;
-        }
-        .feature-card-content h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.6rem; color: var(--text-bright);
-            text-transform: uppercase; letter-spacing: 1.5px;
-            margin-bottom: 0.6rem;
-        }
-        .feature-card-content h3 span { color: var(--gold); }
-        .feature-card-content p { color: var(--text); font-size: 0.95rem; line-height: 1.7; max-width: 720px; }
-        .feature-card-stats {
-            display: flex; flex-direction: column; gap: 1rem; min-width: 140px;
-        }
-        @media (max-width: 700px) {
-            .feature-card { grid-template-columns: 1fr; }
-        }
+        .gpx-embed-wrap { background: var(--black-card); border: 1px solid var(--gold); border-radius: 4px; overflow: hidden; margin: 2rem 0; }
+        .gpx-embed-wrap iframe { width: 100%; height: 600px; border: 0; display: block; background: #1a1a1a; }
+        .content-block { max-width: 780px; margin: 0 auto; }
+        .content-block p { font-size: 1rem; line-height: 1.85; color: var(--text); margin-bottom: 1.4rem; }
+        .content-block p.lead { font-size: 1.1rem; color: var(--text-bright); }
     </style>
 <script>(function(){try{if(!(new URLSearchParams(location.search).get("embed")==="1"||window.self!==window.top))return;document.documentElement.classList.add("embed-mode");function n(){document.querySelectorAll("nav,#navbar,footer,.cookie-banner").forEach(function(el){el.remove()});document.querySelectorAll("a[href]").forEach(function(a){var h=a.getAttribute("href")||"";if(!h)return;if(h[0]==="#"||h.indexOf("mailto:")===0||h.indexOf("tel:")===0)return;if(h.indexOf("http")===0){if(h.indexOf("github.io")>=0||h.indexOf("github.com")>=0){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}return}if(h.indexOf(".html")>=0||h.slice(-1)==="/"){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}});document.querySelectorAll("link[rel=\"canonical\"],meta[property=\"og:url\"]").forEach(function(el){el.remove()})}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",n);else n()}catch(e){}})();</script>
 </head>
@@ -166,237 +42,120 @@
     </button>
     <ul class="nav-links">
         <li><a href="was-wir-machen.html">Was wir machen</a></li>
-        <li><a href="explore-2026.html">Explore 2026</a></li>
-        <li><a href="reiseberichte.html">Reiseberichte</a></li>
-        <li><a href="austria-barcelona.html">Barcelona Tour</a></li>
-        <li><a href="index.html">TET Explorer</a></li>
+        <li><a href="index.html">TET Routen Explorer</a></li>
+        <li><a href="explore-2026.html">Explore our 2026</a></li>
+        <li><a href="reiseberichte.html">Enduro Reiseberichte</a></li>
         <li><a href="kontakt.html">Kontakt</a></li>
     </ul>
 </nav>
 
 <header class="page-hero">
-    <div class="page-hero-club">Saison 2026</div>
-    <h1>Explore <span>2026</span></h1>
-    <p class="page-hero-subtitle">Der Plan: zwölf Monate, eine große Reise, vier Wochenend-Touren, vier Trainings — und vielleicht ein bisschen Überraschung.</p>
-
-    <div class="countdown-2026" id="countdown" data-target="2026-07-06T07:00:00">
-        <div class="cd-block"><div class="cd-value" id="cd-d">--</div><div class="cd-label">Tage</div></div>
-        <div class="cd-block"><div class="cd-value" id="cd-h">--</div><div class="cd-label">Std</div></div>
-        <div class="cd-block"><div class="cd-value" id="cd-m">--</div><div class="cd-label">Min</div></div>
-        <div class="cd-block"><div class="cd-value" id="cd-s">--</div><div class="cd-label">Sek</div></div>
+    <div class="page-hero-club">Sommer 2026</div>
+    <h1>Explore our <span>2026</span></h1>
+    <p class="page-hero-subtitle">Gardasee → Italien → Frankreich → Andorra → Spanien → Barcelona</p>
+    <div class="countdown-2026" id="countdown">
+        <div class="cd-block"><div class="cd-value" id="cdDays">—</div><div class="cd-label">Tage</div></div>
+        <div class="cd-block"><div class="cd-value" id="cdHours">—</div><div class="cd-label">Stunden</div></div>
+        <div class="cd-block"><div class="cd-value" id="cdMin">—</div><div class="cd-label">Minuten</div></div>
     </div>
-    <p style="font-family:'Oswald',sans-serif;color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-size:0.78rem;margin-top:0.8rem;">bis Barcelona-Start</p>
 </header>
 
-<!-- ═══ HIGHLIGHT: BARCELONA ═══ -->
 <section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Saison-<span>Highlight</span></h2>
-        <p>Die größte Tour des Jahres — 14 Tage, 5 Länder, 9 Pässe.</p>
-    </div>
-    <div class="feature-card fade-in">
-        <div class="feature-card-content">
-            <h3>Strasswalchen <span>→ Barcelona</span></h3>
-            <p>2.265 km von der Salzburger Garage über Alpenpässe, Dolomiten, Schweizer Hochplateau, französische Provence, Pyrenäen-Offroad bis zum Mittelmeer. Inkl. Pic Negre 2.643 m, Pont du Gard und Sagrada Família. Mit Live-Karte, GPX, Offroad-Layer und OSMand-Integration.</p>
-            <a href="austria-barcelona.html" class="btn" style="margin-top:1.4rem;">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                Tour-Details
-            </a>
-        </div>
-        <div class="feature-card-stats">
-            <div class="stat-item"><div class="stat-value">14</div><div class="stat-label">Tage</div></div>
-            <div class="stat-item"><div class="stat-value">2.265</div><div class="stat-label">Km</div></div>
-            <div class="stat-item"><div class="stat-value">5</div><div class="stat-label">Länder</div></div>
-        </div>
+    <div class="content-block">
+        <p class="lead">Unsere große Sommertour 2026 führt vom Gardasee durch die italienischen Westalpen, über die Ligurische Grenzkammstraße, an der Côte d'Azur entlang, durch die Pyrenäen und Andorra bis nach Barcelona.</p>
+        <p>Die Hauptroute haben wir bereits in <strong>21 Tracks mit 28 Segmenten</strong> und über <strong>62.000 GPS-Punkten</strong> geplant. Dazu kommen 144 Waypoints für Camping-Spots, TET-friendly Unterkünfte und Highlights.</p>
     </div>
 </section>
 
-<!-- ═══ KALENDER ═══ -->
 <section class="section-wrap fade-in">
     <div class="section-header">
-        <h2>Kalender <span>2026</span></h2>
-        <p>Alle Termine — Trainings, Wochenend-Touren, Saison-Highlight.</p>
+        <h2>Live <span>GPX-Karte</span></h2>
+        <p>Unsere echte Tour-GPX im interaktiven <a href="https://gpx.studio" target="_blank" rel="noopener" style="color:var(--gold);">gpx.studio</a> Editor — zoomen, Höhenprofil, Etappen-Details.</p>
     </div>
-    <div class="event-list" id="eventList">
-        <!-- Filled by JS -->
+    <div class="gpx-embed-wrap">
+        <iframe
+            src="https://gpx.studio/embed?files=https://raw.githubusercontent.com/MonacoDansn/tet-explorer/main/gpx/tet-2026-gardasee-barcelona.gpx"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="TET 2026 Gardasee → Barcelona auf gpx.studio"></iframe>
+    </div>
+    <div style="text-align:center;">
+        <a href="gpx/tet-2026-gardasee-barcelona.gpx" download class="btn" style="display:inline-flex;align-items:center;gap:8px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            GPX-Datei herunterladen
+        </a>
     </div>
 </section>
 
-<!-- ═══ ZIELE 2026 ═══ -->
 <section class="section-wrap fade-in">
     <div class="section-header">
-        <h2>Was wir <span>2026 wollen</span></h2>
-        <p>Vier konkrete Saison-Ziele.</p>
+        <h2>Die <span>Route</span> in Etappen</h2>
+        <p>Hauptroute: Italien (revers) → Frankreich → Andorra → Spanien → Barcelona.</p>
     </div>
-    <div class="card-grid">
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 8v12h16V8l-8-6zM12 22V12"/></svg></div>
-            <h3>Barcelona machen</h3>
-            <p>Die Tour ist das große Ding. Vorbereitung läuft seit Oktober 2025: Bike-Service, Reifen-Logistik, GPX-Routing, Visa, Versicherung. Start: 6. Juli 2026, 07:00.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6zM9 4v14M15 6v14"/></svg></div>
-            <h3>TET-Sektion AT komplett</h3>
-            <p>Die österreichische TET-Sektion (Salzburg–Steiermark–Kärnten–Tirol–Vorarlberg) als Crew vollständig fahren. Gesplittet auf zwei Wochenend-Touren.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
-            <h3>Neue Member integrieren</h3>
-            <p>2 neue Rider in die Crew aufnehmen, mit gezieltem Mentoring auf den ersten 3 Touren. Kein Tempo-Druck, Wachstum durch Tun.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3l3 3M5 19l-2 2v-4l11-11 4 4-11 11H5z"/></svg></div>
-            <h3>Vereins-Werkstatt fertig</h3>
-            <p>Die Garage in Strasswalchen mit fixer Hebebühne und Reifenwuchtmaschine ausstatten. Ziel: Vor Saisonstart April 2026 betriebsbereit.</p>
-        </div>
+    <div class="route-stats">
+        <div class="route-stat"><div class="route-stat-value">21</div><div class="route-stat-label">Tracks</div></div>
+        <div class="route-stat"><div class="route-stat-value">28</div><div class="route-stat-label">Segmente</div></div>
+        <div class="route-stat"><div class="route-stat-value">144</div><div class="route-stat-label">Waypoints</div></div>
+        <div class="route-stat"><div class="route-stat-value">4</div><div class="route-stat-label">Länder</div></div>
+    </div>
+    <div class="stage-list">
+        <div class="stage-row"><div class="stage-num">01</div><div class="stage-content"><h4>Start: Gardasee</h4><p>Einstieg ins Hauptmassiv der italienischen Westalpen. Hochalpine Pässe, Schotter, Pannenglück braucht's hier nicht.</p></div></div>
+        <div class="stage-row"><div class="stage-num">02</div><div class="stage-content"><h4>Italienische Westalpen → Piemont</h4><p>Über Aosta, Sestriere, Colle delle Finestre und den Assietta-Kamm — Schotter-Königsetappen mit bis zu 2.500m.</p></div></div>
+        <div class="stage-row"><div class="stage-num">03</div><div class="stage-content"><h4>Ligurische Grenzkammstraße / Via del Sale</h4><p>Das Herzstück: ~50 km Hochgebirgs-Schotter direkt auf der italienisch-französischen Grenze mit Mittelmeer-Panorama.</p></div></div>
+        <div class="stage-row"><div class="stage-num">04</div><div class="stage-content"><h4>Côte d'Azur</h4><p>Ventimiglia, Monaco, Nizza, Cannes, Saint-Tropez — die ganze Riviera entlang der Küste.</p></div></div>
+        <div class="stage-row"><div class="stage-num">05</div><div class="stage-content"><h4>Provence &amp; Languedoc</h4><p>Westwärts durch Arles, Pont du Gard, Camargue, Montpellier, Narbonne nach Perpignan.</p></div></div>
+        <div class="stage-row"><div class="stage-num">06</div><div class="stage-content"><h4>Pyrenäen &amp; Andorra</h4><p>Grenzübertritt über die östlichen Pyrenäen, durch das Fürstentum Andorra und ins katalonische Hinterland.</p></div></div>
+        <div class="stage-row"><div class="stage-num">07</div><div class="stage-content"><h4>Ziel: Barcelona</h4><p>Über Girona ans Mittelmeer. Sagrada Família, Las Ramblas, Strand. Tour ausgefahren.</p></div></div>
     </div>
 </section>
 
-<!-- ═══ VOR DER TOUR ═══ -->
-<section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Vor jeder <span>Tour</span></h2>
-        <p>Was bei uns Pflicht ist, bevor das erste Bike rollt.</p>
-    </div>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-date">8 Wochen vorher</div>
-            <div class="timeline-title">Route + GPX</div>
-            <div class="timeline-desc">Tour-Lead plant Route in OSMand/Komoot, identifiziert Schotter-Anteil, Tankstellen, Übernachtungen. GPX wird mit der Crew geteilt.</div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-date">4 Wochen vorher</div>
-            <div class="timeline-title">Bike-Check</div>
-            <div class="timeline-desc">Reifen-Profil, Bremsbeläge, Kettenspiel, Kühlmittel, Federbein, Beleuchtung. Wer nicht durchkommt, fährt nicht mit.</div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-date">2 Wochen vorher</div>
-            <div class="timeline-title">Crew-Briefing</div>
-            <div class="timeline-desc">Treffen in der Garage. Route-Walkthrough, Risiko-Diskussion, Rollen-Klärung (Lead, Sweep, Mediziner, Mechaniker).</div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-date">1 Tag vorher</div>
-            <div class="timeline-title">Pack-Check</div>
-            <div class="timeline-desc">Werkzeug-Check, Erste-Hilfe, Reservereifen, Wassser. Bike voll getankt und gewaschen.</div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-date">Tour-Tag</div>
-            <div class="timeline-title">Roll-out 07:00</div>
-            <div class="timeline-desc">Pünktlich. Wer 07:01 ankommt, fährt nach. Helmgespräch, GPX-Sync, Wetter-Check — und los.</div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
 <footer>
     <div class="footer-inner">
         <div class="footer-col">
-            <div class="footer-club-text">Enduro Explorers</div>
-            <p style="color:var(--text-muted);font-size:0.82rem;line-height:1.6;">Strasswalchen · Salzburg · Österreich. Schotter, Pässe, Crew.</p>
+            <div class="footer-club-text">Enduro Explorers Strasswalchen e.V.</div>
+            <p style="color:var(--text-muted);font-size:0.82rem;line-height:1.6;">Strasswalchen · Salzburg · Österreich</p>
         </div>
         <div class="footer-col">
-            <h4>Club</h4>
+            <h4>Verein</h4>
             <a href="was-wir-machen.html">Was wir machen</a>
-            <a href="explore-2026.html">Explore 2026</a>
+            <a href="reiseberichte.html">Reiseberichte</a>
             <a href="kontakt.html">Kontakt</a>
-        </div>
-        <div class="footer-col">
-            <h4>Reiseberichte</h4>
-            <a href="reiseberichte.html">Übersicht</a>
-            <a href="reiseberichte/tunesien-2025.html">Tunesien 2025</a>
-            <a href="reiseberichte/balkan-2024.html">Balkan 2024</a>
-            <a href="reiseberichte/marokko-2023.html">Marokko 2023</a>
-        </div>
-        <div class="footer-col">
-            <h4>Touren</h4>
-            <a href="austria-barcelona.html">Barcelona Tour 2026</a>
-            <a href="index.html">TET Explorer</a>
         </div>
     </div>
     <div class="footer-bottom">
-        <span>&copy; 2026 Enduro Explorers Strasswalchen</span>
+        <span>&copy; 2026 Enduro Explorers Strasswalchen e.V.</span>
         <span><a href="kontakt.html#impressum">Impressum</a> · <a href="kontakt.html#datenschutz">Datenschutz</a></span>
     </div>
 </footer>
 
 <div class="cookie-banner" id="cookieBanner" style="display:none;">
-    <p>Wir nutzen ausschließlich technisch notwendige Cookies (kein Tracking). Mehr in der <a href="kontakt.html#datenschutz">Datenschutzerklärung</a>.</p>
+    <p>Wir nutzen ausschließlich technisch notwendige Cookies. Mehr in der <a href="kontakt.html#datenschutz">Datenschutzerklärung</a>.</p>
     <button id="cookieAccept">Verstanden</button>
 </div>
 
-<script src="assets/site.js" defer></script>
 <script>
-// Countdown
+// Countdown bis 6. Juli 2026
 (function(){
-    const target = new Date(document.getElementById('countdown').dataset.target).getTime();
-    function tick(){
-        const now = Date.now();
+    const target = new Date('2026-07-06T07:00:00');
+    const dDays = document.getElementById('cdDays');
+    const dHours = document.getElementById('cdHours');
+    const dMin = document.getElementById('cdMin');
+    if (!dDays) return;
+    const tick = () => {
+        const now = new Date();
         const diff = target - now;
-        if (diff <= 0){
-            document.getElementById('countdown').innerHTML = '<div style="font-family:\'Oswald\',sans-serif;color:var(--gold);letter-spacing:3px;font-size:1.2rem;text-transform:uppercase;">Tour läuft!</div>';
-            return;
-        }
-        const d = Math.floor(diff / 86400000);
-        const h = Math.floor((diff % 86400000) / 3600000);
-        const m = Math.floor((diff % 3600000) / 60000);
-        const s = Math.floor((diff % 60000) / 1000);
-        document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
-        document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
-        document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
-        document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
-    }
-    tick(); setInterval(tick, 1000);
+        if (diff <= 0) { dDays.textContent = dHours.textContent = dMin.textContent = '0'; return; }
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        dDays.textContent = days;
+        dHours.textContent = hours;
+        dMin.textContent = mins;
+    };
+    tick();
+    setInterval(tick, 60000);
 })();
-
-// Events 2026
-const events2026 = [
-    {date:'2026-04-11', day:'11', month:'Apr', tag:'Training', tagClass:'training', title:'Saison-Auftakt-Training', desc:'Stehfahren, Slow-Speed-Drills, Sturz-Prävention. Trabrennbahn Strasswalchen, ganztags.', meta:[{i:'pin',t:'Strasswalchen'},{i:'clock',t:'09:00–17:00'}], link:'kontakt.html'},
-    {date:'2026-05-02', day:'02', month:'Mai', tag:'Wochenend-Tour', tagClass:'weekend', title:'Salzkammergut-Trails', desc:'2-Tages-Tour durch Postalm, Schafberg-Forstwege, Mondsee. Übernachtung in Bad Goisern.', meta:[{i:'route',t:'~280 km'},{i:'mountain',t:'2 Tage'}], link:'kontakt.html'},
-    {date:'2026-05-30', day:'30', month:'Mai', tag:'Training', tagClass:'training', title:'Reifen-Workshop', desc:'Reifenmontage, Schlauch-Reparatur, Tubeless-Tricks. In der Vereinsgarage. Bring dein Bike.', meta:[{i:'pin',t:'Vereinsgarage'},{i:'clock',t:'10:00–15:00'}], link:'kontakt.html'},
-    {date:'2026-06-13', day:'13', month:'Jun', tag:'Wochenend-Tour', tagClass:'weekend', title:'Niedere Tauern TET', desc:'TET-Österreich Sektion 2: Schladming → Murau → Lungau. 70% Schotter, 3 Pässe.', meta:[{i:'route',t:'~340 km'},{i:'mountain',t:'2 Tage'}], link:'kontakt.html'},
-    {date:'2026-06-27', day:'27', month:'Jun', tag:'Training', tagClass:'training', title:'Final-Check Barcelona', desc:'Letzte Vorbereitung für die Barcelona-Tour. Bike-Inspektion, Pack-Drill, GPX-Sync.', meta:[{i:'pin',t:'Vereinsgarage'},{i:'clock',t:'08:00–16:00'}], link:'kontakt.html'},
-    {date:'2026-07-06', day:'06', month:'Jul', tag:'Highlight', tagClass:'highlight', title:'Barcelona-Tour Start', desc:'2.265 km, 14 Tage, 5 Länder, 9 Pässe. Das große Ding der Saison. Start: Strasswalchen 07:00.', meta:[{i:'route',t:'2.265 km'},{i:'mountain',t:'14 Tage'},{i:'flag',t:'5 Länder'}], link:'austria-barcelona.html'},
-    {date:'2026-09-05', day:'05', month:'Sep', tag:'Wochenend-Tour', tagClass:'weekend', title:'Karawanken & Slowenien', desc:'Grenzland-Tour: Loiblpass, Vršič, Triglav-Region. Lange Tagesetappen, viel Schotter.', meta:[{i:'route',t:'~420 km'},{i:'mountain',t:'2 Tage'}], link:'kontakt.html'},
-    {date:'2026-10-03', day:'03', month:'Okt', tag:'Training', tagClass:'training', title:'Herbst-Schlamm-Drills', desc:'Nass-Schotter, Tiefer-Boden, Steilstellen-Fahren. Wenn das Wetter kalt und nass ist — perfekt.', meta:[{i:'pin',t:'Strasswalchen'},{i:'clock',t:'09:00–16:00'}], link:'kontakt.html'},
-    {date:'2026-10-24', day:'24', month:'Okt', tag:'Wochenend-Tour', tagClass:'weekend', title:'Saison-Abschluss Wachau', desc:'Last Ride 2026: Donautal, Yspertal, Ötscher. Gemütlich, mit Heuriger-Stop.', meta:[{i:'route',t:'~260 km'},{i:'mountain',t:'2 Tage'}], link:'kontakt.html'},
-    {date:'2026-11-21', day:'21', month:'Nov', tag:'Saisonschluss', tagClass:'highlight', title:'Saison-Abschluss-Abend', desc:'Auswertung, Foto-Show, Tunesien-2025-Bericht-Finale, neue Member-Aufnahme. Vereinsgarage, ab 18:00.', meta:[{i:'pin',t:'Vereinsgarage'},{i:'clock',t:'ab 18:00'}], link:'kontakt.html'}
-];
-
-const iconMap = {
-    pin: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>',
-    clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
-    route: '<polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
-    mountain: '<path d="M8 3l4 8 5-5 5 15H2L8 3z"/>',
-    flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>'
-};
-document.getElementById('eventList').innerHTML = events2026.map(e => `
-    <div class="event-card fade-in">
-        <div class="event-date">
-            <div class="event-date-day">${e.day}</div>
-            <div class="event-date-month">${e.month}</div>
-            <div class="event-date-year">2026</div>
-        </div>
-        <div class="event-body">
-            <span class="event-tag ${e.tagClass}">${e.tag}</span>
-            <div class="event-title">${e.title}</div>
-            <div class="event-desc">${e.desc}</div>
-            <div class="event-meta">
-                ${e.meta.map(m=>`<span><svg viewBox="0 0 24 24" fill="none" stroke-width="2">${iconMap[m.i]||''}</svg>${m.t}</span>`).join('')}
-            </div>
-        </div>
-        <div class="event-action">
-            <a href="${e.link}">Details →</a>
-        </div>
-    </div>
-`).join('');
-
-// Re-observe newly inserted fade-in
-if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.event-card.fade-in').forEach(el => io.observe(el));
-}
 </script>
+<script src="assets/site.js" defer></script>
 </body>
 </html>

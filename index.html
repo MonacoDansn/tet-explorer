@@ -78,7 +78,7 @@
             100% { opacity:0; transform: translateY(-10vh) scale(1); }
         }
         .hero-content { position: relative; z-index: 2; padding: 2rem; max-width: 900px; }
-        .hero-logo { width: 180px; height: auto; margin-bottom: 1.5rem; filter: drop-shadow(0 4px 20px rgba(212,149,43,0.3)); }
+        .hero-logo { width: 320px; max-width: 60vw; height: auto; margin-bottom: 2rem; filter: drop-shadow(0 6px 30px rgba(212,149,43,0.45)); }
         .hero h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 900;
@@ -275,7 +275,7 @@
             .modal-stats { grid-template-columns: 1fr; }
             .modal-actions { flex-direction: column; }
             .map-container { height: 400px; }
-            .hero-logo { width: 140px; }
+            .hero-logo { width: 220px; max-width: 70vw; }
         }
     </style>
 <script>(function(){try{if(!(new URLSearchParams(location.search).get("embed")==="1"||window.self!==window.top))return;document.documentElement.classList.add("embed-mode");function n(){document.querySelectorAll("nav,#navbar,footer,.cookie-banner").forEach(function(el){el.remove()});document.querySelectorAll("a[href]").forEach(function(a){var h=a.getAttribute("href")||"";if(!h)return;if(h[0]==="#"||h.indexOf("mailto:")===0||h.indexOf("tel:")===0)return;if(h.indexOf("http")===0){if(h.indexOf("github.io")>=0||h.indexOf("github.com")>=0){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}return}if(h.indexOf(".html")>=0||h.slice(-1)==="/"){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}});document.querySelectorAll("link[rel=\"canonical\"],meta[property=\"og:url\"]").forEach(function(el){el.remove()})}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",n);else n()}catch(e){}})();</script>
