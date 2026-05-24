@@ -19,15 +19,59 @@
         .country-block ul { list-style: none; padding: 0; margin-top: 0.6rem; }
         .country-block li { padding: 0.3rem 0; font-size: 0.92rem; color: var(--text-muted); }
         .country-block li::before { content: "· "; color: var(--gold); }
-        .feature-map { max-width: 780px; margin: 2rem auto; background: var(--black-card); border: 1px solid var(--border); padding: 0.5rem; }
-        .feature-map img { width: 100%; height: auto; display: block; }
-        .feature-map figcaption { font-size: 0.82rem; color: var(--text-muted); text-align: center; padding: 0.8rem 0.4rem 0.4rem; }
+        .feature-map { max-width: 1100px; margin: 2.5rem auto; background: var(--black-card); border: 1px solid var(--gold); border-radius: 6px; padding: 0.6rem; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        .feature-map a { display: block; cursor: zoom-in; }
+        .feature-map img { width: 100%; height: auto; display: block; border-radius: 3px; }
+        .feature-map figcaption { font-family: 'Oswald', sans-serif; font-size: 0.85rem; color: var(--gold); text-align: center; padding: 1rem 0.4rem 0.4rem; letter-spacing: 2px; text-transform: uppercase; }
 
-        .photo-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.8rem; margin: 2rem 0; }
-        .gallery-item { display: block; aspect-ratio: 4/3; overflow: hidden; background: var(--black-card); border: 1px solid var(--border); cursor: pointer; position: relative; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease, opacity 0.3s; opacity: 0; }
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-auto-rows: 240px;
+            grid-auto-flow: dense;
+            gap: 1rem;
+            margin: 2.5rem auto;
+            max-width: 1200px; padding: 0 1rem;
+        }
+        .gallery-item {
+            display: block;
+            overflow: hidden;
+            background: var(--black-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            cursor: zoom-in;
+            position: relative;
+            transition: border-color 0.3s;
+        }
+        .gallery-item:hover { border-color: var(--gold); box-shadow: 0 8px 24px rgba(212,164,28,0.15); }
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, opacity 0.3s;
+            opacity: 0;
+        }
         .gallery-item img.loaded { opacity: 1; }
-        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item:hover img { transform: scale(1.06); }
+
+        /* Featured Layouts */
+        .gallery-item.featured-large { grid-column: span 2; grid-row: span 2; }
+        .gallery-item.featured-wide  { grid-column: span 2; }
+        .gallery-item.featured-tall  { grid-row: span 2; }
+
+        @media (max-width: 720px) {
+            .photo-gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; gap: 0.6rem; }
+            .gallery-item.featured-large { grid-column: span 2; grid-row: span 2; }
+            .gallery-item.featured-wide { grid-column: span 2; grid-row: span 1; }
+            .gallery-item.featured-tall { grid-column: span 1; grid-row: span 2; }
+        }
+        @media (max-width: 480px) {
+            .photo-gallery { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+            .gallery-item, .gallery-item.featured-large,
+            .gallery-item.featured-wide, .gallery-item.featured-tall {
+                grid-column: span 1; grid-row: span 1;
+            }
+        }
+
 
     </style>
 <script>(function(){try{if(!(new URLSearchParams(location.search).get("embed")==="1"||window.self!==window.top))return;document.documentElement.classList.add("embed-mode");function n(){document.querySelectorAll("nav,#navbar,footer,.cookie-banner").forEach(function(el){el.remove()});document.querySelectorAll("a[href]").forEach(function(a){var h=a.getAttribute("href")||"";if(!h)return;if(h[0]==="#"||h.indexOf("mailto:")===0||h.indexOf("tel:")===0)return;if(h.indexOf("http")===0){if(h.indexOf("github.io")>=0||h.indexOf("github.com")>=0){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}return}if(h.indexOf(".html")>=0||h.slice(-1)==="/"){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}});document.querySelectorAll("link[rel=\"canonical\"],meta[property=\"og:url\"]").forEach(function(el){el.remove()})}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",n);else n()}catch(e){}})();</script>
@@ -102,19 +146,19 @@
     </figure>
 
     <div class="photo-gallery">
-        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/03.jpg"><img src="../assets/photos/balkan-2024/03.jpg" loading="lazy" alt="Balkan 2024 — 1" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item featured-large" data-lightbox="../assets/photos/balkan-2024/03.jpg"><img src="../assets/photos/balkan-2024/03.jpg" loading="lazy" alt="Balkan 2024 — 1" onload="this.classList.add('loaded')"></a>
         <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/04.jpg"><img src="../assets/photos/balkan-2024/04.jpg" loading="lazy" alt="Balkan 2024 — 2" onload="this.classList.add('loaded')"></a>
         <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/05.jpg"><img src="../assets/photos/balkan-2024/05.jpg" loading="lazy" alt="Balkan 2024 — 3" onload="this.classList.add('loaded')"></a>
         <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/06.jpg"><img src="../assets/photos/balkan-2024/06.jpg" loading="lazy" alt="Balkan 2024 — 4" onload="this.classList.add('loaded')"></a>
-        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/07.jpg"><img src="../assets/photos/balkan-2024/07.jpg" loading="lazy" alt="Balkan 2024 — 5" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item featured-wide" data-lightbox="../assets/photos/balkan-2024/07.jpg"><img src="../assets/photos/balkan-2024/07.jpg" loading="lazy" alt="Balkan 2024 — 5" onload="this.classList.add('loaded')"></a>
         <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/08.jpg"><img src="../assets/photos/balkan-2024/08.jpg" loading="lazy" alt="Balkan 2024 — 6" onload="this.classList.add('loaded')"></a>
         <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/09.jpg"><img src="../assets/photos/balkan-2024/09.jpg" loading="lazy" alt="Balkan 2024 — 7" onload="this.classList.add('loaded')"></a>
         <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/10.jpg"><img src="../assets/photos/balkan-2024/10.jpg" loading="lazy" alt="Balkan 2024 — 8" onload="this.classList.add('loaded')"></a>
-        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/11.jpg"><img src="../assets/photos/balkan-2024/11.jpg" loading="lazy" alt="Balkan 2024 — 9" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item featured-tall" data-lightbox="../assets/photos/balkan-2024/11.jpg"><img src="../assets/photos/balkan-2024/11.jpg" loading="lazy" alt="Balkan 2024 — 9" onload="this.classList.add('loaded')"></a>
         <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/12.jpg"><img src="../assets/photos/balkan-2024/12.jpg" loading="lazy" alt="Balkan 2024 — 10" onload="this.classList.add('loaded')"></a>
         <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/13.jpg"><img src="../assets/photos/balkan-2024/13.jpg" loading="lazy" alt="Balkan 2024 — 11" onload="this.classList.add('loaded')"></a>
         <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/14.jpg"><img src="../assets/photos/balkan-2024/14.jpg" loading="lazy" alt="Balkan 2024 — 12" onload="this.classList.add('loaded')"></a>
-        <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/15.jpg"><img src="../assets/photos/balkan-2024/15.jpg" loading="lazy" alt="Balkan 2024 — 13" onload="this.classList.add('loaded')"></a>
+        <a class="gallery-item featured-large" data-lightbox="../assets/photos/balkan-2024/15.jpg"><img src="../assets/photos/balkan-2024/15.jpg" loading="lazy" alt="Balkan 2024 — 13" onload="this.classList.add('loaded')"></a>
         <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/16.jpg"><img src="../assets/photos/balkan-2024/16.jpg" loading="lazy" alt="Balkan 2024 — 14" onload="this.classList.add('loaded')"></a>
         <a class="gallery-item" data-lightbox="../assets/photos/balkan-2024/17.jpg"><img src="../assets/photos/balkan-2024/17.jpg" loading="lazy" alt="Balkan 2024 — 15" onload="this.classList.add('loaded')"></a>
     </div>
