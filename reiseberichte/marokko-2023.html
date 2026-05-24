@@ -3,77 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marokko 2023 — Reisebericht | Enduro Explorers Strasswalchen</title>
-    <meta name="description" content="Die Tour, die alles ins Rollen brachte. 16 Tage Hoher Atlas, Tizi n'Tichka, Erg Chebbi, Casablanca — und 4 Reifen in 24 Stunden.">
-    <meta name="robots" content="index,follow">
+    <title>Marokko 2023 — Enduro Explorers Strasswalchen</title>
+    <meta name="description" content="Marokko 2023 — der Einstieg ins Reisen mit Enduro-Motorrädern. Zu sechst von Strasswalchen bis Chefchaouen.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/style.css">
     <style>
-        .trip-hero {
-            min-height: 80vh;
-            background:
-                linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.95) 100%),
-                radial-gradient(ellipse at 30% 20%, #cc333333, transparent 50%),
-                radial-gradient(ellipse at 80% 70%, #d4a41c33, transparent 50%),
-                linear-gradient(180deg, #2a0a0a, #1a0805);
-            position: relative;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-        }
-        .trip-hero-flag { font-size: 3rem; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6)); margin-bottom: 1rem; }
-        .trip-stats-bar {
-            background: var(--black-card);
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--gold);
-            margin: -3rem auto 0;
-            max-width: 1200px;
-            position: relative; z-index: 5;
-            padding: 1.6rem 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.5rem;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-        }
-        .chapter {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 2rem;
-            margin: 3rem 0;
-            padding-top: 3rem;
-            border-top: 1px solid var(--border);
-        }
-        .chapter:first-child { border-top: 0; padding-top: 0; }
-        .chapter-num { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--gold-dark); line-height: 1; }
-        .chapter-day { font-family: 'Oswald', sans-serif; font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-top: 0.4rem; }
-        .chapter-route { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.6rem; font-family: 'Oswald', sans-serif; }
-        .chapter-distance { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--gold-light); margin-top: 0.8rem; }
-        .chapter-content h3 { font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: var(--text-bright); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; font-weight: 600; }
-        .chapter-content p { font-size: 0.95rem; line-height: 1.8; color: var(--text); margin-bottom: 1rem; }
-        .chapter-content p strong { color: var(--gold-light); }
-        .chapter-pull { background: rgba(212,164,28,0.05); border-left: 3px solid var(--gold); padding: 1rem 1.4rem; margin: 1.4rem 0; font-style: italic; color: var(--text-bright); }
-        @media (max-width: 768px) { .chapter { grid-template-columns: 1fr; gap: 1rem; } .chapter-num { font-size: 3rem; } }
-        .crew-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-        .crew-member { background: var(--black-card); border: 1px solid var(--border); padding: 1.2rem 1rem; text-align: center; }
-        .crew-avatar { width: 60px; height: 60px; margin: 0 auto 0.8rem; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--black); }
-        .crew-name { font-family: 'Oswald', sans-serif; font-size: 0.95rem; color: var(--text-bright); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
-        .crew-bike { font-size: 0.78rem; color: var(--text-muted); }
-        .pull-quote { font-family: 'Oswald', sans-serif; font-size: clamp(1.4rem, 3vw, 2.2rem); color: var(--text-bright); text-align: center; line-height: 1.4; padding: 3rem 2rem; margin: 3rem 0; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); }
-        .origin-banner {
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            color: var(--black);
-            padding: 2rem 2.4rem;
-            margin: 2rem 0;
-            border-radius: 4px;
-            display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
-        }
-        .origin-banner h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem; letter-spacing: 3px;
-            margin-bottom: 0.4rem;
-        }
-        .origin-banner p { font-size: 0.95rem; line-height: 1.5; max-width: 720px; }
+        .content-block { max-width: 780px; margin: 0 auto; }
+        .content-block p { font-size: 1rem; line-height: 1.85; color: var(--text); margin-bottom: 1.4rem; }
+        .content-block p.lead { font-size: 1.08rem; color: var(--text-bright); }
+        .content-block p.outro { font-family: 'Oswald', sans-serif; font-style: italic; color: var(--gold); text-align: center; font-size: 1.1rem; margin-top: 2.5rem; padding: 1.5rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .stage-block { background: var(--black-card); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1.4rem 1.6rem; margin: 1.2rem 0; }
+        .stage-block h3 { font-family: 'Oswald', sans-serif; color: var(--gold); font-size: 1.05rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.6rem; }
+        .stage-block p { font-size: 0.95rem; margin-bottom: 0; color: var(--text); }
+        .badge { display: inline-block; background: rgba(212,164,28,0.15); color: var(--gold); padding: 2px 10px; border-radius: 3px; font-family: 'Oswald', sans-serif; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; margin-right: 0.4rem; }
     </style>
 <script>(function(){try{if(new URLSearchParams(location.search).get("embed")==="1"||window.self!==window.top)document.documentElement.classList.add("embed-mode");}catch(e){}})();</script>
 </head>
@@ -86,248 +29,84 @@
     </button>
     <ul class="nav-links">
         <li><a href="../was-wir-machen.html">Was wir machen</a></li>
-        <li><a href="../explore-2026.html">Explore 2026</a></li>
-        <li><a href="../reiseberichte.html">Reiseberichte</a></li>
-        <li><a href="../austria-barcelona.html">Barcelona Tour</a></li>
-        <li><a href="../index.html">TET Explorer</a></li>
+        <li><a href="../index.html">TET Routen Explorer</a></li>
+        <li><a href="../explore-2026.html">Explore our 2026</a></li>
+        <li><a href="../reiseberichte.html">Enduro Reiseberichte</a></li>
         <li><a href="../kontakt.html">Kontakt</a></li>
     </ul>
 </nav>
 
-<header class="trip-hero">
-    <div>
-        <div class="trip-hero-flag">🇲🇦</div>
-        <div class="page-hero-club">Reisebericht · September 2023</div>
-        <h1 style="font-family:'Oswald',sans-serif;font-size:clamp(2.4rem,7vw,5rem);color:var(--text-bright);text-transform:uppercase;letter-spacing:-1px;line-height:1;margin:0.5rem 0;font-weight:700;">Marokko <span style="color:var(--gold);">Atlas</span></h1>
-        <p class="page-hero-subtitle">Die Tour, die alles ins Rollen brachte. 16 Tage Hoher Atlas, Erg Chebbi, Casablanca.</p>
-    </div>
+<header class="page-hero">
+    <div class="page-hero-club">Reisebericht 2023 · Gründungstour</div>
+    <h1>Marokko <span>2023</span></h1>
+    <p class="page-hero-subtitle">Der Einstieg ins Reisen mit Enduro-Motorrädern — zu sechst.</p>
 </header>
 
-<div class="trip-stats-bar">
-    <div class="stat-item"><div class="stat-value">3.400</div><div class="stat-label">Kilometer</div></div>
-    <div class="stat-item"><div class="stat-value">16</div><div class="stat-label">Tage</div></div>
-    <div class="stat-item"><div class="stat-value">2.260</div><div class="stat-label">m max Pass</div></div>
-    <div class="stat-item"><div class="stat-value">4</div><div class="stat-label">Rider</div></div>
-    <div class="stat-item"><div class="stat-value">4</div><div class="stat-label">Reifen / 24h</div></div>
-    <div class="stat-item"><div class="stat-value">∞</div><div class="stat-label">Tee getrunken</div></div>
-</div>
-
-<!-- ═══ HISTORIE ═══ -->
 <section class="section-wrap fade-in">
-    <div class="origin-banner">
-        <div>
-            <h3>Die Tour, die uns gemacht hat</h3>
-            <p>Marokko 2023 war die <strong>erste richtige Auslands-Expedition</strong> der Enduro Explorers. Vorher hatten wir nur Wochenend-Touren in Österreich und Slowenien gefahren. Marokko war das, was uns von "ein paar Typen mit Motorrädern" zu einer echten Crew gemacht hat. Alles, was danach kam — Balkan 2024, Tunesien 2025, Barcelona 2026 — wäre ohne diese 16 Tage nicht passiert.</p>
-        </div>
-    </div>
-</section>
+    <div class="content-block">
+        <p class="lead">„2023 starteten wir zu sechst in ein Abenteuer, das für uns der Einstieg in das Reisen mit Enduro-Motorrädern werden sollte."</p>
 
-<section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Der <span>Plan</span></h2>
-        <p>Vier Bikes, eine Garage in Strasswalchen, ein Traum: Sahara.</p>
-    </div>
-    <p style="font-size:1rem;line-height:1.8;color:var(--text);max-width:840px;">
-        Im Frühjahr 2023 saßen wir in der Werkstatt, vier von uns, beim Bier. <strong>Andi</strong> sagte: "Eigentlich müssten wir mal richtig fahren." Sechs Monate später standen wir in Algeciras vor der Fähre nach Tanger — vier Bikes, vier Idioten, ein vager Plan.
-        <br><br>
-        Der Plan: Tanger → Fes → Mittlerer Atlas → Hoher Atlas (Tizi n'Tichka, Tizi n'Test) → Sahara (Erg Chebbi-Dünen) → Atlantikküste → Casablanca → Tanger → Heim. <strong>3.400 km. Schotter. Asphalt. Sand. Alles.</strong>
-        <br><br>
-        Was wir nicht im Plan hatten: vier Reifen in 24 Stunden zu verlieren.
-    </p>
-</section>
+        <div class="stage-block">
+            <h3>Anreise</h3>
+            <p>Von Straßwalchen durch Italien nach Genua, dort die Motorräder auf die Fähre. Über Barcelona ging es weiter nach Tanger in Marokko.</p>
+        </div>
 
-<section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Die <span>Etappen</span></h2>
-        <p>Was passiert ist, in fünf Akten.</p>
-    </div>
+        <div class="stage-block">
+            <h3>Tanger → Marrakesch</h3>
+            <p>Erste Etappe nach der Ankunft. Eingewöhnen, Klima, Linksverkehr-Mentalität.</p>
+        </div>
 
-    <div class="chapter fade-in">
-        <div class="chapter-meta">
-            <div class="chapter-num">01</div>
-            <div class="chapter-day">Tag 1–4</div>
-            <div class="chapter-route">Strasswalchen → Algeciras → Tanger → Fes</div>
-            <div class="chapter-distance">2.450 km Asphalt-Anreise</div>
+        <div class="stage-block">
+            <h3>Atlasgebirge</h3>
+            <p>Kurvige Straßen, beeindruckende Landschaften und stetig wechselnde Ausblicke.</p>
         </div>
-        <div class="chapter-content">
-            <h3>Die längste Anfahrt unseres Lebens</h3>
-            <p>Vier Tage Asphalt. Strasswalchen → Lyon → Barcelona → Madrid → Algeciras. Wir fahren zu schnell, zu lang, zu wenig Pausen. <strong>Das ist nicht Enduro, das ist Fern-LKW-Fahren.</strong> Aber wir wollen Bike + Eigenes-Gepäck haben, also keine Fähre für Bike-Transport. Wir leiden uns durch.</p>
-            <p>In Algeciras die Nachtfähre. 35 € pro Bike. <strong>Andi</strong> verliert seinen Gepäckspanngurt im Hafen, sucht 45 Minuten, findet ihn nicht, kauft im Schiffs-Shop einen für 18 €. <em>Erste Marokko-Erfahrung: Du verlierst Sachen, du kaufst sie wieder.</em></p>
-            <p>In Tanger angekommen — sofort Schock. Verkehrschaos, Hupen, Mopeds, die durch jede Lücke schießen. Wir fahren in der Mitte der Straße, langsam, fest. <strong>Niemand fährt uns über den Haufen, aber jeder kommt 5 cm dran vorbei.</strong></p>
-        </div>
-    </div>
 
-    <div class="chapter fade-in">
-        <div class="chapter-meta">
-            <div class="chapter-num">02</div>
-            <div class="chapter-day">Tag 5–7</div>
-            <div class="chapter-route">Fes → Mittlerer Atlas → Midelt</div>
-            <div class="chapter-distance">540 km</div>
+        <div class="stage-block">
+            <h3>Agadir — Panne &amp; Improvisation</h3>
+            <p><span class="badge">XT600</span> Motorschaden an der Yamaha XT600: „Pleuel war krumm wie eine Banane." Ein lokaler Mechaniker half aus und stellte eine Honda CRF 250 als Leihbike zur Verfügung. Tour gerettet.</p>
         </div>
-        <div class="chapter-content">
-            <h3>Zedernwälder und der erste Schnee im September</h3>
-            <p>Aus Fes raus, dann hoch in den <strong>Mittleren Atlas</strong>. Der Mittlere Atlas ist nicht so dramatisch wie der Hohe — aber er ist grün. Zedernwälder, Berberaffen am Straßenrand (gefüttert von Touristen, deshalb keine Scheu), kühle Luft.</p>
-            <p>Ifrane ist eine Schweizer-Alpen-Imitation. Mit Holzhäusern. In Marokko. Wir essen Tagine in einem Lokal, das wirkt wie ein Wirtshaus in Bregenzerwald. Verwirrend.</p>
-            <p>Tag 7: Wir fahren über den Col du Zad (2.178 m). <strong>Schnee.</strong> Im September. Auf 2.000 m. <strong>Wir hatten T-Shirts an.</strong> Wir frieren uns durch, Andi hat blaue Lippen, am Pass-Schild machen wir ein Foto. Glücklich.</p>
-        </div>
-    </div>
 
-    <div class="chapter fade-in">
-        <div class="chapter-meta">
-            <div class="chapter-num">03</div>
-            <div class="chapter-day">Tag 8–10</div>
-            <div class="chapter-route">Midelt → Erg Chebbi → Merzouga</div>
-            <div class="chapter-distance">680 km</div>
+        <div class="stage-block">
+            <h3>Westsahara — Fort Bou Jerif &amp; Plage Blanche</h3>
+            <p>„Endlose Küstenlinie, Sand, Meer." Einsame Pisten, weite Horizonte.</p>
         </div>
-        <div class="chapter-content">
-            <h3>Sahara — und der schwarze Tag</h3>
-            <p>Über den <strong>Errachidia-Pass</strong> in den Süden. Die Landschaft wechselt: Kiefern werden zu Akazien, Akazien zu Palmen, Palmen zu Nichts. Nur Stein. Hammada. Dann, plötzlich, am Horizont — orange. Die Erg-Chebbi-Dünen.</p>
-            <p>Wir sind euphorisch. Wir machen Fotos. Wir lassen die Reifen ab. Wir fahren in den Sand. <strong>Und dann passiert es.</strong></p>
-            <p><strong>Tag 9 ist der schwarze Tag.</strong> Stefan stürzt im Sand, Reifen schlitzt sich an einer scharfen Kante auf. Reifen kaputt #1. Wir fahren zum Camp, finden im Dorf einen Reifen — gebraucht, aber okay, 60 €.</p>
-            <p>Tag 10 morgens: Andi's Reifen ist platt. Stein. Flicken. Reifen #2. Mittag: Markus' Reifen geht hoch — Steigung über Schiefer-Gestein, Reifenflanke aufgeschlitzt. Reifen #3. Nachmittags: <strong>Stefans neuer Reifen geht auch.</strong> Reifen #4. <strong>Vier Reifen in 24 Stunden.</strong></p>
-            <div class="chapter-pull">"Wir saßen am Rand der Düne, schauten auf die untergehende Sonne, und Andi sagte: 'Ich glaube, das ist die teuerste Tour der Welt.' Wir lachten. Aber innerlich heulten wir."</div>
-            <p>Wir kommen am dritten Tag aus dem Sand wieder raus. Mit zwei Reifen aus Merzouga (28 € und 35 €), einem geflickten und einem mit improvisierter Flanken-Reparatur (Klebeband + Kabelbinder + Hoffnung). <strong>Wir fahren weiter.</strong></p>
-        </div>
-    </div>
 
-    <div class="chapter fade-in">
-        <div class="chapter-meta">
-            <div class="chapter-num">04</div>
-            <div class="chapter-day">Tag 11–13</div>
-            <div class="chapter-route">Merzouga → Tinghir → Aït Ben Haddou → Marrakesch</div>
-            <div class="chapter-distance">820 km</div>
+        <div class="stage-block">
+            <h3>Smara · Zagora · Merzouga</h3>
+            <p><span class="badge">KTM 450 EXC</span> Sanddünen-Offroad mit der KTM 450 EXC. Erg Chebbi, Berber-Hospitality.</p>
         </div>
-        <div class="chapter-content">
-            <h3>Tizi n'Tichka — der König der Pässe</h3>
-            <p>Wir verlassen die Wüste, zurück über die <strong>Todra-Schlucht</strong> — eine 600 m tiefe Klamm, durch die eine schmale Asphaltstraße führt. Berber-Verkäufer alle 200 m, alle wollen, dass wir Tee trinken. Wir lehnen 6× ab, beim 7. geben wir nach. Tee mit Mohamed dauert 1,5 Stunden.</p>
-            <p>In <strong>Aït Ben Haddou</strong>, der berühmten UNESCO-Festungsstadt aus Lehm — Drehort von <em>Game of Thrones</em>, <em>Gladiator</em>, <em>Lawrence von Arabien</em>. Wir übernachten in einer Lehmpension, schlafen wie tot.</p>
-            <p>Tag 13: <strong>Tizi n'Tichka</strong> (2.260 m). Der Pass durch den Hohen Atlas. <strong>Der schönste Pass, den wir je gefahren sind.</strong> Neue Asphaltstraße (2018 fertig), Serpentinen über Serpentinen, beidseitig 1.500 m Steilabfall, Argan-Bäume, Adler. Wir machen 40 Kehren, bevor wir die letzte ohne Foto-Stop nehmen — wir können nicht mehr.</p>
-            <p>In <strong>Marrakesch</strong> ankommen ist Schock. Vom 2.260-m-Pass in 4 Stunden in den Verkehr. Djemaa el-Fna abends — die laute, helle, chaotische Hauptattraktion, mit Schlangenbeschwörern, Geschichten-Erzählern, Garküchen. Wir essen Schafskopf. Es schmeckt.</p>
-        </div>
-    </div>
 
-    <div class="chapter fade-in">
-        <div class="chapter-meta">
-            <div class="chapter-num">05</div>
-            <div class="chapter-day">Tag 14–16</div>
-            <div class="chapter-route">Marrakesch → Casablanca → Tanger → Heim</div>
-            <div class="chapter-distance">1.480 km + Fähre</div>
+        <div class="stage-block">
+            <h3>Chefchaouen</h3>
+            <p>Abschluss in der „blauen Stadt" im Rif-Gebirge. Markt, Gassen, Sonnenuntergang.</p>
         </div>
-        <div class="chapter-content">
-            <h3>Atlantikküste und der Heimweg</h3>
-            <p>Tag 14: Marrakesch → Casablanca, dann an der Küste hoch. Atlantik. Wir sehen das Meer das erste Mal seit 12 Tagen. <strong>Surfer, Touristen, Strand-Restaurants.</strong> Andi schreit "Atlantik!" und reitet in die Brandung — knietief, in voller Bike-Montur. Wir fluchen über das Salzwasser auf den Bikes.</p>
-            <p>In <strong>Casablanca</strong> die Hassan-II-Moschee. 210 m Minarett. <strong>Das größte religiöse Bauwerk Marokkos.</strong> Wir besuchen das Innere als Touristen, nicht-Muslime dürfen rein. Beeindruckend. Still.</p>
-            <p>Tag 15: Casablanca → Tanger, Asphalt-Marathon. Tag 16: Fähre, Algeciras, dann <strong>Heimfahrt</strong>. Fast 2.500 km in drei Tagen. Wir kommen in Strasswalchen Donnerstag um halb vier morgens an. <strong>16 Tage. 3.400 km. 4 Reifen. Eine Hochzeits-Crew, die zu einer richtigen Crew geworden ist.</strong></p>
-        </div>
-    </div>
-</section>
 
-<section class="section-wrap fade-in">
-    <div class="pull-quote">
-        Marokko hat uns nicht gezeigt, wer wir sind.<br>
-        Es hat uns gezeigt, wer wir werden können.
-    </div>
-</section>
-
-<section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Crew &amp; <span>Bikes</span></h2>
-        <p>Vier Pioniere, vier Bikes.</p>
-    </div>
-    <div class="crew-grid">
-        <div class="crew-member"><div class="crew-avatar">A</div><div class="crew-name">Andi</div><div class="crew-bike">KTM 690 Adventure</div></div>
-        <div class="crew-member"><div class="crew-avatar">M</div><div class="crew-name">Markus</div><div class="crew-bike">Tenere 700</div></div>
-        <div class="crew-member"><div class="crew-avatar">S</div><div class="crew-name">Stefan</div><div class="crew-bike">Husqvarna 701</div></div>
-        <div class="crew-member"><div class="crew-avatar">D</div><div class="crew-name">Dani</div><div class="crew-bike">Honda CRF 250 Rally</div></div>
-    </div>
-</section>
-
-<section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Was wir <span>gelernt haben</span></h2>
-        <p>Die Lessons-Learned, die unsere Crew geprägt haben.</p>
-    </div>
-    <div class="card-grid">
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-            <h3>Zeit für die Anfahrt</h3>
-            <p>4 Tage Anfahrt nur Asphalt = wir sind kaputt, bevor die Tour beginnt. <strong>2026 Barcelona</strong> deshalb von Strasswalchen direkt — keine separate Anreise mehr.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6z"/></svg></div>
-            <h3>Reifen-Strategie</h3>
-            <p>Vier Reifen in 24 Stunden waren der härteste Lehrer. Heute: <strong>Crew-Reservereifen</strong>, robuste Enduro-Reifen (Mitas E-09, Motoz Tractionator), Reparaturkits.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
-            <h3>Sand fahren ist Disziplin</h3>
-            <p>Niemand von uns hatte Sand-Erfahrung. Heute: <strong>jährliches Sand-Training</strong> in Ungarn (Hortobágy) bevor wir auf Wüsten-Tour gehen. Macht den Unterschied.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/></svg></div>
-            <h3>Carnet de Passage</h3>
-            <p>Erste Lektion in der Marokko-Bürokratie. Heute haben wir das Verfahren sauber: <strong>ÖAMTC, 6 Wochen Vorlauf, 280 € Kaution + 60 € Gebühr</strong>.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 12h18M12 3v18"/></svg></div>
-            <h3>Tee trinken ist Pflicht</h3>
-            <p>Eine Tee-Einladung abzulehnen ist Unhöflichkeit. Eine anzunehmen kostet 1–6 Stunden. <strong>Plane Tee-Slots im Tagesplan ein.</strong> Du wirst sie brauchen.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3l3 3M5 19l-2 2v-4l11-11 4 4-11 11H5z"/></svg></div>
-            <h3>Selbst-Mechanik schult</h3>
-            <p>Marokko hat aus uns Mechaniker gemacht. Wer einen Reifen in der Wüste flickt, flickt ihn überall. <strong>Heute: jeder kann Schlauchwechsel, Kettenglied, Bremsbelag.</strong></p>
-        </div>
-    </div>
-</section>
-
-<section class="section-wrap fade-in" style="text-align:center;">
-    <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;">
-        <a href="balkan-2024.html" class="btn btn-outline">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Vorheriger: Balkan 2024
-        </a>
-        <a href="../reiseberichte.html" class="btn btn-outline">Alle Reiseberichte</a>
-        <a href="../austria-barcelona.html" class="btn">
-            Was 2026 kommt
-            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <p class="outro">„Diese Reise war weit mehr als nur eine Motorradtour — geprägt von Improvisation, Teamgeist und Abenteuerlust."</p>
     </div>
 </section>
 
 <footer>
     <div class="footer-inner">
         <div class="footer-col">
-            <div class="footer-club-text">Enduro Explorers</div>
-            <p style="color:var(--text-muted);font-size:0.82rem;line-height:1.6;">Strasswalchen · Salzburg · Österreich. Schotter, Pässe, Crew.</p>
+            <div class="footer-club-text">Enduro Explorers Strasswalchen e.V.</div>
+            <p style="color:var(--text-muted);font-size:0.82rem;line-height:1.6;">Strasswalchen · Salzburg · Österreich</p>
         </div>
         <div class="footer-col">
-            <h4>Club</h4>
+            <h4>Verein</h4>
             <a href="../was-wir-machen.html">Was wir machen</a>
-            <a href="../explore-2026.html">Explore 2026</a>
+            <a href="../explore-2026.html">Explore our 2026</a>
+            <a href="../reiseberichte.html">Reiseberichte</a>
             <a href="../kontakt.html">Kontakt</a>
-        </div>
-        <div class="footer-col">
-            <h4>Reiseberichte</h4>
-            <a href="../reiseberichte.html">Übersicht</a>
-            <a href="tunesien-2025.html">Tunesien 2025</a>
-            <a href="balkan-2024.html">Balkan 2024</a>
-            <a href="marokko-2023.html">Marokko 2023</a>
-        </div>
-        <div class="footer-col">
-            <h4>Touren</h4>
-            <a href="../austria-barcelona.html">Barcelona Tour 2026</a>
-            <a href="../index.html">TET Explorer</a>
         </div>
     </div>
     <div class="footer-bottom">
-        <span>&copy; 2026 Enduro Explorers Strasswalchen</span>
+        <span>&copy; 2026 Enduro Explorers Strasswalchen e.V.</span>
         <span><a href="../kontakt.html#impressum">Impressum</a> · <a href="../kontakt.html#datenschutz">Datenschutz</a></span>
     </div>
 </footer>
 
 <div class="cookie-banner" id="cookieBanner" style="display:none;">
-    <p>Wir nutzen ausschließlich technisch notwendige Cookies (kein Tracking). Mehr in der <a href="../kontakt.html#datenschutz">Datenschutzerklärung</a>.</p>
+    <p>Wir nutzen ausschließlich technisch notwendige Cookies. Mehr in der <a href="../kontakt.html#datenschutz">Datenschutzerklärung</a>.</p>
     <button id="cookieAccept">Verstanden</button>
 </div>
 

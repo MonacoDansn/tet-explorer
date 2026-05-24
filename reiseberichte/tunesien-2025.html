@@ -3,156 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tunesien 2025 — Reisebericht | Enduro Explorers Strasswalchen</title>
-    <meta name="description" content="14 Tage Sahara, Chott el Djerid, Erg Oriental — der Tunesien-2025-Bericht der Enduro Explorers Strasswalchen.">
-    <meta name="robots" content="index,follow">
+    <title>Tunesien 2025 — Enduro Explorers Strasswalchen</title>
+    <meta name="description" content="Motorrad-Abenteuer Tunesien 2025 — 2,5 Wochen durch Wüste, Dünen und Abenteuer.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/style.css">
     <style>
-        /* Trip-report-specific */
-        .trip-hero {
-            min-height: 80vh;
-            background:
-                linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.95) 100%),
-                radial-gradient(ellipse at 30% 20%, #d4a41c33, transparent 50%),
-                radial-gradient(ellipse at 80% 70%, #8b3a0e33, transparent 50%),
-                linear-gradient(180deg, #2a1a0a, #1a0a05);
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-        }
-        .trip-hero-flag {
-            font-size: 3rem;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
-            margin-bottom: 1rem;
-        }
-        .trip-stats-bar {
-            background: var(--black-card);
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--gold);
-            margin: -3rem auto 0;
-            max-width: 1200px;
-            position: relative; z-index: 5;
-            padding: 1.6rem 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.5rem;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-        }
-
-        .chapter {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 2rem;
-            margin: 3rem 0;
-            padding-top: 3rem;
-            border-top: 1px solid var(--border);
-        }
-        .chapter:first-child { border-top: 0; padding-top: 0; }
-        .chapter-meta {
-            font-family: 'Oswald', sans-serif;
-        }
-        .chapter-num {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 4rem; color: var(--gold-dark);
-            line-height: 1;
-        }
-        .chapter-day {
-            font-size: 0.78rem; letter-spacing: 3px;
-            text-transform: uppercase; color: var(--gold);
-            margin-top: 0.4rem;
-        }
-        .chapter-route {
-            font-size: 0.85rem; color: var(--text-muted);
-            margin-top: 0.6rem;
-        }
-        .chapter-distance {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.4rem; color: var(--gold-light);
-            margin-top: 0.8rem;
-        }
-        .chapter-content h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.6rem; color: var(--text-bright);
-            text-transform: uppercase; letter-spacing: 1px;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        .chapter-content p {
-            font-size: 0.95rem; line-height: 1.8;
-            color: var(--text); margin-bottom: 1rem;
-        }
-        .chapter-content p strong { color: var(--gold-light); }
-        .chapter-pull {
-            background: rgba(212,164,28,0.05);
-            border-left: 3px solid var(--gold);
-            padding: 1rem 1.4rem;
-            margin: 1.4rem 0;
-            font-style: italic;
-            color: var(--text-bright);
-        }
-
-        @media (max-width: 768px) {
-            .chapter { grid-template-columns: 1fr; gap: 1rem; }
-            .chapter-num { font-size: 3rem; }
-        }
-
-        .crew-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        .crew-member {
-            background: var(--black-card);
-            border: 1px solid var(--border);
-            padding: 1.2rem 1rem;
-            text-align: center;
-        }
-        .crew-avatar {
-            width: 60px; height: 60px;
-            margin: 0 auto 0.8rem;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.8rem; color: var(--black);
-        }
-        .crew-name {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.95rem; color: var(--text-bright);
-            text-transform: uppercase; letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-        }
-        .crew-bike {
-            font-size: 0.78rem; color: var(--text-muted);
-        }
-
-        .pull-quote {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(1.4rem, 3vw, 2.2rem);
-            color: var(--text-bright);
-            text-align: center;
-            line-height: 1.4;
-            padding: 3rem 2rem;
-            margin: 3rem 0;
-            border-top: 2px solid var(--gold);
-            border-bottom: 2px solid var(--gold);
-            position: relative;
-        }
-        .pull-quote::before, .pull-quote::after {
-            content: '"';
-            font-family: 'Bebas Neue', sans-serif;
-            color: var(--gold);
-            font-size: 5rem;
-            position: absolute; line-height: 0.5;
-        }
-        .pull-quote::before { top: 1.5rem; left: 1rem; }
-        .pull-quote::after { bottom: 0.5rem; right: 1rem; }
+        .content-block { max-width: 780px; margin: 0 auto; }
+        .content-block p { font-size: 1rem; line-height: 1.85; color: var(--text); margin-bottom: 1.4rem; }
+        .content-block p.lead { font-size: 1.08rem; color: var(--text-bright); }
+        .content-block p.outro { font-family: 'Oswald', sans-serif; font-style: italic; color: var(--gold); text-align: center; font-size: 1.1rem; margin-top: 2.5rem; padding: 1.5rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .fact-box { background: var(--black-card); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1.4rem 1.6rem; margin: 1.5rem 0; }
+        .fact-box h4 { font-family: 'Oswald', sans-serif; color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.7rem; }
+        .fact-box ul { list-style: none; padding: 0; }
+        .fact-box li { padding: 0.4rem 0; font-size: 0.94rem; color: var(--text); border-bottom: 1px solid var(--border); }
+        .fact-box li:last-child { border-bottom: 0; }
+        .route-list { background: var(--black-card); border: 1px solid var(--border); padding: 1.6rem 1.8rem; margin: 1.5rem 0; }
+        .route-list h4 { font-family: 'Oswald', sans-serif; color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+        .route-list ul { list-style: none; padding: 0; }
+        .route-list li { padding: 0.6rem 0; font-size: 0.95rem; color: var(--text); display: flex; align-items: flex-start; gap: 0.8rem; }
+        .route-list li::before { content: "→"; color: var(--gold); font-weight: 700; }
     </style>
 <script>(function(){try{if(new URLSearchParams(location.search).get("embed")==="1"||window.self!==window.top)document.documentElement.classList.add("embed-mode");}catch(e){}})();</script>
 </head>
@@ -165,241 +35,75 @@
     </button>
     <ul class="nav-links">
         <li><a href="../was-wir-machen.html">Was wir machen</a></li>
-        <li><a href="../explore-2026.html">Explore 2026</a></li>
-        <li><a href="../reiseberichte.html">Reiseberichte</a></li>
-        <li><a href="../austria-barcelona.html">Barcelona Tour</a></li>
-        <li><a href="../index.html">TET Explorer</a></li>
+        <li><a href="../index.html">TET Routen Explorer</a></li>
+        <li><a href="../explore-2026.html">Explore our 2026</a></li>
+        <li><a href="../reiseberichte.html">Enduro Reiseberichte</a></li>
         <li><a href="../kontakt.html">Kontakt</a></li>
     </ul>
 </nav>
 
-<header class="trip-hero">
-    <div>
-        <div class="trip-hero-flag">🇹🇳</div>
-        <div class="page-hero-club">Reisebericht · April 2025</div>
-        <h1 style="font-family:'Oswald',sans-serif;font-size:clamp(2.4rem,7vw,5rem);color:var(--text-bright);text-transform:uppercase;letter-spacing:-1px;line-height:1;margin:0.5rem 0;font-weight:700;">Tunesien <span style="color:var(--gold);">2025</span></h1>
-        <p class="page-hero-subtitle">14 Tage durch Sahara, Chott el Djerid, Erg Oriental — und ein verlorener Reifen.</p>
-    </div>
+<header class="page-hero">
+    <div class="page-hero-club">Reisebericht 2025</div>
+    <h1>Tunesien <span>2025</span></h1>
+    <p class="page-hero-subtitle">Motorrad-Abenteuer Tunesien — 2,5 Wochen durch Wüste, Dünen und Abenteuer.</p>
 </header>
 
-<!-- ═══ STATS-BAR ═══ -->
-<div class="trip-stats-bar">
-    <div class="stat-item"><div class="stat-value">4.100</div><div class="stat-label">Kilometer</div></div>
-    <div class="stat-item"><div class="stat-value">14</div><div class="stat-label">Tage</div></div>
-    <div class="stat-item"><div class="stat-value">42°</div><div class="stat-label">C max</div></div>
-    <div class="stat-item"><div class="stat-value">70%</div><div class="stat-label">Schotter/Sand</div></div>
-    <div class="stat-item"><div class="stat-value">6</div><div class="stat-label">Rider</div></div>
-    <div class="stat-item"><div class="stat-value">1</div><div class="stat-label">Verlorener Reifen</div></div>
-</div>
-
-<!-- ═══ INTRO ═══ -->
 <section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Der <span>Plan</span></h2>
-        <p>Fähre Genua–Tunis, dann im Uhrzeigersinn südlich runter — Atlas-Ausläufer, Salzsee, Wüste, Mittelmeerküste, zurück.</p>
-    </div>
-    <p style="font-size:1rem;line-height:1.8;color:var(--text);max-width:840px;">
-        Tunesien hatten wir lange auf dem Schirm. Nach Marokko 2023 war klar: Wüste geht. Aber Marokko ist Touristen-Wüste — Tunesien wollten wir ohne Reisebüro, ohne 4×4-Begleitfahrzeug, ohne Convoi. Sechs Bikes, 14 Tage, eigenes Sprit-Management, eigene Wasserversorgung. <strong style="color:var(--gold-light);">Pure Self-Support, im April, vor der großen Hitze.</strong>
-        <br><br>
-        Dass wir trotzdem 42 °C abbekommen haben, ist eine andere Geschichte.
-    </p>
-</section>
+    <div class="content-block">
+        <p class="lead">Von Straßwalchen ging es nach Genua und mit der Fähre weiter nach Tunis. 2,5 Wochen Tunesien, vier Maschinen, eine Crew — Küste, Sahara, Salzsee und Dünen.</p>
 
-<!-- ═══ KAPITEL ═══ -->
-<section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Was <span>passiert ist</span></h2>
-        <p>Die Tour in fünf Kapiteln.</p>
-    </div>
+        <div class="fact-box">
+            <h4>Die Maschinen</h4>
+            <ul>
+                <li>Suzuki DR500</li>
+                <li>Yamaha XT600</li>
+                <li>KTM 990 Adventure</li>
+                <li>Husqvarna 701</li>
+            </ul>
+        </div>
 
-    <div class="chapter fade-in">
-        <div class="chapter-meta">
-            <div class="chapter-num">01</div>
-            <div class="chapter-day">Tag 1–2</div>
-            <div class="chapter-route">Strasswalchen → Genua → Tunis</div>
-            <div class="chapter-distance">920 km + Fähre</div>
-        </div>
-        <div class="chapter-content">
-            <h3>Über die Alpen, in die Fähre</h3>
-            <p>Vier Uhr morgens, Strasswalchen. Frostschicht auf den Sätteln, Atem dampft. <strong>Zoltán</strong> hat Bedenken wegen seiner KTM 690 — die letzte Wartung war Februar. Wir trinken Kaffee, packen, fahren. Tauern, Brenner, Pavia. Genua erreichen wir mit zwei Stunden Puffer.</p>
-            <p>Die Fähre nach Tunis ist 22 Stunden. Wir verbringen sie auf dem Sonnendeck, schlafen mehr als wir sollten, und sehen morgens um sechs den Hafen von Tunis aus dem Dunst auftauchen — Minarette, Kräne, kleine Fischerboote. <strong>Das ist nicht Europa.</strong> Erste Lektion: Zollabwicklung dauert 4 Stunden, nicht 1.</p>
-            <div class="chapter-pull">"Der Beamte schaut auf meine Carnet-de-Passage, schaut auf mich, schaut auf das Bike. Sagt: 'KTM, gut.' Stempelt. Fertig. 47 Minuten in der Schlange für 11 Sekunden Arbeit."</div>
-        </div>
-    </div>
+        <p>Nach der Überfahrt führte die erste Phase entlang der Mittelmeerküste über <strong>Tunis</strong>, <strong>Bizerta</strong> und <strong>Tabarka</strong>. Danach ging es ins Landesinnere und Richtung Sahara.</p>
 
-    <div class="chapter fade-in">
-        <div class="chapter-meta">
-            <div class="chapter-num">02</div>
-            <div class="chapter-day">Tag 3–5</div>
-            <div class="chapter-route">Tunis → Kairouan → Tozeur</div>
-            <div class="chapter-distance">680 km</div>
+        <div class="route-list">
+            <h4>Die Route</h4>
+            <ul>
+                <li>Strasswalchen → Genua (Anreise)</li>
+                <li>Fähre Genua → Tunis</li>
+                <li>Tunis · Bizerta · Tabarka (Küstenregion)</li>
+                <li>Gafsa · Tozeur · Douz (Sahara-Durchquerung)</li>
+                <li>Salzsee-Überquerung, Dünenfahrten, Berber-Dörfer</li>
+                <li>Rückkehr über Tunis → Genua → Strasswalchen</li>
+            </ul>
         </div>
-        <div class="chapter-content">
-            <h3>Vom Mittelmeer in die Wüste</h3>
-            <p>Erste Nacht in Tunis-Medina. Der Lärm ist ein eigener Organismus — Mopeds, Müezzin, Verkäufer, Kinder. <strong>Andi</strong> findet einen Mechaniker, der ihm den Rückspiegel um 3 Dinar repariert (1 Euro). Wir essen Brik, trinken Tee, schlafen drei Stunden.</p>
-            <p>Tag 4: Süd-Kurs. Erst Asphalt, dann ab Kairouan immer schmäler, dann Schotter. Das Land wird flach, die Vegetation kümmerlicher. <strong>Bei El Hamma sehen wir das erste Mal die Sahara.</strong> Nicht Sand — eher steinige Hammada. Aber endlos.</p>
-            <p>In Tozeur Quartier in einem alten Karawanserei-Haus. Lehmwände, Innenhof, Datteln im Garten. Der Wirt heißt Ali, hat zwei Söhne, beide Geophysiker in Frankreich. Wir reden bis halb zwei.</p>
-        </div>
-    </div>
 
-    <div class="chapter fade-in">
-        <div class="chapter-meta">
-            <div class="chapter-num">03</div>
-            <div class="chapter-day">Tag 6–8</div>
-            <div class="chapter-route">Tozeur → Chott el Djerid → Douz → Ksar Ghilane</div>
-            <div class="chapter-distance">540 km</div>
-        </div>
-        <div class="chapter-content">
-            <h3>Über den Salzsee, in die Dünen</h3>
-            <p>Der <strong>Chott el Djerid</strong> ist 7.000 km² groß, im April fast komplett trocken, die Querung über den Damm 75 km schnurgerade. Wir fahren morgens um sechs los — und um halb acht haben wir 41 °C. Die Hitze flimmert. Mirage. Wir sehen Wasser, das nicht da ist.</p>
-            <p>Mittags Douz — das "Tor zur Sahara". Hier endet der Asphalt. Ab jetzt: Sand. Wir lassen Luft aus den Reifen (1.0 bar vorne, 1.2 hinten), packen die Bikes leichter, lassen das Übergepäck in einem Hostel.</p>
-            <p>Nachmittag im Erg, Richtung Ksar Ghilane. <strong>Hier verliert Markus seinen Hinterreifen.</strong> Nicht plattgefahren — komplett von der Felge gerissen, weil ein scharfer Stein die Flanke aufgeschlitzt hat. Reparatur unmöglich. Wir spannen ihn auf den Sozius von Zoltán, fahren die letzten 30 km im Schritttempo, finden einen Mechaniker in Ksar Ghilane, der für 80 € einen passablen Gebrauchtreifen aus Tunis kommen lässt — Lieferung in 18 Stunden.</p>
-            <div class="chapter-pull">"Ein Tag verloren. Aber abends sitzen wir beim Beduinen-Camp Bouhedma, trinken süßen Tee, schauen in einen Sternenhimmel, der nicht echt sein kann. Wir haben den Tag nicht verloren. Wir haben ihn gewonnen."</div>
-        </div>
-    </div>
+        <p>Die Salzsee-Überquerung war surreal, die Dünenfahrten richtig hart. Pannen mitten in der Wüste und improvisierte Reparaturen auf der Straße gehörten dazu — Werkstatt-Glück gab es nicht überall.</p>
 
-    <div class="chapter fade-in">
-        <div class="chapter-meta">
-            <div class="chapter-num">04</div>
-            <div class="chapter-day">Tag 9–11</div>
-            <div class="chapter-route">Ksar Ghilane → Matmata → Djerba</div>
-            <div class="chapter-distance">620 km</div>
-        </div>
-        <div class="chapter-content">
-            <h3>Berber-Höhlendörfer und Star Wars</h3>
-            <p>Reifen ist da, Markus rollt wieder. Wir verlassen das Camp, fahren 90 km Sand zurück bis zur Asphaltstraße. <strong>Matmata</strong> ist die nächste Etappe — die unterirdischen Berberdörfer, in denen <em>Star Wars Episode IV</em> gedreht wurde. Tatooine. Wir übernachten in einer Höhlenpension. Konstant 18 °C, während draußen 38 °C.</p>
-            <p>Ein älterer Berber lädt uns auf Tee ein. Es werden 6 Stunden. Wir lernen, dass die Höhlendörfer keine Touristen-Inszenierung sind, sondern dass die Familie seit 4 Generationen unterirdisch wohnt — wegen der Hitze, dem Wasser, der Tradition. Sein Sohn wohnt in Tunis im Hochhaus. "Ich fühle mich da nicht wohl. Hier riecht es nach Erde."</p>
-            <p>Tag 11: Djerba. Insel, Strand, plötzlich Mittelmeer-Tourismus. Wir checken in ein Hostel, waschen 8 Tage Sand aus den Klamotten, trinken kaltes Bier (legal hier, im Süden nicht), schlafen 11 Stunden.</p>
-        </div>
-    </div>
-
-    <div class="chapter fade-in">
-        <div class="chapter-meta">
-            <div class="chapter-num">05</div>
-            <div class="chapter-day">Tag 12–14</div>
-            <div class="chapter-route">Djerba → Sousse → Tunis → Genua → Heim</div>
-            <div class="chapter-distance">1.340 km + Fähre</div>
-        </div>
-        <div class="chapter-content">
-            <h3>Heimweg: Mittelmeerküste</h3>
-            <p>Letzte Etappe. Wir fahren die Küstenstraße Richtung Norden. Sousse, Hammamet, Tunis. Das Land wird grüner, voller, lauter. Tag 13: Fährhafen, Verladung, 22 Stunden auf See. Tag 14: Genua um sechs, dann Vollgas Richtung Salzburg. <strong>Mitternacht zwei vor unserer Garage. 4.100 km auf dem Tacho.</strong></p>
-            <p>Wir parken die Bikes, schauen sie an. Sie sind grau vor Staub. Markus' Hinterreifen sieht aus wie ein verschlissener Lappen. Wir trinken einen Schluck Schnaps, jeder sagt einen Satz, dann gehen wir schlafen. <strong>14 Tage Wüste — und das Beste ist, wieder daheim zu sein. Nur, um zu wissen, dass wir wieder weg wollen.</strong></p>
-        </div>
+        <p class="outro">„Tunesien hat uns alles abverlangt — Sand, Sonne, Pannen — aber genau das macht so eine Tour unvergesslich."</p>
     </div>
 </section>
 
-<!-- ═══ PULL QUOTE ═══ -->
-<section class="section-wrap fade-in">
-    <div class="pull-quote">
-        Du fährst nicht in die Wüste, weil du sie sehen willst.<br>
-        Du fährst, weil sie dich verändert.
-    </div>
-</section>
-
-<!-- ═══ CREW & BIKES ═══ -->
-<section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Crew &amp; <span>Bikes</span></h2>
-        <p>Wer mit war, was wir gefahren sind.</p>
-    </div>
-    <div class="crew-grid">
-        <div class="crew-member"><div class="crew-avatar">A</div><div class="crew-name">Andi</div><div class="crew-bike">KTM 890 Adv R</div></div>
-        <div class="crew-member"><div class="crew-avatar">M</div><div class="crew-name">Markus</div><div class="crew-bike">Tenere 700</div></div>
-        <div class="crew-member"><div class="crew-avatar">Z</div><div class="crew-name">Zoltán</div><div class="crew-bike">KTM 690 Enduro</div></div>
-        <div class="crew-member"><div class="crew-avatar">D</div><div class="crew-name">Dani</div><div class="crew-bike">Honda CRF 300L</div></div>
-        <div class="crew-member"><div class="crew-avatar">F</div><div class="crew-name">Flo</div><div class="crew-bike">BMW G310 GS</div></div>
-        <div class="crew-member"><div class="crew-avatar">S</div><div class="crew-name">Stefan</div><div class="crew-bike">Husqvarna 701</div></div>
-    </div>
-</section>
-
-<!-- ═══ LERNEN ═══ -->
-<section class="section-wrap fade-in">
-    <div class="section-header">
-        <h2>Was wir <span>gelernt haben</span></h2>
-        <p>Fünf Punkte, die wir in 2026 mitnehmen.</p>
-    </div>
-    <div class="card-grid">
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 2"/></svg></div>
-            <h3>Reservereifen mit</h3>
-            <p>Ein Hinterreifen kostet uns einen Tag in der Wüste. Bei Tunesien-Niveau-Tour: <strong>einen ungenutzten Reifen</strong> als Crew-Reserve mit auf das Begleitbike packen.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83"/></svg></div>
-            <h3>Hitze-Plan</h3>
-            <p>April war zu spät. Im April hatten wir 42 °C — im März wären 28 °C drin gewesen. <strong>Februar–März</strong> ist das Fenster. Nicht später.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <h3>Lokale Hilfe einbinden</h3>
-            <p>Der Mechaniker in Ksar Ghilane hat uns gerettet. Vor der Tour: <strong>Liste mit Mechanikern + Telefonnummern</strong> aufbauen. Network ist Reichweite.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6z"/></svg></div>
-            <h3>Carnet de Passage</h3>
-            <p>Auf 18.000 € verschriebenes Bike-Wertdokument. Pflicht für Tunesien. Bei <strong>ÖAMTC</strong> bestellen — 6 Wochen Vorlauf.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3l3 3M5 19l-2 2v-4l11-11 4 4-11 11H5z"/></svg></div>
-            <h3>Werkzeug für Reifenflanke</h3>
-            <p>Reifen-Flicken funktioniert nur in der Lauffläche. <strong>Aufgeschlitzte Flanke</strong> = Reifen tot. Wir packen jetzt ein Crew-Reifenmontiergerät und 2 Reservereifen für Touren > 7 Tage Wüste.</p>
-        </div>
-        <div class="card fade-in">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 12h18M12 3v18"/></svg></div>
-            <h3>Übernachten ohne Plan</h3>
-            <p>Drei der besten Nächte (Tozeur, Bouhedma, Matmata) waren <strong>nicht im Plan</strong>. Tunesien lehrt: Lass Lücken im Tagesplan. Lass dich einladen.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ NACH OBEN / NÄCHSTER BERICHT ═══ -->
-<section class="section-wrap fade-in" style="text-align:center;">
-    <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;">
-        <a href="../reiseberichte.html" class="btn btn-outline">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Alle Reiseberichte
-        </a>
-        <a href="balkan-2024.html" class="btn">
-            Nächster: Balkan 2024
-            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-    </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
 <footer>
     <div class="footer-inner">
         <div class="footer-col">
-            <div class="footer-club-text">Enduro Explorers</div>
-            <p style="color:var(--text-muted);font-size:0.82rem;line-height:1.6;">Strasswalchen · Salzburg · Österreich. Schotter, Pässe, Crew.</p>
+            <div class="footer-club-text">Enduro Explorers Strasswalchen e.V.</div>
+            <p style="color:var(--text-muted);font-size:0.82rem;line-height:1.6;">Strasswalchen · Salzburg · Österreich</p>
         </div>
         <div class="footer-col">
-            <h4>Club</h4>
+            <h4>Verein</h4>
             <a href="../was-wir-machen.html">Was wir machen</a>
-            <a href="../explore-2026.html">Explore 2026</a>
+            <a href="../explore-2026.html">Explore our 2026</a>
+            <a href="../reiseberichte.html">Reiseberichte</a>
             <a href="../kontakt.html">Kontakt</a>
-        </div>
-        <div class="footer-col">
-            <h4>Reiseberichte</h4>
-            <a href="../reiseberichte.html">Übersicht</a>
-            <a href="tunesien-2025.html">Tunesien 2025</a>
-            <a href="balkan-2024.html">Balkan 2024</a>
-            <a href="marokko-2023.html">Marokko 2023</a>
-        </div>
-        <div class="footer-col">
-            <h4>Touren</h4>
-            <a href="../austria-barcelona.html">Barcelona Tour 2026</a>
-            <a href="../index.html">TET Explorer</a>
         </div>
     </div>
     <div class="footer-bottom">
-        <span>&copy; 2026 Enduro Explorers Strasswalchen</span>
+        <span>&copy; 2026 Enduro Explorers Strasswalchen e.V.</span>
         <span><a href="../kontakt.html#impressum">Impressum</a> · <a href="../kontakt.html#datenschutz">Datenschutz</a></span>
     </div>
 </footer>
 
 <div class="cookie-banner" id="cookieBanner" style="display:none;">
-    <p>Wir nutzen ausschließlich technisch notwendige Cookies (kein Tracking). Mehr in der <a href="../kontakt.html#datenschutz">Datenschutzerklärung</a>.</p>
+    <p>Wir nutzen ausschließlich technisch notwendige Cookies. Mehr in der <a href="../kontakt.html#datenschutz">Datenschutzerklärung</a>.</p>
     <button id="cookieAccept">Verstanden</button>
 </div>
 
