@@ -73,7 +73,7 @@ Gardasee → Italien → Frankreich → Andorra → Spanien → Barcelona
 
 Unsere große Sommertour 2026 führt vom Gardasee durch die italienischen Westalpen, über die Ligurische Grenzkammstraße, an der Côte d'Azur entlang, durch die Pyrenäen und Andorra bis nach Barcelona.
 
-Die Hauptroute haben wir bereits in **21 Tracks mit 28 Segmenten** und über **62.000 GPS-Punkten** geplant. Dazu kommen 144 Waypoints für Camping-Spots, TET-friendly Unterkünfte und Highlights.
+Die Hauptroute haben wir bereits in über **62.000 GPS-Punkten** geplant. Dazu kommen 144 Waypoints für Camping-Spots, moto friendly Unterkünfte und Highlights.
 
 ## 2.3 GPX-Karte-Sektion
 
@@ -86,13 +86,11 @@ Die Hauptroute haben wir bereits in **21 Tracks mit 28 Segmenten** und über **6
 **Titel:** Die Route in Etappen
 **Beschreibung:** Hauptroute: Italien (revers) → Frankreich → Andorra → Spanien → Barcelona.
 
-**Stats:** 21 Tracks · 28 Segmente · 144 Waypoints · 4 Länder
-
 ### Etappe 01 — Start: Gardasee
-Einstieg ins Hauptmassiv der italienischen Westalpen. Hochalpine Pässe, Schotter, Pannenglück braucht's hier nicht.
+Einstieg ins Hauptmassiv der italienischen Westalpen. Hochalpine Pässe, Schotter, Pannen braucht's hier nicht.
 
 ### Etappe 02 — Italienische Westalpen → Piemont
-Über Aosta, Sestriere, Colle delle Finestre und den Assietta-Kamm — Schotter-Königsetappen mit bis zu 2.500m.
+Über Aosta, Sestriere, Colle delle Finestre und den Assietta-Kamm — Schotteretappen mit bis zu 2.500m.
 
 ### Etappe 03 — Ligurische Grenzkammstraße / Via del Sale
 Das Herzstück: ~50 km Hochgebirgs-Schotter direkt auf der italienisch-französischen Grenze mit Mittelmeer-Panorama.
@@ -121,7 +119,7 @@ Grenzübertritt über die östlichen Pyrenäen, durch das Fürstentum Andorra un
 **Tag:** Aktuellste Tour
 **Titel:** Tunesien 2025
 **Untertitel:** Sahara, Salzsee, Dünen
-**Beschreibung:** 2,5 Wochen durch Wüste und Dünen — vier Bikes, eine Crew, viel Sand.
+**Beschreibung:** 2,5 Wochen durch Wüste und Dünen — vier Bikes & viel Sand.
 
 ## 3.3 Karten
 - **Balkan 2024** · TET Italien → Griechenland · 5 Länder
@@ -141,7 +139,7 @@ Grenzübertritt über die östlichen Pyrenäen, durch das Fürstentum Andorra un
 **Subtitle:** Motorrad-Abenteuer Tunesien — 2,5 Wochen durch Wüste, Dünen und Abenteuer.
 
 ## 4.2 Lead-Text
-Von Straßwalchen ging es nach Genua und mit der Fähre weiter nach Tunis. 2,5 Wochen Tunesien, vier Maschinen, eine Crew — Küste, Sahara, Salzsee und Dünen.
+Von Straßwalchen ging es nach Genua und mit der Fähre weiter nach Tunis. 2,5 Wochen Tunesien mit vier Maschinen — Küste, Sahara, Salzsee und Dünen.
 
 ## 4.3 Die Maschinen (Box)
 - Suzuki DR500
@@ -227,7 +225,7 @@ Strandpause in Albanien, danach Weiterfahrt nach Griechenland (Igoumenitsa), Fä
 Von Straßwalchen durch Italien nach Genua, dort die Motorräder auf die Fähre. Über Barcelona ging es weiter nach Tanger in Marokko.
 
 ### Tanger → Marrakesch
-Erste Etappe nach der Ankunft. Eingewöhnen, Klima, Linksverkehr-Mentalität.
+Erste Etappe nach der Ankunft. Eingewöhnen, Klima, afrikanische Verkehrsmentalität.
 
 ### Atlasgebirge
 Kurvige Straßen, beeindruckende Landschaften und stetig wechselnde Ausblicke.
@@ -286,7 +284,7 @@ Abschluss in der „blauen Stadt" im Rif-Gebirge. Markt, Gassen, Sonnenuntergang
 
 ## 7.5 Karten-Sektion
 **Titel:** So findest du uns
-**Beschreibung:** Strasswalchen, Salzburger Flachgau. 30 Min von Salzburg. (oder Original-Beschreibung)
+**Beschreibung:** Strasswalchen, Salzburger Flachgau. 30 Min von Salzburg.
 
 ## 7.6 Impressum
 
