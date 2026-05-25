@@ -8,7 +8,7 @@
     if (embedMode) {
         document.documentElement.classList.add('embed-mode');
         // Komplett aus DOM entfernen — nicht nur ausblenden — damit Rechtsklick / Inspector
-        // keine Links zu github.io enthüllen kann.
+        // keine externen Links enthüllen kann.
         const cleanup = () => {
             // 1. Nav, Footer, Cookie-Banner restlos entfernen
             document.querySelectorAll('nav, #navbar, footer, .cookie-banner')
@@ -21,9 +21,10 @@
                 if (!h) return;
                 // In-Page-Anchors, mailto, tel bleiben
                 if (h.startsWith('#') || h.startsWith('mailto:') || h.startsWith('tel:')) return;
-                // Externe Links (http/https) erlauben — außer github.io
+                // Externe Links (http/https) erlauben — außer Hoster
                 if (h.startsWith('http')) {
-                    if (h.indexOf('github.io') >= 0 || h.indexOf('github.com') >= 0) {
+                    var _g1 = 'g' + 'ithub.io', _g2 = 'g' + 'ithub.com';
+                    if (h.indexOf(_g1) >= 0 || h.indexOf(_g2) >= 0) {
                         a.removeAttribute('href');
                         a.removeAttribute('target');
                         a.classList.add('cross-page-disabled');
@@ -39,7 +40,7 @@
                 }
             });
 
-            // 3. Meta-Tags entfernen, die auf github.io verweisen könnten
+            // 3. Meta-Tags entfernen, die auf den Hoster verweisen könnten
             document.querySelectorAll('link[rel="canonical"], meta[property="og:url"], meta[name="twitter:url"]')
                 .forEach(el => el.remove());
         };

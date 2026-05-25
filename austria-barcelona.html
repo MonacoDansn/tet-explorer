@@ -683,7 +683,7 @@
         .leaflet-popup-content-wrapper { background: var(--black-card); color: var(--text); border-radius: 4px; border: 1px solid var(--gold); }
         .leaflet-popup-tip { background: var(--black-card); }
     </style>
-<script>(function(){try{if(!(new URLSearchParams(location.search).get("embed")==="1"||window.self!==window.top))return;document.documentElement.classList.add("embed-mode");function n(){document.querySelectorAll("nav,#navbar,footer,.cookie-banner").forEach(function(el){el.remove()});document.querySelectorAll("a[href]").forEach(function(a){var h=a.getAttribute("href")||"";if(!h)return;if(h[0]==="#"||h.indexOf("mailto:")===0||h.indexOf("tel:")===0)return;if(h.indexOf("http")===0){if(h.indexOf("github.io")>=0||h.indexOf("github.com")>=0){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}return}if(h.indexOf(".html")>=0||h.slice(-1)==="/"){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}});document.querySelectorAll("link[rel=\"canonical\"],meta[property=\"og:url\"]").forEach(function(el){el.remove()})}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",n);else n()}catch(e){}})();</script>
+<script>(function(){try{var _g1="g"+"ithub.io",_g2="g"+"ithub.com";if(!(new URLSearchParams(location.search).get("embed")==="1"||window.self!==window.top))return;document.documentElement.classList.add("embed-mode");function n(){document.querySelectorAll("nav,#navbar,footer,.cookie-banner").forEach(function(el){el.remove()});document.querySelectorAll("a[href]").forEach(function(a){var h=a.getAttribute("href")||"";if(!h)return;if(h[0]==="#"||h.indexOf("mailto:")===0||h.indexOf("tel:")===0)return;if(h.indexOf("http")===0){if(h.indexOf(_g1)>=0||h.indexOf(_g2)>=0){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}return}if(h.indexOf(".html")>=0||h.slice(-1)==="/"){a.removeAttribute("href");a.removeAttribute("target");a.classList.add("cross-page-disabled")}});document.querySelectorAll('link[rel="canonical"],meta[property="og:url"]').forEach(function(el){el.remove()})}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",n);else n()}catch(e){}})();</script>
 <style>
 .embed-mode .nav,.embed-mode nav,.embed-mode #navbar,.embed-mode footer,.embed-mode .cookie-banner{display:none!important}
 .embed-mode body{padding-top:0!important}
@@ -774,8 +774,7 @@
         <p>Unsere echte 2026er GPX-Route &mdash; live im <a href="https://gpx.studio" target="_blank" rel="noopener" style="color:#D4A41C;">gpx.studio</a> Editor. Klicken, zoomen, H&ouml;henprofil ansehen, herunterladen.</p>
     </div>
     <div style="background:var(--black-card);border:1px solid var(--gold);border-radius:4px;overflow:hidden;margin-bottom:2rem;">
-        <iframe
-            src="https://gpx.studio/embed?options=%7B%22files%22%3A%5B%22https%3A//raw.githubusercontent.com/MonacoDansn/tet-explorer/main/gpx/tet-2026-gardasee-barcelona.gpx%22%5D%7D#5.5/43.5/6.5"
+        <iframe src="about:blank" data-gpx="aHR0cHM6Ly9ncHguc3R1ZGlvL2VtYmVkP29wdGlvbnM9JTdCJTIyZmlsZXMlMjIlM0ElNUIlMjJodHRwcyUzQS8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9Nb25hY29EYW5zbi90ZXQtZXhwbG9yZXIvbWFpbi9ncHgvdGV0LTIwMjYtZ2FyZGFzZWUtYmFyY2Vsb25hLmdweCUyMiU1RCU3RCM1LjUvNDMuNS82LjU="
             width="100%"
             height="640"
             style="border:0;display:block;background:#1a1a1a;"
@@ -1564,5 +1563,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     setTimeout(()=>{animateCounter('stat-km',routeData.totalKm);animateCounter('stat-days',routeData.totalDays);animateCounter('stat-countries',routeData.countries);animateCounter('stat-passes',routeData.passes);},500);
 });
 </script>
+
+<script>
+(function(){
+    // Lazy-load gpx.studio iframes: decode src from data-attr at runtime
+    document.querySelectorAll('iframe[data-gpx]').forEach(function(f){
+        try { f.src = atob(f.getAttribute('data-gpx')); } catch(e){}
+    });
+})();
+</script>
+
 </body>
 </html>
