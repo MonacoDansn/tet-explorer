@@ -9,29 +9,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        /* ═══ HERO im Stil der Startseite ═══ */
+        /* ═══ HERO mit Foto-Slideshow als Background ═══ */
         .hero {
             position: relative;
             min-height: 92vh;
             display: flex; align-items: center; justify-content: center;
             text-align: center;
-            background: radial-gradient(ellipse at 50% 40%, #1E1A14 0%, #111111 70%);
+            background: #111111;
             overflow: hidden;
             padding: 6rem 2rem 4rem;
         }
-        .hero::before {
-            content: ''; position: absolute; inset: 0;
+        .hero-slideshow {
+            position: absolute; inset: 0; z-index: 0; overflow: hidden;
+            background: #111111;
+        }
+        .slide-img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.6s ease-in-out;
+            will-change: opacity;
+        }
+        .slide-img.active { opacity: 0.55; }
+        .hero-overlay {
+            position: absolute; inset: 0; z-index: 1;
             background:
-                radial-gradient(ellipse at 30% 50%, rgba(212,149,43,0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 30%, rgba(212,149,43,0.04) 0%, transparent 50%);
+                radial-gradient(ellipse at 50% 40%, rgba(17,17,17,0.6) 0%, rgba(17,17,17,0.9) 70%),
+                linear-gradient(180deg, rgba(17,17,17,0.4) 0%, rgba(17,17,17,0.75) 100%);
             pointer-events: none;
         }
         .hero-gear-bg {
-            position: absolute; inset: 0; opacity: 0.06;
+            position: absolute; inset: 0; opacity: 0.05; z-index: 1;
             background-image: radial-gradient(circle at 20% 30%, var(--gold) 0%, transparent 40%),
                               radial-gradient(circle at 80% 70%, var(--gold) 0%, transparent 40%);
             pointer-events: none;
         }
+        .hero-content { position: relative; z-index: 3; }
         .hero-content { position: relative; z-index: 2; max-width: 920px; }
         .hero-logo {
             width: 320px; max-width: 60vw; height: auto;
@@ -193,8 +207,13 @@
     </ul>
 </nav>
 
-<!-- HERO -->
+<!-- HERO mit auto-rotierender Foto-Slideshow -->
 <section class="hero">
+    <div class="hero-slideshow" id="heroSlideshow">
+        <img class="slide-img" id="slideA" alt="">
+        <img class="slide-img" id="slideB" alt="">
+    </div>
+    <div class="hero-overlay"></div>
     <div class="hero-gear-bg"></div>
     <div class="hero-content">
         <img src="logo_clean.png" alt="Enduro Explorers Strasswalchen Logo" class="hero-logo">
@@ -204,6 +223,45 @@
     </div>
     <div class="scroll-indicator"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg></div>
 </section>
+
+<script>
+// Auto-rotating photo slideshow im Hero — alle 43 Vereinsfotos in Random-Reihenfolge
+(function() {
+    const photos = ["assets/photos/balkan-2024/03.jpg","assets/photos/balkan-2024/04.jpg","assets/photos/balkan-2024/05.jpg","assets/photos/balkan-2024/06.jpg","assets/photos/balkan-2024/07.jpg","assets/photos/balkan-2024/08.jpg","assets/photos/balkan-2024/09.jpg","assets/photos/balkan-2024/10.jpg","assets/photos/balkan-2024/11.jpg","assets/photos/balkan-2024/12.jpg","assets/photos/balkan-2024/13.jpg","assets/photos/balkan-2024/14.jpg","assets/photos/balkan-2024/15.jpg","assets/photos/balkan-2024/16.jpg","assets/photos/balkan-2024/17.jpg","assets/photos/marokko-2023/03.jpg","assets/photos/marokko-2023/04.jpg","assets/photos/marokko-2023/05.jpg","assets/photos/marokko-2023/06.jpg","assets/photos/marokko-2023/07.jpg","assets/photos/marokko-2023/08.jpg","assets/photos/marokko-2023/09.jpg","assets/photos/marokko-2023/10.jpg","assets/photos/marokko-2023/11.jpg","assets/photos/marokko-2023/12.jpg","assets/photos/marokko-2023/13.jpg","assets/photos/marokko-2023/14.jpg","assets/photos/marokko-2023/15.jpg","assets/photos/marokko-2023/16.jpg","assets/photos/marokko-2023/17.jpg","assets/photos/marokko-2023/18.jpg","assets/photos/tunesien-2025/02.jpg","assets/photos/tunesien-2025/03.jpg","assets/photos/tunesien-2025/04.jpg","assets/photos/tunesien-2025/05.jpg","assets/photos/tunesien-2025/06.jpg","assets/photos/tunesien-2025/07.jpg","assets/photos/tunesien-2025/08.jpg","assets/photos/tunesien-2025/09.jpg","assets/photos/tunesien-2025/10.jpg","assets/photos/tunesien-2025/11.jpg","assets/photos/tunesien-2025/12.jpg","assets/photos/tunesien-2025/13.jpg"];
+
+    // Fisher-Yates Shuffle für Random-Reihenfolge bei jedem Page-Load
+    for (let i = photos.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [photos[i], photos[j]] = [photos[j], photos[i]];
+    }
+
+    const slideA = document.getElementById('slideA');
+    const slideB = document.getElementById('slideB');
+    if (!slideA || !slideB) return;
+
+    let idx = 0;
+    let activeSlide = slideA;
+    let inactiveSlide = slideB;
+
+    // Erstes Bild sofort einblenden
+    activeSlide.src = photos[0];
+    activeSlide.onload = () => activeSlide.classList.add('active');
+
+    function nextSlide() {
+        idx = (idx + 1) % photos.length;
+        inactiveSlide.src = photos[idx];
+        inactiveSlide.onload = () => {
+            inactiveSlide.classList.add('active');
+            activeSlide.classList.remove('active');
+            // Swap roles
+            [activeSlide, inactiveSlide] = [inactiveSlide, activeSlide];
+        };
+    }
+
+    // Wechsel alle 4.5 Sekunden
+    setInterval(nextSlide, 4500);
+})();
+</script>
 
 <!-- INTRO-ZITAT -->
 <div class="intro-quote">
