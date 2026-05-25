@@ -7,41 +7,10 @@
         || window.self !== window.top;
     if (embedMode) {
         document.documentElement.classList.add('embed-mode');
-        // Komplett aus DOM entfernen — nicht nur ausblenden — damit Rechtsklick / Inspector
-        // keine externen Links enthüllen kann.
+        // Im iframe: nur Nav/Footer/Cookie verstecken. Interne Links bleiben
+        // funktional, damit User innerhalb der eingebetteten Seite navigieren können.
         const cleanup = () => {
-            // 1. Nav, Footer, Cookie-Banner restlos entfernen
             document.querySelectorAll('nav, #navbar, footer, .cookie-banner')
-                .forEach(el => el.remove());
-
-            // 2. Alle internen Cross-Page-Links: href entfernen, in <span> umwandeln
-            //    → Rechtsklick → "Adresse kopieren" / "In neuem Tab öffnen" zeigt nichts mehr
-            document.querySelectorAll('a[href]').forEach(a => {
-                const h = a.getAttribute('href') || '';
-                if (!h) return;
-                // In-Page-Anchors, mailto, tel bleiben
-                if (h.startsWith('#') || h.startsWith('mailto:') || h.startsWith('tel:')) return;
-                // Externe Links (http/https) erlauben — außer Hoster
-                if (h.startsWith('http')) {
-                    var _g1 = 'g' + 'ithub.io', _g2 = 'g' + 'ithub.com';
-                    if (h.indexOf(_g1) >= 0 || h.indexOf(_g2) >= 0) {
-                        a.removeAttribute('href');
-                        a.removeAttribute('target');
-                        a.classList.add('cross-page-disabled');
-                    }
-                    return;
-                }
-                // Relative interne Links (.html, /) → komplett entschärfen
-                if (h.endsWith('.html') || h.indexOf('.html#') >= 0 ||
-                    h.endsWith('/') || h === 'index.html') {
-                    a.removeAttribute('href');
-                    a.removeAttribute('target');
-                    a.classList.add('cross-page-disabled');
-                }
-            });
-
-            // 3. Meta-Tags entfernen, die auf den Hoster verweisen könnten
-            document.querySelectorAll('link[rel="canonical"], meta[property="og:url"], meta[name="twitter:url"]')
                 .forEach(el => el.remove());
         };
         if (document.readyState === 'loading')
