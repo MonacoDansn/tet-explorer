@@ -18,6 +18,34 @@
         else cleanup();
     }
 
+    // ── Hero-Particles (Blasen) — wie auf TET Routen Explorer ──
+    function createParticles() {
+        // Wenn kein Hero, kein Container nötig
+        const hero = document.querySelector('.hero, .page-hero');
+        if (!hero) return;
+        let container = document.getElementById('particles');
+        if (!container) {
+            container = document.createElement('div');
+            container.className = 'hero-particles';
+            container.id = 'particles';
+            hero.insertBefore(container, hero.firstChild);
+        }
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 8 + 's';
+            p.style.animationDuration = (6 + Math.random() * 6) + 's';
+            const sz = (2 + Math.random() * 3) + 'px';
+            p.style.width = sz;
+            p.style.height = sz;
+            container.appendChild(p);
+        }
+    }
+    if (document.readyState === 'loading')
+        document.addEventListener('DOMContentLoaded', createParticles);
+    else createParticles();
+
     // ── NAV scroll effect & active link & mobile toggle ──
     const nav = document.getElementById('navbar');
     if (nav) {

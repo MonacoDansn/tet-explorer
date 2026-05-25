@@ -15,9 +15,16 @@
             min-height: 92vh;
             display: flex; align-items: center; justify-content: center;
             text-align: center;
-            background: radial-gradient(ellipse at top, #1a1a0a 0%, #0a0a0a 60%);
+            background: radial-gradient(ellipse at 50% 40%, #1E1A14 0%, #111111 70%);
             overflow: hidden;
             padding: 6rem 2rem 4rem;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 50%, rgba(212,149,43,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 30%, rgba(212,149,43,0.04) 0%, transparent 50%);
+            pointer-events: none;
         }
         .hero-gear-bg {
             position: absolute; inset: 0; opacity: 0.06;

@@ -3,21 +3,23 @@
    ════════════════════════════════════════════════════════════════ */
 
 :root {
-    --gold: #D4A41C;
-    --gold-light: #E8BE3C;
-    --gold-dark: #B8890F;
-    --gold-glow: rgba(212,164,28,0.3);
-    --black: #0A0A0A;
-    --black-card: #141414;
-    --black-card-hover: #1C1C1C;
-    --black-lighter: #1E1E1E;
-    --text: #D4D4D4;
-    --text-muted: #888888;
+    /* Synced mit TET Routen Explorer (index.html) für einheitliches Farbschema */
+    --gold: #D4952B;
+    --gold-light: #E8B44A;
+    --gold-dark: #A87420;
+    --gold-pale: #F0C96E;
+    --gold-glow: rgba(212,149,43,0.3);
+    --black: #111111;
+    --black-card: #1A1A1A;
+    --black-card-hover: #222222;
+    --black-lighter: #1E1A14;
+    --text: #E0DCD4;
+    --text-muted: #918A7E;
     --text-bright: #FFFFFF;
-    --border: #2A2A2A;
+    --border: #2E2A24;
     --red: #CC3333;
-    --green: #44AA44;
-    --blue: #4488CC;
+    --green: #6ABF5E;
+    --blue: #5BA4D9;
     --brown: #8B3A0E;
 }
 
@@ -92,17 +94,31 @@ a { color: var(--gold); }
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     text-align: center; padding: 8rem 2rem 4rem;
-    background: radial-gradient(ellipse at center, #1a1a0a 0%, var(--black) 70%);
+    background: radial-gradient(ellipse at 50% 40%, #1E1A14 0%, #111111 70%);
     overflow: hidden;
 }
 .page-hero::before {
     content: '';
     position: absolute; inset: 0;
     background:
-        radial-gradient(ellipse at 30% 40%, rgba(212,164,28,0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 60%, rgba(212,164,28,0.04) 0%, transparent 50%);
+        radial-gradient(ellipse at 30% 50%, rgba(212,149,43,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 30%, rgba(212,149,43,0.04) 0%, transparent 50%);
 }
 .page-hero > * { position: relative; z-index: 2; }
+
+/* Floating Gold Particles (Blasen) — wie auf TET Explorer */
+.hero-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+.particle {
+    position: absolute; width: 3px; height: 3px;
+    background: var(--gold); border-radius: 50%; opacity: 0;
+    animation: float-particle 8s infinite;
+}
+@keyframes float-particle {
+    0% { opacity: 0; transform: translateY(100vh) scale(0); }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+}
 .page-hero-club {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(0.85rem, 2vw, 1.1rem);
