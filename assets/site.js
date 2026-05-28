@@ -18,6 +18,82 @@
         else cleanup();
     }
 
+    // ── Hero Slideshow (Foto-Rotation) — auto-init auf .hero-slideshow Containern ──
+    const ALL_PHOTOS = [
+        '/assets/photos/balkan-2024/03.jpg','/assets/photos/balkan-2024/04.jpg','/assets/photos/balkan-2024/05.jpg',
+        '/assets/photos/balkan-2024/06.jpg','/assets/photos/balkan-2024/07.jpg','/assets/photos/balkan-2024/08.jpg',
+        '/assets/photos/balkan-2024/09.jpg','/assets/photos/balkan-2024/10.jpg','/assets/photos/balkan-2024/11.jpg',
+        '/assets/photos/balkan-2024/12.jpg','/assets/photos/balkan-2024/13.jpg','/assets/photos/balkan-2024/14.jpg',
+        '/assets/photos/balkan-2024/15.jpg','/assets/photos/balkan-2024/16.jpg','/assets/photos/balkan-2024/17.jpg',
+        '/assets/photos/marokko-2023/03.jpg','/assets/photos/marokko-2023/04.jpg','/assets/photos/marokko-2023/05.jpg',
+        '/assets/photos/marokko-2023/06.jpg','/assets/photos/marokko-2023/07.jpg','/assets/photos/marokko-2023/08.jpg',
+        '/assets/photos/marokko-2023/09.jpg','/assets/photos/marokko-2023/10.jpg','/assets/photos/marokko-2023/11.jpg',
+        '/assets/photos/marokko-2023/12.jpg','/assets/photos/marokko-2023/13.jpg','/assets/photos/marokko-2023/14.jpg',
+        '/assets/photos/marokko-2023/15.jpg','/assets/photos/marokko-2023/16.jpg','/assets/photos/marokko-2023/17.jpg',
+        '/assets/photos/marokko-2023/18.jpg','/assets/photos/tunesien-2025/02.jpg','/assets/photos/tunesien-2025/03.jpg',
+        '/assets/photos/tunesien-2025/04.jpg','/assets/photos/tunesien-2025/05.jpg','/assets/photos/tunesien-2025/06.jpg',
+        '/assets/photos/tunesien-2025/07.jpg','/assets/photos/tunesien-2025/08.jpg','/assets/photos/tunesien-2025/09.jpg',
+        '/assets/photos/tunesien-2025/10.jpg','/assets/photos/tunesien-2025/11.jpg','/assets/photos/tunesien-2025/12.jpg',
+        '/assets/photos/tunesien-2025/13.jpg'
+    ];
+
+    function initHeroSlideshow() {
+        const containers = document.querySelectorAll('.hero-slideshow');
+        if (!containers.length) return;
+
+        containers.forEach(container => {
+            // Datensatz-Filter via data-set Attribut (z.B. data-set="tunesien-2025")
+            const filter = container.dataset.set;
+            let photos = ALL_PHOTOS.slice();
+            if (filter && filter !== 'all') {
+                photos = photos.filter(p => p.indexOf('/' + filter + '/') >= 0);
+            }
+            if (!photos.length) return;
+
+            // Shuffle
+            for (let i = photos.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [photos[i], photos[j]] = [photos[j], photos[i]];
+            }
+
+            // Reuse vorhandene .slide-img-Elemente oder erzeuge 2 neue
+            let slideA = container.querySelector('.slide-img:nth-child(1)');
+            let slideB = container.querySelector('.slide-img:nth-child(2)');
+            if (!slideA) {
+                slideA = document.createElement('img');
+                slideA.className = 'slide-img';
+                slideA.alt = '';
+                container.appendChild(slideA);
+            }
+            if (!slideB) {
+                slideB = document.createElement('img');
+                slideB.className = 'slide-img';
+                slideB.alt = '';
+                container.appendChild(slideB);
+            }
+
+            let idx = 0;
+            let activeSlide = slideA;
+            let inactiveSlide = slideB;
+
+            activeSlide.src = photos[0];
+            activeSlide.onload = () => activeSlide.classList.add('active');
+
+            setInterval(() => {
+                idx = (idx + 1) % photos.length;
+                inactiveSlide.src = photos[idx];
+                inactiveSlide.onload = () => {
+                    inactiveSlide.classList.add('active');
+                    activeSlide.classList.remove('active');
+                    [activeSlide, inactiveSlide] = [inactiveSlide, activeSlide];
+                };
+            }, 4500);
+        });
+    }
+    if (document.readyState === 'loading')
+        document.addEventListener('DOMContentLoaded', initHeroSlideshow);
+    else initHeroSlideshow();
+
     // ── Hero-Particles (Blasen) — wie auf TET Routen Explorer ──
     function createParticles() {
         // Wenn kein Hero, kein Container nötig
