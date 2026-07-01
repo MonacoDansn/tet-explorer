@@ -17,7 +17,7 @@ $route = @(
     @{ lat = 45.7000; lon = 10.3200 }
 )
 foreach ($pt in $route) {
-    $epoch = [int][math]::Floor((Get-Date -UFormat %s))
+    $epoch = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
     $body = @{ lat = $pt.lat; lon = $pt.lon; t = $epoch; spd = 12.5 } | ConvertTo-Json -Compress
     Invoke-RestMethod -Method Post -Uri $endpoint -Body $body -ContentType 'application/json' | Out-Null
     Write-Host "gesendet: $($pt.lat), $($pt.lon)"
