@@ -36,6 +36,10 @@
         .live-map-wrap { margin: 2rem 0; }
         #live-map { width: 100%; height: 460px; border: 1px solid var(--gold); border-radius: 4px; overflow: hidden; z-index: 0; }
         #live-info { margin-top: 0.8rem; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text-muted); text-align: center; }
+        #live-legend { margin-top: 0.7rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.3rem; justify-content: center; align-items: center; font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--text-muted); }
+        .legend-item { display: inline-flex; align-items: center; gap: 0.4rem; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: 0 0 auto; }
+        .legend-total { font-weight: 700; color: var(--text-bright); }
         .live-badge { font-weight: 700; margin-right: 0.4rem; }
         .live-badge.on { color: #3ad07a; }
         .live-badge.off { color: #999; }
@@ -93,6 +97,7 @@
     <div class="live-map-wrap">
         <div id="live-map"></div>
         <div id="live-info">Noch keine Live-Daten.</div>
+        <div id="live-legend"></div>
     </div>
 </section>
 
