@@ -8,11 +8,11 @@ import { getDatabase, ref, query, orderByKey, onChildAdded }
 
 // ── Firebase-Config (öffentlich; Schutz läuft über Security Rules) ──
 const firebaseConfig = {
-  apiKey: "REPLACE_API_KEY",
-  authDomain: "REPLACE_PROJECT.firebaseapp.com",
-  databaseURL: "https://REPLACE_PROJECT-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "REPLACE_PROJECT",
-  appId: "REPLACE_APP_ID"
+  apiKey: "AIzaSyDe94HBnnBTh0u2KMcJz-HbQc4haoRorvM",
+  authDomain: "enduro-explorers-live.firebaseapp.com",
+  databaseURL: "https://enduro-explorers-live-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "enduro-explorers-live",
+  appId: "1:577325830451:web:881acb1341f91b4b506e46"
 };
 
 const TRACK_PATH = "tracks/2026";
