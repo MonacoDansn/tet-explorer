@@ -33,7 +33,6 @@ function initLive() {
   let marker = null;
   let lastT = 0;        // epoch ms des letzten Punkts
   let lastSpeed = null; // m/s
-  let fitted = false;
 
   const infoEl = document.getElementById("live-info");
 
@@ -50,8 +49,8 @@ function initLive() {
     lastSpeed = typeof p.spd === "number" ? p.spd : null;
     if (!marker) marker = L.marker(latlng, { icon: liveIcon(false) }).addTo(map);
     else marker.setLatLng(latlng);
-    if (!fitted) { map.fitBounds(trail.getBounds().pad(0.25)); fitted = true; }
-    else { map.panTo(latlng); }
+    // Karte immer auf die komplette Spur skalieren
+    map.fitBounds(trail.getBounds().pad(0.25));
     render();
   });
 
