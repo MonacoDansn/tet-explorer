@@ -91,6 +91,35 @@
             text-transform: uppercase; letter-spacing: 3px;
             margin-top: 0.5rem;
         }
+        /* ═══ LIVE-TRACKER BANNER ═══ */
+        .live-banner {
+            display: inline-flex; align-items: center; gap: 12px;
+            margin-top: 0.5rem;
+            padding: 13px 26px;
+            background: rgba(58,208,122,0.08);
+            border: 1px solid #3ad07a; border-radius: 50px;
+            font-family: 'Oswald', sans-serif; font-size: 0.95rem;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-bright); text-decoration: none;
+            transition: all 0.3s;
+        }
+        .live-banner:hover {
+            background: rgba(58,208,122,0.18);
+            box-shadow: 0 6px 24px rgba(58,208,122,0.25);
+            transform: translateY(-2px);
+        }
+        .live-banner-dot {
+            width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto;
+            background: #3ad07a;
+            box-shadow: 0 0 0 0 rgba(58,208,122,0.6);
+            animation: bannerPulse 1.8s infinite;
+        }
+        @keyframes bannerPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(58,208,122,0.55); }
+            70%  { box-shadow: 0 0 0 10px rgba(58,208,122,0); }
+            100% { box-shadow: 0 0 0 0 rgba(58,208,122,0); }
+        }
+
         .scroll-indicator {
             position: absolute; bottom: 2rem; left: 50%;
             transform: translateX(-50%); z-index: 2;
@@ -209,10 +238,7 @@
 
 <!-- HERO mit auto-rotierender Foto-Slideshow -->
 <section class="hero">
-    <div class="hero-slideshow" id="heroSlideshow">
-        <img class="slide-img" id="slideA" alt="">
-        <img class="slide-img" id="slideB" alt="">
-    </div>
+    <div class="hero-slideshow" id="heroSlideshow" data-set="all"></div>
     <div class="hero-overlay"></div>
     <div class="hero-gear-bg"></div>
     <div class="hero-content">
@@ -220,46 +246,35 @@
         <div class="hero-clubname">Enduro Explorers Strasswalchen</div>
         <h1>Was wir <span>machen</span></h1>
         <p class="hero-subtitle">Ein eingetragener, gemeinnütziger Verein im Salzburger Land. Keine Gewinnabsichten — sondern Reisen, Abenteuer und die gemeinsame Leidenschaft fürs Endurofahren.</p>
+        <a href="explore-2026.html#live" class="live-banner" id="liveBanner">
+            <span class="live-banner-dot"></span>
+            <span id="liveBannerText">Barcelona-Tour 2026 — zum Live-Tracker</span>
+        </a>
     </div>
     <div class="scroll-indicator"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg></div>
 </section>
 
 <script>
-// Auto-rotating photo slideshow im Hero — alle 43 Vereinsfotos in Random-Reihenfolge
+// Slideshow läuft über assets/site.js (initHeroSlideshow, data-set="all") —
+// keine zweite Initialisierung hier, sonst kollidieren zwei Intervalle.
+
+// Live-Banner: Text je nach Tour-Status (Start 6.7.2026 07:00)
 (function() {
-    const photos = ["assets/photos/balkan-2024/03.jpg","assets/photos/balkan-2024/04.jpg","assets/photos/balkan-2024/05.jpg","assets/photos/balkan-2024/06.jpg","assets/photos/balkan-2024/07.jpg","assets/photos/balkan-2024/08.jpg","assets/photos/balkan-2024/09.jpg","assets/photos/balkan-2024/10.jpg","assets/photos/balkan-2024/11.jpg","assets/photos/balkan-2024/12.jpg","assets/photos/balkan-2024/13.jpg","assets/photos/balkan-2024/14.jpg","assets/photos/balkan-2024/15.jpg","assets/photos/balkan-2024/16.jpg","assets/photos/balkan-2024/17.jpg","assets/photos/marokko-2023/03.jpg","assets/photos/marokko-2023/04.jpg","assets/photos/marokko-2023/05.jpg","assets/photos/marokko-2023/06.jpg","assets/photos/marokko-2023/07.jpg","assets/photos/marokko-2023/08.jpg","assets/photos/marokko-2023/09.jpg","assets/photos/marokko-2023/10.jpg","assets/photos/marokko-2023/11.jpg","assets/photos/marokko-2023/12.jpg","assets/photos/marokko-2023/13.jpg","assets/photos/marokko-2023/14.jpg","assets/photos/marokko-2023/15.jpg","assets/photos/marokko-2023/16.jpg","assets/photos/marokko-2023/17.jpg","assets/photos/marokko-2023/18.jpg","assets/photos/tunesien-2025/02.jpg","assets/photos/tunesien-2025/03.jpg","assets/photos/tunesien-2025/04.jpg","assets/photos/tunesien-2025/05.jpg","assets/photos/tunesien-2025/06.jpg","assets/photos/tunesien-2025/07.jpg","assets/photos/tunesien-2025/08.jpg","assets/photos/tunesien-2025/09.jpg","assets/photos/tunesien-2025/10.jpg","assets/photos/tunesien-2025/11.jpg","assets/photos/tunesien-2025/12.jpg","assets/photos/tunesien-2025/13.jpg"];
-
-    // Fisher-Yates Shuffle für Random-Reihenfolge bei jedem Page-Load
-    for (let i = photos.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [photos[i], photos[j]] = [photos[j], photos[i]];
+    const el = document.getElementById('liveBannerText');
+    if (!el) return;
+    const start = new Date('2026-07-06T07:00:00');
+    const end = new Date('2026-07-26T23:59:59'); // großzügiges Tour-Ende
+    const now = new Date();
+    if (now >= start && now <= end) {
+        el.textContent = 'LIVE — Wir sind unterwegs! Jetzt verfolgen';
+    } else if (now < start) {
+        const days = Math.ceil((start - now) / 86400000);
+        el.textContent = days <= 1
+            ? 'Morgen geht\'s los — zum Live-Tracker'
+            : 'Tour-Start in ' + days + ' Tagen — zum Live-Tracker';
+    } else {
+        el.textContent = 'Barcelona-Tour 2026 — die getrackte Route';
     }
-
-    const slideA = document.getElementById('slideA');
-    const slideB = document.getElementById('slideB');
-    if (!slideA || !slideB) return;
-
-    let idx = 0;
-    let activeSlide = slideA;
-    let inactiveSlide = slideB;
-
-    // Erstes Bild sofort einblenden
-    activeSlide.src = photos[0];
-    activeSlide.onload = () => activeSlide.classList.add('active');
-
-    function nextSlide() {
-        idx = (idx + 1) % photos.length;
-        inactiveSlide.src = photos[idx];
-        inactiveSlide.onload = () => {
-            inactiveSlide.classList.add('active');
-            activeSlide.classList.remove('active');
-            // Swap roles
-            [activeSlide, inactiveSlide] = [inactiveSlide, activeSlide];
-        };
-    }
-
-    // Wechsel alle 4.5 Sekunden
-    setInterval(nextSlide, 4500);
 })();
 </script>
 

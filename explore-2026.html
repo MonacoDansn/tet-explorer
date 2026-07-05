@@ -50,6 +50,53 @@
             70%  { box-shadow: 0 0 0 14px rgba(58,208,122,0); }
             100% { box-shadow: 0 0 0 0 rgba(58,208,122,0); }
         }
+
+        /* CTA nach Countdown-Ablauf */
+        .tour-live-cta {
+            display: inline-flex; align-items: center; gap: 12px;
+            padding: 14px 28px;
+            background: rgba(58,208,122,0.08);
+            border: 1px solid #3ad07a; border-radius: 50px;
+            font-family: 'Oswald', sans-serif; font-size: 1rem;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-bright); text-decoration: none;
+            transition: all 0.3s;
+        }
+        .tour-live-cta:hover {
+            background: rgba(58,208,122,0.18);
+            box-shadow: 0 6px 24px rgba(58,208,122,0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Tages-Statistik-Karten */
+        #live-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+        .day-card {
+            background: var(--black-card); border: 1px solid var(--border);
+            border-radius: 4px; padding: 0.9rem 1.1rem; text-align: left;
+        }
+        .day-card-head {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-family: 'Oswald', sans-serif; font-size: 0.92rem;
+            color: var(--text-bright); letter-spacing: 1px; text-transform: uppercase;
+            margin-bottom: 0.55rem;
+        }
+        .day-card-stats {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1rem;
+            font-size: 0.84rem; color: var(--text-muted);
+        }
+        .day-card-stats b { color: var(--text); font-weight: 600; }
+        .day-total-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--black-card), #161610);
+            border: 1px solid var(--gold); border-radius: 4px;
+            padding: 0.9rem 1.1rem;
+            display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem;
+            justify-content: center; align-items: center;
+            font-size: 0.9rem; color: var(--text);
+        }
+        .day-total-card b { color: var(--gold); font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; letter-spacing: 1px; }
+        #live-gpx-btn { display: none; margin: 1.2rem auto 0; }
+        #live-gpx-btn.visible { display: inline-flex; }
     </style>
 <script>(function(){try{if(!(new URLSearchParams(location.search).get("embed")==="1"||window.self!==window.top))return;document.documentElement.classList.add("embed-mode");function n(){document.querySelectorAll("nav,#navbar,footer,.cookie-banner").forEach(function(el){el.remove()});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",n);else n()}catch(e){}})();</script>
 </head>
@@ -89,7 +136,7 @@
     </div>
 </section>
 
-<section class="section-wrap fade-in">
+<section class="section-wrap fade-in" id="live">
     <div class="section-header">
         <h2>Live <span>Position</span></h2>
         <p>Wo die Gruppe gerade ist — live während der Tour. Aktueller Standort plus die bisher gefahrene Spur.</p>
@@ -98,6 +145,12 @@
         <div id="live-map"></div>
         <div id="live-info">Noch keine Live-Daten.</div>
         <div id="live-legend"></div>
+        <div style="text-align:center;">
+            <button id="live-gpx-btn" class="btn" style="align-items:center;gap:8px;cursor:pointer;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Getrackte Route als GPX herunterladen
+            </button>
+        </div>
     </div>
 </section>
 
@@ -161,17 +214,26 @@
 </div>
 
 <script>
-// Countdown bis 6. Juli 2026
+// Countdown bis 6. Juli 2026 — nach Ablauf: Live-Tracker-CTA
 (function(){
     const target = new Date('2026-07-06T07:00:00');
+    const cd = document.getElementById('countdown');
     const dDays = document.getElementById('cdDays');
     const dHours = document.getElementById('cdHours');
     const dMin = document.getElementById('cdMin');
-    if (!dDays) return;
+    if (!cd || !dDays) return;
     const tick = () => {
         const now = new Date();
         const diff = target - now;
-        if (diff <= 0) { dDays.textContent = dHours.textContent = dMin.textContent = '0'; return; }
+        if (diff <= 0) {
+            if (!cd.dataset.live) {
+                cd.dataset.live = '1';
+                cd.innerHTML = '<a href="#live" class="tour-live-cta">'
+                    + '<span class="live-dot" style="position:relative;flex:0 0 auto;"></span>'
+                    + 'Wir sind unterwegs — zum Live-Tracker</a>';
+            }
+            return;
+        }
         const days = Math.floor(diff / 86400000);
         const hours = Math.floor((diff % 86400000) / 3600000);
         const mins = Math.floor((diff % 3600000) / 60000);

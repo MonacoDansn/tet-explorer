@@ -48,16 +48,29 @@ function initLive() {
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
 
+  // Render-Batching: beim Initial-Load kommen tausende Punkte einzeln rein —
+  // UI-Updates (fitAll/Legende/Stats) nur 1× pro Frame statt pro Punkt.
+  let renderScheduled = false;
+  function scheduleRender() {
+    if (renderScheduled) return;
+    renderScheduled = true;
+    setTimeout(() => {
+      renderScheduled = false;
+      updateMarker();
+      fitAll();
+      renderInfo();
+      renderLegend();
+      showGpxBtn();
+    }, 250);
+  }
+
   onChildAdded(query(ref(db, TRACK_PATH), orderByKey()), (snap) => {
     const p = snap.val();
     if (!p || typeof p.lat !== "number" || typeof p.lon !== "number") return;
     const pt = { lat: p.lat, lon: p.lon, t: Number(p.t) || 0, spd: typeof p.spd === "number" ? p.spd : null };
     points.push(pt);
-    addPointToDay(pt);
-    updateMarker();
-    fitAll();
-    renderInfo();
-    renderLegend();
+    addPointToDay(pt);   // Polyline-Punkt sofort (billig), Rest gebatcht
+    scheduleRender();
   });
 
   // ── Punkt in die passende Tages-Polyline einhängen ──
@@ -92,7 +105,16 @@ function initLive() {
     else { marker.setLatLng(latlng); marker.setIcon(liveIcon(offline)); }
   }
 
+  // Auto-Fit nur solange der Besucher die Karte nicht selbst bewegt hat.
+  // DOM-Events statt Leaflet-Events: programmatisches fitBounds feuert
+  // zoomstart, aber keine echten Pointer-Events.
+  let userMovedMap = false;
+  const stopAutoFit = () => { userMovedMap = true; };
+  mapEl.addEventListener("pointerdown", stopAutoFit, { passive: true });
+  mapEl.addEventListener("wheel", stopAutoFit, { passive: true });
+
   function fitAll() {
+    if (userMovedMap) return;
     if (points.length === 1) {
       map.setView([points[0].lat, points[0].lon], 13);
     } else {
@@ -128,15 +150,64 @@ function initLive() {
 
   function renderLegend() {
     if (!legendEl) return;
-    let total = 0;
-    const parts = dayList.map(day => {
-      const km = dayKm(day);
-      total += km;
-      return '<span class="legend-item"><span class="legend-dot" style="background:' + day.color + '"></span>'
-        + fmtDayLabel(day.key) + ' — ' + km.toFixed(0) + ' km</span>';
+    let totalKm = 0, totalMoveSec = 0, totalMax = 0;
+    const cards = dayList.map(day => {
+      const st = dayStats(day);
+      totalKm += st.km;
+      totalMoveSec += st.moveSec;
+      if (st.maxKmh > totalMax) totalMax = st.maxKmh;
+      return '<div class="day-card">'
+        + '<div class="day-card-head"><span class="legend-dot" style="background:' + day.color + '"></span>'
+        + fmtDayLabel(day.key) + '</div>'
+        + '<div class="day-card-stats">'
+        + '<span>Strecke <b>' + st.km.toFixed(0) + ' km</b></span>'
+        + '<span>Fahrzeit <b>' + fmtDur(st.moveSec) + '</b></span>'
+        + '<span>&Oslash; Tempo <b>' + (st.avgKmh > 0 ? Math.round(st.avgKmh) + ' km/h' : '–') + '</b></span>'
+        + '<span>Max <b>' + (st.maxKmh > 0 ? Math.round(st.maxKmh) + ' km/h' : '–') + '</b></span>'
+        + '<span>Start <b>' + st.startTime + '</b></span>'
+        + '<span>Ende <b>' + st.endTime + '</b></span>'
+        + '</div></div>';
     });
-    const totalTxt = '<span class="legend-total">Gesamt: ' + total.toFixed(0) + ' km</span>';
-    legendEl.innerHTML = parts.join("") + totalTxt;
+    const totalCard = '<div class="day-total-card">'
+      + '<span>Gesamt <b>' + totalKm.toFixed(0) + ' km</b></span>'
+      + '<span>Fahrzeit <b>' + fmtDur(totalMoveSec) + '</b></span>'
+      + (totalMax > 0 ? '<span>Top-Speed <b>' + Math.round(totalMax) + ' km/h</b></span>' : '')
+      + '<span>Tage <b>' + dayList.length + '</b></span>'
+      + '</div>';
+    legendEl.innerHTML = cards.join("") + totalCard;
+  }
+
+  // ── Tages-Statistik: Strecke, Fahrzeit (in Bewegung), Ø/Max-Tempo, Start/Ende ──
+  function dayStats(day) {
+    let dist = 0, moveDist = 0, moveSec = 0, maxKmh = 0;
+    for (let i = 1; i < day.pts.length; i++) {
+      const a = day.pts[i - 1], b = day.pts[i];
+      const d = haversine(a, b);
+      const dt = b.t - a.t;
+      const segKmh = dt > 0 ? (d / dt) * 3.6 : Infinity;
+      // Strecke: GPS-Ausreißer raus (impliziertes Tempo > 160 km/h springt nicht real).
+      // Lange Tracker-Lücken bleiben drin — die Luftlinie ist dort eine Untergrenze.
+      if (segKmh <= 160) dist += d;
+      // Fahrzeit/Ø-Tempo nur aus dichten Segmenten (Lücke ≤ 5 Min)
+      if (dt > 0 && dt <= 300) {
+        if (segKmh >= 3 && segKmh <= 160) { moveSec += dt; moveDist += d; }  // "in Bewegung" ab 3 km/h
+        if (segKmh > maxKmh && segKmh <= 160) maxKmh = segKmh;
+      }
+      // Geräte-Speed ist genauer, wenn vorhanden
+      if (b.spd != null) {
+        const s = b.spd * 3.6;
+        if (s > maxKmh && s <= 200) maxKmh = s;
+      }
+    }
+    const first = day.pts[0], last = day.pts[day.pts.length - 1];
+    return {
+      km: (dist / 1000) * DIST_FACTOR,
+      moveSec: moveSec,
+      avgKmh: moveSec > 0 ? (moveDist / moveSec) * 3.6 : 0,
+      maxKmh: maxKmh,
+      startTime: first ? fmtClock(first.t) : "–",
+      endTime: last ? fmtClock(last.t) : "–"
+    };
   }
 
   // ── Ø-Geschwindigkeit der letzten 5 Minuten (Strecke ÷ Zeit) → km/h ──
@@ -160,13 +231,55 @@ function initLive() {
     return (dist / dt) * 3.6;
   }
 
-  function dayKm(day) {
-    let d = 0;
-    for (let i = 1; i < day.pts.length; i++) d += haversine(day.pts[i - 1], day.pts[i]);
-    return (d / 1000) * DIST_FACTOR;
+  // ── GPX-Export: ein <trk> pro Tag, Zeitstempel in ISO-8601 ──
+  const gpxBtn = document.getElementById("live-gpx-btn");
+  if (gpxBtn) gpxBtn.addEventListener("click", downloadTrackedGPX);
+
+  function showGpxBtn() {
+    if (gpxBtn && !gpxBtn.classList.contains("visible")) gpxBtn.classList.add("visible");
+  }
+
+  function downloadTrackedGPX() {
+    if (!dayList.length) return;
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+      + '<gpx version="1.1" creator="Enduro Explorers Live-Tracker" '
+      + 'xmlns="http://www.topografix.com/GPX/1/1">\n'
+      + '  <metadata><name>Explore our 2026 — Live-Track</name></metadata>\n';
+    for (const day of dayList) {
+      xml += '  <trk><name>' + fmtDayLabel(day.key) + '</name><trkseg>\n';
+      for (const p of day.pts) {
+        xml += '    <trkpt lat="' + p.lat.toFixed(6) + '" lon="' + p.lon.toFixed(6) + '">'
+          + '<time>' + new Date(p.t * 1000).toISOString() + '</time></trkpt>\n';
+      }
+      xml += '  </trkseg></trk>\n';
+    }
+    xml += '</gpx>\n';
+    const blob = new Blob([xml], { type: "application/gpx+xml" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "enduro-explorers-2026-live-track.gpx";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
   }
 
   // ── Helpers ──
+  function fmtDur(sec) {
+    if (!sec || sec <= 0) return "–";
+    // Erst auf ganze Minuten runden, dann h/m ableiten — sonst "1:60 h" möglich
+    const totalMin = Math.round(sec / 60);
+    const h = Math.floor(totalMin / 60);
+    const m = totalMin % 60;
+    return h + ":" + pad(m) + " h";
+  }
+
+  function fmtClock(tSec) {
+    const d = new Date(tSec * 1000);
+    return pad(d.getHours()) + ":" + pad(d.getMinutes());
+  }
+
   function dayKey(tSec) {
     const d = new Date(tSec * 1000);
     return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
