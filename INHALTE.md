@@ -18,12 +18,10 @@ Enduro Explorers Strasswalchen
 Was wir **machen**
 
 **Subtitle:**
-Ein eingetragener, gemeinnütziger Verein im Salzburger Land. Keine Gewinnabsichten — sondern Reisen, Abenteuer und die gemeinsame Leidenschaft fürs Endurofahren.
+Ein eingetragener, gemeinnütziger Verein im Salzburger Land. Wir verfolgen keine Gewinnabsichten, sondern fördern Reisen, Abenteuer und die gemeinsame Leidenschaft fürs Endurofahren.
 
-**Hero-Stats** (3 Werte):
-- 3 — große Touren
-- 3 — Kontinente
-- ∞ — Lagerfeuer
+**Live-Banner (unter dem Subtitle):**
+Text wechselt automatisch je nach Datum (Tour-Start in X Tagen / LIVE: Wir sind unterwegs / die getrackte Route)
 
 ## 1.2 Intro-Zitat (Gold-Box)
 
@@ -33,15 +31,15 @@ Für uns bedeutet **Enduro** mehr als nur Motorradfahren. Es steht für die Frei
 
 ### Karte 1
 **Titel:** Auf zwei Rädern unterwegs
-**Text:** Ob Wochenendtour vor der Haustür oder mehrtägige Reisen in neue Regionen — wir sind unterwegs, um Abenteuer zu suchen und als Gemeinschaft zu wachsen. Vom ersten Kilometer bis zum Lagerfeuer am Abend.
+**Text:** Ob Wochenendtour vor der Haustür oder mehrtägige Reise in eine neue Region: Wir sind unterwegs, um Abenteuer zu suchen und als Gemeinschaft zu wachsen. Vom ersten Kilometer bis zum Lagerfeuer am Abend.
 
 ### Karte 2
 **Titel:** Gemeinschaft, kein Wettbewerb
-**Text:** Es geht nicht um Rennen oder Leistung — sondern um Zusammenhalt, Spaß und das gemeinsame Erlebnis. Wir unterstützen uns gegenseitig, teilen Erfahrungen und geben Wissen weiter.
+**Text:** Bei uns geht es nicht um Wettbewerb oder Leistung, sondern um Zusammenhalt, Spaß und das gemeinsame Erlebnis. Wir unterstützen uns gegenseitig, teilen Erfahrungen und geben Wissen weiter.
 
 ### Karte 3
 **Titel:** Jede Tour eine Geschichte
-**Text:** Staubige Trails, technische Passagen, spektakuläre Ausblicke und echte Kameradschaft. Wir organisieren gemeinsame Ausfahrten und mehrtägige Reisen — und jede Tour erzählt ihre eigene Geschichte.
+**Text:** Wir organisieren gemeinsame Ausfahrten und mehrtägige Reisen. Jede Tour erzählt ihre eigene Geschichte: staubige Trails, technische Passagen, spektakuläre Ausblicke und echte Kameradschaft.
 
 ### Karte 4
 **Titel:** Offene Gemeinschaft
@@ -49,8 +47,8 @@ Für uns bedeutet **Enduro** mehr als nur Motorradfahren. Es steht für die Frei
 
 ## 1.4 Final-Claim
 
-Abenteuer beginnt dort, wo Komfort endet —
-**und genau dort fühlen wir uns zuhause.**
+Abenteuer beginnt dort, wo Komfort endet.
+**Und genau dort fühlen wir uns zuhause.**
 
 ---
 
@@ -78,7 +76,7 @@ Die Hauptroute haben wir bereits in über **62.000 GPS-Punkten** geplant. Dazu k
 ## 2.3 GPX-Karte-Sektion
 
 **Titel:** Live GPX-Karte
-**Beschreibung:** Unsere echte Tour-GPX im interaktiven gpx.studio Editor — zoomen, Höhenprofil, Etappen-Details.
+**Beschreibung:** Unsere geplante Route im gpx.studio Editor. Reinzoomen, Höhenprofil ansehen, Etappen durchklicken.
 **Download-Button:** GPX-Datei herunterladen
 
 ## 2.4 Route in Etappen
@@ -90,13 +88,13 @@ Die Hauptroute haben wir bereits in über **62.000 GPS-Punkten** geplant. Dazu k
 Einstieg ins Hauptmassiv der italienischen Westalpen. Hochalpine Pässe, Schotter, Pannen braucht's hier nicht.
 
 ### Etappe 02 — Italienische Westalpen → Piemont
-Über Aosta, Sestriere, Colle delle Finestre und den Assietta-Kamm — Schotteretappen mit bis zu 2.500m.
+Über Aosta, Sestriere, Colle delle Finestre und den Assietta-Kamm. Schotteretappen bis auf 2.500 Meter.
 
 ### Etappe 03 — Ligurische Grenzkammstraße / Via del Sale
-Das Herzstück: ~50 km Hochgebirgs-Schotter direkt auf der italienisch-französischen Grenze mit Mittelmeer-Panorama.
+Das Herzstück der Tour: rund 50 km Schotter direkt auf der italienisch-französischen Grenze, mit Blick aufs Mittelmeer.
 
 ### Etappe 04 — Côte d'Azur
-Ventimiglia, Monaco, Nizza, Cannes, Saint-Tropez — die ganze Riviera entlang der Küste.
+Ventimiglia, Monaco, Nizza, Cannes, Saint-Tropez. Einmal die ganze Riviera entlang.
 
 ### Etappe 05 — Provence & Languedoc
 Westwärts durch Arles, Pont du Gard, Camargue, Montpellier, Narbonne nach Perpignan.
@@ -105,7 +103,7 @@ Westwärts durch Arles, Pont du Gard, Camargue, Montpellier, Narbonne nach Perpi
 Grenzübertritt über die östlichen Pyrenäen, durch das Fürstentum Andorra und ins katalonische Hinterland.
 
 ### Etappe 07 — Ziel: Barcelona
-Über Girona ans Mittelmeer. Sagrada Família, Las Ramblas, Strand. Tour ausgefahren.
+Über Girona ans Mittelmeer und hinein nach Barcelona. Dort lassen wir die Tour ausklingen.
 
 ---
 
@@ -113,13 +111,13 @@ Grenzübertritt über die östlichen Pyrenäen, durch das Fürstentum Andorra un
 
 ## 3.1 Hero
 **Titel:** Enduro **Reiseberichte**
-**Subtitle:** Unsere großen Touren — Geschichten, Fotos, Lessons Learned.
+**Subtitle:** Unsere Touren seit 2023: Marokko, der Balkan und Tunesien. Hier sind die Berichte dazu.
 
 ## 3.2 Featured-Karte (Tunesien)
 **Tag:** Aktuellste Tour
 **Titel:** Tunesien 2025
 **Untertitel:** Sahara, Salzsee, Dünen
-**Beschreibung:** 2,5 Wochen durch Wüste und Dünen — vier Bikes & viel Sand.
+**Beschreibung:** 2,5 Wochen durch Wüste und Dünen, vier Bikes und viel Sand.
 
 ## 3.3 Karten
 - **Balkan 2024** · TET Italien → Griechenland · 5 Länder
@@ -127,7 +125,7 @@ Grenzübertritt über die östlichen Pyrenäen, durch das Fürstentum Andorra un
 
 ## 3.4 Demnächst-Sektion
 **Titel:** Demnächst: Barcelona 2026
-**Text:** Über die italienischen Westalpen und die Ligurische Grenzkammstraße nach Barcelona — die nächste große Tour steht. Tour-Tagebuch folgt nach der Rückkehr.
+**Text:** Über die italienischen Westalpen und die Ligurische Grenzkammstraße nach Barcelona. Der Bericht folgt, sobald wir zurück sind.
 
 ---
 
@@ -136,10 +134,10 @@ Grenzübertritt über die östlichen Pyrenäen, durch das Fürstentum Andorra un
 ## 4.1 Hero
 **Club-Tag:** Reisebericht 2025
 **Titel:** Tunesien **2025**
-**Subtitle:** Motorrad-Abenteuer Tunesien — 2,5 Wochen durch Wüste, Dünen und Abenteuer.
+**Subtitle:** 2,5 Wochen mit den Motorrädern durch Tunesien: Küste, Sahara und jede Menge Sand.
 
 ## 4.2 Lead-Text
-Von Straßwalchen ging es nach Genua und mit der Fähre weiter nach Tunis. 2,5 Wochen Tunesien mit vier Maschinen — Küste, Sahara, Salzsee und Dünen.
+Von Straßwalchen ging es nach Genua und mit der Fähre weiter nach Tunis. 2,5 Wochen Tunesien mit vier Maschinen: Küste, Sahara, Salzsee und Dünen.
 
 ## 4.3 Die Maschinen (Box)
 - Suzuki DR500
@@ -160,10 +158,10 @@ Nach der Überfahrt führte die erste Phase entlang der Mittelmeerküste über *
 - Rückkehr über Tunis → Genua → Strasswalchen
 
 ## 4.6 Schluss-Absatz
-Die Salzsee-Überquerung war surreal, die Dünenfahrten richtig hart. Pannen mitten in der Wüste und improvisierte Reparaturen auf der Straße gehörten dazu — Werkstatt-Glück gab es nicht überall.
+Die Salzsee-Überquerung war surreal, die Dünenfahrten richtig hart. Pannen mitten in der Wüste und improvisierte Reparaturen am Straßenrand gehörten genauso dazu. Eine Werkstatt gab es eben nicht überall.
 
 ## 4.7 Outro-Zitat
-„Tunesien hat uns alles abverlangt — Sand, Sonne, Pannen — aber genau das macht so eine Tour unvergesslich."
+„Tunesien hat uns alles abverlangt: Sand, Hitze und Pannen. Aber genau das macht so eine Tour unvergesslich."
 
 ## 4.8 Karten-Bildbeschreibung
 Illustrierte Landkarte unserer Motorrad-Rundreise durch Tunesien
@@ -178,7 +176,7 @@ Illustrierte Landkarte unserer Motorrad-Rundreise durch Tunesien
 **Subtitle:** Trans Europe Trail von Italien bis Griechenland.
 
 ## 5.2 Lead-Text
-Die Expedition folgte dem Trans Europe Trail (TET) von Italien bis Griechenland — quer durch den Balkan auf Schotter, durch Wälder, über Berge und ans Meer.
+Wir sind dem Trans Europe Trail (TET) von Italien bis Griechenland gefolgt: quer durch den Balkan, auf Schotter, durch Wälder, über Berge und ans Meer.
 
 ## 5.3 Länder-Blöcke
 
@@ -195,17 +193,16 @@ Die Expedition folgte dem Trans Europe Trail (TET) von Italien bis Griechenland 
 - Foča
 
 ### Montenegro & Albanien
-Atemberaubende Berglandschaften, weite Täler und kurvige Offroad-Pisten — gepaart mit unglaublicher Gastfreundschaft.
+Berglandschaften, weite Täler und kurvige Offroad-Pisten. Und überall sind uns die Leute unglaublich gastfreundlich begegnet.
 
 ### Abschluss
 Strandpause in Albanien, danach Weiterfahrt nach Griechenland (Igoumenitsa), Fährüberfahrt nach Venedig, Rückfahrt nach Hause.
 
 ## 5.4 Outro-Zitat
-„Staubige Trails, spektakuläre Landschaften, ehrliche Begegnungen und das Gefühl von Freiheit — TET 2024 war mehr als nur eine Route. Es war ein echtes Abenteuer."
+„Staubige Trails, spektakuläre Landschaften und ehrliche Begegnungen: Der TET 2024 war mehr als nur eine Route. Es war ein echtes Abenteuer."
 
 ## 5.5 Karten-Bildbeschreibungen
-- Balkan 2024 — Routenübersicht
-- Balkan 2024 — Tour-Detail
+- Die Route im Überblick (Karte 1 + 2)
 
 ---
 
@@ -214,7 +211,7 @@ Strandpause in Albanien, danach Weiterfahrt nach Griechenland (Igoumenitsa), Fä
 ## 6.1 Hero
 **Club-Tag:** Reisebericht 2023 · Gründungstour
 **Titel:** Marokko **2023**
-**Subtitle:** Der Einstieg ins Reisen mit Enduro-Motorrädern — zu sechst.
+**Subtitle:** Unsere erste große Reise mit den Enduros, zu sechst.
 
 ## 6.2 Lead-Zitat
 „2023 starteten wir zu sechst in ein Abenteuer, das für uns der Einstieg in das Reisen mit Enduro-Motorrädern werden sollte."
@@ -230,35 +227,34 @@ Erste Etappe nach der Ankunft. Eingewöhnen, Klima, afrikanische Verkehrsmentali
 ### Atlasgebirge
 Kurvige Straßen, beeindruckende Landschaften und stetig wechselnde Ausblicke.
 
-### Agadir — Panne & Improvisation
+### Panne in Agadir
 **Badge:** XT600
 Motorschaden an der Yamaha XT600: „Pleuel war krumm wie eine Banane." Ein lokaler Mechaniker half aus und stellte eine Honda CRF 250 als Leihbike zur Verfügung. Tour gerettet.
 
-### Westsahara — Fort Bou Jerif & Plage Blanche
-„Endlose Küstenlinie, Sand, Meer." Einsame Pisten, weite Horizonte.
+### Westsahara: Fort Bou Jerif & Plage Blanche
+„Endlose Küstenlinie, Sand, Meer." Dazu einsame Pisten und weite Horizonte.
 
 ### Smara · Zagora · Merzouga
 **Badge:** KTM 450 EXC
-Sanddünen-Offroad mit der KTM 450 EXC. Erg Chebbi, Berber-Hospitality.
+Sanddünen-Offroad mit der KTM 450 EXC, bis zu den Dünen des Erg Chebbi.
 
 ### Chefchaouen
-Abschluss in der „blauen Stadt" im Rif-Gebirge. Markt, Gassen, Sonnenuntergang.
+Zum Abschluss ging es nach Chefchaouen, in die blaue Stadt im Rif-Gebirge.
 
 ## 6.4 Outro-Zitat
-„Diese Reise war weit mehr als nur eine Motorradtour — geprägt von Improvisation, Teamgeist und Abenteuerlust."
+„Diese Reise war weit mehr als nur eine Motorradtour, geprägt von Improvisation, Teamgeist und Abenteuerlust."
 
 ## 6.5 Karten-Bildbeschreibungen
-- Marokko 2023 — Routenübersicht
-- Marokko 2023 — Tour-Detail
+- Die Route im Überblick (Karte 1 + 2)
 
 ---
 
 # 7. Kontakt — `kontakt.html`
 
 ## 7.1 Hero
-**Club-Tag:** Reach out
-**Titel:** Kontakt & **Komm vorbei**
-**Subtitle:** Stammtisch und Mail — wir sind erreichbar. Wenn die Chemie passt, fahrst du mit.
+**Club-Tag:** Kontakt
+**Titel:** Kontakt & **Stammtisch**
+**Subtitle:** Schreib uns oder komm einfach zum Stammtisch vorbei. Wenn die Chemie passt, fährst du mit.
 
 ## 7.2 Kontakt-Daten Box
 **E-Mail:** voigas@enduro-explorers.at
@@ -284,7 +280,7 @@ Abschluss in der „blauen Stadt" im Rif-Gebirge. Markt, Gassen, Sonnenuntergang
 
 ## 7.5 Karten-Sektion
 **Titel:** So findest du uns
-**Beschreibung:** Strasswalchen, Salzburger Flachgau. 30 Min von Salzburg.
+**Beschreibung:** Strasswalchen im Salzburger Flachgau, eine halbe Stunde von der Stadt Salzburg.
 
 ## 7.6 Impressum
 
@@ -306,13 +302,13 @@ Förderung des Geländemotorradsports im Bereich Reise-Enduro, gemeinsame Touren
 Es gilt österreichisches Recht. Gerichtsstand ist Salzburg.
 
 ### Haftungsausschluss
-Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. GPX-Daten und Routen werden ohne Gewähr veröffentlicht — die Befahrbarkeit, Legalität und Sicherheit muss vor Befahrung selbst geprüft werden.
+Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. GPX-Daten und Routen werden ohne Gewähr veröffentlicht. Befahrbarkeit, Legalität und Sicherheit müssen vor der Fahrt selbst geprüft werden.
 
 ### Bildnachweis
 Eigene Fotos der Vereinsmitglieder, sofern nicht anders vermerkt. Karten- und Tile-Daten: OpenStreetMap contributors (ODbL).
 
 ### Marken
-"Trans Euro Trail" und "TET" sind Marken der Trans Euro Trail Foundation. Erwähnungen erfolgen ausschließlich im Sinne der nominativen Markenverwendung — keine Zugehörigkeit, keine Sponsorings, keine Vertriebsbeziehung.
+"Trans Euro Trail" und "TET" sind Marken der Trans Euro Trail Foundation. Erwähnungen erfolgen ausschließlich im Sinne der nominativen Markenverwendung. Es besteht keine Zugehörigkeit, kein Sponsoring und keine Vertriebsbeziehung.
 
 ## 7.7 Datenschutz
 

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Was wir machen — Enduro Explorers Strasswalchen</title>
-    <meta name="description" content="Enduro Explorers Strasswalchen e.V. — gemeinnütziger Motorrad-Verein im Salzburger Land.">
+    <title>Was wir machen | Enduro Explorers Strasswalchen</title>
+    <meta name="description" content="Enduro Explorers Strasswalchen e.V., ein gemeinnütziger Motorrad-Verein im Salzburger Land.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
@@ -245,18 +245,18 @@
         <img src="logo_clean.png" alt="Enduro Explorers Strasswalchen Logo" class="hero-logo">
         <div class="hero-clubname">Enduro Explorers Strasswalchen</div>
         <h1>Was wir <span>machen</span></h1>
-        <p class="hero-subtitle">Ein eingetragener, gemeinnütziger Verein im Salzburger Land. Keine Gewinnabsichten — sondern Reisen, Abenteuer und die gemeinsame Leidenschaft fürs Endurofahren.</p>
+        <p class="hero-subtitle">Ein eingetragener, gemeinnütziger Verein im Salzburger Land. Wir verfolgen keine Gewinnabsichten, sondern fördern Reisen, Abenteuer und die gemeinsame Leidenschaft fürs Endurofahren.</p>
         <a href="explore-2026.html#live" class="live-banner" id="liveBanner">
             <span class="live-banner-dot"></span>
-            <span id="liveBannerText">Barcelona-Tour 2026 — zum Live-Tracker</span>
+            <span id="liveBannerText">Barcelona-Tour 2026: zum Live-Tracker</span>
         </a>
     </div>
     <div class="scroll-indicator"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg></div>
 </section>
 
 <script>
-// Slideshow läuft über assets/site.js (initHeroSlideshow, data-set="all") —
-// keine zweite Initialisierung hier, sonst kollidieren zwei Intervalle.
+// Slideshow läuft über assets/site.js (initHeroSlideshow, data-set="all").
+// Keine zweite Initialisierung hier, sonst kollidieren zwei Intervalle.
 
 // Live-Banner: Text je nach Tour-Status (Start 6.7.2026 07:00)
 (function() {
@@ -266,14 +266,14 @@
     const end = new Date('2026-07-26T23:59:59'); // großzügiges Tour-Ende
     const now = new Date();
     if (now >= start && now <= end) {
-        el.textContent = 'LIVE — Wir sind unterwegs! Jetzt verfolgen';
+        el.textContent = 'LIVE: Wir sind unterwegs! Schau dir an, wo wir gerade sind';
     } else if (now < start) {
         const days = Math.ceil((start - now) / 86400000);
         el.textContent = days <= 1
-            ? 'Morgen geht\'s los — zum Live-Tracker'
-            : 'Tour-Start in ' + days + ' Tagen — zum Live-Tracker';
+            ? 'Morgen geht\'s los! Zum Live-Tracker'
+            : 'Tour-Start in ' + days + ' Tagen. Zum Live-Tracker';
     } else {
-        el.textContent = 'Barcelona-Tour 2026 — die getrackte Route';
+        el.textContent = 'Barcelona-Tour 2026: die getrackte Route';
     }
 })();
 </script>
@@ -292,21 +292,21 @@
             <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg>
         </div>
         <h3>Auf zwei Rädern unterwegs</h3>
-        <p>Ob Wochenendtour vor der Haustür oder mehrtägige Reisen in neue Regionen — wir sind unterwegs, um Abenteuer zu suchen und als Gemeinschaft zu wachsen. Vom ersten Kilometer bis zum Lagerfeuer am Abend.</p>
+        <p>Ob Wochenendtour vor der Haustür oder mehrtägige Reise in eine neue Region: Wir sind unterwegs, um Abenteuer zu suchen und als Gemeinschaft zu wachsen. Vom ersten Kilometer bis zum Lagerfeuer am Abend.</p>
     </div>
     <div class="content-card">
         <div class="content-card-icon">
             <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
         </div>
         <h3>Gemeinschaft, kein Wettbewerb</h3>
-        <p>Es geht nicht um Rennen oder Leistung — sondern um Zusammenhalt, Spaß und das gemeinsame Erlebnis. Wir unterstützen uns gegenseitig, teilen Erfahrungen und geben Wissen weiter.</p>
+        <p>Bei uns geht es nicht um Wettbewerb oder Leistung, sondern um Zusammenhalt, Spaß und das gemeinsame Erlebnis. Wir unterstützen uns gegenseitig, teilen Erfahrungen und geben Wissen weiter.</p>
     </div>
     <div class="content-card">
         <div class="content-card-icon">
             <svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6zM9 4v14M15 6v14"/></svg>
         </div>
         <h3>Jede Tour eine Geschichte</h3>
-        <p>Staubige Trails, technische Passagen, spektakuläre Ausblicke und echte Kameradschaft. Wir organisieren gemeinsame Ausfahrten und mehrtägige Reisen — und jede Tour erzählt ihre eigene Geschichte.</p>
+        <p>Wir organisieren gemeinsame Ausfahrten und mehrtägige Reisen. Jede Tour erzählt ihre eigene Geschichte: staubige Trails, technische Passagen, spektakuläre Ausblicke und echte Kameradschaft.</p>
     </div>
     <div class="content-card">
         <div class="content-card-icon">
@@ -319,7 +319,7 @@
 
 <!-- FINAL CLAIM -->
 <div class="final-claim">
-    <p>Abenteuer beginnt dort, wo Komfort endet —<br><span>und genau dort fühlen wir uns zuhause.</span></p>
+    <p>Abenteuer beginnt dort, wo Komfort endet.<br><span>Und genau dort fühlen wir uns zuhause.</span></p>
 </div>
 
 <footer>
