@@ -18,7 +18,7 @@ Enduro Explorers Strasswalchen
 Was wir **machen**
 
 **Subtitle:**
-Ein eingetragener, gemeinnütziger Verein im Salzburger Land. Wir verfolgen keine Gewinnabsichten, sondern fördern Reisen, Abenteuer und die gemeinsame Leidenschaft fürs Endurofahren.
+Wir sind ein eingetragener Verein mit Sitz in Strasswalchen.
 
 **Live-Banner (unter dem Subtitle):**
 Text wechselt automatisch je nach Datum (Tour-Start in X Tagen / LIVE: Wir sind unterwegs / die getrackte Route)
